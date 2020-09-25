@@ -26845,7 +26845,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 33
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = FLAPPLE,Item,TARTAPPLE,APPLETUN,Item,SWEETAPPLE
+Evolutions =  
 #-------------------------------
 [841]
 Name = Flapple
@@ -27279,7 +27279,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 38
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = POLTEAGEIST,Item,CRACKEDPOT
+Evolutions = POLTEAGEIST,Level,35
 #-------------------------------
 [855]
 Name = Polteageist

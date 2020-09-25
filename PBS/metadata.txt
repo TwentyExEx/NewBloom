@@ -46,16 +46,6 @@ HealingSpot=40,14,9
 BicycleAlways=false
 ShowArea=true
 #-------------------------------
-[008]
-# Forest - Lakeside
-MapSize=1,111
-SnapEdges=true
-Bicycle=true
-Weather=Rain,30
-MapPosition=0,11,7
-Outdoor=true
-BicycleAlways=false
-ShowArea=true
 #-------------------------------
 [042]
 Outdoor=true
@@ -96,16 +86,6 @@ MapPosition=0,12,6
 Outdoor=true
 ShowArea=true
 #-------------------------------
-[013]
-# Forest - Waterfall View
-MapSize=2,11
-SnapEdges=true
-BattleBack=
-Bicycle=true
-Weather=Rain,30
-MapPosition=0,15,10
-Outdoor=true
-ShowArea=true
 #-------------------------------
 [048]
 Bicycle=false

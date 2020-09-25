@@ -646,3 +646,7 @@
 631,NSOLARIZER,N-Solarizer,N-Solarizers,8,0,"A machine to fuse Necrozma, which needs light, and Solgaleo.",5,0,6,
 632,NLUNARIZER,N-Lunarizer,N-Lunarizers,8,0,"A machine to fuse Necrozma, which needs light, and Lunala.",5,0,6,
 633,MEGARING,Mega Ring,Mega Rings,8,0,"This ring contains an untold power that somehow enables Pokémon carrying Mega Stones to Mega Evolve.",0,0,6,
+#-------------------------------
+1000,AQUABIKE,Aqua Bike,Aqua Bikes,8,0,"A folding Bicycle that allows you to bike on water.",0,0,6,
+1001,EXPALL,Exp. Share,Exp. Shares,8,0,"Turning on this special device will allow all the Pokémon on your team to receive Exp. Points from battles.",2,0,6,
+1002,EXPALLOFF,Exp. Share,Exp. Shares,8,0,"Turning on this special device will allow all the Pokémon on your team to receive Exp. Points from battles.",2,0,6,
