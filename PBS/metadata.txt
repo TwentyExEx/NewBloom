@@ -1,14 +1,14 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
 [000]
-PlayerA = POKEMONTRAINER_Charlie,player01,player01_bike,player01_surf,player01_run,boy_surf,boy_fish_offset
-PlayerB = POKEMONTRAINER_Robin,player02,player02_bike,player02_surf,player02_run,boy_surf,boy_fish_offset
-PlayerC = POKEMONTRAINER_Dylan,player03,player03_bike,player03_surf,player03_run,boy_surf,boy_fish_offset
-PlayerD = POKEMONTRAINER_Riley,player04,player04_bike,player04_surf,player04_run,player04_surf,player04_fish_offset
-PlayerE = POKEMONTRAINER_Emery,player05,player05_bike,player05_surf,player05_run,boy_surf,boy_fish_offset
-PlayerF = POKEMONTRAINER_Avery,player06,player06_bike,player06_surf,player06_run,boy_surf,boy_fish_offset
+PlayerA = POKEMONTRAINER_Charlie,player01,player01_bike,player01_surf,player01_run,boy_surf,boy_fish_offset,
+PlayerB = POKEMONTRAINER_Robin,player02,player02_bike,player02_surf,player02_run,boy_surf,boy_fish_offset,
+PlayerC = POKEMONTRAINER_Dylan,player03,player03_bike,player03_surf,player03_run,boy_surf,boy_fish_offset,
+PlayerD = POKEMONTRAINER_Riley,player04,player04_bike,player04_surf,player04_run,player04_surf,player04_fish_offset,
 TrainerVictoryME = Battle victory trainer.ogg
+PlayerE = POKEMONTRAINER_Emery,player05,player05_bike,player05_surf,player05_run,boy_surf,boy_fish_offset,
 WildVictoryME = Battle victory wild.ogg
+PlayerF = POKEMONTRAINER_Avery,player06,player06_bike,player06_surf,player06_run,boy_surf,boy_fish_offset,
 TrainerBattleBGM = Battle trainer.mid
 SurfBGM = Surfing.mid
 BicycleBGM = Bicycle.mid
@@ -20,379 +20,384 @@ WildBattleBGM = Battle wild.mid
 #-------------------------------
 [003]
 # Select Avatar
-Outdoor=false
+Outdoor = false
 #-------------------------------
 [004]
 # Select Starter
-Outdoor=false
+Outdoor = false
 #-------------------------------
 [006]
 # Forest - City Bridge
-SnapEdges=true
-BattleBack=
-Bicycle=true
-MapPosition=0,13,6
-Outdoor=true
-ShowArea=true
+SnapEdges = true
+BattleBack = 
+Bicycle = true
+MapPosition = 0,13,6
+Outdoor = true
+ShowArea = true
 #-------------------------------
 [007]
 # Forest - Little Pond
-SnapEdges=true
-Bicycle=true
-Weather=Rain,10
-MapPosition=0,11,6
-Outdoor=true
-HealingSpot=40,14,9
-BicycleAlways=false
-ShowArea=true
+SnapEdges = true
+Weather = Rain,10
+Bicycle = true
+MapPosition = 0,11,6
+Outdoor = true
+BicycleAlways = false
+HealingSpot = 40,14,9
+ShowArea = true
 #-------------------------------
-#-------------------------------
-[042]
-Outdoor=true
-ShowArea=true
-#-------------------------------
-[043]
-Weather=Rain,50
-Outdoor=true
-ShowArea=true
+[008]
+# Forest - Lakeside
+SnapEdges = true
+Weather = Rain,30
+Bicycle = true
+Outdoor = true
+BicycleAlways = false
+ShowArea = true
 #-------------------------------
 [009]
 # Forest - Cabins
-MapSize=2,11
-SnapEdges=true
-Bicycle=true
-Weather=Rain,10
-MapPosition=0,11,10
-Outdoor=true
-HealingSpot=44,14,12
-ShowArea=true
+MapSize = 2,11
+SnapEdges = true
+Weather = Rain,10
+Bicycle = true
+MapPosition = 0,11,10
+Outdoor = true
+HealingSpot = 44,14,12
+ShowArea = true
 #-------------------------------
 [010]
 # Forest - Mini Falls
-SnapEdges=true
-Bicycle=true
-Weather=Rain,20
-MapPosition=0,11,10
-Outdoor=true
-BicycleAlways=false
-ShowArea=true
+SnapEdges = true
+Weather = Rain,20
+Bicycle = true
+MapPosition = 0,11,10
+Outdoor = true
+BicycleAlways = false
+ShowArea = true
 #-------------------------------
 [011]
 # Forest - Depths
-SnapEdges=true
-Bicycle=true
-Weather=Rain,10
-MapPosition=0,12,6
-Outdoor=true
-ShowArea=true
-#-------------------------------
-#-------------------------------
-[048]
-Bicycle=false
-Outdoor=true
+SnapEdges = true
+Weather = Rain,10
+Bicycle = true
+MapPosition = 0,12,6
+Outdoor = true
+ShowArea = true
 #-------------------------------
 [012]
 # Forest - Waterfall Fork
-SnapEdges=true
-Bicycle=true
-Weather=Rain,30
-MapPosition=0,16,10
-Outdoor=true
-ShowArea=true
+SnapEdges = true
+Weather = Rain,30
+Bicycle = true
+MapPosition = 0,16,10
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[013]
+# Forest - Waterfall View
+SnapEdges = true
+Weather = Rain,30
+Bicycle = true
+Outdoor = true
+ShowArea = true
 #-------------------------------
 [014]
 # Forest - Mountainside
-SnapEdges=true
-BattleBack=
-Bicycle=true
-Weather=Rain,10
-MapPosition=0,16,10
-DarkMap=false
-Outdoor=true
-HealingSpot=50,18,11
-ShowArea=true
-#-------------------------------
-[051]
-# Forest
-Bicycle=true
-Dungeon=true
-MapPosition=0,16,10
-#-------------------------------
-[052]
-# Deep Forest
-MapPosition=0,17,10
-Outdoor=true
-ShowArea=true
-#-------------------------------
-[025]
-# Caves - 1F
-SnapEdges=true
-Bicycle=false
-MapPosition=0,17,10
-HealingSpot=52,17,14
-ShowArea=true
-#-------------------------------
-[026]
-# Caves - 1F
-SnapEdges=true
-Bicycle=false
-MapPosition=0,17,10
-ShowArea=true
-#-------------------------------
-[028]
-# Caves - B1F
-SnapEdges=true
-Bicycle=false
-MapPosition=0,17,10
-ShowArea=true
-#-------------------------------
-[027]
-# Caves - B1F
-SnapEdges=true
-Bicycle=false
-HealingSpot=56,13,19
-MapPosition=0,17,10
-ShowArea=true
-#-------------------------------
-[029]
-# Caves - B1F
-SnapEdges=true
-Bicycle=false
-HealingSpot=57,27,22
-MapPosition=0,17,10
-ShowArea=true
-#-------------------------------
-[030]
-# Caves - B1F
-SnapEdges=true
-Bicycle=false
-HealingSpot=58,3,28
-MapPosition=0,17,10
-ShowArea=true
+SnapEdges = true
+BattleBack = 
+Weather = Rain,10
+Bicycle = true
+MapPosition = 0,16,10
+DarkMap = false
+Outdoor = true
+HealingSpot = 50,18,11
+ShowArea = true
 #-------------------------------
 [017]
 # Deep Forest - Clearing
-SnapEdges=true
-BattleBack=Forest
-Bicycle=true
-MapPosition=0,17,10
-Outdoor=true
-HealingSpot=59,7,20
-ShowArea=true
+SnapEdges = true
+BattleBack = Forest
+Bicycle = true
+MapPosition = 0,17,10
+Outdoor = true
+HealingSpot = 59,7,20
+ShowArea = true
 #-------------------------------
 [018]
 # Deep Forest - The Pit
-SnapEdges=true
-BattleBack=Forest
-Bicycle=true
-MapPosition=0,17,10
-Outdoor=true
-ShowArea=true
-#-------------------------------
-[021]
-# Deep Forest - Purgatory
-SnapEdges=true
-BattleBack=Forest
-Bicycle=true
-MapPosition=0,17,10
-Outdoor=true
-ShowArea=true
+SnapEdges = true
+BattleBack = Forest
+Bicycle = true
+MapPosition = 0,17,10
+Outdoor = true
+ShowArea = true
 #-------------------------------
 [019]
 # Deep Forest - Swamp
-SnapEdges=true
-BattleBack=Forest
-Bicycle=true
-MapPosition=0,17,10
-Outdoor=true
-ShowArea=true
+SnapEdges = true
+BattleBack = Forest
+Bicycle = true
+MapPosition = 0,17,10
+Outdoor = true
+ShowArea = true
 #-------------------------------
 [020]
 # Deep Forest - Cave Entrance
-SnapEdges=true
-BattleBack=Forest
-Bicycle=true
-MapPosition=0,17,10
-HealingSpot=63,25,10
-Outdoor=true
-ShowArea=true
+SnapEdges = true
+BattleBack = Forest
+Bicycle = true
+MapPosition = 0,17,10
+Outdoor = true
+HealingSpot = 63,25,10
+ShowArea = true
+#-------------------------------
+[021]
+# Deep Forest - Purgatory
+SnapEdges = true
+BattleBack = Forest
+Bicycle = true
+MapPosition = 0,17,10
+Outdoor = true
+ShowArea = true
 #-------------------------------
 [022]
 # Deep Forest - Graveyard
-SnapEdges=true
-BattleBack=Forest
-Bicycle=true
-MapPosition=0,17,10
-HealingSpot=64,5,23
-Outdoor=true
-ShowArea=true
+SnapEdges = true
+BattleBack = Forest
+Bicycle = true
+MapPosition = 0,17,10
+Outdoor = true
+HealingSpot = 64,5,23
+ShowArea = true
 #-------------------------------
-[065]
-# Caves
-MapPosition=0,17,10
+[025]
+# Caves - 1F
+SnapEdges = true
+Bicycle = false
+MapPosition = 0,17,10
+Outdoor = false
+HealingSpot = 52,17,14
+ShowArea = true
 #-------------------------------
-[066]
-# Mountains
-MapPosition=0,12,12
-Outdoor=true
-ShowArea=true
+[026]
+# Caves - 1F
+SnapEdges = true
+Bicycle = false
+MapPosition = 0,17,10
+Outdoor = false
+ShowArea = true
 #-------------------------------
-[035]
-# Mountains - Stairway
-SnapEdges=true
-BattleBack=Snow
-Bicycle=true
-Weather=Snow,100
-MapPosition=0,12,12
-Outdoor=true
-ShowArea=true
+[027]
+# Caves - B1F
+SnapEdges = true
+Bicycle = false
+MapPosition = 0,17,10
+HealingSpot = 56,13,19
+ShowArea = true
+#-------------------------------
+[028]
+# Caves - B1F
+SnapEdges = true
+Bicycle = false
+MapPosition = 0,17,10
+ShowArea = true
+#-------------------------------
+[029]
+# Caves - B1F
+SnapEdges = true
+Bicycle = false
+MapPosition = 0,17,10
+HealingSpot = 57,27,22
+ShowArea = true
+#-------------------------------
+[030]
+# Caves - B1F
+SnapEdges = true
+Bicycle = false
+MapPosition = 0,17,10
+HealingSpot = 58,3,28
+ShowArea = true
+#-------------------------------
+[032]
+# Caves - Secluded Cave
+SnapEdges = true
 #-------------------------------
 [034]
 # Mountains - Frozen Lakes
-SnapEdges=true
-BattleBack=Snow
-Bicycle=true
-Weather=Snow,100
-MapPosition=0,12,12
-HealingSpot=68,61,12
-Outdoor=true
-ShowArea=true
+SnapEdges = true
+BattleBack = Snow
+Weather = Snow,100
+Bicycle = true
+MapPosition = 0,12,12
+Outdoor = true
+HealingSpot = 68,61,12
+ShowArea = true
+#-------------------------------
+[035]
+# Mountains - Stairway
+SnapEdges = true
+BattleBack = Snow
+Weather = Snow,100
+Bicycle = true
+MapPosition = 0,12,12
+Outdoor = true
+ShowArea = true
 #-------------------------------
 [036]
 # Mountains - Ravine
-SnapEdges=true
-BattleBack=Snow
-Bicycle=true
-Weather=Snow,100
-MapPosition=0,13,13
-Outdoor=true
-ShowArea=true
+SnapEdges = true
+BattleBack = Snow
+Weather = Snow,100
+Bicycle = true
+MapPosition = 0,13,13
+Outdoor = true
+ShowArea = true
 #-------------------------------
 [037]
 # Mountains - Village
-SnapEdges=true
-BattleBack=Snow
-Bicycle=true
-Weather=Snow,100
-MapPosition=0,13,13
-Outdoor=true
-ShowArea=true
+SnapEdges = true
+BattleBack = Snow
+Weather = Snow,100
+Bicycle = true
+MapPosition = 0,13,13
+Outdoor = true
+ShowArea = true
 #-------------------------------
 [038]
 # Mountains - Waterfall
-SnapEdges=true
-BattleBack=Snow
-Bicycle=true
-Weather=Snow,100
-MapPosition=0,13,13
-HealingSpot=71,18,13
-Outdoor=true
-ShowArea=true
+SnapEdges = true
+BattleBack = Snow
+Weather = Snow,100
+Bicycle = true
+MapPosition = 0,13,13
+Outdoor = true
+HealingSpot = 71,18,13
+ShowArea = true
 #-------------------------------
 [039]
 # Mountains - Crossroads
-SnapEdges=true
-BattleBack=Snow
-Bicycle=true
-Weather=Snow,100
-MapPosition=0,18,17
-Outdoor=true
-ShowArea=true
+SnapEdges = true
+BattleBack = Snow
+Weather = Snow,100
+Bicycle = true
+MapPosition = 0,18,17
+Outdoor = true
+ShowArea = true
 #-------------------------------
 [040]
 # Mountains - Peak
-SnapEdges=true
-BattleBack=Snow
-Bicycle=true
-Weather=Snow,100
-MapPosition=0,22,16
-Outdoor=true
-ShowArea=true
+SnapEdges = true
+BattleBack = Snow
+Weather = Snow,100
+Bicycle = true
+MapPosition = 0,22,16
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[042]
+# Francis' Home
+BattleBack = IndoorA
+Outdoor = false
+#-------------------------------
+[043]
+# Fairy Garden
+Weather = Rain,50
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[048]
+# Fairy Garden - Descent
+Bicycle = false
+Outdoor = true
+#-------------------------------
+[051]
+Bicycle = true
+Dungeon = true
+MapPosition = 0,16,10
+#-------------------------------
+[052]
+MapPosition = 0,17,10
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[065]
+MapPosition = 0,17,10
+#-------------------------------
+[066]
+MapPosition = 0,12,12
+Outdoor = true
+ShowArea = true
 #-------------------------------
 [074]
-# Homes
-Bicycle=true
-MapPosition=0,12,10
+Bicycle = true
+MapPosition = 0,12,10
 #-------------------------------
 [075]
-# Cabin Home
-MapPosition=1,13,16
-Outdoor=false
+MapPosition = 1,13,16
+Outdoor = false
 #-------------------------------
 [079]
-Bicycle=true
-Outdoor=true
-ShowArea=true
+Bicycle = true
+Outdoor = true
+ShowArea = true
 #-------------------------------
 [080]
-Bicycle=true
-TrainerVictoryME=VictoryTrainer.ogg
-WildVictoryME=VictoryWild.ogg
-TrainerBattleBGM=BattleTrainer.ogg
-Outdoor=true
-WildBattleBGM=BattleWild.ogg
-ShowArea=true
+Bicycle = true
+TrainerVictoryME = VictoryTrainer.ogg
+WildVictoryME = VictoryWild.ogg
+TrainerBattleBGM = BattleTrainer.ogg
+Outdoor = true
+WildBattleBGM = BattleWild.ogg
+ShowArea = true
 #-------------------------------
 [081]
 #-------------------------------
 [086]
-Bicycle=true
-Outdoor=true
-BicycleAlways=false
-ShowArea=true
+Bicycle = true
+Outdoor = true
+BicycleAlways = false
+ShowArea = true
 #-------------------------------
 [087]
-SnapEdges=false
-Outdoor=true
-ShowArea=true
+SnapEdges = false
+Outdoor = true
+ShowArea = true
 #-------------------------------
 [088]
-DarkMap=false
+DarkMap = false
 #-------------------------------
 [090]
-BattleBack=
-TrainerBattleBGM=Battle! Kalos.ogg
-Outdoor=true
-ShowArea=true
+BattleBack = 
+TrainerBattleBGM = Battle! Kalos.ogg
+Outdoor = true
+ShowArea = true
 #-------------------------------
 [097]
-Outdoor=true
-ShowArea=true
+Outdoor = true
+ShowArea = true
 #-------------------------------
 [099]
-BattleBack=
-Outdoor=true
-ShowArea=true
+BattleBack = 
+Outdoor = true
+ShowArea = true
 #-------------------------------
 [105]
-BattleBack=Forest
+BattleBack = Forest
 #-------------------------------
 [106]
-Outdoor=true
+Outdoor = true
 #-------------------------------
 [114]
-# World Gauntlet - Gym Leader
-BattleBack=IndoorA
+BattleBack = IndoorA
 #-------------------------------
 [115]
-# World Gauntlet - E4
-BattleBack=EliteD
+BattleBack = EliteD
 #-------------------------------
 [117]
-# World Gauntlet - Champion
-BattleBack=Champion
+BattleBack = Champion
 #-------------------------------
 [120]
-# Mew's Dream World
-SnapEdges=true
-BattleBack=EliteD
-ShowArea=true
-#-------------------------------
-[032]
-# Secluded Cave
-SnapEdges=true
-#-------------------------------
-[042]
-# Francis' House
-BattleBack=IndoorA
-Outdoor=false
+SnapEdges = true
+BattleBack = EliteD
+ShowArea = true
