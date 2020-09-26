@@ -6,69 +6,40 @@
 ################################################################################
 
 # Make all wild Pokémon shiny while a certain Switch is ON (see Settings).
+Events.onWildPokemonCreate += proc { |_sender, e|
+  pokemon = e[0]
+  if $game_switches[SHINY_WILD_POKEMON_SWITCH]
+    pokemon.makeShiny
+  end
+}
 
 # Used in the random dungeon map.  Makes the levels of all wild Pokémon in that
 # map depend on the levels of Pokémon in the player's party.
 # This is a simple method, and can/should be modified to account for evolutions
 # and other such details.  Of course, you don't HAVE to use this code.
-Events.onWildPokemonCreate+=proc {|sender,e|
-   pokemon=e[0]
-   if $game_map.map_id==400
-     newlevel=pbBalancedLevel($Trainer.party) - 4 + rand(5)   # For variety
-     newlevel=1 if newlevel<1
-     newlevel=PBExperience::MAXLEVEL if newlevel>PBExperience::MAXLEVEL
-     pokemon.level=newlevel
-     pokemon.calcStats
-     pokemon.resetMoves
-   end
+Events.onWildPokemonCreate += proc { |_sender, e|
+  pokemon = e[0]
+  if $game_map.map_id == 51
+    max_level = PBExperience.maxLevel
+    new_level = pbBalancedLevel($Trainer.party) - 4 + rand(5)   # For variety
+    new_level = 1 if new_level < 1
+    new_level = max_level if new_level > max_level
+    pokemon.level = new_level
+    pokemon.calcStats
+    pokemon.resetMoves
+  end
 }
-
-# Modified shiny rates for events
-# Remove/comment out what isn't needed for the event
-
-# Shiny based on array
-# Shiny set needs to include all evolutions
-$shinyset = [129,130,179,180,181,228,229,307,308,309,310,459,460,13,14,15,16,17,18,95,208,333,334,361,362,478,568,569,10,11,12,66,67,68,98,99,446,143,821,822,823,824,825,826,833,834,837,838,839,859,860,861,63,64,65,92,93,94,123,212,280,281,282,475,304,305,306,353,354,79,80,199,318,319,322,323,427,428,531,840,841,842,843,844,848,849,850,851,856,857,858,868,869,115,127,142,214,447,448,302,131,878,879,246,247,248,303,359,443,444,445,371,372,373,374,375,376,884]
-Events.onWildPokemonCreate+=proc {|sender,e|
-   pokemon=e[0]
-   # SET SHINY RATE HERE: one out of how many
-   shinyrate = 1000 - 1
-   shinychance = 1 + rand(shinyrate-1)
-    if $shinyset.include?(pokemon.species)
-     if shinychance == 1
-       pokemon.makeShiny
-     end
-   else
-   end 
-}
-
-# Shiny based on generation
-Events.onWildPokemonCreate+=proc {|sender,e|
-   pokemon=e[0]
-   # SET SHINY RATE HERE: one out of how many - 1
-   shinyrate = 1500 - 1
-   shinychance = 1 + rand(shinyrate-1)
-# Range is the dex numbers of first and last Pokemon in generation
-   if pokemon.species.between?(1,890)
-     if shinychance == 1
-       pokemon.makeShiny
-     end
-   else
-   end 
-}
-
-
 
 # This is the basis of a trainer modifier.  It works both for trainers loaded
 # when you battle them, and for partner trainers when they are registered.
 # Note that you can only modify a partner trainer's Pokémon, and not the trainer
 # themselves nor their items this way, as those are generated from scratch
 # before each battle.
-#Events.onTrainerPartyLoad+=proc {|sender,e|
-#   if e[0] # Trainer data should exist to be loaded, but may not exist somehow
-#     trainer=e[0][0] # A PokeBattle_Trainer object of the loaded trainer
-#     items=e[0][1]   # An array of the trainer's items they can use
-#     party=e[0][2]   # An array of the trainer's Pokémon
-#     YOUR CODE HERE
-#   end
+#Events.onTrainerPartyLoad += proc { |_sender, e|
+#  if e[0] # Trainer data should exist to be loaded, but may not exist somehow
+#    trainer = e[0][0] # A PokeBattle_Trainer object of the loaded trainer
+#    items = e[0][1]   # An array of the trainer's items they can use
+#    party = e[0][2]   # An array of the trainer's Pokémon
+#    YOUR CODE HERE
+#  end
 #}

@@ -18,109 +18,76 @@ module PBTerrain
   SootGrass       = 14
   Bridge          = 15
   Puddle          = 16
-  RedFlower       = 17
-  WhiteFlower     = 18
-  OWSpawn         = 19
-  CaveTile        = 20
-  OWNoSpawn       = 21
-  SurfNoSpawn     = 22
 
-  def PBTerrain.isSurfable?(tag)
+  def self.isSurfable?(tag)
     return PBTerrain.isWater?(tag)
   end
 
-  def PBTerrain.isWater?(tag)
+  def self.isWater?(tag)
     return tag==PBTerrain::Water ||
            tag==PBTerrain::StillWater ||
            tag==PBTerrain::DeepWater ||
            tag==PBTerrain::WaterfallCrest ||
-           tag==PBTerrain::Waterfall ||
-           tag==PBTerrain::SurfNoSpawn
+           tag==PBTerrain::Waterfall
   end
 
-  def PBTerrain.isPassableWater?(tag)
+  def self.isPassableWater?(tag)
     return tag==PBTerrain::Water ||
            tag==PBTerrain::StillWater ||
            tag==PBTerrain::DeepWater ||
-           tag==PBTerrain::WaterfallCrest ||
-           tag==PBTerrain::SurfNoSpawn
+           tag==PBTerrain::WaterfallCrest
   end
 
-  def PBTerrain.isJustWater?(tag)
+  def self.isJustWater?(tag)
     return tag==PBTerrain::Water ||
            tag==PBTerrain::StillWater ||
-           tag==PBTerrain::DeepWater ||
-           tag==PBTerrain::SurfNoSpawn
+           tag==PBTerrain::DeepWater
   end
 
-  def PBTerrain.isDeepWater?(tag)
+  def self.isDeepWater?(tag)
     return tag==PBTerrain::DeepWater
   end
 
-  def PBTerrain.isWaterfall?(tag)
+  def self.isWaterfall?(tag)
     return tag==PBTerrain::WaterfallCrest ||
            tag==PBTerrain::Waterfall
   end
 
-  def PBTerrain.isGrass?(tag)
+  def self.isGrass?(tag)
     return tag==PBTerrain::Grass ||
            tag==PBTerrain::TallGrass ||
            tag==PBTerrain::UnderwaterGrass ||
            tag==PBTerrain::SootGrass
   end
 
-  def PBTerrain.isJustGrass?(tag)   # The Poké Radar only works in these tiles
+  def self.isJustGrass?(tag)   # The Poké Radar only works in these tiles
     return tag==PBTerrain::Grass ||
            tag==PBTerrain::SootGrass
   end
 
-  def PBTerrain.isLedge?(tag)
+  def self.isLedge?(tag)
     return tag==PBTerrain::Ledge
   end
 
-  def PBTerrain.isIce?(tag)
+  def self.isIce?(tag)
     return tag==PBTerrain::Ice
   end
-  
-  def PBTerrain.isWhiteFlower?(tag)
-    return tag==PBTerrain::WhiteFlower
-  end
-  
-  def PBTerrain.isRedFlower?(tag)
-    return tag==PBTerrain::RedFlower
-  end
 
-  def PBTerrain.isBridge?(tag)
+  def self.isBridge?(tag)
     return tag==PBTerrain::Bridge
   end
 
-  def PBTerrain.hasReflections?(tag)
+  def self.hasReflections?(tag)
     return tag==PBTerrain::StillWater ||
            tag==PBTerrain::Puddle
   end
 
-  def PBTerrain.onlyWalk?(tag)
+  def self.onlyWalk?(tag)
     return tag==PBTerrain::TallGrass ||
            tag==PBTerrain::Ice
   end
 
-  def PBTerrain.isDoubleWildBattle?(tag)
+  def self.isDoubleWildBattle?(tag)
     return tag==PBTerrain::TallGrass
-  end
-  
-  def PBTerrain.isOWSpawn?(tag)
-    return tag==PBTerrain::OWSpawn
-  end
-  
-  def PBTerrain.isCaveTile?(tag)
-    return tag==PBTerrain::CaveTile
-  end
-  
-  def PBTerrain.isOWNoSpawn?(tag)
-    return tag==PBTerrain::OWNoSpawn
-  end
-  
-    def PBTerrain.isSurfNoSpawn?(tag)
-    return tag==PBTerrain::SurfNoSpawn
   end
 end

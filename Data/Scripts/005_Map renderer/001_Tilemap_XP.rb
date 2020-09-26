@@ -406,7 +406,7 @@ class CustomTilemap
       getAutotile(sprite,id)
     end
     if PBTerrain.hasReflections?(terrain)
-      spriteZ = -100 
+      spriteZ = -100
     elsif $PokemonGlobal.bridge>0 && PBTerrain.isBridge?(terrain)
       spriteZ = 1
     else

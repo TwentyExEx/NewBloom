@@ -90,16 +90,16 @@ def pbSetUpSystem
   end
 end
 
-#def pbScreenCapture
-#  t = pbGetTimeNow
-#  filestart = t.strftime("[%Y-%m-%d] %H_%M_%S")
-#  filestart = sprintf("%s.%03d",filestart,(t.to_f-t.to_i)*1000)   # milliseconds
-#  capturefile = RTP.getSaveFileName(sprintf("%s.png",filestart))
-#  if capturefile && safeExists?("rubyscreen.dll")
-#    Graphics.snap_to_bitmap(false).saveToPng(capturefile)
-#    pbSEPlay("Pkmn exp full") if FileTest.audio_exist?("Audio/SE/Pkmn exp full")
-#  end
-#end
+def pbScreenCapture
+  t = pbGetTimeNow
+  filestart = t.strftime("[%Y-%m-%d] %H_%M_%S")
+  filestart = sprintf("%s.%03d",filestart,(t.to_f-t.to_i)*1000)   # milliseconds
+  capturefile = RTP.getSaveFileName(sprintf("%s.png",filestart))
+  if capturefile && safeExists?("rubyscreen.dll")
+    Graphics.snap_to_bitmap(false).saveToPng(capturefile)
+    pbSEPlay("Pkmn exp full") if FileTest.audio_exist?("Audio/SE/Pkmn exp full")
+  end
+end
 
 def pbDebugF7
   if $DEBUG
@@ -123,9 +123,9 @@ module Input
 
   def self.update
     update_KGC_ScreenCapture
-#    if trigger?(Input::F8)
-#      pbScreenCapture
-#    end
+    if trigger?(Input::F8)
+      pbScreenCapture
+    end
     if trigger?(Input::F7)
       pbDebugF7
     end
