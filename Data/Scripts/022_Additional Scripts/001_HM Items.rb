@@ -103,10 +103,10 @@ if USING_SURF_ITEM
   HiddenMoveHandlers::CanUseMove.delete(:SURF)
   HiddenMoveHandlers::UseMove.delete(:SURF)
   
-  def Kernel.pbSurf
-    if Kernel.pbConfirmMessage(_INTL("The water is a deep blue...\nWould you like to surf on it?"))
-      Kernel.pbMessage(_INTL("{1} used the {2}!", $Trainer.name, PBItems.getName(getConst(PBItems,SURF_ITEM))))
-      Kernel.pbCancelVehicles
+  def pbSurf
+    if pbConfirmMessage(_INTL("The water is a deep blue...\nWould you like to surf on it?"))
+      pbMessage(_INTL("{1} used the {2}!", $Trainer.name, PBItems.getName(getConst(PBItems,SURF_ITEM))))
+      pbCancelVehicles
       surfbgm = pbGetMetadata(0,MetadataSurfBGM)
       #pbCueBGM(surfbgm,0.5) if surfbgm #edit here
       pbStartSurfing
@@ -120,20 +120,20 @@ if USING_SURF_ITEM
     #edit here
     if $PokemonGlobal.surfing ||
         pbGetMetadata($game_map.map_id,MetadataBicycleAlways) ||
-        !PBTerrain.isSurfable?(Kernel.pbFacingTerrainTag) ||
+        !PBTerrain.isSurfable?(pbFacingTerrainTag) ||
         !$game_map.passable?($game_player.x,$game_player.y,$game_player.direction,$game_player)
-        Kernel.pbMessage(_INTL("Can't use that here."))
+        pbMessage(_INTL("Can't use that here."))
         return false
     end#until here
     $game_temp.in_menu = false
-    Kernel.pbSurf
+    pbSurf
     return true
   end)
   
   ItemHandlers::UseFromBag.add(SURF_ITEM, proc do |item|
     return false if $PokemonGlobal.surfing ||
                     pbGetMetadata($game_map.map_id,MetadataBicycleAlways) ||
-                    !PBTerrain.isSurfable?(Kernel.pbFacingTerrainTag) ||
+                    !PBTerrain.isSurfable?(pbFacingTerrainTag) ||
                     !$game_map.passable?($game_player.x,$game_player.y,$game_player.direction,$game_player)
     return 2
   end)
@@ -166,13 +166,13 @@ if USING_FLY_ITEM
   ItemHandlers::UseInField.add(FLY_ITEM, proc do |item|
     $game_temp.in_menu = false
     return false if !$PokemonTemp.flydata
-    Kernel.pbMessage(_INTL("{1} used the {2}!", $Trainer.name,PBItems.getName(getConst(PBItems,FLY_ITEM))))
+    pbMessage(_INTL("{1} used the {2}!", $Trainer.name,PBItems.getName(getConst(PBItems,FLY_ITEM))))
     pbFadeOutIn(99999) do
        $game_temp.player_new_map_id    = $PokemonTemp.flydata[0]
        $game_temp.player_new_x         = $PokemonTemp.flydata[1]
        $game_temp.player_new_y         = $PokemonTemp.flydata[2]
        $game_temp.player_new_direction = 2
-       Kernel.pbCancelVehicles
+       pbCancelVehicles
        $PokemonTemp.flydata = nil
        $scene.transfer_player
        $game_map.autoplay
@@ -204,14 +204,14 @@ if USING_ROCK_SMASH_ITEM
     return true
   end)
   
-  def Kernel.pbRockSmash
+  def pbRockSmash
     if !pbCheckHiddenMoveBadge(BADGEFORROCKSMASH,false)
-      Kernel.pbMessage(_INTL("It's a rugged rock, but an item may be able to smash it."))
+      pbMessage(_INTL("It's a rugged rock, but an item may be able to smash it."))
       return false
     end
     item = PBItems.getName(getConst(PBItems,ROCK_SMASH_ITEM))
-    if Kernel.pbConfirmMessage(_INTL("This rock appears to be breakable. Would you like to use the {1}?", item))
-      Kernel.pbMessage(_INTL("{1} used the {2}!",$Trainer.name, item))
+    if pbConfirmMessage(_INTL("This rock appears to be breakable. Would you like to use the {1}?", item))
+      pbMessage(_INTL("{1} used the {2}!",$Trainer.name, item))
       return true
     end
     return false
@@ -227,21 +227,21 @@ if USING_STRENGTH_ITEM
   HiddenMoveHandlers::CanUseMove.delete(:STRENGTH)
   HiddenMoveHandlers::UseMove.delete(:STRENGTH)
   
-  def Kernel.pbStrength
+  def pbStrength
     if $PokemonMap.strengthUsed
-      Kernel.pbMessage(_INTL("Strength made it possible to move boulders around."))
+      pbMessage(_INTL("Strength made it possible to move boulders around."))
       return false
     end
     if !pbCheckHiddenMoveBadge(BADGEFORSTRENGTH,false) && !$DEBUG
-      Kernel.pbMessage(_INTL("It's a big boulder, but an item may be able to push it aside."))
+      pbMessage(_INTL("It's a big boulder, but an item may be able to push it aside."))
       return false
     end
     itemname = PBItems.getName(getConst(PBItems,STRENGTH_ITEM))
-    Kernel.pbMessage(_INTL("It's a big boulder, but an item may be able to push it aside.\1"))
-    if Kernel.pbConfirmMessage(_INTL("Would you like to use the {1}?", itemname))
-      Kernel.pbMessage(_INTL("{1} used the {2}!",
+    pbMessage(_INTL("It's a big boulder, but an item may be able to push it aside.\1"))
+    if pbConfirmMessage(_INTL("Would you like to use the {1}?", itemname))
+      pbMessage(_INTL("{1} used the {2}!",
           $Trainer.name, itemname))
-      Kernel.pbMessage(_INTL("The {1} made it possible to move boulders around!",itemname))
+      pbMessage(_INTL("The {1} made it possible to move boulders around!",itemname))
       $PokemonMap.strengthUsed = true
       return true
     end
@@ -255,7 +255,7 @@ if USING_STRENGTH_ITEM
     return false
   end)
   
-  ItemHandlers::UseInField.add(STRENGTH_ITEM, proc { Kernel.pbStrength })
+  ItemHandlers::UseInField.add(STRENGTH_ITEM, proc { pbStrength })
 end
 
 
@@ -267,15 +267,15 @@ if USING_CUT_ITEM
   HiddenMoveHandlers::CanUseMove.delete(:CUT)
   HiddenMoveHandlers::UseMove.delete(:CUT)
   
-  def Kernel.pbCut
+  def pbCut
     if !pbCheckHiddenMoveBadge(BADGEFORCUT,false) && !$DEBUG
-      Kernel.pbMessage(_INTL("This tree looks like it can be cut down."))
+      pbMessage(_INTL("This tree looks like it can be cut down."))
       return false
     end
-    Kernel.pbMessage(_INTL("This tree looks like it can be cut down!\1"))
-    if Kernel.pbConfirmMessage(_INTL("Would you like to cut it?"))
+    pbMessage(_INTL("This tree looks like it can be cut down!\1"))
+    if pbConfirmMessage(_INTL("Would you like to cut it?"))
       itemname = PBItems.getName(getConst(PBItems,CUT_ITEM))
-      Kernel.pbMessage(_INTL("{1} used the {2}!",$Trainer.name,itemname))
+      pbMessage(_INTL("{1} used the {2}!",$Trainer.name,itemname))
       pbSmashEvent($game_player.pbFacingEvent)
       return true
     end

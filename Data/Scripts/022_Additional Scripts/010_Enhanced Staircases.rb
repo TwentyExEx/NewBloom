@@ -573,9 +573,9 @@ class Game_Character
         clear_stair_data
       end
     elsif jumping?
-      n = (@jump_count - @jump_peak).abs
-      return (real_y - self.map.display_y + 3) / 4 + Game_Map::TILE_HEIGHT -
-          (@jump_peak * @jump_peak - n * n) / 2
+      jump_fraction = ((@jump_distance_left / @jump_distance) - 0.5).abs
+      n = @jump_peak * (4 * jump_fraction**2 - 1)
+      return (real_y - self.map.display_y + 3) / 4 + Game_Map::TILE_HEIGHT + n
     end
     return (real_y - self.map.display_y + 3) / 4 + (Game_Map::TILE_HEIGHT)
   end
