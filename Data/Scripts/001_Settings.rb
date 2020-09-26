@@ -115,17 +115,17 @@ RIVAL_NAMES = [
 #      e.g. To require the second badge, put false and 1.
 #           To require at least 2 badges, put true and 2.
 #===============================================================================
-NUM_BADGES_BOOST_ATTACK  = 1
-NUM_BADGES_BOOST_DEFENSE = 5
-NUM_BADGES_BOOST_SPATK   = 7
-NUM_BADGES_BOOST_SPDEF   = 7
-NUM_BADGES_BOOST_SPEED   = 3
+NUM_BADGES_BOOST_ATTACK  = 44
+NUM_BADGES_BOOST_DEFENSE = 44
+NUM_BADGES_BOOST_SPATK   = 44
+NUM_BADGES_BOOST_SPDEF   = 44
+NUM_BADGES_BOOST_SPEED   = 44
 FIELD_MOVES_COUNT_BADGES = true
 BADGE_FOR_CUT            = 1
 BADGE_FOR_FLASH          = 2
 BADGE_FOR_ROCKSMASH      = 3
 BADGE_FOR_SURF           = 4
-BADGE_FOR_FLY            = 5
+BADGE_FOR_FLY            = 43
 BADGE_FOR_STRENGTH       = 6
 BADGE_FOR_DIVE           = 7
 BADGE_FOR_WATERFALL      = 8
@@ -153,7 +153,7 @@ MOVE_CATEGORY_PER_MOVE    = true
 NEWEST_BATTLE_MECHANICS   = true
 SCALED_EXP_FORMULA        = true
 SPLIT_EXP_BETWEEN_GAINERS = false
-ENABLE_CRITICAL_CAPTURES  = false
+ENABLE_CRITICAL_CAPTURES  = true
 GAIN_EXP_FOR_CAPTURE      = true
 MEGA_RINGS                = [:MEGARING, :MEGABRACELET, :MEGACUFF, :MEGACHARM, :KEYSTONE]
 
@@ -171,7 +171,7 @@ def pbPocketNames; return ["",
   _INTL("Poké Balls"),
   _INTL("TMs & HMs"),
   _INTL("Berries"),
-  _INTL("Mail"),
+  _INTL("Mega Stones"),
   _INTL("Battle Items"),
   _INTL("Key Items")
 ]; end
@@ -199,9 +199,9 @@ REGION_MAP_EXTRAS = [
 # * The number of boxes in Pokémon storage.
 #===============================================================================
 def pbStorageCreator
-  return _INTL("Bill")
+  return _INTL("Rama")
 end
-NUM_STORAGE_BOXES = 30
+NUM_STORAGE_BOXES = 100
 
 #===============================================================================
 # * Whether the Pokédex list shown is the one for the player's current region
@@ -229,8 +229,9 @@ NUM_STORAGE_BOXES = 30
 #===============================================================================
 USE_CURRENT_REGION_DEX = false
 def pbDexNames; return [
-  [_INTL("Kanto Pokédex"), 0],
-  [_INTL("Johto Pokédex"), 1],
+  [_INTL("Beta Pokédex"),0],
+  [_INTL("Egg Pokédex"),1],
+  [_INTL("Event Pokédex"),2],
   _INTL("National Pokédex")
 ]; end
 DEX_SHOWS_ALL_FORMS = false

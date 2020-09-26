@@ -123,11 +123,13 @@ class PokemonPokegearScreen
     cmdMap     = -1
     cmdPhone   = -1
     cmdJukebox = -1
+    cmdPokeref = -1
     commands[cmdMap = commands.length]     = ["map",_INTL("Map")]
     if $PokemonGlobal.phoneNumbers && $PokemonGlobal.phoneNumbers.length>0
       commands[cmdPhone = commands.length] = ["phone",_INTL("Phone")]
     end
     commands[cmdJukebox = commands.length] = ["jukebox",_INTL("Jukebox")]
+        commands[cmdPokeref = commands.length] = ["pokemonamie",_INTL("Pokemon Amie")] if $Trainer.party.length>0
     @scene.pbStartScene(commands)
     loop do
       cmd = @scene.pbScene
@@ -145,6 +147,9 @@ class PokemonPokegearScreen
           screen = PokemonJukeboxScreen.new(scene)
           screen.pbStartScreen
         }
+      elsif cmdPokeref>=0 && cmd==cmdPokeref
+        pbPlayDecisionSE()
+        pokemonAmieRefresh
       end
     end
     @scene.pbEndScene
