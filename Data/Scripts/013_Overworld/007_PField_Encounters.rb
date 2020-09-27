@@ -12,6 +12,9 @@ module EncounterTypes
   LandDay      = 10
   LandNight    = 11
   BugContest   = 12
+  RedFlower    = 13
+  WhiteFlower  = 14
+  OWSpawn      = 15
   Names = [
      "Land",
      "Cave",
@@ -25,7 +28,10 @@ module EncounterTypes
      "LandMorning",
      "LandDay",
      "LandNight",
-     "BugContest"
+     "BugContest",
+     "RedFlower",
+     "WhiteFlower",
+     "OWSpawn"
   ]
   EnctypeChances = [
      [20,20,10,10,10,10,5,5,4,4,1,1],

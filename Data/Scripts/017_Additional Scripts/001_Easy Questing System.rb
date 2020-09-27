@@ -312,7 +312,7 @@ class Questlog
       @main.clear
       @text.clear rescue nil
       @text2.clear rescue nil
-      drawTextEx(@main,188,54,318,8,quest.desc,Color.new(255,255,255),Color.new(0,0,0))
+      drawTextExMulti(@main,188,54,318,8,quest.desc,Color.new(255,255,255),Color.new(0,0,0))
       pbDrawOutlineText(@main,188,162,512,384,"From " + quest.npc,Color.new(255,172,115),Color.new(0,0,0))
       pbDrawOutlineText(@main,10,-178,512,384,quest.name,quest.color,Color.new(0,0,0))
       if !quest.completed
@@ -399,7 +399,7 @@ class Questlog
       @sprites["char"].z = 1
       @sprites["char"].src_rect.height = (@sprites["char"].bitmap.height / 4).round
       @sprites["char"].src_rect.width = (@sprites["char"].bitmap.width / 4).round
-      drawTextEx(@text,188,54,318,8,quest.desc,Color.new(255,255,255),Color.new(0,0,0))
+      drawTextExMulti(@text,188,54,318,8,quest.desc,Color.new(255,255,255),Color.new(0,0,0))
       pbDrawOutlineText(@text,188,162,512,384,"From " + quest.npc,Color.new(255,172,115),Color.new(0,0,0))
       pbDrawOutlineText(@text,10,-178,512,384,quest.name,quest.color,Color.new(0,0,0))
       if !quest.completed
