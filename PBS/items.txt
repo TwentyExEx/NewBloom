@@ -693,3 +693,6 @@
 804,ALCREMITE,Alcremite,Alcremites,6,0,"One of the mysterious Mega Stones. Have Alcremie hold it, and this stone will enable it to Mega Evolve in battle.",0,0,12,
 805,COPPERAJITE,Copperajite,Copperajites,6,0,"One of the mysterious Mega Stones. Have Copperajah hold it, and this stone will enable it to Mega Evolve in battle.",0,0,12,
 806,DURALUDONITE,Duraludonite,Duraludonites,6,0,"One of the mysterious Mega Stones. Have Duraludon hold it, and this stone will enable it to Mega Evolve in battle.",0,0,12,
+#-------------------------------
+1000,EXPALL,Exp. Share,Exp. Shares,8,0,"Turning on this special device will allow all the Pokémon on your team to receive Exp. Points from battles.",2,0,6,
+1001,EXPALLOFF,Exp. Share,Exp. Shares,8,0,"Turning on this special device will allow all the Pokémon on your team to receive Exp. Points from battles.",2,0,6,

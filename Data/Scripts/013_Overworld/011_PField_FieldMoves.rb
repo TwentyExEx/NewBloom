@@ -716,7 +716,7 @@ def pbSurf
     pbCancelVehicles
     pbHiddenMoveAnimation(movefinder)
     surfbgm = pbGetMetadata(0,MetadataSurfBGM)
-    pbCueBGM(surfbgm,0.5) if surfbgm
+    #pbCueBGM(surfbgm,0.5) if surfbgm
     pbStartSurfing
     return true
   end
@@ -803,7 +803,7 @@ HiddenMoveHandlers::UseMove.add(:SURF,proc { |move,pokemon|
     pbMessage(_INTL("{1} used {2}!",pokemon.name,PBMoves.getName(move)))
   end
   surfbgm = pbGetMetadata(0,MetadataSurfBGM)
-  pbCueBGM(surfbgm,0.5) if surfbgm
+  #pbCueBGM(surfbgm,0.5) if surfbgm
   pbStartSurfing
   next true
 })
