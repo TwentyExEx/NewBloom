@@ -13,7 +13,7 @@ TrainerBattleBGM = Battle trainer.mid
 SurfBGM = Surfing.mid
 BicycleBGM = Bicycle.mid
 Home = 3,7,5,8
-WildBattleBGM = Battle wild.mid
+WildBattleBGM = wildpokemon.ogg
 #-------------------------------
 [002]
 # Intro
@@ -74,6 +74,7 @@ Bicycle = true
 MapPosition = 0,11,10
 Outdoor = true
 BicycleAlways = false
+WildBattleBGM = wildpokemon.ogg
 ShowArea = true
 #-------------------------------
 [011]

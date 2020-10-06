@@ -1,21 +1,4 @@
-﻿#-------------------------------
-021 # Route 3
-25,10,10
-Land
-VIVILLON,5,7
-VIVILLON,5,7
-VIVILLON,5,7
-VIVILLON,5,7
-VIVILLON,5,7
-VIVILLON,5,7
-VIVILLON,5,7
-VIVILLON,5,7
-VIVILLON,5,7
-VIVILLON,5,7
-VIVILLON,5,7
-VIVILLON,5,7
-#-------------------------------
-006 # Forest - City Bridge
+﻿006 # Forest - City Bridge
 25,10,10
 Land
 ODDISH,5
