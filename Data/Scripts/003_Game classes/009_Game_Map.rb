@@ -272,18 +272,10 @@ class Game_Map
   end
 
   def bush?(x,y)
-    if @map_id != 0
-      for i in [2, 1, 0]
-        tile_id = data[x, y, i]
-        if tile_id == nil
-          return false
-        elsif PBTerrain.isBridge?(@terrain_tags[tile_id]) && $PokemonGlobal &&
-              $PokemonGlobal.bridge>0
-          return false
-        elsif @passages[tile_id] & 0x40 == 0x40
-          return true
-        end
-      end
+    for i in [2, 1, 0]
+      tile_id = data[x, y, i]
+      return false if PBTerrain.isBridge?(@terrain_tags[tile_id]) && $PokemonGlobal.bridge>0
+      return true if @passages[tile_id] & 0x40 == 0x40
     end
     return false
   end
