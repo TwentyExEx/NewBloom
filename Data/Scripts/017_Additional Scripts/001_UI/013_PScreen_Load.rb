@@ -405,6 +405,7 @@ class PokemonLoadScreen
         pbAutoplayOnSave
         $game_map.update
         $PokemonMap.updateMap
+        updateTrainerOutfit # Character customization
         $scene = Scene_Map.new
         return
       elsif cmdNewGame>=0 && command==cmdNewGame
