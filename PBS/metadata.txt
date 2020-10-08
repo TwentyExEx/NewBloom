@@ -1,14 +1,10 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
 [000]
-PlayerA = POKEMONTRAINER_Charlie,player01,player01_bike,player01_surf,player01_run,boy_surf,boy_fish_offset,
-PlayerB = POKEMONTRAINER_Robin,player02,player02_bike,player02_surf,player02_run,boy_surf,boy_fish_offset,
-PlayerC = POKEMONTRAINER_Dylan,player03,player03_bike,player03_surf,player03_run,boy_surf,boy_fish_offset,
-PlayerD = POKEMONTRAINER_Riley,player04,player04_bike,player04_surf,player04_run,player04_surf,player04_fish_offset,
+PlayerA = POKEMONTRAINER_Red,trchar000,boy_bike,boy_surf,boy_run,boy_surf,boy_fish_offset,boy_fish_offset
+PlayerB = POKEMONTRAINER_Leaf,trchar001,girl_bike,girl_surf,girl_run,girl_surf,girl_fish_offset,girl_fish_offset
 TrainerVictoryME = Battle victory trainer.ogg
-PlayerE = POKEMONTRAINER_Emery,player05,player05_bike,player05_surf,player05_run,boy_surf,boy_fish_offset,
 WildVictoryME = Battle victory wild.ogg
-PlayerF = POKEMONTRAINER_Avery,player06,player06_bike,player06_surf,player06_run,boy_surf,boy_fish_offset,
 TrainerBattleBGM = Battle trainer.mid
 SurfBGM = Surfing.mid
 BicycleBGM = Bicycle.mid
