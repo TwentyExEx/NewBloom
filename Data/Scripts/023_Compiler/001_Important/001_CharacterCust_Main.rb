@@ -116,7 +116,7 @@ TOP_ITEMS=[
   ["Pink",true], ["Red",true]]],
 [["Scarf Shirt","Scarf Shirt"], [["Black",true], ["Blue",true], ["Brown",true],
   ["Red",true], ["Yellow",true]]],
-[["Schoolboy Top","Schoolgirl Top"], [["Light",false],["Dark",false]]],
+[["School Top","School Top"], [["Light",false],["Dark",false]]],
 [["Shirt Combo","Shirt Combo"], [["Black",true], ["Blue",true], ["Red",true],
   ["White",true], ["Wine",true]]],
 [["Tank Top","Tank Top"], [["Black",true], ["Green",true], ["Navy",true],
@@ -159,7 +159,7 @@ BOTTOM_ITEMS=[
   ["Navy",true], ["Wine",true]]],
 [["Ribbon Skirt","Ribbon Skirt"], [["Blue",false], ["Green",false], ["Pink",false],
   ["Red",false], ["Black",false]]],
-[["Schoolboy Pants","Schoolgirl Skirt"], [["Light",false],["Dark",false]]],
+[["School Pants","School Skirt"], [["Light",false],["Dark",false]]],
 [["Shorts","Shorts"], [["Black",true], ["Blue",true], ["Green",true],
   ["Red",true], ["White",true]]],
 ]
