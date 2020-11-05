@@ -965,6 +965,7 @@ ItemHandlers::UseOnPokemon.add(:DNASPLICERS,proc { |item,pkmn,scene|
   end
   if pkmn.fainted?
     scene.pbDisplay(_INTL("This can't be used on the fainted Pokémon."))
+    next false
   end
   # Fusing
   if pkmn.fused==nil
@@ -973,13 +974,17 @@ ItemHandlers::UseOnPokemon.add(:DNASPLICERS,proc { |item,pkmn,scene|
     poke2 = $Trainer.party[chosen]
     if pkmn==poke2
       scene.pbDisplay(_INTL("It cannot be fused with itself."))
+      next false
     elsif poke2.egg?
       scene.pbDisplay(_INTL("It cannot be fused with an Egg."))
+      next false
     elsif poke2.fainted?
       scene.pbDisplay(_INTL("It cannot be fused with that fainted Pokémon."))
+      next false
     elsif !poke2.isSpecies?(:RESHIRAM) &&
           !poke2.isSpecies?(:ZEKROM)
       scene.pbDisplay(_INTL("It cannot be fused with that Pokémon."))
+      next false
     end
     newForm = 0
     newForm = 1 if poke2.isSpecies?(:RESHIRAM)
@@ -1007,12 +1012,13 @@ ItemHandlers::UseOnPokemon.add(:DNASPLICERS,proc { |item,pkmn,scene|
 })
 
 ItemHandlers::UseOnPokemon.add(:NSOLARIZER,proc { |item,pkmn,scene|
-  if !pkmn.isSpecies?(:NECROZMA) || pkmn.form==0
+  if !pkmn.isSpecies?(:NECROZMA) || pkmn.form == 2
     scene.pbDisplay(_INTL("It had no effect."))
     next false
   end
   if pkmn.fainted?
     scene.pbDisplay(_INTL("This can't be used on the fainted Pokémon."))
+    next false
   end
   # Fusing
   if pkmn.fused==nil
@@ -1021,12 +1027,16 @@ ItemHandlers::UseOnPokemon.add(:NSOLARIZER,proc { |item,pkmn,scene|
     poke2 = $Trainer.party[chosen]
     if pkmn==poke2
       scene.pbDisplay(_INTL("It cannot be fused with itself."))
+      next false
     elsif poke2.egg?
       scene.pbDisplay(_INTL("It cannot be fused with an Egg."))
+      next false
     elsif poke2.fainted?
       scene.pbDisplay(_INTL("It cannot be fused with that fainted Pokémon."))
+      next false
     elsif !poke2.isSpecies?(:SOLGALEO)
       scene.pbDisplay(_INTL("It cannot be fused with that Pokémon."))
+      next false
     end
     pkmn.setForm(1) {
       pkmn.fused = poke2
@@ -1051,12 +1061,13 @@ ItemHandlers::UseOnPokemon.add(:NSOLARIZER,proc { |item,pkmn,scene|
 })
 
 ItemHandlers::UseOnPokemon.add(:NLUNARIZER,proc { |item,pkmn,scene|
-  if !pkmn.isSpecies?(:NECROZMA) || pkmn.form==1
+  if !pkmn.isSpecies?(:NECROZMA) || pkmn.form == 1
     scene.pbDisplay(_INTL("It had no effect."))
     next false
   end
   if pkmn.fainted?
     scene.pbDisplay(_INTL("This can't be used on the fainted Pokémon."))
+    next false
   end
   # Fusing
   if pkmn.fused==nil
@@ -1065,12 +1076,16 @@ ItemHandlers::UseOnPokemon.add(:NLUNARIZER,proc { |item,pkmn,scene|
     poke2 = $Trainer.party[chosen]
     if pkmn==poke2
       scene.pbDisplay(_INTL("It cannot be fused with itself."))
+      next false
     elsif poke2.egg?
       scene.pbDisplay(_INTL("It cannot be fused with an Egg."))
+      next false
     elsif poke2.fainted?
       scene.pbDisplay(_INTL("It cannot be fused with that fainted Pokémon."))
+      next false
     elsif !poke2.isSpecies?(:LUNALA)
       scene.pbDisplay(_INTL("It cannot be fused with that Pokémon."))
+      next false
     end
     pkmn.setForm(2) {
       pkmn.fused = poke2
@@ -1192,3 +1207,77 @@ ItemHandlers::UseOnPokemon.add(:LONELYMINT,proc { |item,pkmn,scene|
 })
 
 ItemHandlers::UseOnPokemon.copy(:LONELYMINT,:ADAMANTMINT,:NAUGHTYMINT,:BRAVEMINT,:BOLDMINT,:IMPISHMINT,:LAXMINT,:RELAXEDMINT,:MODESTMIND,:MILDMINT,:RASHMINT,:QUIETMINT,:CALMMINT,:GENTLEMINT,:CAREFULMINT,:SASSYMINT,:TIMIDMINT,:HASTYMINT,:JOLLYMINT,:NAIVEMINT,:SERIOUSMINT)
+
+ItemHandlers::UseOnPokemon.add(:ABILITYPATCH,proc { |item,pkmn,scene|
+  abils = pkmn.getAbilityList
+  hiddenArr =[]
+  for i in abils
+    hiddenArr.push([i[1],i[0]]) if i[0]>0 && i[1]>1 && pkmn.abilityIndex != i[1]
+  end
+  if hiddenArr.length==0 || (pkmn.hasHiddenAbility? && hiddenArr.length==1) || pkmn.isSpecies?(:ZYGARDE)
+    scene.pbDisplay(_INTL("It won't have any effect."))
+    next false
+  end
+  newabil = hiddenArr[rand(hiddenArr.length)]
+  newabilname = PBAbilities.getName(newabil[1])
+  if scene.pbConfirm(_INTL("Would you like to change {1}'s Ability to {2}?",pkmn.name,newabilname))
+    pkmn.setAbility(newabil[0])
+    scene.pbRefresh
+    scene.pbDisplay(_INTL("{1}'s Ability changed to {2}!",pkmn.name,newabilname))
+    next true
+  end
+  next false
+})
+
+ItemHandlers::UseOnPokemon.add(:REINSOFUNITY,proc { |item,pkmn,scene|
+  if !pkmn.isSpecies?(:CALYREX)
+    scene.pbDisplay(_INTL("It had no effect."))
+    next false
+  end
+  if pkmn.fainted?
+    scene.pbDisplay(_INTL("This can't be used on the fainted Pokémon."))
+    next false
+  end
+  # Fusing
+  if pkmn.fused==nil
+    chosen = scene.pbChoosePokemon(_INTL("Fuse with which Pokémon?"))
+    next false if chosen<0
+    poke2 = $Trainer.party[chosen]
+    if pkmn==poke2
+      scene.pbDisplay(_INTL("It cannot be fused with itself."))
+      next false
+    elsif poke2.egg?
+      scene.pbDisplay(_INTL("It cannot be fused with an Egg."))
+      next false
+    elsif poke2.fainted?
+      scene.pbDisplay(_INTL("It cannot be fused with that fainted Pokémon."))
+      next false
+    elsif !poke2.isSpecies?(:GLASTRIER) &&
+          !poke2.isSpecies?(:SPECTRIER)
+      scene.pbDisplay(_INTL("It cannot be fused with that Pokémon."))
+      next false
+    end
+    newForm = 0
+    newForm = 1 if poke2.isSpecies?(:GLASTRIER)
+    newForm = 2 if poke2.isSpecies?(:SPECTRIER)
+    pkmn.setForm(newForm) {
+      pkmn.fused = poke2
+      pbRemovePokemonAt(chosen)
+      scene.pbHardRefresh
+      scene.pbDisplay(_INTL("{1} changed Forme!",pkmn.name))
+    }
+    next true
+  end
+  # Unfusing
+  if $Trainer.party.length>=6
+    scene.pbDisplay(_INTL("You have no room to separate the Pokémon."))
+    next false
+  end
+  pkmn.setForm(0) {
+    $Trainer.party[$Trainer.party.length] = pkmn.fused
+    pkmn.fused = nil
+    scene.pbHardRefresh
+    scene.pbDisplay(_INTL("{1} changed Forme!",pkmn.name))
+  }
+  next true
+})
