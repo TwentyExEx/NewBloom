@@ -1,2 +1,58 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
+# Mountains - Crossroads (39) - Mountains - Waterfall (38)
+39,West,0,38,East,5
+# Mountains - Village (37) - Mountains - Waterfall (38)
+37,East,18,38,West,0
+# Mountains - Stairway (35) - Mountains - Frozen Lakes (34)
+35,West,0,34,East,0
+# Mountains - Ravine (36) - Mountains - Stairway (35)
+36,West,4,35,East,0
+# Mountains - Village (37) - Mountains - Ravine (36)
+37,West,0,36,East,0
+# Fairy Garden - Lakefront (45) - Fairy Garden - Wellspring (44)
+45,West,0,44,East,0
+# Fairy Garden - Descent (48) - Fairy Garden - Wellspring (44)
+48,North,0,44,South,24
+# Fairy Garden - Botanical Gardens (46) - Fairy Garden - Lakefront (45)
+46,West,0,45,East,0
+# Fairy Garden - Descent (48) - Fairy Garden - Lakefront (45)
+48,North,32,45,South,0
+# Fairy Garden - Fae Crossing (47) - Fairy Garden - Botanical Gardens (46)
+47,East,0,46,West,39
+# Fairy Garden - Descent (48) - Fairy Garden - Fae Crossing (47)
+48,East,1,47,West,0
+# Forest - Waterfall View (13) - Forest - Depths (11)
+13,East,0,11,West,1
+# Forest - Cabins (9) - Forest - Depths (11)
+9,North,0,11,South,1
+# Forest - Little Pond (7) - Forest - City Bridge (6)
+7,West,0,6,East,0
+# Forest - Mountainside (14) - Forest - City Bridge (6)
+14,West,59,6,East,0
+# Forest - Little Pond (7) - Forest - Waterfall Fork (12)
+7,East,0,12,West,47
+# Forest - Waterfall View (13) - Forest - Waterfall Fork (12)
+13,North,0,12,South,0
+# Forest - Mountainside (14) - Forest - Waterfall Fork (12)
+14,East,12,12,West,0
+# Forest - Waterfall View (13) - Forest - Little Pond (7)
+13,West,17,7,East,0
+# Forest - Lakeside (8) - Forest - Little Pond (7)
+8,West,0,7,East,33
+# Forest - Mini Falls (10) - Forest - Little Pond (7)
+10,West,0,7,East,7
+# Forest - Mountainside (14) - Forest - Waterfall View (13)
+14,East,42,13,West,0
+# Forest - Mini Falls (10) - Forest - Waterfall View (13)
+10,North,0,13,South,0
+# Forest - Mountainside (14) - Forest - Lakeside (8)
+14,East,92,8,West,0
+# Forest - Cabins (9) - Forest - Lakeside (8)
+9,West,29,8,East,0
+# Forest - Mini Falls (10) - Forest - Lakeside (8)
+10,South,0,8,North,0
+# Forest - Mini Falls (10) - Forest - Mountainside (14)
+10,West,0,14,East,66
+# Forest - Mini Falls (10) - Forest - Cabins (9)
+10,East,0,9,West,3
