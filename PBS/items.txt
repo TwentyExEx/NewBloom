@@ -812,7 +812,7 @@
 791,BOILEDEGG,Boiled Egg,Boiled Eggs,1,2200,"One of the many ingredients that can be used for cooking at your camp. Even just one boiled egg can really enhance a dish.",0,0,0,
 792,BREAD,Bread,Loaves of Bread,1,150,"One of the many ingredients that can be used for cooking at your camp. An indispensable tool for mopping up that extra curry left on your plate.",0,0,0,
 793,BRITTLEBONES,Brittle Bones,Brittle Bones,1,950,"One of the many ingredients that can be used for cooking at your camp. The taste boiled off from the bones is sure to give a dish a light umami taste.",0,0,0,
-794,COCONUTMILK,Coconut Milks,1,950,"One of the many ingredients that can be used for cooking at your camp. The refined sweetness of this coconut milk makes it quite popular.",0,0,0,
+794,COCONUTMILK,Coconut Milk,Coconut Milks,1,950,"One of the many ingredients that can be used for cooking at your camp. The refined sweetness of this coconut milk makes it quite popular.",0,0,0,
 795,FANCYAPPLE,Fancy Apple,Fancy Apples,1,2200,"One of the many ingredients that can be used for cooking at your camp. An apple chosen above others. It has spectacular form and a brilliant sheen.",0,0,0,
 796,FRESHCREAM,Fresh Cream,Fresh Creams,1,950,"One of the many ingredients that can be used for cooking at your camp. Add some whipped cream to a spicy curry to give it some sweetness.",0,0,0,
 797,FRIEDFOOD,Fried Food,Fried Food,1,150,"One of the many ingredients that can be used for cooking at your camp. It's been a while since it was fried, so it's gotten greasy.",0,0,0,
