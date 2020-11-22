@@ -1963,7 +1963,7 @@ class PokeBattle_Move_0BF < PokeBattle_Move
   end
 
   def pbBaseDamage(baseDmg,user,target)
-    @calcBaseDmg += baseDmg
+    @calcBaseDmg += baseDmg if !target.damageState.disguise || !target.damageState.iceface
     return @calcBaseDmg
   end
 end
@@ -2348,6 +2348,8 @@ class PokeBattle_Move_0CF < PokeBattle_Move
       msg = _INTL("{1} became trapped by Sand Tomb!",target.pbThis)
     elsif isConst?(@id,PBMoves,:WHIRLPOOL)
       msg = _INTL("{1} became trapped in the vortex!",target.pbThis)
+    elsif isConst?(@id,PBMoves,:SNAPTRAP)
+      msg = _INTL("{1} was caught in the Snap Trap!",target.pbThis)
     elsif isConst?(@id,PBMoves,:THUNDERCAGE)
       msg = _INTL("{1} trapped {2} in a Thunder Cage!",user.pbThis,target.pbThis(true))
     elsif isConst?(@id,PBMoves,:WRAP)
@@ -2575,6 +2577,12 @@ class PokeBattle_Move_0D8 < PokeBattle_HealingMove
     when PBWeather::Sun, PBWeather::HarshSun
       if !user.hasActiveItem?(:UTILITYUMBRELLA)
         @healAmount = (user.totalhp*2/3.0).round
+      else
+        @healAmount = (user.totalhp/2.0).round
+      end
+    when PBWeather::Rain, PBWeather::HeavyRain
+      if !user.hasActiveItem?(:UTILITYUMBRELLA)
+        @healAmount = (user.totalhp/4.0).round
       else
         @healAmount = (user.totalhp/2.0).round
       end
@@ -3577,6 +3585,7 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
       return
     end
     return if pbIsMegaStone?(user.item)
+    return if pbIsTechnicalRecord?(user.item) if NEWEST_BATTLE_MECHANICS
     flingableItem = false
     @flingPowers.each do |_power,items|
       items.each do |i|
@@ -3608,6 +3617,12 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
   def pbNumHits(user,targets); return 1; end
 
   def pbBaseDamage(baseDmg,user,target)
+	if pbIsTechnicalRecord?(user.item)
+		movedata = pbGetMoveData(pbGetMachine(user.item))
+		return 10 if movedata[MOVE_CATEGORY] == 2 # status move
+		return 10 if movedata[MOVE_BASE_DAMAGE] < 10
+		return movedata[MOVE_BASE_DAMAGE]
+	end 
     return 10 if pbIsBerry?(user.item)
     return 80 if pbIsMegaStone?(user.item)
     @flingPowers.each do |power,items|

@@ -62,6 +62,7 @@ begin
       @effects[PBEffects::Tailwind]           = 0
       @effects[PBEffects::ToxicSpikes]        = 0
       @effects[PBEffects::WideGuard]          = false
+      @effects[PBEffects::StickyWebUser]      = -1 
     end
   end
 
