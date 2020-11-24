@@ -69,6 +69,7 @@ class Sprite_Character < RPG::Sprite
       @reflection = Sprite_Reflection.new(self,character,viewport)
     end
     @surfbase     = Sprite_SurfBase.new(self,character,viewport) if character==$game_player
+    @shadowoverworldbitmap = Sprite_ShadowOverworld.new(self,character,viewport)
     update
   end
 
@@ -79,6 +80,7 @@ class Sprite_Character < RPG::Sprite
   def visible=(value)
     super(value)
     @reflection.visible = value if @reflection
+    @shadowoverworldbitmap.visible = value if @shadowoverworldbitmap
   end
 
   def dispose
@@ -88,6 +90,8 @@ class Sprite_Character < RPG::Sprite
     @charbitmap = nil
     @reflection.dispose if @reflection
     @reflection = nil
+    @shadowoverworldbitmap.dispose if @shadowoverworldbitmap
+    @shadowoverworldbitmap = nil
     @surfbase.dispose if @surfbase
     @surfbase = nil
     super
@@ -169,6 +173,7 @@ class Sprite_Character < RPG::Sprite
       @character.animation_id = 0
     end
     @reflection.update if @reflection
+    @shadowoverworldbitmap.update if @shadowoverworldbitmap
     @surfbase.update if @surfbase
   end
 end
