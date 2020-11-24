@@ -1,5 +1,4 @@
 def pbPersonalityTest
-
 	lonely = 0
 	brave = 0
 	relaxed = 0
@@ -79,7 +78,13 @@ def pbPersonalityTest
 
 	playernature = natures.index(natures.max)+1
 
+	p natures.max
+
+	natures.each_index.select{|i| natures[i] == natures.max}
+	p natures.each_index.select{|i| natures[i] == natures.max}
+
 	if playernature == 1
+		pbMessage("ur sad heres a baby")
 		pbAddPokemon(:BULBASAUR,5)
 	elsif playernature == 2
 		pbAddPokemon(:CHARMANDER,5)
