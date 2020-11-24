@@ -56,3 +56,5 @@
 10,West,0,14,East,66
 # Forest - Mini Falls (10) - Forest - Cabins (9)
 10,East,0,9,West,3
+# MAP056 (56) - MAP055 (55)
+56,West,0,55,East,0
