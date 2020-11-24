@@ -3,7 +3,7 @@
 # wahpokemon (dot) com
 # pokemonfangames (dot) com
 #
-# additional editing by derFischae 
+# additional editing by derFischae
 # to assure that game_characters don't stay on water
 # which could be useful for overworld encounters in water.
 #
@@ -16,40 +16,26 @@
 #===============================================================================
 
 class Game_Character
-# The original code
-#  def bush_depth
-#    return 0 if @tile_id>0 or @always_on_top
-#    if @jump_count <= 0
-#      xbehind=(@direction==4) ? @x+1 : (@direction==6) ? @x-1 : @x
-#      ybehind=(@direction==8) ? @y+1 : (@direction==2) ? @y-1 : @y
-#      return 32 if self.map.deepBush?(@x,@y) and self.map.deepBush?(xbehind,ybehind)
-#      return 12 if self.map.bush?(@x,@y) and !moving?
-#    end
-#    return 0
-#  end
-
 # Die von KleinStudio geaenderte Version
   def bush_depth
-    if @tile_id > 0 or @always_on_top
+    if @tile_id > 0 or @always_on_top || jumping?
       return 0
     end
-    xnext=(@direction==4) ? @x-1 : (@direction==6) ? @x+1 : @x
-    ynext=(@direction==8) ? @y-1 : (@direction==2) ? @y+1 : @y
-
-    xbehind=(@direction==4) ? @x+1 : (@direction==6) ? @x-1 : @x
-    ybehind=(@direction==8) ? @y+1 : (@direction==2) ? @y-1 : @y
-
-    if @jump_count <= 0 and self.map.bush?(@x, @y) and 
+    xnext = @x + (@direction==4 ? -1 : @direction==6 ? 1 : 0)
+    ynext = @y + (@direction==8 ? -1 : @direction==2 ? 1 : 0)
+    xbehind = @x + (@direction==4 ? 1 : @direction==6 ? -1 : 0)
+    ybehind = @y + (@direction==8 ? 1 : @direction==2 ? -1 : 0)
+    if !jumping? and self.map.bush?(@x, @y) and
       !self.map.bush?(xbehind, ybehind) and !moving?
-      return 12 
-    elsif @jump_count <= 0 and self.map.bush?(@x, @y) and
+      return 12
+    elsif !jumping? and self.map.bush?(@x, @y) and
       self.map.bush?(xbehind, ybehind)
       return 12
     # Hier habe ich etwas fuer das wasser hinzugefuegt
-    elsif @jump_count <= 0 and self.map.water?(@x, @y) and 
+    elsif !jumping? and self.map.water?(@x, @y) and
       !self.map.water?(xbehind, ybehind) and !moving?
-      return 12 
-    elsif @jump_count <= 0 and self.map.water?(@x, @y) and
+      return 12
+    elsif !jumping? and self.map.water?(@x, @y) and
       self.map.water?(xbehind, ybehind)
       return 12
     else
@@ -85,10 +71,10 @@ class Game_Player < Game_Character
       else
         return 0
       end
-      if @jump_count <= 0 and heremap.deepBush?(herex, herey) and
+      if !jumping? and heremap.deepBush?(herex, herey) and
                               behindmap.deepBush?(behindx, behindy)
         return 32
-      elsif @jump_count <= 0 and heremap.bush?(herex, herey) and !moving?
+      elsif !jumping? and heremap.bush?(herex, herey) and !moving?
         return 12
       else
         return 0
@@ -103,10 +89,10 @@ class Game_Player < Game_Character
       xbehind=(@direction==4) ? @x+1 : (@direction==6) ? @x-1 : @x
       ybehind=(@direction==8) ? @y+1 : (@direction==2) ? @y-1 : @y
 
-      if @jump_count <= 0 and self.map.bush?(@x, @y) and 
+      if !jumping? and self.map.bush?(@x, @y) and
         !self.map.bush?(xbehind, ybehind) and !moving?
-        return 12 
-      elsif @jump_count <= 0 and self.map.bush?(@x, @y) and
+        return 12
+      elsif !jumping? and self.map.bush?(@x, @y) and
         self.map.bush?(xbehind, ybehind)
         return 12
       else

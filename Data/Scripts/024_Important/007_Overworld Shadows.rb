@@ -90,6 +90,7 @@ end
 # Extending so we can access some private instance variables.
 class Game_Character
   attr_reader :jump_count
+  attr_reader :jump_distance_left
 end
 
 unless Spriteset_Map.respond_to?(:viewport)
@@ -234,11 +235,11 @@ class Sprite_Character
         @shadow.zoom_x -= 0.1
         @shadow.zoom_y -= 0.1
       end
-      if @character.jump_count == 1
-        @shadow.zoom_x = 1.0
-        @shadow.zoom_y = 1.0
-        @totaljump = nil
-      end
+    end
+    if @character.jump_distance_left == 0
+      @shadow.zoom_x = 1.0
+      @shadow.zoom_y = 1.0
+      @totaljump = nil
     end
     @shadow.x = x
     @shadow.y = y - 6
