@@ -146,7 +146,7 @@ def pbPersonalityTest
 		gentle +=1
 	end
 # Question 12
-	cmd=pbMessage("Your friend just got a new pet! What do you do?",["Carefully try to pet it.","Let it adjust to me before approaching it.","Try to pick it up and pet it."])
+	cmd=pbMessage("Your friend just got a new pet! What do you do?",["Carefully try to pet it.","Let it adjust to me before approaching it.","Pick it up and pet it."])
 	if cmd == 0
 		gentle += 2
 		timid += 1
@@ -280,61 +280,135 @@ def pbPersonalityTest
 				tiebreaker << index
 			end
 	end
-	 	playernature = tiebreaker.sample
+	 	@playernature = tiebreaker.sample
 	else
-		playernature = natures.index(natures.max)+1
+		@playernature = natures.index(natures.max)+1
 	end
 
+	if @playernature == 1 # Lonely
+		pbMessage("You have a Lonely nature.")
+	elsif @playernature == 2 # Brave
+		
+	elsif @playernature == 3 # Relaxed
+		
+	elsif @playernature == 4 # Rash
+		
+	elsif @playernature == 5 # Bashfu;
+		
+	elsif @playernature == 6 # Careful
+		
+	elsif @playernature == 7 # Hardy
+		
+	elsif @playernature == 8 # Serious
+		
+	elsif @playernature == 9 # Naive
+		
+	elsif @playernature == 10 # Lax
+		
+	elsif @playernature == 11 # Gentle
+		
+	elsif @playernature == 12 # Quirky
+		
+	elsif @playernature == 13 # Bold
+		
+	elsif @playernature == 14 # Sasst
+		
+	elsif @playernature == 15 # Jolly
+		
+	elsif @playernature == 16 # Impish
+		
+	elsif @playernature == 17 # Docile
+		
+	elsif @playernature == 18 # Naughty
+		
+	elsif @playernature == 19 # Calm
+		
+	elsif @playernature == 20 # Quiet
+		
+	elsif @playernature == 21 # Adamant
+		
+	elsif @playernature == 22 # Mild
+		
+	elsif @playernature == 23 # Modest
+		
+	elsif @playernature == 24 # Hasty
+		
+	elsif @playernature == 25 # Timid
+		
+	end
+end
 
-	if playernature == 1
+def pbSelectStarter
+	cmd=pbMessage("What region is this starter from?",["Kanto","Johto","Hoenn","Sinnoh","Unova","Kalos","Alola","Galar"])
+	if cmd == 0
+		cmd=pbMessage("Select the Pokémon you want to journey with.",["Bulbasaur","Charmander","Squirtle","Pikachu"])
+	elsif cmd == 1
+		cmd=pbMessage("Select the Pokémon you want to journey with.",["Chikorita","Cyndaquil","Totodile"])
+	elsif cmd == 2
+		cmd=pbMessage("Select the Pokémon you want to journey with.",["Treecko","Torchic","Mudkip"])
+	elsif cmd == 3
+		cmd=pbMessage("Select the Pokémon you want to journey with.",["Turtwig","Chimchar","Piplup"])
+	elsif cmd == 4
+		cmd=pbMessage("Select the Pokémon you want to journey with.",["Snivy","Tepig","Oshawott"])
+	elsif cmd == 5
+		cmd=pbMessage("Select the Pokémon you want to journey with.",["Chespin","Fennekin","Froakie"])
+	elsif cmd == 6
+		cmd=pbMessage("Select the Pokémon you want to journey with.",["Rowlet","Litten","Popplio"])
+	elsif cmd == 7
+		cmd=pbMessage("Select the Pokémon you want to journey with.",["Grookey","Scorbunny","Sobble"])
+	end
+end
+
+def pbNatureStarter
+	if @playernature == 1 # Lonely
 		pbAddPokemon(:BULBASAUR,5)
-	elsif playernature == 2
+	elsif @playernature == 2 # Brave
 		pbAddPokemon(:CHARMANDER,5)
-	elsif playernature == 3
+	elsif @playernature == 3 # Relaxed
 		pbAddPokemon(:SQUIRTLE,5)
-	elsif playernature == 4
+	elsif @playernature == 4 # Rash
 		pbAddPokemon(:PIKACHU,5)
-	elsif playernature == 5
+	elsif @playernature == 5 # Bashfu;
 		pbAddPokemon(:CHIKORITA,5)
-	elsif playernature == 6
+	elsif @playernature == 6 # Careful
 		pbAddPokemon(:CYNDAQUIL,5)
-	elsif playernature == 7
+	elsif @playernature == 7 # Hardy
 		pbAddPokemon(:TOTODILE,5)
-	elsif playernature == 8
+	elsif @playernature == 8 # Serious
 		pbAddPokemon(:TREECKO,5)
-	elsif playernature == 9
+	elsif @playernature == 9 # Naive
 		pbAddPokemon(:TORCHIC,5)
-	elsif playernature == 10
+	elsif @playernature == 10 # Lax
 		pbAddPokemon(:MUDKIP,5)
-	elsif playernature == 11
+	elsif @playernature == 11 # Gentle
 		pbAddPokemon(:TURTWIG,5)
-	elsif playernature == 12
+	elsif @playernature == 12 # Quirky
 		pbAddPokemon(:CHIMCHAR,5)
-	elsif playernature == 13
+	elsif @playernature == 13 # Bold
 		pbAddPokemon(:PIPLUP,5)
-	elsif playernature == 14
+	elsif @playernature == 14 # Sasst
 		pbAddPokemon(:SNIVY,5)
-	elsif playernature == 15
+	elsif @playernature == 15 # Jolly
 		pbAddPokemon(:TEPIG,5)
-	elsif playernature == 16
+	elsif @playernature == 16 # Impish
 		pbAddPokemon(:OSHAWOTT,5)
-	elsif playernature == 17
+	elsif @playernature == 17 # Docile
 		pbAddPokemon(:CHESPIN,5)
-	elsif playernature == 18
+	elsif @playernature == 18 # Naughty
 		pbAddPokemon(:FENNEKIN,5)
-	elsif playernature == 19
+	elsif @playernature == 19 # Calm
 		pbAddPokemon(:FROAKIE,5)
-	elsif playernature == 20
+	elsif @playernature == 20 # Quiet
 		pbAddPokemon(:ROWLET,5)
-	elsif playernature == 21
+	elsif @playernature == 21 # Adamant
 		pbAddPokemon(:LITTEN,5)
-	elsif playernature == 22
+	elsif @playernature == 22 # Mild
 		pbAddPokemon(:POPPLIO,5)
-	elsif playernature == 23
+	elsif @playernature == 23 # Modest
 		pbAddPokemon(:GROOKEY,5)
-	elsif playernature == 24
+	elsif @playernature == 24 # Hasty
 		pbAddPokemon(:SCORBUNNY,5)
-	elsif playernature == 25
+	elsif @playernature == 25 # Timid
 		pbAddPokemon(:SOBBLE,5)
 	end
 end
