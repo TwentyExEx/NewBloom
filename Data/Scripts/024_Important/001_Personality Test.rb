@@ -26,14 +26,14 @@ def pbPersonalityTest
 	timid = 0
 
 # Question 1
-	cmd=pbMessage("Do you like to do things according to plan?",["Definitely! I plan everything meticulously.","I can be pretty spontaneous."])
-	if cmd == 0
-		careful += 2
-		serious += 1
-	elsif cmd == 1
-		lax += 2
-		quirky += 1
-	end
+    cmd=pbMessage("You're cooking a new recipe, but midway through preparations, you realize you're missing a few ingredients. What do you do?",["Go to the store and buy them.","Substitute them with something else."])
+    if cmd == 0
+        careful += 2
+        serious += 1
+    elsif cmd == 1
+        lax += 2
+        quirky += 1
+    end
 # Question 2
 	cmd=pbMessage("You've just seen someone trip! What do you do?",["Go over to them and help them up.","Take them to the hospital.","Quietly laugh. How did they manage that?!"])
 	if cmd == 0

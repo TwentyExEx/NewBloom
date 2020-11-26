@@ -218,22 +218,14 @@ def pbDayCareGenerateEgg
      isConst?(babyspecies,PBSpecies,:PUMPKABOO) ||
      isConst?(babyspecies,PBSpecies,:ORICORIO) ||
      isConst?(babyspecies,PBSpecies,:ROCKRUFF) ||
-     isConst?(babyspecies,PBSpecies,:MINIOR)
-    newForm = mother.form
-    newForm = 0 if mother.isSpecies?(:MOTHIM)
-    egg.form = newForm
-  end
-  
-  # Inheriting Regional Forms
-     # Alola
-  if isConst?(babyspecies,PBSpecies,:RATTATA) ||
+     isConst?(babyspecies,PBSpecies,:MINIOR) ||
+     isConst?(babyspecies,PBSpecies,:RATTATA) ||
      isConst?(babyspecies,PBSpecies,:SANDSHREW) ||
      isConst?(babyspecies,PBSpecies,:VULPIX) ||
      isConst?(babyspecies,PBSpecies,:DIGLETT) ||
      isConst?(babyspecies,PBSpecies,:MEOWTH) ||
      isConst?(babyspecies,PBSpecies,:GEODUDE) ||
      isConst?(babyspecies,PBSpecies,:GRIMER) ||
-     # Galarian
      isConst?(babyspecies,PBSpecies,:PONYTA) ||
      isConst?(babyspecies,PBSpecies,:SLOWPOKE) ||
      isConst?(babyspecies,PBSpecies,:FARFETCHD) ||
@@ -243,17 +235,42 @@ def pbDayCareGenerateEgg
      isConst?(babyspecies,PBSpecies,:DARUMAKA) ||
      isConst?(babyspecies,PBSpecies,:YAMASK) ||
      isConst?(babyspecies,PBSpecies,:STUNFISK)
-    if mother.form==1
-      egg.form = 1 if mother.hasItem?(:EVERSTONE)
-    elsif pbGetBabySpecies(father.species,mother.item,father.item)==babyspecies
-      egg.form = 1 if father.form==1 && father.hasItem?(:EVERSTONE)
-    end
-    if mother.form==2
-      egg.form = 2 if mother.hasItem?(:EVERSTONE)
-    elsif pbGetBabySpecies(father.species,mother.item,father.item)==babyspecies
-      egg.form = 2 if father.form==2 && father.hasItem?(:EVERSTONE)
-    end
+    newForm = mother.form
+    newForm = 0 if mother.isSpecies?(:MOTHIM)
+    egg.form = newForm
   end
+  
+  # # Inheriting Regional Forms
+  #    # Alola
+  # if isConst?(babyspecies,PBSpecies,:RATTATA) ||
+  #    isConst?(babyspecies,PBSpecies,:SANDSHREW) ||
+  #    isConst?(babyspecies,PBSpecies,:VULPIX) ||
+  #    isConst?(babyspecies,PBSpecies,:DIGLETT) ||
+  #    isConst?(babyspecies,PBSpecies,:MEOWTH) ||
+  #    isConst?(babyspecies,PBSpecies,:GEODUDE) ||
+  #    isConst?(babyspecies,PBSpecies,:GRIMER) ||
+  #    # Galarian
+  #    isConst?(babyspecies,PBSpecies,:PONYTA) ||
+  #    isConst?(babyspecies,PBSpecies,:SLOWPOKE) ||
+  #    isConst?(babyspecies,PBSpecies,:FARFETCHD) ||
+  #    isConst?(babyspecies,PBSpecies,:MRMIME) ||
+  #    isConst?(babyspecies,PBSpecies,:CORSOLA) ||
+  #    isConst?(babyspecies,PBSpecies,:ZIGZAGOON) ||
+  #    isConst?(babyspecies,PBSpecies,:DARUMAKA) ||
+  #    isConst?(babyspecies,PBSpecies,:YAMASK) ||
+  #    isConst?(babyspecies,PBSpecies,:STUNFISK)
+  #   if mother.form==1
+  #     egg.form = 1 if mother.hasItem?(:EVERSTONE)
+  #   elsif pbGetBabySpecies(father.species,mother.item,father.item)==babyspecies
+  #     egg.form = 1 if father.form==1 && father.hasItem?(:EVERSTONE)
+  #   end
+  #   if mother.form==2
+  #     egg.form = 2 if mother.hasItem?(:EVERSTONE)
+  #   elsif pbGetBabySpecies(father.species,mother.item,father.item)==babyspecies
+  #     egg.form = 2 if father.form==2 && father.hasItem?(:EVERSTONE)
+  #   end
+  # end
+  
   # Inheriting Moves
   moves = []
   othermoves = []
