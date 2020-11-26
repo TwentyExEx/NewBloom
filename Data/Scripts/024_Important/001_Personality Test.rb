@@ -35,7 +35,7 @@ def pbPersonalityTest
 		quirky += 1
 	end
 # Question 2
-	cmd=pbMessage("You’ve just seen someone trip! What do you do?",["Go over to them and help them up.","Take them to the hospital. Better safe than sorry!","Quietly laugh. How did they manage that?!"])
+	cmd=pbMessage("You've just seen someone trip! What do you do?",["Go over to them and help them up.","Take them to the hospital.","Quietly laugh. How did they manage that?!"])
 	if cmd == 0
 		mild += 2
 		brave += 1
@@ -59,7 +59,7 @@ def pbPersonalityTest
 		timid +=1
 	end
 # Question 4
-	cmd=pbMessage("Your friends seem to be having a fun chat out of earshot. What do you do?",["Leave. I’m probably left out for a reason.","Try to join in when there’s an opportunity.","Interrupt and redirect the conversation."])
+	cmd=pbMessage("Your friends seem to be having a fun chat out of earshot. What do you do?",["Leave. I'm probably left out for a reason.","Try to join in when there's an opportunity.","Interrupt and redirect the conversation."])
 	if cmd == 0
 		lonely += 2
 		bashful += 1
@@ -80,7 +80,7 @@ def pbPersonalityTest
 		mild += 1
 	end
 # Question 6
-	cmd=pbMessage("You’re going on a day trip to the mountains. What are you most excited to do?",["Hiking. It’s perfect to clear my mind.","Roasting marshmallows. Delicious!","Telling ghost stories. Boo!"])
+	cmd=pbMessage("You're going on a day trip to the mountains. What are you most excited to do?",["Hiking. It's perfect to clear my mind.","Roasting marshmallows. Delicious!","Telling ghost stories. Boo!"])
 	if cmd == 0
 		serious += 2
 		hardy += 1
@@ -101,7 +101,7 @@ def pbPersonalityTest
 		quiet += 1
 	end
 # Question 8
-	cmd=pbMessage("If you face a problem at work, what is the first thing you do?",["Pretend I never noticed.","Try a bunch of different things to see what fixes it.","Ask for help. Someone else is better suited for this."])
+	cmd=pbMessage("If you face a problem at work, what is the first thing you do?",["Pretend I never noticed.","Experiment to see what fixes it.","Ask for help. Someone else could do better."])
 	if cmd == 0
 		naughty += 2
 		hasty += 1
@@ -113,7 +113,7 @@ def pbPersonalityTest
 		docile +=1
 	end
 # Question 9
-	cmd=pbMessage("You are at a restaurant you’ve been to before. What do you order?",["Play it safe and stick with my usual order.","Look through the menu and pick what sounds good.","Go with the waiter’s recommendation, or whatever is a best seller."])
+	cmd=pbMessage("You are at a restaurant you've been to before. What do you order?",["Play it safe and stick with my usual order.","Whatever looks good in the menu!","Go with the waiter's recommendation."])
 	if cmd == 0
 		adamant += 2
 		modest += 1
@@ -125,7 +125,7 @@ def pbPersonalityTest
 		calm +=1
 	end
 # Question 10
-	cmd=pbMessage("How do you go about making big decisions?",["Go with my gut then move on.","Weigh out the pros and cons then go with the most logical option."])
+	cmd=pbMessage("How do you go about making big decisions?",["Go with my gut then move on.","Weigh out the pros and cons."])
 	if cmd == 0
 		rash += 2
 		adamant += 1
@@ -158,7 +158,7 @@ def pbPersonalityTest
 		bold +=1
 	end
 # Question 13
-	cmd=pbMessage("What is your workflow like when doing tasks?",["Work hard until the task is complete.","Accomplish it little by little in short bursts.","Procrastinate until the last minute, then rush to finish it."])
+	cmd=pbMessage("What is your workflow like when doing tasks?",["Work hard until the task is complete.","Accomplish it little by little.","Procrastinate, then rush to finish it."])
 	if cmd == 0
 		hardy += 2
 		serious += 1
@@ -170,7 +170,7 @@ def pbPersonalityTest
 		naughty +=1
 	end
 # Question 14
-	cmd=pbMessage("You have a crush on someone in your class. What do you do?",["Share my lunch with them. Everyone loves food!","Never tell them. They probably don’t feel the same, anyway.","Write them a letter directly telling them how I feel."])
+	cmd=pbMessage("You have a crush on someone in your class. What do you do?",["Share my lunch with them!","Nothing. It's too embarrassing...","Confess to them in a letter."])
 	if cmd == 0
 		naive += 2
 		quirky += 1
@@ -203,7 +203,7 @@ def pbPersonalityTest
 		bashful += 1
 	end
 # Question 17
-	cmd=pbMessage("Your friend hasn’t replied to your texts in a while. What do you think?",["They’re probably just busy.","I must have done something that upset them."])
+	cmd=pbMessage("Your friend hasn't replied to your texts in a while. What do you think?",["They're probably just busy.","I probably did something that upset them."])
 	if cmd == 0
 		relaxed += 2
 		sassy += 1
@@ -212,7 +212,7 @@ def pbPersonalityTest
 		impish += 1
 	end
 # Question 18
-	cmd=pbMessage("You make a joke and nobody hears it, but someone else repeats it and everyone laughs. What do you do?",["Laugh along. It’s no big deal.","Tell everyone you said it first."])
+	cmd=pbMessage("You make a joke and nobody hears it, but someone else repeats it and everyone laughs. What do you do?",["Laugh along. It's no big deal.","Tell everyone you said it first."])
 	if cmd == 0
 		calm += 2
 		lax += 1
@@ -221,7 +221,7 @@ def pbPersonalityTest
 		rash += 1
 	end
 # Question 19
-	cmd=pbMessage("Your friend has painted some art! It’s not very good. How do you react?",["Tell them the truth. No point lying to them.","Avoid commenting. Can’t lie if I don’t talk.","Tell them it looks great! I don’t want to discourage them."])
+	cmd=pbMessage("Your friend has painted some art! It's not very good. What do you do?",["Tell the truth. No point lying to them.","Nothing. Can't lie if I don't talk.","Talk only about the good parts."])
 	if cmd == 0
 		brave += 2
 		bold += 1
@@ -233,7 +233,7 @@ def pbPersonalityTest
 		docile +=1
 	end
 # Question 20
-	cmd=pbMessage("There’s one last slot in your Pokémon team. Describe what kind of Pokémon you’d give that spot to.",["Edgy and intimidating","Majestic and beautiful","Smart and cunning"])
+	cmd=pbMessage("There's one last slot in your Pokémon team. Describe what kind of Pokémon you'd give that spot to.",["Edgy and intimidating.","Majestic and beautiful.","Smart and cunning."])
 	if cmd == 0
 		lonely += 1
 		careful += 1
@@ -273,6 +273,7 @@ def pbPersonalityTest
 	end
 
 	if count > 1 # If there's a tie
+		p "It's a tie!"
 		tiebreaker = Array.new
 		natures.each_with_index do | element, index |
 			if element.equal? natures.max
