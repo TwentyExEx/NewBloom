@@ -273,13 +273,12 @@ def pbPersonalityTest
 	end
 
 	if count > 1 # If there's a tie
-		p "It's a tie!"
 		tiebreaker = Array.new
 		natures.each_with_index do | element, index |
 			if element.equal? natures.max
 				tiebreaker << index
 			end
-	end
+		end
 	 	@playernature = tiebreaker.sample
 	else
 		@playernature = natures.index(natures.max)+1
@@ -287,79 +286,79 @@ def pbPersonalityTest
 
 	$game_variables[76] = @playernature
 
-	if @playernature == natures.index(@lonely)+1
+	if @playernature == natures.index(@lonely)+1 || @playernature ==  1
 		pbMessage("You have a Lonely nature.")
 		pbMessage("A trainer like you would best suit Bulbasaur.")
-	elsif @playernature == natures.index(@brave)+1
+	elsif @playernature == natures.index(@brave)+1 || @playernature ==  2
 		pbMessage("You have a Brave nature.")
 		pbMessage("A trainer like you would best suit Charmander.")
-	elsif @playernature == natures.index(@relaxed)+1
+	elsif @playernature == natures.index(@relaxed)+1 || @playernature ==  3
 		pbMessage("You have a Relaxed nature.")
 		pbMessage("A trainer like you would best suit Squirtle.")
-	elsif @playernature == natures.index(@rash)+1
+	elsif @playernature == natures.index(@rash)+1 || @playernature ==  4
 		pbMessage("You have a Rash nature.")
 		pbMessage("A trainer like you would best suit Pikachu.")
-	elsif @playernature == natures.index(@bashful)+1
+	elsif @playernature == natures.index(@bashful)+1 || @playernature ==  5
 		pbMessage("You have a Bashful nature.")
 		pbMessage("A trainer like you would best suit Chikorita.")
-	elsif @playernature == natures.index(@careful)+1
+	elsif @playernature == natures.index(@careful)+1 || @playernature ==  6
 		pbMessage("You have a Careful nature.")
 		pbMessage("A trainer like you would best suit Cyndaquil.")
-	elsif @playernature == natures.index(@hardy)+1
+	elsif @playernature == natures.index(@hardy)+1 || @playernature ==  7
 		pbMessage("You have a Hardy nature.")
 		pbMessage("A trainer like you would best suit Totodile.")
-	elsif @playernature == natures.index(@serious)+1
+	elsif @playernature == natures.index(@serious)+1 || @playernature ==  8
 		pbMessage("You have a Serious nature.")
 		pbMessage("A trainer like you would best suit Treecko.")
-	elsif @playernature == natures.index(@naive)+1
+	elsif @playernature == natures.index(@naive)+1 || @playernature ==  9
 		pbMessage("You have a Naive nature.")
 		pbMessage("A trainer like you would best suit Torchic.")
-	elsif @playernature == natures.index(@lax)+1
+	elsif @playernature == natures.index(@lax)+1 || @playernature ==  10
 		pbMessage("You have a Lax nature.")
 		pbMessage("A trainer like you would best suit Mudkip.")
-	elsif @playernature == natures.index(@gentle)+1
+	elsif @playernature == natures.index(@gentle)+1 || @playernature ==  11
 		pbMessage("You have a Gentle nature.")
 		pbMessage("A trainer like you would best suit Turtwig.")
-	elsif @playernature == natures.index(@quirky)+1
+	elsif @playernature == natures.index(@quirky)+1 || @playernature ==  12
 		pbMessage("You have a Quirky nature.")
 		pbMessage("A trainer like you would best suit Chimchar.")
-	elsif @playernature == natures.index(@bold)+1
+	elsif @playernature == natures.index(@bold)+1 || @playernature ==  13
 		pbMessage("You have a Bold nature.")
 		pbMessage("A trainer like you would best suit Piplup.")
-	elsif @playernature == natures.index(@sassy)+1
+	elsif @playernature == natures.index(@sassy)+1 || @playernature ==  14
 		pbMessage("You have a Sassy nature.")
 		pbMessage("A trainer like you would best suit Snivy.")
-	elsif @playernature == natures.index(@jolly)+1
+	elsif @playernature == natures.index(@jolly)+1 || @playernature ==  15
 		pbMessage("You have a Jolly nature.")
 		pbMessage("A trainer like you would best suit Tepig.")
-	elsif @playernature == natures.index(@impish)+1
+	elsif @playernature == natures.index(@impish)+1 || @playernature ==  16
 		pbMessage("You have a Impish nature.")
 		pbMessage("A trainer like you would best suit Oshawott.")
-	elsif @playernature == natures.index(@docile)+1
+	elsif @playernature == natures.index(@docile)+1 || @playernature ==  17
 		pbMessage("You have a Docile nature.")
 		pbMessage("A trainer like you would best suit Chespin.")
-	elsif @playernature == natures.index(@naughty)+1
+	elsif @playernature == natures.index(@naughty)+1 || @playernature ==  18
 		pbMessage("You have a Naughty nature.")
 		pbMessage("A trainer like you would best suit Fennekin.")
-	elsif @playernature == natures.index(@calm)+1
+	elsif @playernature == natures.index(@calm)+1 || @playernature ==  19
 		pbMessage("You have a Calm nature.")
 		pbMessage("A trainer like you would best suit Froakie.")
-	elsif @playernature == natures.index(@quiet)+1
+	elsif @playernature == natures.index(@quiet)+1 || @playernature ==  20
 		pbMessage("You have a Quiet nature.")
 		pbMessage("A trainer like you would best suit Rowlet.")
-	elsif @playernature == natures.index(@adamant)+1
+	elsif @playernature == natures.index(@adamant)+1 || @playernature ==  21
 		pbMessage("You have an Adamant nature.")
 		pbMessage("A trainer like you would best suit Litten.")
-	elsif @playernature == natures.index(@mild)+1
+	elsif @playernature == natures.index(@mild)+1 || @playernature ==  22
 		pbMessage("You have a Mild nature.")
 		pbMessage("A trainer like you would best suit Popplio.")
-	elsif @playernature == natures.index(@modest)+1
+	elsif @playernature == natures.index(@modest)+1 || @playernature ==  23
 		pbMessage("You have a Modest nature.")
 		pbMessage("A trainer like you would best suit Grookey.")
-	elsif @playernature == natures.index(@hasty)+1
+	elsif @playernature == natures.index(@hasty)+1 || @playernature ==  24
 		pbMessage("You have a Hasty nature.")
 		pbMessage("A trainer like you would best suit Scorbunny.")
-	elsif @playernature == natures.index(@timid)+1
+	elsif @playernature == natures.index(@timid)+1 || @playernature ==  25
 		pbMessage("You have a Timid nature.")
 		pbMessage("A trainer like you would best suit Sobble.")
 	end
