@@ -9,13 +9,13 @@
 module LevelBalance
   
   Light = 10                 #from 1 to 10
-  Easy = 20                  #from 11 to 20
+  Easy = 15                  #from 11 to 20
   Medium = 30                #from 21 to 30
-  Hard = 40                  #from 31 to 40
-  Insane = 55                #from 41 to 55
-  Extreme = MAXIMUM_LEVEL     #from 56 to MAXIMUM_LEVEL
+  Hard = 35                  #from 31 to 40
+  Insane = 45                #from 41 to 55
+  Extreme = 60               #from 56 to MAXIMUM_LEVEL
   Switch = 100               #Switch that turns on Trainer Difficulty Control
-  Trainer_dif = 50           #Variable that ontrols trainer battle's difficulty
+  Trainer_dif = 78           #Variable that controls trainer battle's difficulty
   
   # Calculates the difficulty based on your party pokemon's level and badges
     def self.calcDifficulty
@@ -61,7 +61,7 @@ Events.onWildPokemonCreateForSpawning+=proc {|sender,e|
      end
      newlevel=l
      newlevel=1 if newlevel<1
-     newlevel=PBExperience::MAXLEVEL if newlevel>PBExperience::MAXLEVEL
+     newlevel=PBExperience.maxLevel if newlevel>PBExperience.maxLevel
      pokemon.level=newlevel
      #now we evolve the pokémon, if applicable
      species = pokemon.species
@@ -151,7 +151,7 @@ Events.onTrainerPartyLoad+=proc {|sender,e|
        end
       level = l  
       level=1 if level<1
-      level=PBExperience::MAXLEVEL if level>PBExperience::MAXLEVEL
+      level=PBExperience.maxLevel if level>PBExperience.maxLevel
       party[i].level = level
       #now we evolve the pokémon, if applicable
       species = party[i].species
