@@ -675,4 +675,9 @@ EMPOLEON,55
 OBSTAGOON,55
 SHARPEDO,56,SHARPEDONITE
 #-------------------------------
-
+SCHOOLKID
+Derek
+2
+LOPUNNY,5
+FOMANTIS,5
+#-------------------------------
