@@ -47,7 +47,7 @@ VARIABLE_USED = 0 # Set this to a game variable number if you want the Lv Caps
                   # to use a value other than game variables. If this is set
                   # then GYM_BASED must be set to false.
 
-LEVEL_CAPS = [10,20,30,40,50,60,70,80,100] # Array to store the level caps.
+LEVEL_CAPS = [14,20,25,30,36,38,42,47,50,55] # Array to store the level caps.
                                            # The cap is determined by Array
                                            # Index. So if tour variable is value
                                            # 4 or you are at the 4th Gym, then the
