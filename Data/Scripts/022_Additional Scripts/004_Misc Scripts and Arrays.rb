@@ -45,3 +45,23 @@ def pbUnownQuick
     end
   end
 end
+
+def pbFootsteps
+    if !PBTerrain.isGrass?(pbGetTerrainTag)
+      if $PokemonGlobal.runtoggle = true && Input.press?(Input::A)
+        pbSEPlay("se_step_run_dirt")
+        @wait_count = 2 * Graphics.frame_rate/20
+      elsif $game_player.moving?
+        pbSEPlay("se_step_default")
+        @wait_count = 4 * Graphics.frame_rate/20
+      end
+    else
+      if $PokemonGlobal.runtoggle = true && Input.press?(Input::A)
+        pbSEPlay("se_step_run_grass")
+        @wait_count = 2 * Graphics.frame_rate/20
+      elsif $game_player.moving?
+        pbSEPlay("se_step_grass")
+        @wait_count = 4 * Graphics.frame_rate/20
+    end
+  end
+end
