@@ -158,7 +158,7 @@
 #                             Settings            
 #===============================================================================
 
-OVERWORLD_ENCOUNTER_VARIABLE = 26 # default is an ID which is not used anywhere else
+OVERWORLD_ENCOUNTER_VARIABLE = 79 # default is an ID which is not used anywhere else
 # This parameter stores the ID of the $game_variable which holds the propability
 # of normal to overworld encountering.
 # Make sure that no other script uses the $game_variable with this ID,

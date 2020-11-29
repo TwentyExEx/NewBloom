@@ -1,7 +1,7 @@
 PluginManager.register({
   :name => "Following Pokemon",
   :version => "1.5.1",
-  :credits => "Help-14, zingzags, Rayd12smitty, Venom12, mej71, PurpleZaffre, WolfPP, Golisopod User",
+  :credits => ["Help-14","zingzags","Rayd12smitty","Venom12","mej71","PurpleZaffre","WolfPP","Golisopod User"],
   :link => "https://reliccastle.com/resources/37/"
 })
 
@@ -9,13 +9,15 @@ PluginManager.register({
 # * Config Script For Your Game Here. Change the emo_ to what ever number is
 #        the cell holding the animation.
 #===============================================================================
-Unused_Common_Event         = 5		  #Common event should be blank, but reserved
+Unused_Common_Event         = 5     #Common event should be blank, but reserved
 Following_Activated_Switch = 126      # Switch should be reserved
-Toggle_Following_Switch = 103         # Switch should be reserved
-Current_Following_Variable = 36       # Variable should be reserved
-ItemWalk=26                           # Variable should be reserved
-Walking_Time_Variable = 27            # Variable should be reserved
-Walking_Item_Variable = 28            # Variable should be reserved
+Toggle_Following_Switch = 127         # Switch should be reserved
+Current_Following_Variable = 80       # Variable should be reserved
+ItemWalk=81                           # Variable should be reserved
+Walking_Time_Variable = 82            # Variable should be reserved
+Walking_Item_Variable = 83            # Variable should be reserved
+
+
 Animation_Come_Out = 93
 Animation_Come_In = 94
 Emo_Happy = 95
@@ -527,7 +529,7 @@ class DependentEvents
 #===============================================================================
         terrain=pbFacingTerrainTag
         notCliff=$game_map.passable?($game_player.x,$game_player.y,$game_player.direction)
-        if PBTerrain.isWater?(terrain) || !notCliff
+        if (PBTerrain.isWater?(terrain) || !notCliff) && $PokemonGlobal.bridge==0
           if !pbGetMetadata($game_map.map_id,MetadataBicycleAlways) && !$PokemonGlobal.surfing
             if $DEBUG
               pbSurf
@@ -1015,7 +1017,7 @@ HiddenMoveHandlers::CanUseMove.add(:TELEPORT,proc { |move,pkmn,showmsg|
     pbMessage(_INTL("Can't use that here.")) if showmsg
     next false
   end
-  if $game_player.pbHasDependentEvents?
+  if $game_player.pbHasDependentEvents? && !$game_switches[Following_Activated_Switch]
     pbMessage(_INTL("It can't be used when you have someone with you.")) if showmsg
     next false
   end
@@ -1201,7 +1203,7 @@ class DependentEvents
       for i in 0...facings.length
         facing=facings[i]
         tile=$MapFactory.getFacingTile(facing,leader)
-        passable=tile && $MapFactory.isPassableStrict?(tile[0],tile[1],tile[2],follower)
+        passable=tile && $MapFactory.isPassable?(tile[0],tile[1],tile[2],follower)
         if !passable && $PokemonGlobal.bridge>0
           passable = PBTerrain.isBridge?($MapFactory.getTerrainTag(tile[0],tile[1],tile[2]))
         elsif passable && !$PokemonGlobal.surfing && $PokemonGlobal.bridge==0

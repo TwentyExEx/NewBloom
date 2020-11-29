@@ -54,7 +54,7 @@ class Sprite_ShadowOverworld
     if @sprite
       @sprite.bitmap = @shadowoverworldbitmap.bitmap; cw = @cws; ch = @chs
       @sprite.x       = @rsprite.x
-      @sprite.y       = @rsprite.y
+      @sprite.y       = @rsprite.y-1
       @sprite.ox      = cw/2 -1
       @sprite.oy      = ch -18
       @sprite.z       = @rsprite.z-1
