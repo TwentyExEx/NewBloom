@@ -165,3 +165,53 @@ Backtrace:
 'SDK::Scene_Base' line 49 in `main'
 'Main' line 12
 
+===============================================================================
+Mon Nov 30 21:15:11 Malay Peninsula Standard Time 2020
+-------------------------------------------------------------------------------
+Wrote fog_on=>false to .\MapMaker.ini
+Wrote cha_on=>false to .\MapMaker.ini
+Wrote pan_on=>false to .\MapMaker.ini
+Wrote til_on=>false to .\MapMaker.ini
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Wrote til_on=>true to .\MapMaker.ini
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Saving "Mountains - Ravine"
+Script 'SDK' line 0: SystemExit occured.
+
+(eval):129:in `exit'exit
+
+Backtrace:
+'SDK' line 0(eval) 129:in `update'
+'SDK' line 0(eval) 129:in `update'
+'SDK::Scene_Base' line 110 in `update_modules'
+'SDK::Scene_Base' line 91 in `main_loop'
+'SDK::Scene_Base' line 47 in `main'
+'SDK::Scene_Base' line 46 in `loop'
+'SDK::Scene_Base' line 49 in `main'
+'Main' line 12
+
+===============================================================================
+Mon Nov 30 21:16:57 Malay Peninsula Standard Time 2020
+-------------------------------------------------------------------------------
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Saving "Mountains - Ravine"
+Saving "Mountains - Ravine"
