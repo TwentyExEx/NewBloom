@@ -56,3 +56,19 @@
 10,West,0,14,East,66
 # Forest - Mini Falls (10) - Forest - Cabins (9)
 10,East,0,9,West,3
+# Deep Forest - The Pit (18) - Deep Forest - Graveyard (22)
+18,East,0,22,West,31
+# Deep Forest - Purgatory (21) - Deep Forest - Graveyard (22)
+21,East,9,22,West,0
+# Deep Forest - The Pit (18) - Deep Forest - Clearing (17)
+18,South,0,17,North,0
+# Deep Forest - Swamp (19) - Deep Forest - Clearing (17)
+19,East,53,17,West,0
+# Deep Forest - Swamp (19) - Deep Forest - The Pit (18)
+19,East,17,18,West,0
+# Deep Forest - Cave Entrance (20) - Deep Forest - The Pit (18)
+20,South,68,18,North,0
+# Deep Forest - Purgatory (21) - Deep Forest - The Pit (18)
+21,South,0,18,North,10
+# Deep Forest - Cave Entrance (20) - Deep Forest - Swamp (19)
+20,East,3,19,West,0
