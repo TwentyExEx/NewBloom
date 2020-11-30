@@ -215,3 +215,609 @@ Skipping fog
 Finished refreshing preview.
 Saving "Mountains - Ravine"
 Saving "Mountains - Ravine"
+===============================================================================
+Mon Nov 30 15:48:22 Malay Peninsula Standard Time 2020
+-------------------------------------------------------------------------------
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Script 'Game_Map' line 50: Errno::ENOENT occured.
+
+No such file or directory - Data/Map033.rxdata
+
+Backtrace:
+'Game_Map' line 50 in `load_data'
+'Game_Map' line 50 in `setup'
+'Scene_Main' line 207 in `generate'
+'Scene_Main' line 256 in `generate_all'
+'Scene_Main' line 253 in `each_index'
+'Scene_Main' line 253 in `generate_all'
+'Scene_Options' line 76 in `update'
+'SDK::Scene_Base' line 104 in `main_loop'
+'SDK::Scene_Base' line 119 in `update_layers'
+'SDK::Scene_Base' line 118 in `each'
+'SDK::Scene_Base' line 118 in `update_layers'
+'SDK::Scene_Base' line 92 in `main_loop'
+'SDK::Scene_Base' line 47 in `main'
+'SDK::Scene_Base' line 46 in `loop'
+'SDK::Scene_Base' line 49 in `main'
+'Main' line 12
+
+===============================================================================
+Mon Nov 30 15:49:11 Malay Peninsula Standard Time 2020
+-------------------------------------------------------------------------------
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Saving "Forest - City Bridge"
+Saving "Forest - Little Pond"
+Saving "Forest - Lakeside"
+Saving "Forest - Cabins"
+Saving "Forest - Mini Falls"
+Saving "Forest - Depths"
+Saving "Forest - Waterfall Fork"
+Saving "Forest - Waterfall View"
+Saving "Forest - Mountainside"
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Saving "Deep Forest - Clearing"
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Saving "Deep Forest - The Pit"
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Saving "Deep Forest - Swamp"
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Saving "Deep Forest - Cave Entrance"
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Saving "Deep Forest - Purgatory"
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Saving "Deep Forest - Graveyard"
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Saving "Mountains - Frozen Lakes"
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Saving "Mountains - Stairway"
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Saving "Mountains - Ravine"
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Saving "Mountains - Village"
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Saving "Mountains - Waterfall"
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Saving "Mountains - Crossroads"
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Saving "Mountains - Peak"
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Saving "Fairy Garden - Wellspring"
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Saving "Fairy Garden - Lakefront"
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Saving "Fairy Garden - Botanical Gardens"
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Saving "Fairy Garden - Fae Crossing"
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Saving "Fairy Garden - Descent"
+Collecting map data
+Collecting map data completed
+Starting to refresh preview
+Created bitmap
+Skipping panorama
+Drawing preview
+Skipping fog
+Finished refreshing preview.
+Saving "Fairy Garden - Battle Plaza"
+Script 'SDK' line 0: SystemExit occured.
+
+(eval):129:in `exit'exit
+
+Backtrace:
+'SDK' line 0(eval) 129:in `update'
+'SDK' line 0(eval) 129:in `update'
+'SDK::Scene_Base' line 110 in `update_modules'
+'SDK::Scene_Base' line 91 in `main_loop'
+'SDK::Scene_Base' line 47 in `main'
+'SDK::Scene_Base' line 46 in `loop'
+'SDK::Scene_Base' line 49 in `main'
+'Main' line 12
+
