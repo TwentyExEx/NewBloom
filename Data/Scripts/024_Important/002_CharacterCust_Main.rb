@@ -1370,6 +1370,7 @@ class ChooseBase
         end
       end
       if Input.trigger?(Input::C) && Kernel.pbConfirmMessage("So you're choosing #{@commands.list[@index]}?")
+        $game_variables[84] = @index
         saveAllBases
         pbDisposeSpriteHash(@sprites)
         updateTrainerOutfit

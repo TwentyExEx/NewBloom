@@ -421,6 +421,10 @@ class DependentEvents
       FollowingMoveRoute([PBMoveRoute::StepAnimeOff])
       return
     end
+    events=$PokemonGlobal.dependentEvents
+    for i in 0...events.length
+      @realEvents[i].move_speed = $game_player.move_speed
+    end
     FollowingMoveRoute([PBMoveRoute::StepAnimeOn])
   end
 
