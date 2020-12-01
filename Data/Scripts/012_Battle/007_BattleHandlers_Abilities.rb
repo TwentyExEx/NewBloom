@@ -9,6 +9,12 @@ BattleHandlers::SpeedCalcAbility.add(:CHLOROPHYLL,
   }
 )
 
+BattleHandlers::DamageCalcUserAbility.add(:THERMALDRIFT,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    next mult*2 if user.burned?
+  }
+)
+
 BattleHandlers::SpeedCalcAbility.add(:QUICKFEET,
   proc { |ability,battler,mult|
     next mult*1.5 if battler.pbHasAnyStatus?

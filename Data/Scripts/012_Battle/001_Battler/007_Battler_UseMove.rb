@@ -542,6 +542,33 @@ class PokeBattle_Battler
       @battle.pbJudge
       return if @battle.decision>0
     end
+    # All Hands
+       if user.effects[PBEffects::AllHands]>0 && !user.lastMoveFailed && realNumHits>0 &&
+          !move.snatched && magicCoater<0 && !move.isConst?(move.id,PBMoves,:ALLHANDS)
+         dancers = []
+         @battle.pbPriority(true).each do |b|
+           dancers.push(b) if b.index!=user.index && b.hasActiveAbility?(:DANCER)
+         end
+         while dancers.length>0
+           nextUser = dancers.pop
+           oldLastRoundMoved = nextUser.lastRoundMoved
+           oldOutrage = nextUser.effects[PBEffects::Outrage]
+           nextUser.effects[PBEffects::Outrage] += 1 if nextUser.effects[PBEffects::Outrage]>0
+           oldCurrentMove = nextUser.currentMove
+           preTarget = choice[3]
+           preTarget = user.index if nextUser.opposes?(user) || !nextUser.opposes?(preTarget)
+           PBDebug.logonerr{
+             nextUser.effects[PBEffects::Dancer] = true
+             nextUser.pbUseMoveSimple(move.id,preTarget)
+             nextUser.effects[PBEffects::Dancer] = false
+           }
+           nextUser.lastRoundMoved = oldLastRoundMoved
+           nextUser.effects[PBEffects::Outrage] = oldOutrage
+           nextUser.currentMove = oldCurrentMove
+           @battle.pbJudge
+           return if @battle.decision>0
+         end
+       end 
     # Dancer
     if !@effects[PBEffects::Dancer] && !user.lastMoveFailed && realNumHits>0 &&
        !move.snatched && magicCoater<0 && @battle.pbCheckGlobalAbility(:DANCER) &&

@@ -318,6 +318,9 @@ class PokeBattle_Move
     if user.effects[PBEffects::MeFirst]
       multipliers[BASE_DMG_MULT] *= 1.5
     end
+    if user.effects[PBEffects::BundleUp]>0
+      multipliers[DEF_MULT] *= 2
+    end
     if user.effects[PBEffects::HelpingHand] && !self.is_a?(PokeBattle_Confusion)
       multipliers[BASE_DMG_MULT] *= 1.5
     end

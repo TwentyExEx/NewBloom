@@ -2940,3 +2940,118 @@ end
 #       Actually, you might as well use high numbers like 500+ (up to FFFF),
 #       just to make sure later additions to Essentials don't clash with your
 #       new effects.
+
+#===============================================================================
+# Calculates damage based on higher phys/spec attack stat.
+# Deals double damage if target is infatuated (Heart Chain)
+#===============================================================================
+class PokeBattle_Move_500 < PokeBattle_Move
+  def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
+    stagemul=[10,10,10,10,10,10,10,15,20,25,30,35,40]
+    stagediv=[40,35,30,25,20,15,10,10,10,10,10,10,10]
+    calcattackstage=attacker.stages[PBStats::ATTACK]+6
+    calcattack=(attacker.attack*1.0*stagemul[calcattackstage]/stagediv[calcattackstage]).floor
+    calcspatkstage=attacker.stages[PBStats::SPATK]+6
+    calcspatk=(attacker.spatk*1.0*stagemul[calcspatkstage]/stagediv[calcspatkstage]).floor
+    calcdefensestage=opponent.stages[PBStats::DEFENSE]+6
+    calcdefense=(opponent.defense*1.0*stagemul[calcdefensestage]/stagediv[calcdefensestage]).floor
+    calcspdefstage=opponent.stages[PBStats::SPDEF]+6
+    calcspdef=(opponent.spdef*1.0*stagemul[calcspdefstage]/stagediv[calcspdefstage]).floor
+    
+    @category=(calcattack-calcdefense>calcspatk-calcspdef) ? 0 : 1
+    @flags= (calcattack-calcdefense>calcspatk-calcspdef) ? @flags : @flags && (0x02 || 0x10 || 0x20) #Turns off contact if special move
+ 
+    return super(attacker,opponent,hitnum,alltargets,showanimation) if pbIsDamaging?
+  end
+
+  def pbBaseDamage(baseDmg,user,target)
+    ret = 20
+    if target.effects[PBEffects::Attract]>=0
+    ret = 150
+    else
+    ret = 75
+    end
+    return ret
+  end
+end
+
+#===============================================================================
+# Doubles user’s defensive stats for 3 turns. (Bundle Up)
+#===============================================================================
+class PokeBattle_Move_501 < PokeBattle_Move
+  def pbMoveFailed?(user,targets)
+    if user.effects[PBEffects::BundleUp]>=1
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return false
+  end
+
+  def pbEffectGeneral(user)
+    user.effects[PBEffects::BundleUp] = 3
+    @battle.pbDisplay(_INTL("{1} cloaked itself from harm!",user.pbThis))
+  end
+end
+
+#===============================================================================
+# Decreases the user's Defense and raises its attack by 1 stage each.
+# (Temper)
+#===============================================================================
+class PokeBattle_Move_502 < PokeBattle_Move
+  def initialize(battle,move)
+    super
+    @statUp   = [PBStats::ATTACK,1]
+    @statDown = [PBStats::DEFENSE,1]
+  end
+
+  def pbMoveFailed?(user,targets)
+    failed = true
+    for i in 0...@statUp.length/2
+      if user.pbCanRaiseStatStage?(@statUp[i*2],user,self)
+        failed = false; break
+      end
+    end
+    for i in 0...@statDown.length/2
+      if user.pbCanLowerStatStage?(@statDown[i*2],user,self)
+        failed = false; break
+      end
+    end
+    if failed
+      @battle.pbDisplay(_INTL("{1}'s stats can't be changed further!",user.pbThis))
+      return true
+    end
+    return false
+  end
+
+  def pbEffectGeneral(user)
+    if user.pbCanRaiseStatStage?(PBStats::ATTACK,user,self)
+      user.pbRaiseStatStage(PBStats::ATTACK,1,user,showAnim)
+    end
+    if user.pbCanLowerStatStage?(PBStats::DEFENSE,user,self)
+      user.pbLowerStatStage(PBStats::DEFENSE,1,user,showAnim)
+    end
+  end
+
+class PokeBattle_Move_503 < PokeBattle_Move
+def pbMoveFailed?(user,targets)
+    if !user.isSpecies?(:FALINKS)
+      @battle.pbDisplay(_INTL("But {1} doesn’t have anyone to call out to!",user.pbThis(true)))
+      return true
+    end
+    if user.effects[PBEffects::AllHands]=1
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return false
+  end
+
+  def pbEffectGeneral(user)
+    user.effects[PBEffects::AllHands] = 2
+    @battle.pbDisplay(_INTL("{1} called for all hands on deck next turn!",user.pbThis))
+    if user.pbCanRaiseStatStage?(PBStats::ACCURACY,user,self)
+      user.pbRaiseStatStage(PBStats::ACCURACY,1,user)
+    end
+
+  end
+end
+

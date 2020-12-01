@@ -92,7 +92,9 @@ class PokeBattle_Battler
         hasImmuneType |= pbHasType?(:STEEL)
       end
     when PBStatuses::BURN
-      hasImmuneType |= pbHasType?(:FIRE)
+      if !(target && (target.hasActiveAbility?(:FLAREBOOST) ||  target.hasActiveAbility?(:THERMALDRIFT)))
+        hasImmuneType |= pbHasType?(:FIRE)
+      end
     when PBStatuses::PARALYSIS
       hasImmuneType |= pbHasType?(:ELECTRIC) && NEWEST_BATTLE_MECHANICS
     when PBStatuses::FROZEN
@@ -188,7 +190,9 @@ class PokeBattle_Battler
         hasImmuneType |= pbHasType?(:STEEL)
       end
     when PBStatuses::BURN
-      hasImmuneType |= pbHasType?(:FIRE)
+      if !(user && (user.hasActiveAbility?(:FLAREBOOST) ||  user.hasActiveAbility?(:THERMALDRIFT)))
+        hasImmuneType |= pbHasType?(:FIRE)
+      end
     when PBStatuses::PARALYSIS
       hasImmuneType |= pbHasType?(:ELECTRIC) && NEWEST_BATTLE_MECHANICS
     end
@@ -509,6 +513,7 @@ class PokeBattle_Battler
       @battle.pbDisplay(_INTL("{1} is unaffected!",pbThis)) if showMessages
       return false
     end
+    return true if user.hasActiveAbility?(:ROMANTIC)
     agender = user.gender
     ogender = gender
     if agender==2 || ogender==2 || agender==ogender

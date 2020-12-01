@@ -485,6 +485,13 @@ class PokeBattle_Battle
       pbDisplay(_INTL("{1} can use items again!",battler.pbThis))
       battler.pbItemTerrainStatBoostCheck
     }
+    # Bundle Up
+    pbEORCountDownBattlerEffect(priority,PBEffects::BundleUp) { |battler|
+      pbDisplay(_INTL("{1}’s Bundle Up wore off!",battler.pbThis))
+    }
+    # All Hands
+    pbEORCountDownBattlerEffect(priority,PBEffects::AllHands) { |battler|
+    }
     # Yawn
     pbEORCountDownBattlerEffect(priority,PBEffects::Yawn) { |battler|
       if battler.pbCanSleepYawn?

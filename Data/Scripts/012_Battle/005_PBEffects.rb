@@ -129,6 +129,8 @@ begin
     Octolock            = 125
     OctolockUser        = 126
     BlunderPolicy       = 127
+    BundleUp            = 128
+    AllHands            = 129
 
     #===========================================================================
     # These effects apply to a battler position
