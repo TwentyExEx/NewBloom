@@ -3051,7 +3051,6 @@ def pbMoveFailed?(user,targets)
     if user.pbCanRaiseStatStage?(PBStats::ACCURACY,user,self)
       user.pbRaiseStatStage(PBStats::ACCURACY,1,user)
     end
-
   end
 end
-
+end
