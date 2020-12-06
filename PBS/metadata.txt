@@ -23,25 +23,17 @@ Outdoor = false
 Outdoor = false
 #-------------------------------
 [006]
-# Forest - City Bridge
+# Forest - Little Pond
+SnapEdges = true
 BattleBack = 
 Bicycle = true
 MapPosition = 0,13,6
 Outdoor = true
 ShowArea = true
 #-------------------------------
-[007]
-# Forest - Little Pond
-Weather = Rain,10
-Bicycle = true
-MapPosition = 0,11,6
-Outdoor = true
-BicycleAlways = false
-HealingSpot = 40,14,9
-ShowArea = true
-#-------------------------------
 [008]
 # Forest - Lakeside
+SnapEdges = true
 Weather = Rain,30
 Bicycle = true
 Outdoor = true
@@ -50,6 +42,7 @@ ShowArea = true
 #-------------------------------
 [009]
 # Forest - Cabins
+SnapEdges = true
 MapSize = 2,11
 Weather = Rain,10
 Bicycle = true
@@ -60,6 +53,7 @@ ShowArea = true
 #-------------------------------
 [010]
 # Forest - Mini Falls
+SnapEdges = true
 Weather = Rain,20
 Bicycle = true
 MapPosition = 0,11,10
@@ -70,6 +64,7 @@ ShowArea = true
 #-------------------------------
 [011]
 # Forest - Depths
+SnapEdges = true
 Weather = Rain,10
 Bicycle = true
 MapPosition = 0,12,6
@@ -78,21 +73,16 @@ ShowArea = true
 #-------------------------------
 [012]
 # Forest - Waterfall Fork
+SnapEdges = true
 Weather = Rain,30
 Bicycle = true
 MapPosition = 0,16,10
 Outdoor = true
 ShowArea = true
 #-------------------------------
-[013]
-# Forest - Waterfall View
-Weather = Rain,30
-Bicycle = true
-Outdoor = true
-ShowArea = true
-#-------------------------------
 [014]
 # Forest - Mountainside
+SnapEdges = true
 BattleBack = 
 Weather = Rain,10
 Bicycle = true
@@ -104,6 +94,7 @@ ShowArea = true
 #-------------------------------
 [017]
 # Deep Forest - Clearing
+SnapEdges = true
 BattleBack = Forest
 Bicycle = true
 MapPosition = 0,17,10
@@ -113,6 +104,7 @@ ShowArea = true
 #-------------------------------
 [018]
 # Deep Forest - The Pit
+SnapEdges = true
 BattleBack = Forest
 Bicycle = true
 MapPosition = 0,17,10
@@ -121,6 +113,7 @@ ShowArea = true
 #-------------------------------
 [019]
 # Deep Forest - Swamp
+SnapEdges = true
 BattleBack = Forest
 Bicycle = true
 MapPosition = 0,17,10
@@ -129,6 +122,7 @@ ShowArea = true
 #-------------------------------
 [020]
 # Deep Forest - Cave Entrance
+SnapEdges = true
 BattleBack = Forest
 Bicycle = true
 MapPosition = 0,17,10
@@ -138,6 +132,7 @@ ShowArea = true
 #-------------------------------
 [021]
 # Deep Forest - Purgatory
+SnapEdges = true
 BattleBack = Forest
 Bicycle = true
 MapPosition = 0,17,10
@@ -146,6 +141,7 @@ ShowArea = true
 #-------------------------------
 [022]
 # Deep Forest - Graveyard
+SnapEdges = true
 BattleBack = Forest
 Bicycle = true
 MapPosition = 0,17,10
@@ -155,6 +151,7 @@ ShowArea = true
 #-------------------------------
 [025]
 # Caves - 1F
+SnapEdges = true
 Bicycle = false
 MapPosition = 0,17,10
 Outdoor = false
@@ -163,6 +160,7 @@ ShowArea = true
 #-------------------------------
 [026]
 # Caves - 1F
+SnapEdges = true
 Bicycle = false
 MapPosition = 0,17,10
 Outdoor = false
@@ -170,6 +168,7 @@ ShowArea = true
 #-------------------------------
 [027]
 # Caves - B1F
+SnapEdges = true
 Bicycle = false
 MapPosition = 0,17,10
 HealingSpot = 56,13,19
@@ -177,12 +176,14 @@ ShowArea = true
 #-------------------------------
 [028]
 # Caves - B1F
+SnapEdges = true
 Bicycle = false
 MapPosition = 0,17,10
 ShowArea = true
 #-------------------------------
 [029]
 # Caves - B1F
+SnapEdges = true
 Bicycle = false
 MapPosition = 0,17,10
 HealingSpot = 57,27,22
@@ -190,6 +191,7 @@ ShowArea = true
 #-------------------------------
 [030]
 # Caves - B1F
+SnapEdges = true
 Bicycle = false
 MapPosition = 0,17,10
 HealingSpot = 58,3,28
@@ -200,6 +202,7 @@ ShowArea = true
 #-------------------------------
 [034]
 # Mountains - Frozen Lakes
+SnapEdges = true
 BattleBack = Snow
 Weather = Snow,100
 Bicycle = true
@@ -209,6 +212,7 @@ ShowArea = true
 #-------------------------------
 [035]
 # Mountains - Stairway
+SnapEdges = true
 BattleBack = Snow
 Weather = Snow,100
 Bicycle = true
@@ -217,6 +221,7 @@ ShowArea = true
 #-------------------------------
 [036]
 # Mountains - Ravine
+SnapEdges = true
 BattleBack = Snow
 Weather = Snow,100
 Bicycle = true
@@ -225,6 +230,7 @@ ShowArea = true
 #-------------------------------
 [037]
 # Mountains - Village
+SnapEdges = true
 BattleBack = Snow
 Weather = Snow,100
 Bicycle = true
@@ -233,6 +239,7 @@ ShowArea = true
 #-------------------------------
 [038]
 # Mountains - Waterfall
+SnapEdges = true
 BattleBack = Snow
 Weather = Snow,100
 Bicycle = true
@@ -242,6 +249,7 @@ ShowArea = true
 #-------------------------------
 [039]
 # Mountains - Crossroads
+SnapEdges = true
 BattleBack = Snow
 Weather = Snow,100
 Bicycle = true
@@ -250,6 +258,7 @@ ShowArea = true
 #-------------------------------
 [040]
 # Mountains - Peak
+SnapEdges = true
 BattleBack = Snow
 Weather = Snow,100
 Bicycle = true
@@ -260,12 +269,6 @@ ShowArea = true
 # Francis' Home
 BattleBack = IndoorA
 Outdoor = false
-#-------------------------------
-[043]
-# Fairy Garden
-Weather = Rain,50
-Outdoor = true
-ShowArea = true
 #-------------------------------
 [044]
 # Fairy Garden - Wellspring
