@@ -1,19 +1,50 @@
-def pbFirstBiomeBoss
-  bosslevels = [12,18,23,27,34,36,40,45,48,53,58,62,64] # Possible levels for boss teams
-  $balance = pbBalancedLevel($Trainer.party) # Average of your current team
-
-  # Sorts array values by how close they are to $balance
-  @bosslevels.sort.group_by {|e| e <=> $balance}; 
-  @bosslevelselect = @bosslevels.try(:[], 0).first || @bosslevels.try(:[], -1).last || @bosslevels[1].first # Sets boss level to closest level
-  p @bosslevelselect
-end 
-
-def pbNextBiomeBoss
-$balance = pbBalancedLevel($Trainer.party) # Average of your current team
-# Compares @bosslevelselect that was stored from previous boss battle to new $balance
-  if $balance >= @bosslevelselect
-    # Gets next index in array @bosslevels
-  elsif $balance < @bosslevelselect
-    #  
+def pbBossScale
+  if $game_variables[31]==1 # If first biome boss 
+    @bosslevel = [12,18,23,27,34,36,40,45,48,53,58,62,64] # All level variations of boss teams
+    teamavg = pbBalancedLevel($Trainer.party)-2 # Get average of team
+    # p "current team avg"
+    # p teamavg
+    computed = @bosslevel.map { |i| (teamavg - i).abs }
+    index = computed.index(computed.min) 
+    @bosslevelset = @bosslevel[index] # Closest value is set to boss level
+    # p "current boss level"
+    # p @bosslevelset
+  else
+    # p "last boss level"
+    # p $game_variables[85]
+    newteamavg = pbBalancedLevel($Trainer.party)-2
+    # p "new team avg"
+    # p newteamavg
+    computed = @bosslevel.map { |i| (newteamavg - i).abs }
+    index = computed.index(computed.min) 
+    newbosslevel = @bosslevel[index] # Closest value is set to boss level
+    # p "current boss level"
+    # p newbosslevel
+    if newbosslevel > $game_variables[85]
+      # p "new boss level is higher"
+      # p "new boss level is closest to team avg"
+      teamavg = pbBalancedLevel($Trainer.party)-2
+      # p "new team avg"
+      # p teamavg
+      computed = @bosslevel.map { |i| (teamavg - i).abs }
+      index = computed.index(computed.min)
+      # @bosslevelset = @bosslevel[index]
+      # p @bosslevelset
+    else
+      # p "new boss level is equal or lower"
+      # p "boss level is the next level of last boss level"
+      # p "last boss level"
+      # p $game_variables[85]
+      computed = @bosslevel.map { |i| ($game_variables[85] - i).abs }
+      index = computed.index(computed.min)
+      @bosslevelset = @bosslevel[index+1]
+      # p "new boss level"
+      # p @bosslevelset
+    end
   end
+end
+
+def pbBossLevelStore
+  # Run this when player wins
+  $game_variables[85] = @bosslevelset
 end
