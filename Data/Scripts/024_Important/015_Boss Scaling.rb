@@ -6,9 +6,9 @@ def pbBossScale
     # p teamavg
     computed = @bosslevel.map { |i| (teamavg - i).abs }
     index = computed.index(computed.min) 
-    @bosslevelset = @bosslevel[index] # Closest value is set to boss level
+    $bosslevelset = @bosslevel[index] # Closest value is set to boss level
     # p "current boss level"
-    # p @bosslevelset
+    # p $bosslevelset
   else
     # p "last boss level"
     # p $game_variables[85]
@@ -28,23 +28,33 @@ def pbBossScale
       # p teamavg
       computed = @bosslevel.map { |i| (teamavg - i).abs }
       index = computed.index(computed.min)
-      # @bosslevelset = @bosslevel[index]
-      # p @bosslevelset
+      $bosslevelset = @bosslevel[index]
+      # p "new boss level"
+      # p $bosslevelset
     else
       # p "new boss level is equal or lower"
-      # p "boss level is the next level of last boss level"
-      # p "last boss level"
-      # p $game_variables[85]
       computed = @bosslevel.map { |i| ($game_variables[85] - i).abs }
       index = computed.index(computed.min)
-      @bosslevelset = @bosslevel[index+1]
-      # p "new boss level"
-      # p @bosslevelset
+      if @bosslevel[index] != 64
+        # p "new boss level is the next level of last boss level"
+        # p "last boss level"
+        p $game_variables[85]
+        $bosslevelset = @bosslevel[index+1]
+        # p "new boss level"
+        # p $bosslevelset
+      else
+        # p "boss level is max level"
+        # p "retain boss level"
+        # p $bosslevelset
+      end
     end
   end
 end
 
 def pbBossLevelStore
   # Run this when player wins
-  $game_variables[85] = @bosslevelset
+  $game_variables[85] = $bosslevelset
+  $game_variables[31] += 1
+  # p "saved boss level"
+  # p $game_variables[85]
 end
