@@ -472,6 +472,10 @@ class PokeBattle_Battler
         @battle.pbDisplay(_INTL("{1} makes Ground moves miss with Magnet Rise!",target.pbThis))
         return false
       end
+      if target.effects[PBEffects::MagnetRise]<0
+        @battle.pbDisplay(_INTL("{1} avoided the attack with Helium Field!",target.pbThis))
+        return false
+      end
       if target.effects[PBEffects::Telekinesis]>0
         @battle.pbDisplay(_INTL("{1} makes Ground moves miss with Telekinesis!",target.pbThis))
         return false

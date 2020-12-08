@@ -92,9 +92,7 @@ class PokeBattle_Battler
         hasImmuneType |= pbHasType?(:STEEL)
       end
     when PBStatuses::BURN
-      if !(target && (target.hasActiveAbility?(:FLAREBOOST) ||  target.hasActiveAbility?(:THERMALDRIFT)))
-        hasImmuneType |= pbHasType?(:FIRE)
-      end
+      hasImmuneType |= pbHasType?(:FIRE)
     when PBStatuses::PARALYSIS
       hasImmuneType |= pbHasType?(:ELECTRIC) && NEWEST_BATTLE_MECHANICS
     when PBStatuses::FROZEN
@@ -190,9 +188,7 @@ class PokeBattle_Battler
         hasImmuneType |= pbHasType?(:STEEL)
       end
     when PBStatuses::BURN
-      if !(user && (user.hasActiveAbility?(:FLAREBOOST) ||  user.hasActiveAbility?(:THERMALDRIFT)))
-        hasImmuneType |= pbHasType?(:FIRE)
-      end
+      hasImmuneType |= pbHasType?(:FIRE)
     when PBStatuses::PARALYSIS
       hasImmuneType |= pbHasType?(:ELECTRIC) && NEWEST_BATTLE_MECHANICS
     end

@@ -2412,13 +2412,13 @@ class PokeBattle_AI
       elsif skill>=PBTrainerAI.mediumSkill
         score -= 30
         score -= 20 if user.effects[PBEffects::SkyDrop]>=0
-        score -= 20 if user.effects[PBEffects::MagnetRise]>0
+        score -= 20 if !user.effects[PBEffects::MagnetRise]=0
         score -= 20 if user.effects[PBEffects::Telekinesis]>0
         score -= 20 if user.pbHasType?(:FLYING)
         score -= 20 if user.hasActiveAbility?(:LEVITATE)
         score -= 20 if user.hasActiveItem?(:AIRBALLOON)
         score += 20 if target.effects[PBEffects::SkyDrop]>=0
-        score += 20 if target.effects[PBEffects::MagnetRise]>0
+        score += 20 if !target.effects[PBEffects::MagnetRise]=0
         score += 20 if target.effects[PBEffects::Telekinesis]>0
         score += 20 if target.inTwoTurnAttack?("0C9","0CC","0CE")   # Fly, Bounce, Sky Drop
         score += 20 if target.pbHasType?(:FLYING)
@@ -2427,7 +2427,7 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "119"
-      if user.effects[PBEffects::MagnetRise]>0 ||
+      if !user.effects[PBEffects::MagnetRise]=0 ||
          user.effects[PBEffects::Ingrain] ||
          user.effects[PBEffects::SmackDown]
         score -= 90
@@ -2444,7 +2444,7 @@ class PokeBattle_AI
     #---------------------------------------------------------------------------
     when "11C"
       if skill>=PBTrainerAI.mediumSkill
-        score += 20 if target.effects[PBEffects::MagnetRise]>0
+        score += 20 if !target.effects[PBEffects::MagnetRise]=0
         score += 20 if target.effects[PBEffects::Telekinesis]>0
         score += 20 if target.inTwoTurnAttack?("0C9","0CC")   # Fly, Bounce
         score += 20 if target.pbHasType?(:FLYING)

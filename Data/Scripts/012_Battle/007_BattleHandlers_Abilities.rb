@@ -9,12 +9,6 @@ BattleHandlers::SpeedCalcAbility.add(:CHLOROPHYLL,
   }
 )
 
-BattleHandlers::DamageCalcUserAbility.add(:THERMALDRIFT,
-  proc { |ability,user,target,move,mults,baseDmg,type|
-    next mult*2 if user.burned?
-  }
-)
-
 BattleHandlers::SpeedCalcAbility.add(:QUICKFEET,
   proc { |ability,battler,mult|
     next mult*1.5 if battler.pbHasAnyStatus?
@@ -2292,6 +2286,22 @@ BattleHandlers::EORGainItemAbility.add(:HARVEST,
   }
 )
 
+BattleHandlers::EORGainItemAbility.add(:DECOMPOSER,
+  proc { |ability,battler,battle|
+    next if battler.item>0
+    next if battler.recycleItem<=0 || !pbIsBerry?(battler.recycleItem)
+    next if battler.effects[PBEffects::RottenBerry] = 1
+    battle.pbShowAbilitySplash(battler)
+    battler.item = battler.recycleItem
+    battler.setRecycleItem(0)
+    battler.setInitialItem(battler.item) if battler.initialItem==0
+    battle.pbDisplay(_INTL("{1} recycled its {2}!",battler.pbThis,battler.itemName))
+    battler.effects[PBEffects::RottenBerry] = 1
+    battle.pbHideAbilitySplash(battler)
+    battler.pbHeldItemTriggerCheck
+  }
+)
+
 BattleHandlers::EORGainItemAbility.add(:PICKUP,
   proc { |ability,battler,battle|
     next if battler.item>0
@@ -2549,6 +2559,20 @@ BattleHandlers::AbilityOnSwitchIn.add(:GRASSYSURGE,
     # NOTE: The ability splash is hidden again in def pbStartTerrain.
   }
 )
+
+BattleHandlers::AbilityOnSwitchIn.add(:HELIUMFIELD,
+  proc { |ability,battler,battle|
+    battle.pbShowAbilitySplash(battler)
+    if !battle.field.terrain==PBBattleTerrains::None
+    battle.pbDisplay(_INTL("The effects of the terrain disappeared."))
+    @field.terrain = PBBattleTerrains::None
+    end
+    eachBattler.effects[PBEffects::MagnetRise]=1
+    battle.pbDisplay(_INTL("{1} made everyone levitate!",battler.pbThis,b.pbThis(true)))    
+     battle.pbHideAbilitySplash(battler)
+  }
+)
+
 
 BattleHandlers::AbilityOnSwitchIn.add(:IMPOSTER,
   proc { |ability,battler,battle|

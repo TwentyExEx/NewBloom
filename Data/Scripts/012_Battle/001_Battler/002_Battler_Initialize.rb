@@ -312,6 +312,7 @@ class PokeBattle_Battler
   	@effects[PBEffects::BlunderPolicy]       = false
     @effects[PBEffects::BundleUp]            = 0
     @effects[PBEffects::AllHands]            = 0
+    @effects[PBEffects::RottenBerry]         = 0
 
   end
 

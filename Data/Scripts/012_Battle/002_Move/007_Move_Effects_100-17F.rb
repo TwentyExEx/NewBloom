@@ -679,7 +679,7 @@ class PokeBattle_Move_118 < PokeBattle_Move
         @battle.pbClearChoice(b.index) if !b.movedThisRound?
         showMessage = true
       end
-      if b.effects[PBEffects::MagnetRise]>0 ||
+      if !b.effects[PBEffects::MagnetRise]=0 ||
          b.effects[PBEffects::Telekinesis]>0 ||
          b.effects[PBEffects::SkyDrop]>=0
         b.effects[PBEffects::MagnetRise]  = 0
@@ -704,7 +704,7 @@ class PokeBattle_Move_119 < PokeBattle_Move
   def pbMoveFailed?(user,targets)
     if user.effects[PBEffects::Ingrain] ||
        user.effects[PBEffects::SmackDown] ||
-       user.effects[PBEffects::MagnetRise]>0
+       !user.effects[PBEffects::MagnetRise]=0
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end

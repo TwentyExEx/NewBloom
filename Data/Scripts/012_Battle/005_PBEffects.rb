@@ -131,6 +131,7 @@ begin
     BlunderPolicy       = 127
     BundleUp            = 128
     AllHands            = 129
+    RottenBerry         = 130
 
     #===========================================================================
     # These effects apply to a battler position
