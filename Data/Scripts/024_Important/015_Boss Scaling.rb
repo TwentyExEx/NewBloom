@@ -38,7 +38,7 @@ def pbBossScale
       if @bosslevel[index] != 64
         # p "new boss level is the next level of last boss level"
         # p "last boss level"
-        p $game_variables[85]
+        # p $game_variables[85]
         $bosslevelset = @bosslevel[index+1]
         # p "new boss level"
         # p $bosslevelset
