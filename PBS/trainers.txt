@@ -1,4 +1,75 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
-[SCHOOLKID,Derek]
-Pokemon = BULBASAUR,10
+[YOUNGSTER2,Oliver,1]
+Pokemon = RATTATA,5
+Pokemon = SENTRET,5
+#-------------------------------
+[YOUNGSTER2,Oliver,2]
+Pokemon = RATTATA,5
+Pokemon = SENTRET,5
+Pokemon = HOOTHOOT,5
+#-------------------------------
+[YOUNGSTER2,Oliver,3]
+Pokemon = RATTATA,5
+Pokemon = SENTRET,5
+Pokemon = HOOTHOOT,5
+Pokemon = TEDDIURSA,5
+#-------------------------------
+[STRIKER,Tester]
+Pokemon = RIOLU,5
+#-------------------------------
+[BUGCATCHER,Kevin,1]
+Pokemon = WEEDLE,1
+Pokemon = SPINARAK,1
+#-------------------------------
+[BUGCATCHER,Kevin,2]
+Pokemon = WEEDLE,5
+Pokemon = SPINARAK,5
+Pokemon = BLIPBUG,5
+#-------------------------------
+[BUGCATCHER,Kevin,3]
+Pokemon = WEEDLE,5
+Pokemon = SPINARAK,5
+Pokemon = BLIPBUG,5
+Pokemon = CUTIEFLY,5
+#-------------------------------
+[CAMPER,Gabe,1]
+Pokemon = ODDISH,1
+#-------------------------------
+[CAMPER,Gabe,2]
+Pokemon = ODDISH,5
+Pokemon = PONYTA,5
+#-------------------------------
+[CAMPER,Gabe,3]
+Pokemon = ODDISH,5
+Pokemon = PONYTA,5
+Pokemon = APPLIN,5
+#-------------------------------
+[PICNICKER,Ester,1]
+Pokemon = BUDEW,1
+Pokemon = SEEDOT,1
+#-------------------------------
+[PICNICKER,Ester,2]
+Pokemon = BUDEW,5
+Pokemon = SEEDOT,5
+Pokemon = APPLIN,5
+#-------------------------------
+[PICNICKER,Ester,2]
+Pokemon = BUDEW,5
+Pokemon = SEEDOT,5
+Pokemon = APPLIN,5
+Pokemon = VULPIX,5
+#-------------------------------
+[POKEMONBREEDER_F,Sara,1]
+Pokemon = PICHU,1
+#-------------------------------
+[POKEMONBREEDER_F,Sara,2]
+Pokemon = PICHU,5
+Pokemon = TOGEPI,5
+#-------------------------------
+[POKEMONBREEDER_F,Sara,3]
+Pokemon = PICHU,5
+Pokemon = TOGEPI,5
+Pokemon = MIMEJR,5
+#-------------------------------
+

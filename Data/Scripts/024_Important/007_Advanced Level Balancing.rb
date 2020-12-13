@@ -150,7 +150,7 @@ Events.onTrainerPartyLoad+=proc {|sender,e|
         l = 7*(balance + 4*mlv)/25 - 4+ rand(4+balance/10)
        end
       level = l  
-      level=1 if level<1
+      level=3 if level<3
       level=PBExperience.maxLevel if level>PBExperience.maxLevel
       party[i].level = level
       #now we evolve the pokémon, if applicable
