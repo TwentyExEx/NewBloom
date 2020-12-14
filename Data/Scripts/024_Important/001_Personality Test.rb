@@ -287,78 +287,103 @@ def pbPersonalityTest
 	$game_variables[76] = @playernature
 
 	if @playernature == natures.index(@lonely)+1 || @playernature ==  1
+		@playernature = "LONELY"
 		pbMessage("You have a Lonely nature.")
 		pbMessage("A trainer like you would best suit Bulbasaur.")
 	elsif @playernature == natures.index(@brave)+1 || @playernature ==  2
+		@playernature = "BRAVE"
 		pbMessage("You have a Brave nature.")
 		pbMessage("A trainer like you would best suit Charmander.")
 	elsif @playernature == natures.index(@relaxed)+1 || @playernature ==  3
+		@playernature = "RELAXED"
 		pbMessage("You have a Relaxed nature.")
 		pbMessage("A trainer like you would best suit Squirtle.")
 	elsif @playernature == natures.index(@rash)+1 || @playernature ==  4
+		@playernature = "RASH"
 		pbMessage("You have a Rash nature.")
 		pbMessage("A trainer like you would best suit Pikachu.")
 	elsif @playernature == natures.index(@bashful)+1 || @playernature ==  5
+		@playernature = "BASHFUL"
 		pbMessage("You have a Bashful nature.")
 		pbMessage("A trainer like you would best suit Chikorita.")
 	elsif @playernature == natures.index(@careful)+1 || @playernature ==  6
+		@playernature = "CAREFUL"
 		pbMessage("You have a Careful nature.")
 		pbMessage("A trainer like you would best suit Cyndaquil.")
 	elsif @playernature == natures.index(@hardy)+1 || @playernature ==  7
+		@playernature = "HARDY"
 		pbMessage("You have a Hardy nature.")
 		pbMessage("A trainer like you would best suit Totodile.")
 	elsif @playernature == natures.index(@serious)+1 || @playernature ==  8
+		@playernature = "SERIOUS"
 		pbMessage("You have a Serious nature.")
 		pbMessage("A trainer like you would best suit Treecko.")
 	elsif @playernature == natures.index(@naive)+1 || @playernature ==  9
+		@playernature = "NAIVE"
 		pbMessage("You have a Naive nature.")
 		pbMessage("A trainer like you would best suit Torchic.")
 	elsif @playernature == natures.index(@lax)+1 || @playernature ==  10
+		@playernature = "LAX"
 		pbMessage("You have a Lax nature.")
 		pbMessage("A trainer like you would best suit Mudkip.")
 	elsif @playernature == natures.index(@gentle)+1 || @playernature ==  11
+		@playernature = "GENTLE"
 		pbMessage("You have a Gentle nature.")
 		pbMessage("A trainer like you would best suit Turtwig.")
 	elsif @playernature == natures.index(@quirky)+1 || @playernature ==  12
+		@playernature = "QUIRKY"
 		pbMessage("You have a Quirky nature.")
 		pbMessage("A trainer like you would best suit Chimchar.")
 	elsif @playernature == natures.index(@bold)+1 || @playernature ==  13
+		@playernature = "BOLD"
 		pbMessage("You have a Bold nature.")
 		pbMessage("A trainer like you would best suit Piplup.")
 	elsif @playernature == natures.index(@sassy)+1 || @playernature ==  14
+		@playernature = "SASSY"
 		pbMessage("You have a Sassy nature.")
 		pbMessage("A trainer like you would best suit Snivy.")
 	elsif @playernature == natures.index(@jolly)+1 || @playernature ==  15
+		@playernature = "JOLLY"
 		pbMessage("You have a Jolly nature.")
 		pbMessage("A trainer like you would best suit Tepig.")
 	elsif @playernature == natures.index(@impish)+1 || @playernature ==  16
+		@playernature = "IMPISH"
 		pbMessage("You have a Impish nature.")
 		pbMessage("A trainer like you would best suit Oshawott.")
 	elsif @playernature == natures.index(@docile)+1 || @playernature ==  17
+		@playernature = "DOCILE"
 		pbMessage("You have a Docile nature.")
 		pbMessage("A trainer like you would best suit Chespin.")
 	elsif @playernature == natures.index(@naughty)+1 || @playernature ==  18
+		@playernature = "NAUGHTY"
 		pbMessage("You have a Naughty nature.")
 		pbMessage("A trainer like you would best suit Fennekin.")
 	elsif @playernature == natures.index(@calm)+1 || @playernature ==  19
+		@playernature = "CALM"
 		pbMessage("You have a Calm nature.")
 		pbMessage("A trainer like you would best suit Froakie.")
 	elsif @playernature == natures.index(@quiet)+1 || @playernature ==  20
+		@playernature = "QUIET"
 		pbMessage("You have a Quiet nature.")
 		pbMessage("A trainer like you would best suit Rowlet.")
 	elsif @playernature == natures.index(@adamant)+1 || @playernature ==  21
+		@playernature = "ADAMANT"
 		pbMessage("You have an Adamant nature.")
 		pbMessage("A trainer like you would best suit Litten.")
 	elsif @playernature == natures.index(@mild)+1 || @playernature ==  22
+		@playernature = "MILD"
 		pbMessage("You have a Mild nature.")
 		pbMessage("A trainer like you would best suit Popplio.")
 	elsif @playernature == natures.index(@modest)+1 || @playernature ==  23
+		@playernature = "MODEST"
 		pbMessage("You have a Modest nature.")
 		pbMessage("A trainer like you would best suit Grookey.")
 	elsif @playernature == natures.index(@hasty)+1 || @playernature ==  24
+		@playernature = "HASTY"
 		pbMessage("You have a Hasty nature.")
 		pbMessage("A trainer like you would best suit Scorbunny.")
 	elsif @playernature == natures.index(@timid)+1 || @playernature ==  25
+		@playernature = "TIMID"
 		pbMessage("You have a Timid nature.")
 		pbMessage("A trainer like you would best suit Sobble.")
 	end
@@ -371,22 +396,22 @@ def pbSelectStarter
 			if cmd == 0
 				cmd=pbMessage("Are you sure you want to choose Bulbasaur?",["Yes","No"])
 					if cmd == 0
-						$game_variables[77] = 1
+						$game_variables[77] = "BULBASAUR"
 					else pbSelectStarter end
 			elsif cmd == 1
 				cmd=pbMessage("Are you sure you want to choose Charmander?",["Yes","No"])
 					if cmd == 0
-						$game_variables[77] = 2
+						$game_variables[77] = "CHARMANDER"
 					else pbSelectStarter end
 			elsif cmd == 2
 				cmd=pbMessage("Are you sure you want to choose Squirtle?",["Yes","No"])
 					if cmd == 0
-						$game_variables[77] = 3
+						$game_variables[77] = "SQUIRTLE"
 					else pbSelectStarter end
 			elsif cmd == 3
 				cmd=pbMessage("Are you sure you want to choose Pikachu?",["Yes","No"])
 					if cmd == 0
-						$game_variables[77] = 4
+						$game_variables[77] = "PIKACHU"
 					else pbSelectStarter end
 			elsif cmd == 4
 				pbSelectStarter
@@ -396,17 +421,17 @@ def pbSelectStarter
 			if cmd == 0
 				cmd=pbMessage("Are you sure you want to choose Chikorita?",["Yes","No"])
 					if cmd == 0
-						$game_variables[77] = 5
+						$game_variables[77] = "CHIKORITA"
 					else pbSelectStarter end
 			elsif cmd == 1
 				cmd=pbMessage("Are you sure you want to choose Cyndaquil?",["Yes","No"])
 					if cmd == 0
-						$game_variables[77] = 6
+						$game_variables[77] = "CYNDAQUIL"
 					else pbSelectStarter end
 			elsif cmd == 2
 				cmd=pbMessage("Are you sure you want to choose Totodile?",["Yes","No"])
 					if cmd == 0
-						$game_variables[77] = 7
+						$game_variables[77] = "TOTODILE"
 					else pbSelectStarter end
 			elsif cmd == 3
 				pbSelectStarter
@@ -416,17 +441,17 @@ def pbSelectStarter
 			if cmd == 0
 				cmd=pbMessage("Are you sure you want to choose Treecko?",["Yes","No"])
 					if cmd == 0
-						$game_variables[77] = 8
+						$game_variables[77] = "TREECKO"
 					else pbSelectStarter end
 			elsif cmd == 1
 				cmd=pbMessage("Are you sure you want to choose Torchic?",["Yes","No"])
 					if cmd == 0
-						$game_variables[77] = 9
+						$game_variables[77] = "TORCHIC"
 					else pbSelectStarter end
 			elsif cmd == 2
 				cmd=pbMessage("Are you sure you want to choose Mudkip?",["Yes","No"])
 					if cmd == 0
-						$game_variables[77] = 10
+						$game_variables[77] = "MUDKIP"
 					else pbSelectStarter end
 			elsif cmd == 3
 				pbSelectStarter
@@ -436,17 +461,17 @@ def pbSelectStarter
 			if cmd == 0
 				cmd=pbMessage("Are you sure you want to choose Turtwig?",["Yes","No"])
 					if cmd == 0
-						$game_variables[77] = 11
+						$game_variables[77] = "TURTWIG"
 					else pbSelectStarter end
 			elsif cmd == 1
 				cmd=pbMessage("Are you sure you want to choose Chimchar?",["Yes","No"])
 					if cmd == 0
-						$game_variables[77] = 12
+						$game_variables[77] = "CHIMCHAR"
 					else pbSelectStarter end
 			elsif cmd == 2
 				cmd=pbMessage("Are you sure you want to choose Piplup?",["Yes","No"])
 					if cmd == 0
-						$game_variables[77] = 13
+						$game_variables[77] = "PIPLUP"
 					else pbSelectStarter end
 			elsif cmd == 3
 				pbSelectStarter
@@ -456,17 +481,17 @@ def pbSelectStarter
 			if cmd == 0
 				cmd=pbMessage("Are you sure you want to choose Snivy?",["Yes","No"])
 					if cmd == 0
-						$game_variables[77] = 14
+						$game_variables[77] = "SNIVY"
 					else pbSelectStarter end
 			elsif cmd == 1
 				cmd=pbMessage("Are you sure you want to choose Tepig?",["Yes","No"])
 					if cmd == 0
-						$game_variables[77] = 15
+						$game_variables[77] = "TEPIG"
 					else pbSelectStarter end
 			elsif cmd == 2
 				cmd=pbMessage("Are you sure you want to choose Oshawott?",["Yes","No"])
 					if cmd == 0
-						$game_variables[77] = 16
+						$game_variables[77] = "OSHAWOTT"
 					else pbSelectStarter end
 			elsif cmd == 3
 				pbSelectStarter
@@ -476,17 +501,17 @@ def pbSelectStarter
 		    if cmd == 0
                 cmd=pbMessage("Are you sure you want to choose Chespin?",["Yes","No"])
                     if cmd == 0
-                        $game_variables[77] = 17
+                        $game_variables[77] = "CHESPIN"
                     else pbSelectStarter end
             elsif cmd == 1
                 cmd=pbMessage("Are you sure you want to choose Fennekin?",["Yes","No"])
                     if cmd == 0
-                        $game_variables[77] = 18
+                        $game_variables[77] = "FENNEKIN"
                     else pbSelectStarter end
             elsif cmd == 2
                 cmd=pbMessage("Are you sure you want to choose Froakie?",["Yes","No"])
                     if cmd == 0
-                        $game_variables[77] = 19
+                        $game_variables[77] = "FROAKIE"
                     else pbSelectStarter end
             elsif cmd == 3
                 pbSelectStarter
@@ -496,17 +521,17 @@ def pbSelectStarter
             if cmd == 0
                 cmd=pbMessage("Are you sure you want to choose Rowlet?",["Yes","No"])
                     if cmd == 0
-                        $game_variables[77] = 20
+                        $game_variables[77] = "ROWLET"
                     else pbSelectStarter end
             elsif cmd == 1
                 cmd=pbMessage("Are you sure you want to choose Litten?",["Yes","No"])
                     if cmd == 0
-                        $game_variables[77] = 21
+                        $game_variables[77] = "LITTEN"
                     else pbSelectStarter end
             elsif cmd == 2
                 cmd=pbMessage("Are you sure you want to choose Popplio?",["Yes","No"])
                     if cmd == 0
-                        $game_variables[77] = 22
+                        $game_variables[77] = "POPPLIO"
                     else pbSelectStarter end
             elsif cmd == 3
                 pbSelectStarter
@@ -516,17 +541,17 @@ def pbSelectStarter
             if cmd == 0
                 cmd=pbMessage("Are you sure you want to choose Grookey?",["Yes","No"])
                     if cmd == 0
-                        $game_variables[77] = 23
+                        $game_variables[77] = "GROOKEY"
                     else pbSelectStarter end
             elsif cmd == 1
                 cmd=pbMessage("Are you sure you want to choose Scorbunny?",["Yes","No"])
                     if cmd == 0
-                        $game_variables[77] = 24
+                        $game_variables[77] = "SCORBUNNY"
                     else pbSelectStarter end
             elsif cmd == 2
                 cmd=pbMessage("Are you sure you want to choose Sobble?",["Yes","No"])
                     if cmd == 0
-                        $game_variables[77] = 25
+                        $game_variables[77] = "SOBBLE"
                     else pbSelectStarter end
             elsif cmd == 3
                 pbSelectStarter
@@ -542,55 +567,109 @@ def pbSelectStarter
 end
 
 def pbNatureStarter
-	if @playernature = @lonely
-		$game_variables[77] = 1
-	elsif @playernature = @brave
-		$game_variables[77] = 2
-	elsif @playernature = @relaxed
-		$game_variables[77] = 3
-	elsif @playernature = @rash
-		$game_variables[77] = 4
-	elsif @playernature = @bashful
-		$game_variables[77] = 5
-	elsif @playernature = @careful
-		$game_variables[77] = 6
-	elsif @playernature = @hardy
-		$game_variables[77] = 7
-	elsif @playernature = @serious
-		$game_variables[77] = 8
-	elsif @playernature = @naive
-		$game_variables[77] = 9
-	elsif @playernature = @lax
-		$game_variables[77] = 10
-	elsif @playernature = @gentle
-		$game_variables[77] = 11
-	elsif @playernature = @quirky
-		$game_variables[77] = 12
-	elsif @playernature = @bold
-		$game_variables[77] = 13
-	elsif @playernature = @sassy
-		$game_variables[77] = 14
-	elsif @playernature = @jolly
-		$game_variables[77] = 15
-	elsif @playernature = @impish
-		$game_variables[77] = 16
-	elsif @playernature = @docile
-		$game_variables[77] = 17
-	elsif @playernature = @naughty
-		$game_variables[77] = 18
-	elsif @playernature = @calm
-		$game_variables[77] = 19
-	elsif @playernature = @quiet
-		$game_variables[77] = 20
-	elsif @playernature = @adamant
-		$game_variables[77] = 21
-	elsif @playernature = @mild
-		$game_variables[77] = 22
-	elsif @playernature = @modest
-		$game_variables[77] = 23
-	elsif @playernature = @hasty
-		$game_variables[77] = 24
-	elsif @playernature = @timid
-		$game_variables[77] = 25
+	if @playernature == "LONELY"
+		$game_variables[77] = "BULBASAUR"
+	elsif @playernature == "BRAVE"
+		$game_variables[77] = "CHARMANDER"
+	elsif @playernature == "RELAXED"
+		$game_variables[77] = "SQUIRTLE"
+	elsif @playernature == "RASH"
+		$game_variables[77] = "PIKACHU"
+	elsif @playernature == "BASHFUL"
+		$game_variables[77] = "CHIKORITA"
+	elsif @playernature == "CAREFUL"
+		$game_variables[77] = "CYNDAQUIL"
+	elsif @playernature == "HARDY"
+		$game_variables[77] = "TOTODILE"
+	elsif @playernature == "SERIOUS"
+		$game_variables[77] = "TREECKO"
+	elsif @playernature == "NAIVE"
+		$game_variables[77] = "TORCHIC"
+	elsif @playernature == "LAX"
+		$game_variables[77] = "MUDKIP"
+	elsif @playernature == "GENTLE"
+		$game_variables[77] = "TURTWIG"
+	elsif @playernature == "QUIRKY"
+		$game_variables[77] = "CHIMCHAR"
+	elsif @playernature == "BOLD"
+		$game_variables[77] = "PIPLUP"
+	elsif @playernature == "SASSY"
+		$game_variables[77] = "SNIVY"
+	elsif @playernature == "JOLLY"
+		$game_variables[77] = "TEPIG"
+	elsif @playernature == "IMPISH"
+		$game_variables[77] = "OSHAWOTT"
+	elsif @playernature == "DOCILE"
+		$game_variables[77] = "CHESPIN"
+	elsif @playernature == "NAUGHTY"
+		$game_variables[77] = "FENNEKIN"
+	elsif @playernature == "CALM"
+		$game_variables[77] = "FROAKIE"
+	elsif @playernature == "QUIET"
+		$game_variables[77] = "ROWLET"
+	elsif @playernature == "ADAMANT"
+		$game_variables[77] = "LITTEN"
+	elsif @playernature == "MILD"
+		$game_variables[77] = "POPPLIO"
+	elsif @playernature == "MODEST"
+		$game_variables[77] = "GROOKEY"
+	elsif @playernature == "HASTY"
+		$game_variables[77] = "SCORBUNNY"
+	elsif @playernature == "TIMID"
+		$game_variables[77] = "SOBBLE"
+	end
+end
+
+def pbGetStarter
+	if $game_variables[77] == "BULBASAUR"
+		pbAddPokemon(:BULBASAUR,5)
+	elsif $game_variables[77] == "CHARMANDER"
+		pbAddPokemon(:CHARMANDER,5)
+	elsif $game_variables[77] == "SQUIRTLE"
+		pbAddPokemon(:SQUIRTLE,5)
+	elsif $game_variables[77] == "PIKACHU"
+		pbAddPokemon(:PIKACHU,5)
+	elsif $game_variables[77] == "CHIKORITA"
+		pbAddPokemon(:CHIKORITA,5)
+	elsif $game_variables[77] == "CYNDAQUIL"
+		pbAddPokemon(:CYNDAQUIL,5)
+	elsif $game_variables[77] == "TOTODILE"
+		pbAddPokemon(:TOTODILE,5)
+	elsif $game_variables[77] == "TREECKO"
+		pbAddPokemon(:TREECKO,5)
+	elsif $game_variables[77] == "TORCHIC"
+		pbAddPokemon(:TORCHIC,5)
+	elsif $game_variables[77] == "MUDKIP"
+		pbAddPokemon(:MUDKIP,5)
+	elsif $game_variables[77] == "TURTWIG"
+		pbAddPokemon(:TURTWIG,5)
+	elsif $game_variables[77] == "CHIMCHAR"
+		pbAddPokemon(:CHIMCHAR,5)
+	elsif $game_variables[77] == "PIPLUP"
+		pbAddPokemon(:PIPLUP,5)
+	elsif $game_variables[77] == "SNIVY"
+		pbAddPokemon(:SNIVY,5)
+	elsif $game_variables[77] == "TEPIG"
+		pbAddPokemon(:TEPIG,5)
+	elsif $game_variables[77] == "OSHAWOTT"
+		pbAddPokemon(:OSHAWOTT,5)
+	elsif $game_variables[77] == "CHESPIN"
+		pbAddPokemon(:CHESPIN,5)
+	elsif $game_variables[77] == "FENNEKIN"
+		pbAddPokemon(:FENNEKIN,5)
+	elsif $game_variables[77] == "FROAKIE"
+		pbAddPokemon(:FROAKIE,5)
+	elsif $game_variables[77] == "ROWLET"
+		pbAddPokemon(:ROWLET,5)
+	elsif $game_variables[77] == "LITTEN"
+		pbAddPokemon(:LITTEN,5)
+	elsif $game_variables[77] == "POPPLIO"
+		pbAddPokemon(:POPPLIO,5)
+	elsif $game_variables[77] == "GROOKEY"
+		pbAddPokemon(:GROOKEY,5)
+	elsif $game_variables[77] == "SCORBUNNY"
+		pbAddPokemon(:SCORBUNNY,5)
+	elsif $game_variables[77] == "SOBBLE"
+		pbAddPokemon(:SOBBLE,5)
 	end
 end
