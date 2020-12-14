@@ -251,17 +251,17 @@ Pokemon = DWEBBLE,5
 Pokemon = ONIX,5
 #-------------------------------
 [FISHERMAN2,Sean,1]
-Pokemon = GRUBBIN,1
 Pokemon = WIMPOD,1
+Pokemon = GRUBBIN,1
 #-------------------------------
 [FISHERMAN2,Sean,2]
-Pokemon = GRUBBIN,5
 Pokemon = WIMPOD,5
+Pokemon = GRUBBIN,5
 Pokemon = MAGIKARP,5
 #-------------------------------
 [FISHERMAN2,Sean,3]
-Pokemon = GRUBBIN,5
 Pokemon = WIMPOD,5
+Pokemon = GRUBBIN,5
 Pokemon = MAGIKARP,5
 Pokemon = FEEBAS,5
 #-------------------------------
