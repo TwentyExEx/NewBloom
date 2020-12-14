@@ -265,50 +265,50 @@ Pokemon = WIMPOD,5
 Pokemon = MAGIKARP,5
 Pokemon = FEEBAS,5
 #-------------------------------
-[PICNICKER,KATIE,1]
+[PICNICKER,Katie,1]
 Pokemon = DRIFLOON,1
 #-------------------------------
-[PICNICKER,KATIE,2]
+[PICNICKER,Katie,2]
 Pokemon = DRIFLOON,5
 Pokemon = DELIBIRD,5
 #-------------------------------
-[PICNICKER,KATIE,3]
+[PICNICKER,Katie,3]
 Pokemon = DRIFLOON,5
 Pokemon = DELIBIRD,5
 Pokemon = CHERUBI,5
 #-------------------------------
-[JOGGER,NICO,1]
+[JOGGER,Nico,1]
 Pokemon = YANMA,1
 #-------------------------------
-[JOGGER,NICO,2]
+[JOGGER,Nico,2]
 Pokemon = YANMA,5
 Pokemon = GROWLITHE,5
 #-------------------------------
-[JOGGER,NICO,3]
+[JOGGER,Nico,3]
 Pokemon = YANMA,5
 Pokemon = GROWLITHE,5
 Pokemon = SNEASEL,5
 #-------------------------------
-[BLACKBELT,HUGO,1]
+[BLACKBELT,Hugo,1]
 Pokemon = MIENFOO,1
 #-------------------------------
-[BLACKBELT,HUGO,2]
+[BLACKBELT,Hugo,2]
 Pokemon = MIENFOO,5
 Pokemon = MACHOP,5
 #-------------------------------
-[BLACKBELT,HUGO,3]
+[BLACKBELT,Hugo,3]
 Pokemon = MIENFOO,5
 Pokemon = MACHOP,5
 Pokemon = MAKUHITA,5
 #-------------------------------
-[SWIMMER_M2,BRYCE,1]
+[SWIMMER_M2,Bryce,1]
 Pokemon = SKRELP,1
 #-------------------------------
-[SWIMMER_M2,BRYCE,2]
+[SWIMMER_M2,Bryce,2]
 Pokemon = SKRELP,5
 Pokemon = CHINCHOU,5
 #-------------------------------
-[SWIMMER_M2,BRYCE,3]
+[SWIMMER_M2,Bryce,3]
 Pokemon = SKRELP,5
 Pokemon = CHINCHOU,5
 Pokemon = REMORAID,5
