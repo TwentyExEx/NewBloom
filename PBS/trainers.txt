@@ -301,14 +301,14 @@ Pokemon = CHINCHOU,5
 Pokemon = REMORAID,5
 #-------------------------------
 [BATTLEGIRL,Piper,1]
-Pokemon = TYROUGE,1
+Pokemon = TYROGUE,1
 #-------------------------------
 [BATTLEGIRL,Piper,2]
-Pokemon = TYROUGE,5
+Pokemon = TYROGUE,5
 Pokemon = FALINKS,5
 #-------------------------------
 [BATTLEGIRL,Piper,3]
-Pokemon = TYROUGE,5
+Pokemon = TYROGUE,5
 Pokemon = FALINKS,5
 Pokemon = RIOLU,5
 #-------------------------------
