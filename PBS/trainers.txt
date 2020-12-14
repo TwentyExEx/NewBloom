@@ -147,6 +147,19 @@ Pokemon = FLETCHLING,5
 Pokemon = GOSSIFLEUR,5
 Pokemon = FOONGUS,5
 #-------------------------------
+[BAKER,Martha,1]
+Pokemon = SKWOVET,1
+Pokemon = MILCERY,1
+#-------------------------------
+[BAKER,Martha,1]
+Pokemon = SKWOVET,5
+Pokemon = MILCERY,5
+#-------------------------------
+[BAKER,Martha,1]
+Pokemon = SKWOVET,5
+Pokemon = MILCERY,5
+Pokemon = VANILLITE,5
+#-------------------------------
 [POKEMONRANGER_F,Patricia,1]
 Pokemon = ROGGENROLA,1
 #-------------------------------
@@ -186,7 +199,7 @@ Pokemon = ODDISH,5
 Pokemon = ODDISH,5
 Pokemon = ODDISH,5
 Pokemon = ODDISH,5
-	Shiny = yes
+    Shiny = yes
 #-------------------------------
 [CYCLIST_F,Leah,1]
 Pokemon = WINGULL,1
@@ -337,6 +350,4 @@ Pokemon = NUMEL,5
 Pokemon = FLETCHLING,5
 Pokemon = NUMEL,5
 Pokemon = DRILBUR,5
-#-------------------------------
-
 
