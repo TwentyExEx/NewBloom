@@ -3276,7 +3276,7 @@ class PokeBattle_Move_0F1 < PokeBattle_Move
     end
     @battle.pbDisplay(_INTL("{1} stole {2}'s {3}!",user.pbThis,target.pbThis(true),itemName))
     if target.effects[PBEffects::RottenBerry] = 1
-    battle.pbDisplay(_INTL("But {1}’s berry was rotten!",target.pbThis))
+    battle.pbDisplay(_INTL("But {1}'s berry was rotten!",target.pbThis))
     user.pbPoison(target,nil,@toxic) if user.pbCanPoison?(target,false,self)
     end
     user.pbHeldItemTriggerCheck
@@ -3346,10 +3346,10 @@ class PokeBattle_Move_0F2 < PokeBattle_Move
     end
     @battle.pbDisplay(_INTL("{1} obtained {2}.",target.pbThis,oldUserItemName)) if oldUserItem>0
     if target.effects[PBEffects::RottenBerry] = 1
-    battle.pbDisplay(_INTL("But {1}’s berry was rotten!",target.pbThis))
+    battle.pbDisplay(_INTL("But {1}'s berry was rotten!",target.pbThis))
     user.pbPoison(user,nil,@toxic) if user.pbCanPoison?(user,false,self)
     elsif user.effects[PBEffects::RottenBerry] = 1
-    battle.pbDisplay(_INTL("But {1}’s berry was rotten!",user.pbThis))
+    battle.pbDisplay(_INTL("But {1}'s berry was rotten!",user.pbThis))
     target.pbPoison(user,nil,@toxic) if target.pbCanPoison?(user,false,self)
     end
     user.pbHeldItemTriggerCheck
@@ -3398,7 +3398,7 @@ class PokeBattle_Move_0F3 < PokeBattle_Move
     end
     @battle.pbDisplay(_INTL("{1} received {2} from {3}!",target.pbThis,itemName,user.pbThis(true)))
     if user.effects[PBEffects::RottenBerry] = 1
-    battle.pbDisplay(_INTL("But {1}’s berry was rotten!",user.pbThis))
+    battle.pbDisplay(_INTL("But {1}'s berry was rotten!",user.pbThis))
     target.pbPoison(user,nil,@toxic) if target.pbCanPoison?(user,false,self)
     end
     target.pbHeldItemTriggerCheck
@@ -3423,7 +3423,7 @@ class PokeBattle_Move_0F4 < PokeBattle_Move
     user.pbHeldItemTriggerCheck(item,false)
 
     if target.effects[PBEffects::RottenBerry] = 1
-    battle.pbDisplay(_INTL("But {1}’s berry was rotten!",target.pbThis))
+    battle.pbDisplay(_INTL("But {1}'s berry was rotten!",target.pbThis))
     user.pbPoison(taret,nil,@toxic) if user.pbCanPoison?(target,false,self)
     end
   end

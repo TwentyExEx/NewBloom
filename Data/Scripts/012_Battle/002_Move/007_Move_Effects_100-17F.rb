@@ -2976,7 +2976,7 @@ class PokeBattle_Move_500 < PokeBattle_Move
 end
 
 #===============================================================================
-# Doubles user’s defensive stats for 3 turns. (Bundle Up)
+# Doubles user's defensive stats for 3 turns. (Bundle Up)
 #===============================================================================
 class PokeBattle_Move_501 < PokeBattle_Move
   def pbMoveFailed?(user,targets)
@@ -2998,29 +2998,17 @@ end
 # (Temper)
 #===============================================================================
 class PokeBattle_Move_502 < PokeBattle_Move
-  def initialize(battle,move)
-    super
-    @statUp   = [PBStats::ATTACK,1]
-    @statDown = [PBStats::DEFENSE,1]
-  end
-
-  def pbMoveFailed?(user,targets)
-    failed = true
-    for i in 0...@statUp.length/2
-      if user.pbCanRaiseStatStage?(@statUp[i*2],user,self)
-        failed = false; break
-      end
+  showAnim = true
+    if user.pbCanRaiseStatStage?(PBStats::ATTACK,user,self)
+      user.pbRaiseStatStage(PBStats::ATTACK,1,user,showAnim)
+    else
+      @battle.pbDisplay(_INTL("{1}'s attack can't go any higher!",user.pbThis))
     end
-    for i in 0...@statDown.length/2
-      if user.pbCanLowerStatStage?(@statDown[i*2],user,self)
-        failed = false; break
-      end
+    if user.pbCanLowerStatStage?(PBStats::DEFENSE,user,self)
+      user.pbLowerStatStage(PBStats::DEFENSE,1,user,showAnim)
+    else
+      @battle.pbDisplay(_INTL("{1}'s defense can't go any lower!",user.pbThis))
     end
-    if failed
-      @battle.pbDisplay(_INTL("{1}'s stats can't be changed further!",user.pbThis))
-      return true
-    end
-    return false
   end
 
   def pbEffectGeneral(user)
@@ -3035,7 +3023,7 @@ class PokeBattle_Move_502 < PokeBattle_Move
 class PokeBattle_Move_503 < PokeBattle_Move
 def pbMoveFailed?(user,targets)
     if !user.isSpecies?(:FALINKS)
-      @battle.pbDisplay(_INTL("But {1} doesn’t have anyone to call out to!",user.pbThis(true)))
+      @battle.pbDisplay(_INTL("But {1} doesn't have anyone to call out to!",user.pbThis(true)))
       return true
     end
     if user.effects[PBEffects::AllHands]=1

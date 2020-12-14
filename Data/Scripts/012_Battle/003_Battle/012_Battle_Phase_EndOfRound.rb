@@ -487,7 +487,7 @@ class PokeBattle_Battle
     }
     # Bundle Up
     pbEORCountDownBattlerEffect(priority,PBEffects::BundleUp) { |battler|
-      pbDisplay(_INTL("{1}’s Bundle Up wore off!",battler.pbThis))
+      pbDisplay(_INTL("{1}'s Bundle Up wore off!",battler.pbThis))
     }
     # All Hands
     pbEORCountDownBattlerEffect(priority,PBEffects::AllHands) { |battler|
