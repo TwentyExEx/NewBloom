@@ -353,18 +353,15 @@ Pokemon = DRILBUR,5
 #-------------------------------
 [PSYCHIC_F2,Maxine,1]
 Pokemon = EXEGGCUTE,1
-Pokemon = WYNAUT,1
 #-------------------------------
 [PSYCHIC_F2,Maxine,2]
 Pokemon = EXEGGCUTE,5
-Pokemon = WYNAUT,5
 Pokemon = GOTHITA,5
 #-------------------------------
 [PSYCHIC_F2,Maxine,3]
 Pokemon = EXEGGCUTE,5
-Pokemon = WYNAUT,5
 Pokemon = GOTHITA,5
-Pokemon = GASTLY,5
+Pokemon = WYNAUT,5
 #-------------------------------
 [GENTLEMAN_2,Wesley,1]
 Pokemon = HOOTHOOT,1
@@ -392,12 +389,10 @@ Pokemon = SINISTEA,5
 #-------------------------------
 [PSYCHIC_M,Vance,1]
 Pokemon = GASTLY,1
-Pokemon = STARYU,1
 #-------------------------------
 [PSYCHIC_M,Vance,2]
 Pokemon = GASTLY,5
 Pokemon = STARYU,5
-Pokemon = INKAY,5
 #-------------------------------
 [PSYCHIC_M,Vance,3]
 Pokemon = GASTLY,5
@@ -482,11 +477,11 @@ Pokemon = SKORUPI,1
 #-------------------------------
 [SCIENTIST_F,Amelia,2]
 Pokemon = SKORUPI,5
-Pokemon = MISDREVUS,5
+Pokemon = MISDREAVUS,5
 #-------------------------------
 [SCIENTIST_F,Amelia,3]
 Pokemon = SKORUPI,5
-Pokemon = MISDREVUS,5
+Pokemon = MISDREAVUS,5
 Pokemon = KLINK,5
 #-------------------------------
 [LADY2,Valerie,1]
@@ -577,7 +572,7 @@ Pokemon = MACHOP,5
 Pokemon = STARLY,5
 Pokemon = SNEASEL,5
 Pokemon = MACHOP,5
-Pokemon = SNUBBUL,5
+Pokemon = SNUBBULL,5
 #-------------------------------
 [MEDIUM,Elizabeth,1]
 Pokemon = LITWICK,1
