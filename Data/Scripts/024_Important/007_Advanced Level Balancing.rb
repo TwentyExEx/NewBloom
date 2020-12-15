@@ -141,7 +141,7 @@ Events.onTrainerPartyLoad+=proc {|sender,e|
        when 1 #Easy
         l = 3*balance/4  - 4 + rand(8)
        when 2 #Medium
-        l = 9*(balance + 4*mlv)/50 - 4 + rand(4 + balance/10)
+        l = 18*(balance + 4*mlv)/100 - 4 + (balance/20) + rand(4 + balance/10)
        when 3 #Hard
         l = 11*(balance + 4*mlv)/50  - 4 + rand(4 + balance/10)
        when 4 #Insane
