@@ -2998,7 +2998,8 @@ end
 # (Temper)
 #===============================================================================
 class PokeBattle_Move_502 < PokeBattle_Move
-  showAnim = true
+  def pbEffectGeneral(user)
+    showAnim = true
     if user.pbCanRaiseStatStage?(PBStats::ATTACK,user,self)
       user.pbRaiseStatStage(PBStats::ATTACK,1,user,showAnim)
     else
@@ -3012,33 +3013,10 @@ class PokeBattle_Move_502 < PokeBattle_Move
   end
 
   def pbEffectGeneral(user)
-    if user.pbCanRaiseStatStage?(PBStats::ATTACK,user,self)
-      user.pbRaiseStatStage(PBStats::ATTACK,1,user,showAnim)
-    end
-    if user.pbCanLowerStatStage?(PBStats::DEFENSE,user,self)
-      user.pbLowerStatStage(PBStats::DEFENSE,1,user,showAnim)
-    end
-  end
-
-class PokeBattle_Move_503 < PokeBattle_Move
-def pbMoveFailed?(user,targets)
-    if !user.isSpecies?(:FALINKS)
-      @battle.pbDisplay(_INTL("But {1} doesn't have anyone to call out to!",user.pbThis(true)))
-      return true
-    end
-    if user.effects[PBEffects::AllHands]=1
-      @battle.pbDisplay(_INTL("But it failed!"))
-      return true
-    end
-    return false
-  end
-
-  def pbEffectGeneral(user)
     user.effects[PBEffects::AllHands] = 2
     @battle.pbDisplay(_INTL("{1} called for all hands on deck next turn!",user.pbThis))
     if user.pbCanRaiseStatStage?(PBStats::ACCURACY,user,self)
       user.pbRaiseStatStage(PBStats::ACCURACY,1,user)
     end
   end
-end
 end
