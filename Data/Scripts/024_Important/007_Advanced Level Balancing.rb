@@ -81,7 +81,7 @@ Events.onWildPokemonCreateForSpawning+=proc {|sender,e|
         #notice that such species have cevo==-1 and wouldn't pass the last check
         #to avoid it we set evoflag to 1 (with some randomness) so that
         #pokemon may have its second evolution (Raichu, for example)
-        if evo && cevo < 1 && rand(50) <= newlevel
+        if evo && cevo > 1 && rand(50) <= newlevel
           if evo[0] != 4 && rand(50) <= newlevel
           newspecies = evo[2] 
              if evoflag == 0 && rand(50) <= newlevel 
@@ -171,7 +171,7 @@ Events.onTrainerPartyLoad+=proc {|sender,e|
         #notice that such species have cevo==-1 and wouldn't pass the last check
         #to avoid it we set evoflag to 1 (with some randomness) so that
         #pokemon may have its second evolution (Raichu, for example)
-        if evo && cevo < 1 && rand(50) <= level
+        if evo && cevo > 1 && rand(50) <= level
           if evo[0] != 4 && rand(50) <= level
           newspecies = evo[2] 
              if evoflag == 0 && rand(50) <= level 
@@ -185,7 +185,7 @@ Events.onTrainerPartyLoad+=proc {|sender,e|
         end
       end
       if evoflag==0 || endevo
-      if  cevo == -1 || rand(50) > level
+      if  cevo == -1 || rand(2) > level
         # Breaks if there no more evolutions or randomnly
         # Randomness applies only if the level is under 50 
         break
