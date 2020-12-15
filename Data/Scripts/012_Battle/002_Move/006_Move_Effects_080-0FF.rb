@@ -2069,6 +2069,7 @@ class PokeBattle_Move_0C4 < PokeBattle_TwoTurnMove
         @powerHerb = false
         @chargingTurn = true
         @damagingTurn = true
+        return false
       end
     end
     return ret
