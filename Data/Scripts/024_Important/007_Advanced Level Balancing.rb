@@ -185,7 +185,7 @@ Events.onTrainerPartyLoad+=proc {|sender,e|
         end
       end
       if evoflag==0 || endevo
-      if  cevo == -1 || rand(2) > level
+      if  cevo == -1 || rand(50) > level
         # Breaks if there no more evolutions or randomnly
         # Randomness applies only if the level is under 50 
         break
