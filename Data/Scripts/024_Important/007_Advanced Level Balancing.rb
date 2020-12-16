@@ -85,7 +85,6 @@ Events.onWildPokemonCreateForSpawning+=proc {|sender,e|
           if evo[0] != 1 && rand(50) <= level
              if evoflag = 0 && rand(50) <= level 
                evoflag=1
-               p evo
                newspecies = evo[2]
              else 
                 evoflag=0
@@ -178,7 +177,6 @@ Events.onTrainerPartyLoad+=proc {|sender,e|
           if evo[0] != 1 && rand(50) <= level
              if evoflag = 0 && rand(50) <= level 
                evoflag=1
-               p evo
                newspecies = evo[2]
              else 
                 evoflag=0
