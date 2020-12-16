@@ -167,19 +167,22 @@ Events.onTrainerPartyLoad+=proc {|sender,e|
       if evo
         evo = evo[rand(evo.length - 1)]
         # here we evolve things that don't evolve through level
-        # that's what we check with evo[0]!=4
+        # that's what we check with evo[0]!=1
         #notice that such species have cevo==-1 and wouldn't pass the last check
         #to avoid it we set evoflag to 1 (with some randomness) so that
         #pokemon may have its second evolution (Raichu, for example)
-        if evo && cevo > 1 && rand(50) <= level
-          if evo[0] != 4 && rand(50) <= level
-          newspecies = evo[2] 
+        if evo && cevo < 1 && rand(50) <= level
+          p evo[0]
+          if evo[0] != 1 && rand(50) <= level
+            newspecies = evo[2] 
              if evoflag == 0 && rand(50) <= level 
                evoflag=1
              else
                evoflag=0
              end
-           end
+          else
+            evoflag=0
+          end
         else
         endevo=true   
         end
