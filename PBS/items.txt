@@ -813,3 +813,5 @@
 789,TR97,TR97,TR97s,4,10000,"The user bites the target with its psychic capabilities. This can also destroy Light Screen and Reflect.",6,0,0,PSYCHICFANGS,
 790,TR98,TR98,TR98s,4,6000,"The user slams into the target using a full-force blast of water. This may also lower the target's Defense stat.",6,0,0,LIQUIDATION,
 791,TR99,TR99,TR99s,4,6000,"The user attacks by slamming its body into the target. The higher the user's Defense, the more damage it inflicts.",6,0,0,BODYPRESS,
+1000,EXPALL,Exp. Share,Exp. Shares,8,0,"Turning on this special device will allow all the Pokémon on your team to receive Exp. Points from battles.",2,0,6,
+1001,EXPALLOFF,Exp. Share,Exp. Shares,8,0,"Turning on this special device will allow all the Pokémon on your team to receive Exp. Points from battles.",2,0,6,
