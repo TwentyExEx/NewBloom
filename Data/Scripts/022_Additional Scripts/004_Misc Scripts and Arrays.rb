@@ -65,3 +65,17 @@ def pbFootsteps
     end
   end
 end
+
+def pbHasTypeMove?(type)
+  typemoves = 0
+  $Trainer.party.each do |pkmn|
+    pkmn.moves.each do |m|
+      typemoves += 1 if m.type == getID(PBTypes,type)
+    end
+  end
+  if typemoves > 0
+    return true
+  else
+    return false
+  end
+end
