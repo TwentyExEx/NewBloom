@@ -30,7 +30,7 @@ Emo_love= 100
 # * Support for Pokemon Birthsigns script
 Emo_Cake= 92 if self.class.const_defined?(:PBBirthsigns) &&  self.class.const_get(:PBBirthsigns).instance_of?(::Module)
 
-ALLOWTOGGLEFOLLOW = true             # Allow the player to toggle followers on/off
+ALLOWTOGGLEFOLLOW = false             # Allow the player to toggle followers on/off
 ALLOWFIELDSWITCHING = true          # Allow the player to cycle through pokemon
 APPLYSTATUSTONES = false            # Add tone to follower if statused
 #Status tones to be used, if the above is true (Red,Green,Blue,Gray)
@@ -1520,7 +1520,7 @@ class Scene_Map
       else
         $PokemonTemp.dependentEvents.stop_stepping
       end
-      if Input.trigger?(Input::CTRL) && (ALLOWTOGGLEFOLLOW || TEMPALLOWTOGGLE) && !$PokemonGlobal.bicycle
+      if Input.trigger?(Input::CTRL) && (ALLOWTOGGLEFOLLOW || $TEMPALLOWTOGGLE) && !$PokemonGlobal.bicycle
         if $PokemonGlobal.surfing
           if $Trainer.party[0].hp>0 && !$Trainer.party[0].isEgg? && $Trainer.party[0].hasType?(:WATER)
             if WATERPOKEMONCANSURF

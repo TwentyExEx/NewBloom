@@ -19,41 +19,11 @@ class Scene_Map
   def update
     quicksave_update
     if Input.triggerex?(0x53) && !$game_player.moving? && @mode.nil?
+      autoresume=false
       pbSave
-      @mode = 0
-      @vp = Viewport.new(0,0,Graphics.width,Graphics.height)
-      @vp.z = 100000
-      @disk = Sprite.new(@vp)
-      @disk.bitmap = BitmapCache.load_bitmap("Graphics/Pictures/saveDisk")
-      @disk.x, @disk.y = 8, 8
-      @disk.opacity = 0
-      @arrow = Sprite.new(@vp)
-      @arrow.bitmap = BitmapCache.load_bitmap("Graphics/Pictures/saveArrow")
-      @arrow.x, @arrow.y = 8, -4
-      @arrow.opacity = 0
       pbSEPlay("Pkmn exp full") if FileTest.audio_exist?("Audio/SE/Pkmn exp full")
-    end
-    if @mode == 0
-      @disk.opacity += 16
-      @mode = 1 if @disk.opacity >= 255
-    end
-    if @mode == 1
-      @arrow.opacity += 16
-      @mode = 2 if @arrow.opacity >= 255
-    end
-    if @mode == 2
-      @arrow.y += 1
-      @mode = 3 if @arrow.y >= 22
-    end
-    if @mode == 3
-      @arrow.opacity -= 16
-      @disk.opacity -= 16
-      if @disk.opacity <= 0
-        @arrow.dispose
-        @disk.dispose
-        @vp.dispose
-        @mode = nil
-      end
+      @wait_count = 4 * Graphics.frame_rate/20
+      pbMessage("Your game has been saved.\\wtnp[12]")
     end
   end
 end

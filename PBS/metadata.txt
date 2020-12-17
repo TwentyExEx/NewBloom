@@ -24,12 +24,12 @@ Outdoor = false
 #-------------------------------
 [006]
 # Little Pond
-HealingSpot = 6,1,12
 SnapEdges = true
 BattleBack = 
 Bicycle = true
 MapPosition = 0,13,6
 Outdoor = true
+HealingSpot = 6,1,12
 ShowArea = true
 #-------------------------------
 [008]
@@ -43,8 +43,8 @@ ShowArea = true
 #-------------------------------
 [009]
 # Cabins
-SnapEdges = true
 MapSize = 2,11
+SnapEdges = true
 Weather = Rain,10
 Bicycle = true
 MapPosition = 0,11,10
@@ -73,7 +73,7 @@ Outdoor = true
 ShowArea = true
 #-------------------------------
 [012]
-# Waterfall Fork
+# Waterfall View
 SnapEdges = true
 Weather = Rain,30
 Bicycle = true
@@ -160,12 +160,13 @@ HealingSpot = 52,17,14
 ShowArea = true
 #-------------------------------
 [026]
-# 1F
-SnapEdges = true
+# Cabin House
+SnapEdges = false
 Bicycle = false
 MapPosition = 0,17,10
 Outdoor = false
-ShowArea = true
+ShowArea = false
+HealingSpot = 26,6,7
 #-------------------------------
 [027]
 # B1F
@@ -277,6 +278,7 @@ SnapEdges = true
 Bicycle = true
 Outdoor = true
 ShowArea = true
+HealingSpot = 44,56,38
 #-------------------------------
 [045]
 # Lakefront
@@ -291,6 +293,7 @@ SnapEdges = true
 Bicycle = true
 Outdoor = true
 ShowArea = true
+HealingSpot = 46,36,78
 #-------------------------------
 [047]
 # Fae Crossing

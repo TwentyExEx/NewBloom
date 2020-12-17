@@ -300,28 +300,6 @@ Water
     CLAMPERL,5
     CLAMPERL,5
 #-------------------------------
-026 # Caves - 1F
-25,10,10
-Cave
-    ZUBAT,5
-    ZANGOOSE,5
-    ZUBAT,5
-    ROLYCOLY,5
-    ARON,5
-    STUNFISK,5
-    ZANGOOSE,5
-    ROLYCOLY,5
-    NUMEL,5
-    CARBINK,5
-    SABLEYE,5
-    SABLEYE,5
-Water
-    BARBOACH,5
-    ARROKUDA,5
-    SLOWPOKE,5
-    CLAMPERL,5
-    CLAMPERL,5
-#-------------------------------
 027 # Caves - B1F
 25,10,10
 Cave
