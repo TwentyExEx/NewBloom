@@ -24,6 +24,7 @@ module PBTerrain
   CaveTile        = 20
   OWNoSpawn       = 21
   SurfNoSpawn     = 22
+  Road            = 23
 
   def PBTerrain.isSurfable?(tag)
     return PBTerrain.isWater?(tag)
@@ -120,7 +121,11 @@ module PBTerrain
     return tag==PBTerrain::OWNoSpawn
   end
   
-    def PBTerrain.isSurfNoSpawn?(tag)
+  def PBTerrain.isSurfNoSpawn?(tag)
     return tag==PBTerrain::SurfNoSpawn
+  end  
+
+  def PBTerrain.isRoad?(tag)
+    return tag==PBTerrain::Road
   end
 end
