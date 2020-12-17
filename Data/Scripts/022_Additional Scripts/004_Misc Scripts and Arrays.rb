@@ -46,34 +46,41 @@ def pbUnownQuick
   end
 end
 
-def pbFootsteps
-    if !PBTerrain.isGrass?(pbGetTerrainTag)
-      if $PokemonGlobal.runtoggle = true && Input.press?(Input::A)
-        pbSEPlay("se_step_run_dirt")
-        @wait_count = 2 * Graphics.frame_rate/20
-      elsif $game_player.moving?
-        pbSEPlay("se_step_default")
-        @wait_count = 4 * Graphics.frame_rate/20
-      end
-    else
+# Footsteps
+Events.onStepTakenTransferPossible+=proc {|sender,e|
+  handled=e[0]
+  next if handled[0]
+  event=$game_player
+  if event==$game_player
+    return if $PokemonGlobal.bicycle || $PokemonGlobal.surfing
+    if PBTerrain.isGrass?(pbGetTerrainTag)
       if $PokemonGlobal.runtoggle = true && Input.press?(Input::A)
         pbSEPlay("se_step_run_grass")
-        @wait_count = 2 * Graphics.frame_rate/20
-      elsif $game_player.moving?
+      else
         pbSEPlay("se_step_grass")
-        @wait_count = 4 * Graphics.frame_rate/20
+      end
+    elsif !pbGetMetadata($game_map.map_id,MetadataOutdoor) || PBTerrain.isBridge?(pbGetTerrainTag)
+        pbSEPlay("se_step_default")
+    elsif PBTerrain.isIce?(pbGetTerrainTag)
+    else
+      if $PokemonGlobal.runtoggle = true && Input.press?(Input::A)
+        pbSEPlay("se_step_run_dirt")
+      else
+        pbSEPlay("se_step_dirt")
+      end
     end
   end
-end
+}
 
 def pbHasTypeMove?(type)
-  typemoves = 0
+  check = false
   $Trainer.party.each do |pkmn|
     pkmn.moves.each do |m|
-      typemoves += 1 if m.type == getID(PBTypes,type)
+      check = true if m.type == getID(PBTypes,type)
+        break if check == true
     end
   end
-  if typemoves > 0
+  if check == true
     return true
   else
     return false
