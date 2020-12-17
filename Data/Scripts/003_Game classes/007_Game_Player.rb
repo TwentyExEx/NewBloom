@@ -460,7 +460,7 @@ def pbMountBike
   $PokemonGlobal.bicycle = true
   pbUpdateVehicle
   bikebgm = pbGetMetadata(0,MetadataBicycleBGM)
-  pbCueBGM(bikebgm,0.5) if bikebgm
+  # pbCueBGM(bikebgm,0.5) if bikebgm
 end
 
 def pbDismountBike

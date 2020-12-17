@@ -30,7 +30,7 @@ Emo_love= 100
 # * Support for Pokemon Birthsigns script
 Emo_Cake= 92 if self.class.const_defined?(:PBBirthsigns) &&  self.class.const_get(:PBBirthsigns).instance_of?(::Module)
 
-ALLOWTOGGLEFOLLOW = false             # Allow the player to toggle followers on/off
+ALLOWTOGGLEFOLLOW = true             # Allow the player to toggle followers on/off
 ALLOWFIELDSWITCHING = true          # Allow the player to cycle through pokemon
 APPLYSTATUSTONES = false            # Add tone to follower if statused
 #Status tones to be used, if the above is true (Red,Green,Blue,Gray)
@@ -238,7 +238,6 @@ def pbToggleFollowingPokemon(anim=true)
       $game_switches[Toggle_Following_Switch]=true
       $PokemonTemp.dependentEvents.refresh_sprite
       pbWait(1)
-
     end
   end
 end
@@ -927,7 +926,7 @@ def pbSurf
     pbHiddenMoveAnimation(movefinder)
     $PokemonTemp.dependentEvents.check_surf(true)
     surfbgm = pbGetMetadata(0,MetadataSurfBGM)
-    pbCueBGM(surfbgm,0.5) if surfbgm
+    # pbCueBGM(surfbgm,0.5) if surfbgm
     pbStartSurfing
     return true
   end
@@ -951,9 +950,16 @@ def pbEndSurf(xOffset,yOffset)
         ALWAYS_ANIMATED_FOLLOWERS.include?($Trainer.party[0].species)) &&
         !(ALWAYS_ANIMATED_EXCEPTION.include?($Trainer.party[0].species))
         $PokemonTemp.dependentEvents.Come_back($Trainer.party[0].isShiny?,false)
-    else
+    elsif $Trainer.party[0].hp>0 && !$Trainer.party[0].isEgg?
       $PokemonTemp.dependentEvents.Come_back(true)
+    else 
+      xOffset = 0
+      yOffset = 0 
     end
+  elsif $game_switches[Toggle_Following_Switch] = true && ret
+    xOffset = 0
+    yOffset = 0
+  else
   end
 end
 
@@ -1038,7 +1044,7 @@ alias follow_pbCancelVehicles pbCancelVehicles
   def pbDismountBike
     return if !$PokemonGlobal.bicycle
     ret=follow_pbDismountBike
-    if $game_switches[Toggle_Following_Switch]
+    if $game_switches[Toggle_Following_Switch] == true
       $PokemonTemp.dependentEvents.Come_back(true)
     end
     $PokemonTemp.dependentEvents.refresh_sprite
@@ -1047,7 +1053,7 @@ alias follow_pbCancelVehicles pbCancelVehicles
 
   def pbMountBike
     ret=follow_pbMountBike
-    if $game_switches[Toggle_Following_Switch]
+    if $game_switches[Toggle_Following_Switch] == true
       if pbGetMetadata($game_map.map_id,MetadataBicycleAlways)
         $PokemonTemp.dependentEvents.remove_sprite
       else
