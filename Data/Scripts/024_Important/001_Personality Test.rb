@@ -392,7 +392,7 @@ end
 def pbSelectStarter
 	cmd=pbMessage("What region is this starter from?",["Kanto","Johto","Hoenn","Sinnoh","Unova","Kalos","Alola","Galar","Cancel"])
 	if cmd == 0
-		cmd=pbMessage("Select the Pokémon you want to journey with.",["Bulbasaur","Charmander","Squirtle","Pikachu","Cancel"])
+		cmd=pbMessage("Select the Pokémon you want to journey with.",["Bulbasaur","Charmander","Squirtle","Cancel"])
 			if cmd == 0
 				cmd=pbMessage("Are you sure you want to choose Bulbasaur?",["Yes","No"])
 					if cmd == 0
@@ -409,11 +409,6 @@ def pbSelectStarter
 						$game_variables[77] = "SQUIRTLE"
 					else pbSelectStarter end
 			elsif cmd == 3
-				cmd=pbMessage("Are you sure you want to choose Pikachu?",["Yes","No"])
-					if cmd == 0
-						$game_variables[77] = "PIKACHU"
-					else pbSelectStarter end
-			elsif cmd == 4
 				pbSelectStarter
 			end
 	elsif cmd == 1
