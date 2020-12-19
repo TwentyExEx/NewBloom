@@ -2368,11 +2368,23 @@ Moves = 1,ASTRALBARRAGE,1,TACKLE,1,TAILWHIP,1,DOUBLEKICK,1,HEX,1,STOMP,1,CONFUSE
 Kind = High King
 BattlerEnemyY = 9
 #-------------------------------
-[BUNEARY,1]
-FormName = Neberian Buneary
-Type1 = ICE
-Type2 = FAIRY
-BaseStats = 55,66,44,85,44,56
-Weight = 5.5
-Pokedex = Able to cut down anything with a single strike, it became known as the Fairy King's Sword, and it inspired awe in friend and foe alike.
+[CUTIEFLY,1]
+FormName = Neberian
+Type1 = BUG
+Type2 = DARK
+BaseStats = 40,55,40,84,45,40
+Abilities = REGENERATOR,SHIELDDUST
+HiddenAbility = MOXIE
+Moves = 1,ABSORB,1,ASTONISH,6,BITE,12,BUGBITE,18,DRAININGKISS,24,ACUPRESSURE,30,FLATTER,36,LEECHLIFE,42,PLAYROUGH,48,MEMENTO,54,QUIVERDANCE
+Pokedex = evil baby
+Evolutions = RIBOMBEE,Level,25
 #-------------------------------
+[RIBOMBEE,1]
+FormName = Neberian
+Type1 = BUG
+Type2 = DARK
+BaseStats = 60,95,60,124,55,70
+Abilities = REGENERATOR,SHIELDDUST
+HiddenAbility = MOXIE
+Moves = 0,BLOODLEECH,1,BLOODLEECH,1,ABSORB,1,ASTONISH,1,KNOCKOFF,1,ALLYSWITCH,1,GLARE,6,BITE,12,BUGBITE,18,DRAININGKISS,24,ACUPRESSURE,32,FLATTER,40,LEECHLIFE,48,PLAYROUGH,56,MEMENTO,64,QUIVERDANCE
+Pokedex = evil baby

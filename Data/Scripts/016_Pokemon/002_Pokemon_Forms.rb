@@ -769,3 +769,14 @@ MultipleForms.register(:KOFFING,{
 })
 
 MultipleForms.copy(:KOFFING,:MIMEJR)
+
+MultipleForms.register(:CUTIEFLY,{
+  "getFormOnCreation" => proc { |pkmn|
+   maps=[8]   # Map IDs for second form
+   if $game_map && maps.include?($game_map.map_id)
+     next 1
+   else
+     next 0
+   end
+}
+})

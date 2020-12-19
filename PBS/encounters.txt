@@ -1,146 +1,118 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
-006 # Forest - City Bridge
+006 # Forest - Little Pond
 25,10,10
 Land
+    WEEDLE,5
+    WEEDLE,5
+    SHROOMISH,5
+    SHROOMISH,5
+    GRUBBIN,5
+    GRUBBIN,5
     ODDISH,5
-    SCATTERBUG,5
-    SHROOMISH,5
-    SHROOMISH,5
-    STUNKY,5
-    STUNKY,5
-    PINECO,5
-    PINECO,5
-    GRUBBIN,5
-    PINSIR,5
-    STUFFUL,5
-    PINSIR,5
-#-------------------------------
-007 # Forest - Little Pond
-25,10,10
-Land
     ODDISH,5
-    SCATTERBUG,5
-    SHROOMISH,5
-    SHROOMISH,5
-    STUNKY,5
-    STUNKY,5
-    PINECO,5
-    PINECO,5
-    GRUBBIN,5
-    GRUBBIN,5
-    STUFFUL,5
-    STUFFUL,5
-Water
-    MAGIKARP,5
-    POLIWAG,5
-    POLIWAG,5
-    POLIWAG,5
-    WINGULL,5
+    ODDISH,5
+    ODDISH,5
+    YANMA,5
+    YANMA,5
 #-------------------------------
 008 # Forest - Lakeside
 25,10,10
 Land
-    KRICKETOT,5
-    KRICKETOT,5
-    GOSSIFLEUR,5
-    GOSSIFLEUR,5
-    CATERPIE,5
-    HERACROSS,5
-    CATERPIE,5
-    APPLIN,5
-    GOSSIFLEUR,5
+    BUDEW,5
+    BUDEW,5
+    CUTIEFLY_1,5
+    CUTIEFLY_1,5
+    SPINARAK,5
+    SPINARAK,5
+    DEWPIDER,5
+    DEWPIDER,5
+    DEWPIDER,5
+    DEWPIDER,5
     SCYTHER,5
-    GOSSIFLEUR,5
-    HERACROSS,5
+    SCYTHER,5
 Water
+    SURSKIT,5
     LOTAD,5
-    REMORAID,5
-    POLIWAG,5
-    MANTYKE,5
-    MANTYKE,5
+    LOTAD,5
+    SURSKIT,5
+    YANMA,5
 #-------------------------------
 009 # Forest - Cabins
 25,10,10
 Land
     SKWOVET,5
     SKWOVET,5
+    VENONAT,5
+    VENONAT,5
+    ODDISH,5
+    ODDISH,5
+    VENONAT,5
+    VENONAT,5
     SKWOVET,5
     SKWOVET,5
-    STUNKY,5
-    STUNKY,5
-    MILCERY,5
-    PICHU,5
-    PICHU,5
-    KRICKETOT,5
-    PICHU,5
-    MILCERY,5
+    MEOWTH_2,5
+    MEOWTH_2,5
 Water
-    WOOPER,5
-    MAGIKARP,5
+    SURSKIT,5
     LOTAD,5
     LOTAD,5
-    LOTAD,5
+    SURSKIT,5
+    YANMA,5
 #-------------------------------
 010 # Forest - Mini Falls
 25,10,10
 Land
-    ODDISH,5
+    JOLTIK,5
+    JOLTIK,5
     JOLTIK,5
     ODDISH,5
-    JOLTIK,5
-    STUFFUL,5
-    STUFFUL,5
-    STUFFUL,5
-    AIPOM,5
-    AIPOM,5
-    AIPOM,5
-    AIPOM,5
-    AIPOM,5
+    ODDISH,5
+    ODDISH,5
+    GRUBBIN,5
+    GRUBBIN,5
+    GRUBBIN,5
+    GRUBBIN,5
+    CUTIEFLY_1,5
+    CUTIEFLY_1,5
 Water
-    MAGIKARP,5
-    LUVDISC,5
-    CARVANHA,5
-    LUVDISC,5
-    MANTYKE,5
+    SURSKIT,5
+    LOTAD,5
+    LOTAD,5
+    SURSKIT,5
+    YANMA,5
 #-------------------------------
 011 # Forest - Depths
 25,10,10
 Land
-    SKWOVET,5
-    SKWOVET,5
-    DUSKULL,5
-    STUNKY,5
-    SHROOMISH,5
-    SHROOMISH,5
+    SEEDOT,5
+    SEEDOT,5
+    MEOWTH_2,5
+    MEOWTH_2,5
+    VENIPEDE,5
+    VENIPEDE,5
     EXEGGCUTE,5
     EXEGGCUTE,5
-    BLIPBUG,5
-    BLIPBUG,5
-    RALTS,5
-    RALTS,5
-Water
-    MAGIKARP,5
-    LUVDISC,5
-    LUVDISC,5
-    LUVDISC,5
-    POLIWAG,5
+    EXEGGCUTE,5
+    EXEGGCUTE,5
+    KOMALA,5
+    KOMALA,5
 #-------------------------------
-012 # Forest - Waterfall Fork
+012 # Forest - Waterfall View
 25,10,10
 Land
-    WEEDLE,5
-    WEEDLE,5
-    TEDDIURSA,5
-    TEDDIURSA,5
-    TEDDIURSA,5
-    PINECO,5
     VENIPEDE,5
     VENIPEDE,5
+    SHROOMISH,5
+    SHROOMISH,5
+    HOOTHOOT,5
+    HOOTHOOT,5
+    SPINARAK,5
+    SPINARAK,5
     PANCHAM,5
     BUNEARY,5
-    SCYTHER,5
-    SCYTHER,5
+    KOMALA,5
+    KOMALA,5
 Water
     MAGIKARP,5
     WINGULL,5
@@ -148,43 +120,21 @@ Water
     QWILFISH,5
     QWILFISH,5
 #-------------------------------
-013 # Forest - Waterfall View
-25,10,10
-Land
-    ODDISH,5
-    ODDISH,5
-    JOLTIK,5
-    JOLTIK,5
-    VENIPEDE,5
-    WEEDLE,5
-    VENIPEDE,5
-    BLIPBUG,5
-    GOSSIFLEUR,5
-    GOSSIFLEUR,5
-    GOSSIFLEUR,5
-    GOSSIFLEUR,5
-Water
-    MAGIKARP,5
-    WINGULL,5
-    WINGULL,5
-    QWILFISH,5
-    QWILFISH,5
-#-------------------------------
 014 # Forest - Mountainside
 25,10,10
 Land
+    SEEDOT,5
+    SEEDOT,5
     WEEDLE,5
     WEEDLE,5
-    TEDDIURSA,5
-    TEDDIURSA,5
-    TEDDIURSA,5
-    PINECO,5
-    VENIPEDE,5
-    GIBLE,5
+    HOOTHOOT,5
+    HOOTHOOT,5
     PANCHAM,5
     PANCHAM,5
+    MEOWTH_2,5
+    MEOWTH_2,5
     SCYTHER,5
-    GIBLE,5
+    SCYTHER,5
 #-------------------------------
 017 # Deep Forest - Clearing
 25,10,10
