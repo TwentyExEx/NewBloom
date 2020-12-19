@@ -572,7 +572,6 @@ BattlerEnemyY = 19
 [PICHU,1]
 FormName = Spiky-Eared
 BattlerPlayerY = 0
-BattlerEnemyY = 26
 Evolutions = PIKACHU,None,
 #-------------------------------
 [AMPHAROS,1]
@@ -842,6 +841,7 @@ EggMoves = KNOCKOFF,PARTINGSHOT,QUICKGUARD
 Color = White
 Pokedex = Thought to be the oldest form of Zigzagoon, it moves in zigzags and wreaks havoc upon its surroundings.
 BattlerPlayerY = 26
+BattlerEnemyY = 29
 #-------------------------------
 [LINOONE,1]
 FormName = Galarian
@@ -1070,6 +1070,7 @@ Abilities = DESOLATELAND
 Height = 5.0
 Weight = 999.7
 BattlerPlayerY = 11
+BattlerEnemyY = 15
 #-------------------------------
 [RAYQUAZA,1]
 FormName = Mega Rayquaza
@@ -1173,6 +1174,7 @@ BaseStats = 108,170,115,92,120,95
 Abilities = SANDFORCE
 HiddenAbility = SANDFORCE
 Pokedex = Its vaunted wings become scythes, sending it mad with rage. It swings its scythes wildly and slices the ground to pieces.
+BattlerEnemyY = 14
 #-------------------------------
 [LUCARIO,1]
 FormName = Mega Lucario
@@ -1183,6 +1185,7 @@ HiddenAbility = ADAPTABILITY
 Height = 1.3
 Weight = 57.5
 Pokedex = It readies itself to face its enemies by focusing its mental energies. Its fighting style can be summed up in a single word: heartless.
+BattlerEnemyY = 20
 #-------------------------------
 [ABOMASNOW,1]
 FormName = Mega Abomasnow
@@ -2377,7 +2380,8 @@ Abilities = REGENERATOR,SHIELDDUST
 HiddenAbility = MOXIE
 Moves = 1,ABSORB,1,ASTONISH,6,BITE,12,BUGBITE,18,DRAININGKISS,24,ACUPRESSURE,30,FLATTER,36,LEECHLIFE,42,PLAYROUGH,48,MEMENTO,54,QUIVERDANCE
 Pokedex = evil baby
-Evolutions = RIBOMBEE,Level,25
+BattlerPlayerY = 12
+BattlerEnemyY = 18
 #-------------------------------
 [RIBOMBEE,1]
 FormName = Neberian
@@ -2388,3 +2392,5 @@ Abilities = REGENERATOR,SHIELDDUST
 HiddenAbility = MOXIE
 Moves = 0,BLOODLEECH,1,BLOODLEECH,1,ABSORB,1,ASTONISH,1,KNOCKOFF,1,ALLYSWITCH,1,GLARE,6,BITE,12,BUGBITE,18,DRAININGKISS,24,ACUPRESSURE,32,FLATTER,40,LEECHLIFE,48,PLAYROUGH,56,MEMENTO,64,QUIVERDANCE
 Pokedex = evil baby
+BattlerPlayerY = 6
+BattlerEnemyY = 11

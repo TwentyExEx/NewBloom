@@ -44,7 +44,7 @@ Events.onWildPokemonCreateForSpawning+=proc {|sender,e|
    pokemon=e[0]
    maps=[8] # Lakeside
    if $game_map && maps.include?($game_map.map_id)
-     if pokemon.species = 742
+     if pokemon.species == 742
       pokemon.form = 1
      else
      end
