@@ -46,7 +46,8 @@ end
 # Default options are at the top of script section SpriteWindow.
 #===============================================================================
 $SpeechFrames = [
-  MessageConfig::TextSkinName,   # Default: speech hgss 1
+  MessageConfig::TextSkinName,   # Default: speech pl 18
+  "speech hgss 1",
   "speech hgss 2",
   "speech hgss 3",
   "speech hgss 4",
@@ -65,12 +66,12 @@ $SpeechFrames = [
   "speech hgss 17",
   "speech hgss 18",
   "speech hgss 19",
-  "speech hgss 20",
-  "speech pl 18"
+  "speech hgss 20"
 ]
 
 $TextFrames = [
-  "Graphics/Windowskins/"+MessageConfig::ChoiceSkinName,   # Default: choice 1
+  "Graphics/Windowskins/"+MessageConfig::ChoiceSkinName,   # Default: choice 29
+  "Graphics/Windowskins/choice 1",
   "Graphics/Windowskins/choice 2",
   "Graphics/Windowskins/choice 3",
   "Graphics/Windowskins/choice 4",

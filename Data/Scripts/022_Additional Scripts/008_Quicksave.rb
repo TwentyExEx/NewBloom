@@ -21,9 +21,9 @@ class Scene_Map
     if Input.triggerex?(0x53) && !$game_player.moving? && @mode.nil?
       autoresume=false
       pbSave
-      pbSEPlay("Pkmn exp full") if FileTest.audio_exist?("Audio/SE/Pkmn exp full")
+      pbSEPlay("GUI save choice") if FileTest.audio_exist?("Audio/SE/GUI save choice")
       @wait_count = 4 * Graphics.frame_rate/20
-      pbMessage("Your game has been saved.\\wtnp[12]")
+      pbMessage("Your game has been saved.\\wtnp[6]")
     end
   end
 end

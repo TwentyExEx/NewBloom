@@ -919,7 +919,7 @@ def pbSurf
   if !pbCheckHiddenMoveBadge(BADGE_FOR_SURF,false) || (!$DEBUG && !movefinder)
     return false
   end
-  if pbConfirmMessage(_INTL("The water is a deep blue...\nWould you like to surf on it?"))
+  if pbConfirmMessage(_INTL("The water is a deep blue...\nWould you like to swim on it?"))
     speciesname = (movefinder) ? movefinder.name : $Trainer.name
     pbMessage(_INTL("{1} used {2}!",speciesname,PBMoves.getName(move)))
     pbCancelVehicles
