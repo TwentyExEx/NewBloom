@@ -390,21 +390,21 @@ def pbPersonalityTest
 end
 
 def pbSelectStarter
-	cmd=pbMessage("What region is this starter from?",["Kanto","Johto","Hoenn","Sinnoh","Unova","Kalos","Alola","Galar","Cancel"])
+	cmd=pbMessage("What region is this starter from?",["Kanto","Johto","Hoenn","Sinnoh","Unova","Kalos","Alola","Galar","Cancel"],9)
 	if cmd == 0
-		cmd=pbMessage("Select the Pokémon you want to journey with.",["Bulbasaur","Charmander","Squirtle","Cancel"])
+		cmd=pbMessage("Select the Pokémon you want to journey with.",["Bulbasaur","Charmander","Squirtle","Back"],4)
 			if cmd == 0
-				cmd=pbMessage("Are you sure you want to choose Bulbasaur?",["Yes","No"])
+				cmd=pbMessage("Are you sure you want to choose Bulbasaur?",["Yes","No"],1)
 					if cmd == 0
 						$game_variables[77] = "BULBASAUR"
 					else pbSelectStarter end
 			elsif cmd == 1
-				cmd=pbMessage("Are you sure you want to choose Charmander?",["Yes","No"])
+				cmd=pbMessage("Are you sure you want to choose Charmander?",["Yes","No"],1)
 					if cmd == 0
 						$game_variables[77] = "CHARMANDER"
 					else pbSelectStarter end
 			elsif cmd == 2
-				cmd=pbMessage("Are you sure you want to choose Squirtle?",["Yes","No"])
+				cmd=pbMessage("Are you sure you want to choose Squirtle?",["Yes","No"],1)
 					if cmd == 0
 						$game_variables[77] = "SQUIRTLE"
 					else pbSelectStarter end
@@ -412,19 +412,19 @@ def pbSelectStarter
 				pbSelectStarter
 			end
 	elsif cmd == 1
-		cmd=pbMessage("Select the Pokémon you want to journey with.",["Chikorita","Cyndaquil","Totodile","Cancel"])
+		cmd=pbMessage("Select the Pokémon you want to journey with.",["Chikorita","Cyndaquil","Totodile","Back"],4)
 			if cmd == 0
-				cmd=pbMessage("Are you sure you want to choose Chikorita?",["Yes","No"])
+				cmd=pbMessage("Are you sure you want to choose Chikorita?",["Yes","No"],1)
 					if cmd == 0
 						$game_variables[77] = "CHIKORITA"
 					else pbSelectStarter end
 			elsif cmd == 1
-				cmd=pbMessage("Are you sure you want to choose Cyndaquil?",["Yes","No"])
+				cmd=pbMessage("Are you sure you want to choose Cyndaquil?",["Yes","No"],1)
 					if cmd == 0
 						$game_variables[77] = "CYNDAQUIL"
 					else pbSelectStarter end
 			elsif cmd == 2
-				cmd=pbMessage("Are you sure you want to choose Totodile?",["Yes","No"])
+				cmd=pbMessage("Are you sure you want to choose Totodile?",["Yes","No"],1)
 					if cmd == 0
 						$game_variables[77] = "TOTODILE"
 					else pbSelectStarter end
@@ -432,19 +432,19 @@ def pbSelectStarter
 				pbSelectStarter
 			end
 	elsif cmd == 2
-		cmd=pbMessage("Select the Pokémon you want to journey with.",["Treecko","Torchic","Mudkip","Cancel"])
+		cmd=pbMessage("Select the Pokémon you want to journey with.",["Treecko","Torchic","Mudkip","Back"],4)
 			if cmd == 0
-				cmd=pbMessage("Are you sure you want to choose Treecko?",["Yes","No"])
+				cmd=pbMessage("Are you sure you want to choose Treecko?",["Yes","No"],1)
 					if cmd == 0
 						$game_variables[77] = "TREECKO"
 					else pbSelectStarter end
 			elsif cmd == 1
-				cmd=pbMessage("Are you sure you want to choose Torchic?",["Yes","No"])
+				cmd=pbMessage("Are you sure you want to choose Torchic?",["Yes","No"],1)
 					if cmd == 0
 						$game_variables[77] = "TORCHIC"
 					else pbSelectStarter end
 			elsif cmd == 2
-				cmd=pbMessage("Are you sure you want to choose Mudkip?",["Yes","No"])
+				cmd=pbMessage("Are you sure you want to choose Mudkip?",["Yes","No"],1)
 					if cmd == 0
 						$game_variables[77] = "MUDKIP"
 					else pbSelectStarter end
@@ -452,19 +452,19 @@ def pbSelectStarter
 				pbSelectStarter
 			end
 	elsif cmd == 3
-		cmd=pbMessage("Select the Pokémon you want to journey with.",["Turtwig","Chimchar","Piplup","Cancel"])
+		cmd=pbMessage("Select the Pokémon you want to journey with.",["Turtwig","Chimchar","Piplup","Back"],4)
 			if cmd == 0
-				cmd=pbMessage("Are you sure you want to choose Turtwig?",["Yes","No"])
+				cmd=pbMessage("Are you sure you want to choose Turtwig?",["Yes","No"],1)
 					if cmd == 0
 						$game_variables[77] = "TURTWIG"
 					else pbSelectStarter end
 			elsif cmd == 1
-				cmd=pbMessage("Are you sure you want to choose Chimchar?",["Yes","No"])
+				cmd=pbMessage("Are you sure you want to choose Chimchar?",["Yes","No"],1)
 					if cmd == 0
 						$game_variables[77] = "CHIMCHAR"
 					else pbSelectStarter end
 			elsif cmd == 2
-				cmd=pbMessage("Are you sure you want to choose Piplup?",["Yes","No"])
+				cmd=pbMessage("Are you sure you want to choose Piplup?",["Yes","No"],1)
 					if cmd == 0
 						$game_variables[77] = "PIPLUP"
 					else pbSelectStarter end
@@ -472,19 +472,19 @@ def pbSelectStarter
 				pbSelectStarter
 			end
 	elsif cmd == 4
-		cmd=pbMessage("Select the Pokémon you want to journey with.",["Snivy","Tepig","Oshawott","Cancel"])
+		cmd=pbMessage("Select the Pokémon you want to journey with.",["Snivy","Tepig","Oshawott","Back"],4)
 			if cmd == 0
-				cmd=pbMessage("Are you sure you want to choose Snivy?",["Yes","No"])
+				cmd=pbMessage("Are you sure you want to choose Snivy?",["Yes","No"],1)
 					if cmd == 0
 						$game_variables[77] = "SNIVY"
 					else pbSelectStarter end
 			elsif cmd == 1
-				cmd=pbMessage("Are you sure you want to choose Tepig?",["Yes","No"])
+				cmd=pbMessage("Are you sure you want to choose Tepig?",["Yes","No"],1)
 					if cmd == 0
 						$game_variables[77] = "TEPIG"
 					else pbSelectStarter end
 			elsif cmd == 2
-				cmd=pbMessage("Are you sure you want to choose Oshawott?",["Yes","No"])
+				cmd=pbMessage("Are you sure you want to choose Oshawott?",["Yes","No"],1)
 					if cmd == 0
 						$game_variables[77] = "OSHAWOTT"
 					else pbSelectStarter end
@@ -492,19 +492,19 @@ def pbSelectStarter
 				pbSelectStarter
 			end
 	elsif cmd == 5
-		cmd=pbMessage("Select the Pokémon you want to journey with.",["Chespin","Fennekin","Froakie","Cancel"])
+		cmd=pbMessage("Select the Pokémon you want to journey with.",["Chespin","Fennekin","Froakie","Back"],4)
 		    if cmd == 0
-                cmd=pbMessage("Are you sure you want to choose Chespin?",["Yes","No"])
+                cmd=pbMessage("Are you sure you want to choose Chespin?",["Yes","No"],1)
                     if cmd == 0
                         $game_variables[77] = "CHESPIN"
                     else pbSelectStarter end
             elsif cmd == 1
-                cmd=pbMessage("Are you sure you want to choose Fennekin?",["Yes","No"])
+                cmd=pbMessage("Are you sure you want to choose Fennekin?",["Yes","No"],1)
                     if cmd == 0
                         $game_variables[77] = "FENNEKIN"
                     else pbSelectStarter end
             elsif cmd == 2
-                cmd=pbMessage("Are you sure you want to choose Froakie?",["Yes","No"])
+                cmd=pbMessage("Are you sure you want to choose Froakie?",["Yes","No"],1)
                     if cmd == 0
                         $game_variables[77] = "FROAKIE"
                     else pbSelectStarter end
@@ -512,19 +512,19 @@ def pbSelectStarter
                 pbSelectStarter
             end
 	elsif cmd == 6
-		cmd=pbMessage("Select the Pokémon you want to journey with.",["Rowlet","Litten","Popplio","Cancel"])
+		cmd=pbMessage("Select the Pokémon you want to journey with.",["Rowlet","Litten","Popplio","Back"],4)
             if cmd == 0
-                cmd=pbMessage("Are you sure you want to choose Rowlet?",["Yes","No"])
+                cmd=pbMessage("Are you sure you want to choose Rowlet?",["Yes","No"],1)
                     if cmd == 0
                         $game_variables[77] = "ROWLET"
                     else pbSelectStarter end
             elsif cmd == 1
-                cmd=pbMessage("Are you sure you want to choose Litten?",["Yes","No"])
+                cmd=pbMessage("Are you sure you want to choose Litten?",["Yes","No"],1)
                     if cmd == 0
                         $game_variables[77] = "LITTEN"
                     else pbSelectStarter end
             elsif cmd == 2
-                cmd=pbMessage("Are you sure you want to choose Popplio?",["Yes","No"])
+                cmd=pbMessage("Are you sure you want to choose Popplio?",["Yes","No"],1)
                     if cmd == 0
                         $game_variables[77] = "POPPLIO"
                     else pbSelectStarter end
@@ -532,19 +532,19 @@ def pbSelectStarter
                 pbSelectStarter
             end
 	elsif cmd == 7
-		cmd=pbMessage("Select the Pokémon you want to journey with.",["Grookey","Scorbunny","Sobble","Cancel"])
+		cmd=pbMessage("Select the Pokémon you want to journey with.",["Grookey","Scorbunny","Sobble","Back"],4)
             if cmd == 0
-                cmd=pbMessage("Are you sure you want to choose Grookey?",["Yes","No"])
+                cmd=pbMessage("Are you sure you want to choose Grookey?",["Yes","No"],1)
                     if cmd == 0
                         $game_variables[77] = "GROOKEY"
                     else pbSelectStarter end
             elsif cmd == 1
-                cmd=pbMessage("Are you sure you want to choose Scorbunny?",["Yes","No"])
+                cmd=pbMessage("Are you sure you want to choose Scorbunny?",["Yes","No"],1)
                     if cmd == 0
                         $game_variables[77] = "SCORBUNNY"
                     else pbSelectStarter end
             elsif cmd == 2
-                cmd=pbMessage("Are you sure you want to choose Sobble?",["Yes","No"])
+                cmd=pbMessage("Are you sure you want to choose Sobble?",["Yes","No"],1)
                     if cmd == 0
                         $game_variables[77] = "SOBBLE"
                     else pbSelectStarter end

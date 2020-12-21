@@ -28,7 +28,7 @@ def pbChangeName(name=nil,outfit=0)
   trainertype = pbGetPlayerTrainerType
   $trname = name
   if $trname==nil
-    $trname = pbEnterPlayerName(_INTL("Your name?"),0,PLAYERNAMELIMIT)
+    $trname = $Trainer.name=pbEnterPlayerName(_INTL("Your name?"),1,@parameters[1],$Trainer.name)
     if $trname==""
       gender = pbGetTrainerTypeGender(trainertype) 
       trname = pbSuggestTrainerName(gender)

@@ -1,12 +1,14 @@
 class PokemonLoadPanel < SpriteWrapper
   attr_reader :selected
 
-  TEXTCOLOR             = Color.new(232,232,232)
-  TEXTSHADOWCOLOR       = Color.new(136,136,136)
-  MALETEXTCOLOR         = Color.new(56,160,248)
-  MALETEXTSHADOWCOLOR   = Color.new(56,104,168)
-  FEMALETEXTCOLOR       = Color.new(240,72,88)
-  FEMALETEXTSHADOWCOLOR = Color.new(160,64,64)
+  TEXTCOLOR                = Color.new(232,232,232)
+  TEXTSHADOWCOLOR          = Color.new(136,136,136)
+  MALETEXTCOLOR            = Color.new(56,160,248)
+  MALETEXTSHADOWCOLOR      = Color.new(56,104,168)
+  FEMALETEXTCOLOR          = Color.new(240,72,88)
+  FEMALETEXTSHADOWCOLOR    = Color.new(160,64,64)
+  NONBINARYTEXTCOLOR       = Color.new(175,134,255)
+  NONBINARYTEXTSHADOWCOLOR = Color.new(91,70,133)
 
   def initialize(index,title,isContinue,trainer,framecount,mapid,viewport=nil)
     super(viewport)
@@ -72,13 +74,7 @@ class PokemonLoadPanel < SpriteWrapper
         else
           textpos.push([_INTL("{1}m",min),103*2,88*2,1,TEXTCOLOR,TEXTSHADOWCOLOR])
         end
-        if @trainer.male?
-          textpos.push([@trainer.name,56*2,32*2,0,MALETEXTCOLOR,MALETEXTSHADOWCOLOR])
-        elsif @trainer.female?
-          textpos.push([@trainer.name,56*2,32*2,0,FEMALETEXTCOLOR,FEMALETEXTSHADOWCOLOR])
-        else
-          textpos.push([@trainer.name,56*2,32*2,0,TEXTCOLOR,TEXTSHADOWCOLOR])
-        end
+          textpos.push([@trainer.name,56*2,32*2,0,NONBINARYTEXTCOLOR,NONBINARYTEXTSHADOWCOLOR])
         mapname = pbGetMapNameFromId(@mapid)
         mapname.gsub!(/\\PN/,@trainer.name)
         textpos.push([mapname,193*2,5*2,1,TEXTCOLOR,TEXTSHADOWCOLOR])
