@@ -649,3 +649,144 @@ Pokemon = DIGLETT,5
 Pokemon = GEODUDE,5
 Pokemon = ONIX,5
 #-------------------------------
+[IDOL,Hannah,1]
+Pokemon = CLEFFA,5
+Pokemon = CLEFFA,5
+#-------------------------------
+[IDOL,Hannah,2]
+Pokemon = CLEFFA,5
+Pokemon = CLEFFA,5
+Pokemon = CLEFFA,5
+#-------------------------------
+[IDOL,Hannah,3]
+Pokemon = CLEFFA,5
+Pokemon = CLEFFA,5
+Pokemon = CLEFFA,5
+Pokemon = CLEFFA,5
+#-------------------------------
+[NURSE,Charlotte,1]
+Pokemon = GOTHITA,5
+#-------------------------------
+[NURSE,Charlotte,2]
+Pokemon = GOTHITA,5
+Pokemon = MUNNA,5
+#-------------------------------
+[NURSE,Charlotte,3]
+Pokemon = GOTHITA,5
+Pokemon = MUNNA,5
+Pokemon = AUDINO,5
+#-------------------------------
+[AROMALADY,Camille,1]
+Pokemon = BUDEW,5
+#-------------------------------
+[AROMALADY,Camille,2]
+Pokemon = BUDEW,5
+Pokemon = CHERUBI,5
+#-------------------------------
+[AROMALADY,Camille,3]
+Pokemon = BUDEW,5
+Pokemon = CHERUBI,5
+Pokemon = SHROOMISH,5
+#-------------------------------
+[RICHBOY,Dick,1]
+Pokemon = SHINX,5
+Pokemon = AZURILL,5
+#-------------------------------
+[RICHBOY,Dick,2]
+Pokemon = SHINX,5
+Pokemon = AZURILL,5
+Pokemon = YAMPER,5
+#-------------------------------
+[RICHBOY,Dick,3]
+Pokemon = SHINX,5
+Pokemon = AZURILL,5
+Pokemon = YAMPER,5
+Pokemon = VULPIX_1,5
+#-------------------------------
+[SOCIALITE2,Beatrice,1]
+Pokemon = GLAMEOW,5
+Pokemon = PURRLOIN,5
+#-------------------------------
+[SOCIALITE2,Beatrice,2]
+Pokemon = GLAMEOW,5
+Pokemon = PURRLOIN,5
+Pokemon = CARBINK,5
+#-------------------------------
+[SOCIALITE2,Beatrice,3]
+Pokemon = GLAMEOW,5
+Pokemon = PURRLOIN,5
+Pokemon = CARBINK,5
+Pokemon = BUDEW,5
+#-------------------------------
+[NURSERYAIDE,Ingrid,1]
+Pokemon = BUNEARY,5
+#-------------------------------
+[NURSERYAIDE,Ingrid,2]
+Pokemon = BUNEARY,5
+Pokemon = MILTANK,5
+#-------------------------------
+[NURSERYAIDE,Ingrid,3]
+Pokemon = BUNEARY,5
+Pokemon = MILTANK,5
+Pokemon = EXEGGCUTE,5
+#-------------------------------
+[LADY,Molly,1]
+Pokemon = CORSOLA,5
+#-------------------------------
+[LADY,Molly,2]
+Pokemon = CORSOLA,5
+Pokemon = LUVDISC,5
+#-------------------------------
+[LADY,Molly,3]
+Pokemon = CORSOLA,5
+Pokemon = LUVDISC,5
+Pokemon = MAREEP,5
+#-------------------------------
+[AROMALADY,Ivy,1]
+Pokemon = COMFEY,5
+#-------------------------------
+[AROMALADY,Ivy,2]
+Pokemon = COMFEY,5
+Pokemon = COTTONEE,5
+#-------------------------------
+[AROMALADY,Ivy,3]
+Pokemon = COMFEY,5
+Pokemon = COTTONEE,5
+Pokemon = FLABEBE,5
+#-------------------------------
+[PARASOLLADY,Penelope,1]
+Pokemon = SURSKIT,5
+#-------------------------------
+[PARASOLLADY,Penelope,2]
+Pokemon = SURSKIT,5
+Pokemon = VANILLITE,5
+#-------------------------------
+[PARASOLLADY,Penelope,3]
+Pokemon = SURSKIT,5
+Pokemon = VANILLITE,5
+Pokemon = FRILLISH,5
+#-------------------------------
+[BIRDKEEPER,Arthur,1]
+Pokemon = SURSKIT,5
+#-------------------------------
+[BIRDKEEPER,Arthur,2]
+Pokemon = SURSKIT,5
+Pokemon = VANILLITE,5
+#-------------------------------
+[BIRDKEEPER,Arthur,3]
+Pokemon = SURSKIT,5
+Pokemon = VANILLITE,5
+Pokemon = FRILLISH,5
+#-------------------------------
+[MAID,Alice,1]
+Pokemon = KLEFKI,5
+#-------------------------------
+[MAID,Alice,2]
+Pokemon = KLEFKI,5
+Pokemon = GOOMY,5
+#-------------------------------
+[MAID,Alice,3]
+Pokemon = KLEFKI,5
+Pokemon = GOOMY,5
+Pokemon = RALTS,5
+#-------------------------------
