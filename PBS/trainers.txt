@@ -1,4 +1,4 @@
-﻿# See the documentation on the wiki to learn how to edit this file.
+# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
 [YOUNGSTER2,Oliver,1]
 Pokemon = RATTATA,1
@@ -637,14 +637,14 @@ Pokemon = GEODUDE,5
 Pokemon = GURDURR,5
 Pokemon = DRILBUR,5
 #-------------------------------
-[WORKER_2,Jack,1]
+[WORKER2,Jack,1]
 Pokemon = DIGLETT,1
 #-------------------------------
-[WORKER_2,Jack,2]
+[WORKER2,Jack,2]
 Pokemon = DIGLETT,5
 Pokemon = GEODUDE,5
 #-------------------------------
-[WORKER_2,Jack,3]
+[WORKER2,Jack,3]
 Pokemon = DIGLETT,5
 Pokemon = GEODUDE,5
 Pokemon = ONIX,5
@@ -766,14 +766,14 @@ Pokemon = SURSKIT,5
 Pokemon = VANILLITE,5
 Pokemon = FRILLISH,5
 #-------------------------------
-[BIRDKEEPER,Arthur,1]
+[BIRDKEEPER_M,Arthur,1]
 Pokemon = SURSKIT,1
 #-------------------------------
-[BIRDKEEPER,Arthur,2]
+[BIRDKEEPER_M,Arthur,2]
 Pokemon = SURSKIT,5
 Pokemon = VANILLITE,5
 #-------------------------------
-[BIRDKEEPER,Arthur,3]
+[BIRDKEEPER_M,Arthur,3]
 Pokemon = SURSKIT,5
 Pokemon = VANILLITE,5
 Pokemon = FRILLISH,5
