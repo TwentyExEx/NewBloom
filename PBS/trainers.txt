@@ -533,16 +533,16 @@ Pokemon = VULPIX,5
 Pokemon = GROWLITHE,5
 #-------------------------------
 [DEPOTAGENT,Rhett,1]
-Pokemon = CHINCHOU,1
+Pokemon = DIGLETT,1
 #-------------------------------
 [DEPOTAGENT,Rhett,2]
-Pokemon = CHINCHOU,5
-Pokemon = LITWICK,5
+Pokemon = DIGLETT,5
+Pokemon = DRILBUR,5
 #-------------------------------
 [DEPOTAGENT,Rhett,3]
-Pokemon = CHINCHOU,5
-Pokemon = LITWICK,5
-Pokemon = LITWICK,5
+Pokemon = DIGLETT,5
+Pokemon = DRILBUR,5
+Pokemon = ONIX,5
 #-------------------------------
 [VETERAN_F,London,1]
 Pokemon = ELGYEM,1
@@ -612,4 +612,40 @@ Pokemon = MUNNA,5
 Pokemon = ABRA,5
 Pokemon = MUNNA,5
 Pokemon = WOOBAT,5
+#-------------------------------
+[BATTLEGIRL2,Harper,1]
+Pokemon = TYROGUE,5
+#-------------------------------
+[BATTLEGIRL2,Harper,2]
+Pokemon = TYROGUE,5
+Pokemon = MACHOP,5
+#-------------------------------
+[BATTLEGIRL2,Harper,3]
+Pokemon = TYROGUE,5
+Pokemon = MACHOP,5
+Pokemon = MIENFOO,5
+#-------------------------------
+[WORKER,Elijah,1]
+Pokemon = ROLYCOLY,5
+#-------------------------------
+[WORKER,Elijah,2]
+Pokemon = ROLYCOLY,5
+Pokemon = GURDURR,5
+#-------------------------------
+[WORKER,Elijah,3]
+Pokemon = GEODUDE,5
+Pokemon = GURDURR,5
+Pokemon = DRILBUR,5
+#-------------------------------
+[WORKER_2,Jack,1]
+Pokemon = DIGLETT,5
+#-------------------------------
+[WORKER_2,Jack,2]
+Pokemon = DIGLETT,5
+Pokemon = GEODUDE,5
+#-------------------------------
+[WORKER_2,Jack,3]
+Pokemon = DIGLETT,5
+Pokemon = GEODUDE,5
+Pokemon = ONIX,5
 #-------------------------------
