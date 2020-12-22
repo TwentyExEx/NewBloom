@@ -948,21 +948,18 @@ end
 alias follow_pbEndSurf pbEndSurf
 def pbEndSurf(xOffset,yOffset)
   ret = follow_pbEndSurf(xOffset,yOffset)
-  if $game_switches[Toggle_Following_Switch] && ret && $game_variables[Current_Following_Variable]!=0
+  if $game_switches[Toggle_Following_Switch] == true && ret && $game_variables[Current_Following_Variable]!=0
     if WATERPOKEMONCANSURF && $Trainer.party[0].hasType?(:WATER)
       $PokemonTemp.dependentEvents.Come_back($Trainer.party[0].isShiny?,false)
-    elsif ALWAYS_ANIMATED_CAN_SURF && ($Trainer.party[0].hasType?(:FLYING) ||
-        isConst?($Trainer.party[0].ability,PBAbilities,:LEVITATE) ||
-        ALWAYS_ANIMATED_FOLLOWERS.include?($Trainer.party[0].species)) &&
-        !(ALWAYS_ANIMATED_EXCEPTION.include?($Trainer.party[0].species))
-        $PokemonTemp.dependentEvents.Come_back($Trainer.party[0].isShiny?,false)
+    elsif ALWAYS_ANIMATED_CAN_SURF && ($Trainer.party[0].hasType?(:FLYING) || isConst?($Trainer.party[0].ability,PBAbilities,:LEVITATE) || ALWAYS_ANIMATED_FOLLOWERS.include?($Trainer.party[0].species)) && !(ALWAYS_ANIMATED_EXCEPTION.include?($Trainer.party[0].species))
+      $PokemonTemp.dependentEvents.Come_back($Trainer.party[0].isShiny?,false)
     elsif $Trainer.party[0].hp>0 && !$Trainer.party[0].isEgg?
       $PokemonTemp.dependentEvents.Come_back(true)
     else
       xOffset = 0
       yOffset = 0 
     end
-  elsif $game_switches[Toggle_Following_Switch] == true && ret
+  elsif $game_switches[Toggle_Following_Switch] == false && ret && $game_variables[Current_Following_Variable]!=0
     xOffset = 0
     yOffset = 0
   end

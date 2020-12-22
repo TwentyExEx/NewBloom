@@ -485,30 +485,30 @@ Land
     FLABEBE,5
     CLEFFA,5
     CLEFFA,5
-    CLEFFA,5
-    CLEFFA,5
     HATENNA,5
     HATENNA,5
-    HATENNA,5
-    HATENNA,5
+    RALTS,5
+    RALTS,5
+    RALTS,5
+    RALTS,5
     AUDINO,5
     AUDINO,5
 #-------------------------------
 045 # Fairy Garden - Lakefront
 25,10,10
 Land
-    SNORUNT,5
-    SNORUNT,5
-    SNEASEL,5
-    SNEASEL,5
-    SANDSHREW,5
-    SANDSHREW,5
-    BUNEARY,5
-    BUNEARY,5
-    BUNEARY,5
-    BUNEARY,5
-    DRAMPA,5
-    DRAMPA,5
+    MUNNA,5
+    MUNNA,5
+    COTTONEE,5
+    COTTONEE,5
+    SOLOSIS,5
+    SOLOSIS,5
+    BOUNSWEET,5
+    BOUNSWEET,5
+    BOUNSWEET,5
+    BOUNSWEET,5
+    FLABEBE,5
+    FLABEBE,5
 #-------------------------------
 046 # Fairy Garden - Botanical Gardens
 25,10,10
@@ -517,8 +517,8 @@ Land
     PETILIL,5
     GOSSIFLEUR,5
     GOSSIFLEUR,5
-    GOSSIFLEUR,5
-    GOSSIFLEUR,5
+    CLEFFA,5
+    CLEFFA,5
     COMFEY,5
     COMFEY,5
     COMFEY,5
@@ -529,47 +529,59 @@ Land
 047 # Fairy Garden - Fae Crossing
 25,10,10
 Land
-    SNORUNT,5
-    SNORUNT,5
-    SNEASEL,5
-    SNEASEL,5
-    SANDSHREW,5
-    SANDSHREW,5
-    BUNEARY,5
-    BUNEARY,5
-    BUNEARY,5
-    BUNEARY,5
-    DRAMPA,5
-    DRAMPA,5
+    PONYTA,5
+    PONYTA,5
+    HATENNA,5
+    HATENNA,5
+    AZURILL,5
+    AZURILL,5
+    MORELULL,5
+    MORELULL,5
+    MORELULL,5
+    MORELULL,5
+    FLABEBE,5
+    FLABEBE,5
+Water
+    LUVDISC,5
+    FINNEON,5
+    FINNEON,5
+    CORSOLA,5
+    CORSOLA,5
 #-------------------------------
 048 # Fairy Garden - Descent
 25,10,10
 Land
-    SNORUNT,5
-    SNORUNT,5
-    SNEASEL,5
-    SNEASEL,5
-    SANDSHREW,5
-    SANDSHREW,5
-    BUNEARY,5
-    BUNEARY,5
-    BUNEARY,5
-    BUNEARY,5
-    DRAMPA,5
-    DRAMPA,5
+    SOLOSIS,5
+    SOLOSIS,5
+    CHERUBI,5
+    CHERUBI,5
+    HATENNA,5
+    HATENNA,5
+    RALTS,5
+    RALTS,5
+    RALTS,5
+    MUNNA,5
+    RALTS,5
+    MUNNA,5
 #-------------------------------
 049 # Fairy Garden - Battle Plaza
 25,10,10
 Land
-    SNORUNT,5
-    SNORUNT,5
-    SNEASEL,5
-    SNEASEL,5
-    SANDSHREW,5
-    SANDSHREW,5
-    BUNEARY,5
-    BUNEARY,5
-    BUNEARY,5
-    BUNEARY,5
-    DRAMPA,5
-    DRAMPA,5
+    SNUBBULL,5
+    SNUBBULL,5
+    TOGEPI,5
+    TOGEPI,5
+    AZURILL,5
+    AZURILL,5
+    DRIFLOON,5
+    DRIFLOON,5
+    DRIFLOON,5
+    DRIFLOON,5
+    DRIFLOON,5
+    DRIFLOON,5
+Water
+    LUVDISC,5
+    FINNEON,5
+    FINNEON,5
+    CORSOLA,5
+    CORSOLA,5

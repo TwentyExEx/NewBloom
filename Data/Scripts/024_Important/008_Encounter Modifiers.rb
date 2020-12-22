@@ -64,14 +64,16 @@ Events.onWildPokemonCreateForSpawning+=proc {|sender,e|
   end 
 }
 
-# Hard code Neberian Ralts line
+# Hard code Neberian Ralts
 Events.onWildPokemonCreateForSpawning+=proc {|sender,e|
   pokemon=e[0]
   maps=[21,22]
   if $game_map && maps.include?($game_map.map_id)
-    ar=[280,281,282,475]
+    ar=[280,281,475]
     if ar.include?(pokemon.species)
       pokemon.form = 1
+    elsif pokemon.species == 282
+      pokemon.form = 2
     else
     end
   end 
@@ -83,7 +85,7 @@ Events.onWildPokemonCreateForSpawning+=proc {|sender,e|
   maps=[27,29]
   if $game_map && maps.include?($game_map.map_id)
     if pokemon.species == 302
-      pokemon.form = 1
+      pokemon.form = 2
     else
     end
   end 
@@ -138,6 +140,32 @@ Events.onWildPokemonCreateForSpawning+=proc {|sender,e|
       if pokemon.level >= 42
         pokemon.species = 866
       else end
+    else
+    end
+  end 
+}
+
+# Hard code Galarian Ponyta
+Events.onWildPokemonCreateForSpawning+=proc {|sender,e|
+  pokemon=e[0]
+  maps=[47]
+  if $game_map && maps.include?($game_map.map_id)
+    ar=[77,78]
+    if ar.include?(pokemon.species)
+      pokemon.form = 1
+    else
+    end
+  end 
+}
+
+# Hard code Neberian Drifloon
+Events.onWildPokemonCreateForSpawning+=proc {|sender,e|
+  pokemon=e[0]
+  maps=[49]
+  if $game_map && maps.include?($game_map.map_id)
+    ar=[425,426]
+    if ar.include?(pokemon.species)
+      pokemon.form = 1
     else
     end
   end 
