@@ -252,6 +252,9 @@ AGGRENCMOVEFREQ = 5 # default 5
 #1   - means lowest movement
 #6   - means highest movement
 
+SHINY_ANIMATION_ID = 5
+DUST_ANIMATION_ID = 2
+SPLASH_ANIMATION_ID = 6
 
 #===============================================================================
 #                              THE SCRIPT
@@ -333,6 +336,8 @@ def pbChooseTileOnStepTaken
   return if PBTerrain.isLedge?($game_map.terrain_tag(x,y))
   return if PBTerrain.isWaterfall?($game_map.terrain_tag(x,y))
   return if PBTerrain.isRock?($game_map.terrain_tag(x,y))
+  return if PBTerrain.isOWNoSpawn?($game_map.terrain_tag(x,y))
+  return if PBTerrain.isSurfNoSpawn?($game_map.terrain_tag(x,y))
   if RESTRICTENCOUNTERSTOPLAYERMOVEMENT
     return if !PBTerrain.isWater?($game_map.terrain_tag(x,y)) && 
               $PokemonGlobal && $PokemonGlobal.surfing
@@ -391,8 +396,19 @@ def pbPlaceEncounter(x,y,encounter,gender = nil,form = nil,isShiny = nil)
     spawnMap = $MapFactory.getMap(mapId)
     spawnMap.spawnEvent(x,y,encounter,gender,form,isShiny)
   end
-  # Show grass rustling animations
-  $scene.spriteset.addUserAnimation(RUSTLE_NORMAL_ANIMATION_ID,x,y,true,1)
+  # Show spawn animations
+  if PBTerrain.isGrass?($game_map.terrain_tag(x,y))
+  # Show grass rustling animations when on grass
+    $scene.spriteset.addUserAnimation(RUSTLE_NORMAL_ANIMATION_ID,x,y,true,1)
+  end
+  if PBTerrain.isCaveTile?($game_map.terrain_tag(x,y))
+  # Show cave dust animations when in cave
+    $scene.spriteset.addUserAnimation(DUST_ANIMATION_ID,x,y,true,1)
+  end 
+  if PBTerrain.isWater?($game_map.terrain_tag(x,y))
+  # Show water splashing animations when in water
+    $scene.spriteset.addUserAnimation(SPLASH_ANIMATION_ID,x,y,true,1)
+  end
   # Play the pokemon cry of encounter
   pbPlayCryOnOverworld(encounter[0])
   # For roaming encounters we have to do the following:
@@ -471,6 +487,7 @@ class Game_Map
     if isShiny==true
       character_name = character_name+"s" if USESHINYSPRITES == true and pbResolveBitmap("Graphics/Characters/"+character_name+"s")
       shinysprite = true
+      $scene.spriteset.addUserAnimation(SHINY_ANIMATION_ID,event.x,event.y,true,2)
     end
     # use sprite of alternative form
     if USEALTFORMS==true and form!=nil and form!=0
