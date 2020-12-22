@@ -42,16 +42,91 @@
 # Hard code Neberian Cutiefly
 Events.onWildPokemonCreateForSpawning+=proc {|sender,e|
    pokemon=e[0]
-   maps=[8] # Lakeside
+   maps=[8,10]
    if $game_map && maps.include?($game_map.map_id)
-     if pokemon.species == 742
+     ar=[742,743]
+     if ar.include?(pokemon.species)
       pokemon.form = 1
      else
      end
    end 
 }
 
+# Hard code Galarian Meowth
+Events.onWildPokemonCreateForSpawning+=proc {|sender,e|
+   pokemon=e[0]
+   maps=[9,14,11]
+   if $game_map && maps.include?($game_map.map_id)
+     if pokemon.species == 52
+      pokemon.form = 2
+     else
+     end
+   end 
+}
 
+# Hard code Neberian Ralts line
+Events.onWildPokemonCreateForSpawning+=proc {|sender,e|
+   pokemon=e[0]
+   maps=[21,22]
+   if $game_map && maps.include?($game_map.map_id)
+     ar=[280,281,282,475]
+     if ar.include?(pokemon.species)
+      pokemon.form = 1
+     else
+     end
+   end 
+}
+
+# Hard code Neberian Sableye
+Events.onWildPokemonCreateForSpawning+=proc {|sender,e|
+   pokemon=e[0]
+   maps=[27,29]
+   if $game_map && maps.include?($game_map.map_id)
+     if pokemon.species == 302
+      pokemon.form = 1
+     else
+     end
+   end 
+}
+
+# Hard code Alolan Vulpix
+Events.onWildPokemonCreateForSpawning+=proc {|sender,e|
+   pokemon=e[0]
+   maps=[35]
+   if $game_map && maps.include?($game_map.map_id)
+     ar=[37,38]
+     if ar.include?(pokemon.species)
+      pokemon.form = 1
+     else
+     end
+   end 
+}
+
+# Hard code Alolan Sandshrew
+Events.onWildPokemonCreateForSpawning+=proc {|sender,e|
+   pokemon=e[0]
+   maps=[39]
+   if $game_map && maps.include?($game_map.map_id)
+     ar=[27,28]
+     if ar.include?(pokemon.species)
+      pokemon.form = 1
+     else
+     end
+   end 
+}
+
+# Hard code Neberian Buneary
+Events.onWildPokemonCreateForSpawning+=proc {|sender,e|
+   pokemon=e[0]
+   maps=[36,37,38,39]
+   if $game_map && maps.include?($game_map.map_id)
+     ar=[427,428]
+     if ar.include?(pokemon.species)
+      pokemon.form = 1
+     else
+     end
+   end 
+}
 
 # This is the basis of a trainer modifier.  It works both for trainers loaded
 # when you battle them, and for partner trainers when they are registered.
