@@ -421,10 +421,16 @@ class DependentEvents
       return
     end
     events=$PokemonGlobal.dependentEvents
-    for i in 0...events.length
-      @realEvents[i].move_speed = $game_player.move_speed
+    if $game_player.moving?
+      for i in 0...events.length
+        @realEvents[i].move_speed = $game_player.move_speed
+      end
+      FollowingMoveRoute([PBMoveRoute::StepAnimeOn])
+    else
+      for i in 0...events.length
+        @realEvents[i].move_speed = 3
+      end
     end
-    FollowingMoveRoute([PBMoveRoute::StepAnimeOn])
   end
 
   def stop_stepping
@@ -921,7 +927,7 @@ def pbSurf
   end
   if pbConfirmMessage(_INTL("The water is a deep blue...\nWould you like to swim on it?"))
     speciesname = (movefinder) ? movefinder.name : $Trainer.name
-    pbMessage(_INTL("{1} used {2}!",speciesname,PBMoves.getName(move)))
+    # pbMessage(_INTL("{1} used {2}!",speciesname,PBMoves.getName(move)))
     pbCancelVehicles
     pbHiddenMoveAnimation(movefinder)
     $PokemonTemp.dependentEvents.check_surf(true)
@@ -952,14 +958,13 @@ def pbEndSurf(xOffset,yOffset)
         $PokemonTemp.dependentEvents.Come_back($Trainer.party[0].isShiny?,false)
     elsif $Trainer.party[0].hp>0 && !$Trainer.party[0].isEgg?
       $PokemonTemp.dependentEvents.Come_back(true)
-    else 
+    else
       xOffset = 0
       yOffset = 0 
     end
-  elsif $game_switches[Toggle_Following_Switch] = true && ret
+  elsif $game_switches[Toggle_Following_Switch] == true && ret
     xOffset = 0
     yOffset = 0
-  else
   end
 end
 
