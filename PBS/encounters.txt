@@ -151,6 +151,12 @@ Land
     PHANTUMP,5
     GASTLY,5
     GASTLY,5
+Water
+    FRILLISH,5
+    INKAY,5
+    TENTACOOL,5
+    TENTACOOL,5
+    TENTACOOL,5
 #-------------------------------
 018 # Deep Forest - The Pit
 25,10,10
@@ -183,6 +189,12 @@ Land
     BLIPBUG,5
     GOOMY,5
     GOOMY,5
+Water
+    FRILLISH,5
+    INKAY,5
+    TENTACOOL,5
+    TENTACOOL,5
+    TENTACOOL,5
 #-------------------------------
 020 # Deep Forest - Cave Entrance
 25,10,10
@@ -199,6 +211,12 @@ Land
     BLIPBUG,5
     GOOMY,5
     GOOMY,5
+Water
+    FRILLISH,5
+    INKAY,5
+    TENTACOOL,5
+    TENTACOOL,5
+    TENTACOOL,5
 #-------------------------------
 021 # Deep Forest - Purgatory
 25,10,10
@@ -247,6 +265,12 @@ Cave
     MAKUHITA,5
     CARBINK,5
     CARBINK,5
+Water
+    SHELLOS,5
+    EELEKTRIK,5
+    EELEKTRIK,5
+    CHEWTLE,5
+    CHEWTLE,5
 #-------------------------------
 027 # Caves - B1F
 25,10,10
@@ -263,6 +287,12 @@ Cave
     TYROGUE,5
     SABLEYE,5
     SABLEYE,5
+Water
+    SHELLOS,5
+    EELEKTRIK,5
+    EELEKTRIK,5
+    CHEWTLE,5
+    CHEWTLE,5
 #-------------------------------
 028 # Caves - B1F
 25,10,10
@@ -279,6 +309,12 @@ Cave
     MACHOP,5
     LARVITAR,5
     LARVITAR,5
+Water
+    SHELLOS,5
+    EELEKTRIK,5
+    EELEKTRIK,5
+    CHEWTLE,5
+    CHEWTLE,5
 #-------------------------------
 029 # Caves - B1F
 25,10,10
@@ -295,6 +331,12 @@ Cave
     DURANT,5
     SABLEYE,5
     SABLEYE,5
+Water
+    SHELLOS,5
+    EELEKTRIK,5
+    EELEKTRIK,5
+    CHEWTLE,5
+    CHEWTLE,5
 #-------------------------------
 030 # Caves - B1F
 25,10,10
@@ -311,6 +353,12 @@ Cave
     MIENFOO,5
     NOIBAT,5
     NOIBAT,5
+Water
+    SHELLOS,5
+    EELEKTRIK,5
+    EELEKTRIK,5
+    CHEWTLE,5
+    CHEWTLE,5
 #-------------------------------
 031 # Caves - Unown Chamber
 25,10,10
@@ -407,6 +455,12 @@ Land
     BUNEARY,5
     DRATINI,5
     DRATINI,5
+Water
+    SPHEAL,5
+    SEEL,5
+    SEEL,5
+    PINCURCHIN,5
+    PINCURCHIN,5
 #-------------------------------
 039 # Mountains - Crossroads
 25,10,10
