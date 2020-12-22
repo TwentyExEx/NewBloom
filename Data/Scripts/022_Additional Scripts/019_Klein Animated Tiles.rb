@@ -66,6 +66,9 @@ KleinTiles[1].push([143,[9,12,33,36,57,60,81,84]])
 KleinTiles[1].push([165,[16,19,40,43,64,67,88,91]])
 KleinTiles[1].push([166,[17,20,41,44,65,68,89,92]])
 KleinTiles[1].push([167,[18,21,42,45,66,69,90,93]])
+KleinTiles[1].push([173,[0,3,24,27,48,51,72,75]])
+KleinTiles[1].push([174,[1,4,25,28,49,52,73,76]])
+KleinTiles[1].push([175,[2,5,26,29,50,53,74,77]])
 
 # Waterfall animation
 KleinTiles[1].push([160,[144,148,176,180]])
