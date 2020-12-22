@@ -165,8 +165,8 @@ SnapEdges = false
 Bicycle = false
 MapPosition = 0,17,10
 Outdoor = false
-ShowArea = false
 HealingSpot = 26,6,7
+ShowArea = false
 #-------------------------------
 [027]
 # B1F
@@ -277,8 +277,8 @@ Outdoor = false
 SnapEdges = true
 Bicycle = true
 Outdoor = true
-ShowArea = true
 HealingSpot = 44,56,38
+ShowArea = true
 #-------------------------------
 [045]
 # Lakefront
@@ -292,8 +292,8 @@ ShowArea = true
 SnapEdges = true
 Bicycle = true
 Outdoor = true
-ShowArea = true
 HealingSpot = 46,36,78
+ShowArea = true
 #-------------------------------
 [047]
 # Fae Crossing

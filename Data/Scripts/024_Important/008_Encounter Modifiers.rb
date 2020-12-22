@@ -128,6 +128,18 @@ Events.onWildPokemonCreateForSpawning+=proc {|sender,e|
    end 
 }
 
+# Hard code Galarian Mr. Mime
+Events.onWildPokemonCreateForSpawning+=proc {|sender,e|
+   pokemon=e[0]
+   maps=[35]
+   if $game_map && maps.include?($game_map.map_id)
+     if pokemon.species == 122
+      pokemon.form = 1
+     else
+     end
+   end 
+}
+
 # This is the basis of a trainer modifier.  It works both for trainers loaded
 # when you battle them, and for partner trainers when they are registered.
 # Note that you can only modify a partner trainer's Pokémon, and not the trainer
