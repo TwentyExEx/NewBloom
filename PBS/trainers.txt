@@ -361,7 +361,7 @@ Pokemon = GOTHITA,5
 [PSYCHIC_F2,Maxine,3]
 Pokemon = EXEGGCUTE,5
 Pokemon = GOTHITA,5
-Pokemon = WYNAUT,5
+Pokemon = RALTS,5
 #-------------------------------
 [GENTLEMAN_2,Wesley,1]
 Pokemon = HOOTHOOT,1

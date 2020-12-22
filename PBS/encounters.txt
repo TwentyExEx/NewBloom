@@ -110,7 +110,7 @@ Land
     SPINARAK,5
     SPINARAK,5
     PANCHAM,5
-    BUNEARY,5
+    PANCHAM,5
     KOMALA,5
     KOMALA,5
 Water
@@ -463,6 +463,102 @@ Water
     PINCURCHIN,5
 #-------------------------------
 039 # Mountains - Crossroads
+25,10,10
+Land
+    SNORUNT,5
+    SNORUNT,5
+    SNEASEL,5
+    SNEASEL,5
+    SANDSHREW,5
+    SANDSHREW,5
+    BUNEARY,5
+    BUNEARY,5
+    BUNEARY,5
+    BUNEARY,5
+    DRAMPA,5
+    DRAMPA,5
+#-------------------------------
+044 # Fairy Garden - Wellspring
+25,10,10
+Land
+    FLABEBE,5
+    FLABEBE,5
+    CLEFFA,5
+    CLEFFA,5
+    CLEFFA,5
+    CLEFFA,5
+    HATENNA,5
+    HATENNA,5
+    HATENNA,5
+    HATENNA,5
+    AUDINO,5
+    AUDINO,5
+#-------------------------------
+045 # Fairy Garden - Lakefront
+25,10,10
+Land
+    SNORUNT,5
+    SNORUNT,5
+    SNEASEL,5
+    SNEASEL,5
+    SANDSHREW,5
+    SANDSHREW,5
+    BUNEARY,5
+    BUNEARY,5
+    BUNEARY,5
+    BUNEARY,5
+    DRAMPA,5
+    DRAMPA,5
+#-------------------------------
+046 # Fairy Garden - Botanical Gardens
+25,10,10
+Land
+    PETILIL,5
+    PETILIL,5
+    GOSSIFLEUR,5
+    GOSSIFLEUR,5
+    GOSSIFLEUR,5
+    GOSSIFLEUR,5
+    COMFEY,5
+    COMFEY,5
+    COMFEY,5
+    COMFEY,5
+    AUDINO,5
+    AUDINO,5
+#-------------------------------
+047 # Fairy Garden - Fae Crossing
+25,10,10
+Land
+    SNORUNT,5
+    SNORUNT,5
+    SNEASEL,5
+    SNEASEL,5
+    SANDSHREW,5
+    SANDSHREW,5
+    BUNEARY,5
+    BUNEARY,5
+    BUNEARY,5
+    BUNEARY,5
+    DRAMPA,5
+    DRAMPA,5
+#-------------------------------
+048 # Fairy Garden - Descent
+25,10,10
+Land
+    SNORUNT,5
+    SNORUNT,5
+    SNEASEL,5
+    SNEASEL,5
+    SANDSHREW,5
+    SANDSHREW,5
+    BUNEARY,5
+    BUNEARY,5
+    BUNEARY,5
+    BUNEARY,5
+    DRAMPA,5
+    DRAMPA,5
+#-------------------------------
+049 # Fairy Garden - Battle Plaza
 25,10,10
 Land
     SNORUNT,5
