@@ -54,7 +54,7 @@ Events.onStepTakenTransferPossible+=proc {|sender,e|
   if event==$game_player
     return if $PokemonGlobal.bicycle || $PokemonGlobal.surfing
     if PBTerrain.isGrass?(pbGetTerrainTag)
-      if $PokemonGlobal.runtoggle = true && Input.press?(Input::A)
+      if $PokemonGlobal.runtoggle == true && Input.press?(Input::A)
         pbSEPlay("se_step_run_grass")
       else
         pbSEPlay("se_step_grass")
@@ -63,7 +63,7 @@ Events.onStepTakenTransferPossible+=proc {|sender,e|
         pbSEPlay("se_step_default")
     elsif PBTerrain.isIce?(pbGetTerrainTag)
     else
-      if $PokemonGlobal.runtoggle = true && Input.press?(Input::A)
+      if $PokemonGlobal.runtoggle == true && Input.press?(Input::A)
         pbSEPlay("se_step_run_dirt")
       else
         pbSEPlay("se_step_dirt")
