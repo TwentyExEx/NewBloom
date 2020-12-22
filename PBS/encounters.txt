@@ -347,18 +347,18 @@ Land
 035 # Mountains - Stairway
 25,10,10
 Land
-    VANILLITE,5
-    VANILLITE,5
-    CUBCHOO,5
-    CUBCHOO,5
-    VULPIX,5
-    VULPIX,5
     MIMEJR,5
     MIMEJR,5
     MIMEJR,5
     MIMEJR,5
-    SWABLU,5
-    SWABLU,5
+    MIMEJR,5
+    MIMEJR,5
+    MIMEJR,5
+    MIMEJR,5
+    MIMEJR,5
+    MIMEJR,5
+    MIMEJR,5
+    MIMEJR,5
 #-------------------------------
 036 # Mountains - Ravine
 25,10,10
