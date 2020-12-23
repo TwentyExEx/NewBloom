@@ -267,8 +267,8 @@ Cave
     CARBINK,5
 Water
     SHELLOS,5
-    EELEKTRIK,5
-    EELEKTRIK,5
+    TYNAMO,5
+    TYNAMO,5
     CHEWTLE,5
     CHEWTLE,5
 #-------------------------------
@@ -289,8 +289,8 @@ Cave
     SABLEYE,5
 Water
     SHELLOS,5
-    EELEKTRIK,5
-    EELEKTRIK,5
+    TYNAMO,5
+    TYNAMO,5
     CHEWTLE,5
     CHEWTLE,5
 #-------------------------------
@@ -311,8 +311,8 @@ Cave
     LARVITAR,5
 Water
     SHELLOS,5
-    EELEKTRIK,5
-    EELEKTRIK,5
+    TYNAMO,5
+    TYNAMO,5
     CHEWTLE,5
     CHEWTLE,5
 #-------------------------------
@@ -333,8 +333,8 @@ Cave
     SABLEYE,5
 Water
     SHELLOS,5
-    EELEKTRIK,5
-    EELEKTRIK,5
+    TYNAMO,5
+    TYNAMO,5
     CHEWTLE,5
     CHEWTLE,5
 #-------------------------------
@@ -355,8 +355,8 @@ Cave
     NOIBAT,5
 Water
     SHELLOS,5
-    EELEKTRIK,5
-    EELEKTRIK,5
+    TYNAMO,5
+    TYNAMO,5
     CHEWTLE,5
     CHEWTLE,5
 #-------------------------------
