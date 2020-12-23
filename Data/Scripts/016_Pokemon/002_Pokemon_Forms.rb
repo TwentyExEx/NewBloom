@@ -759,16 +759,16 @@ MultipleForms.copy(:PIKACHU,:EXEGGCUTE,:CUBONE)
 
 # These species don't have visually different Galarian forms, but they need to
 # evolve into different forms depending on the location where they evolved.
-MultipleForms.register(:KOFFING,{
-  "getForm" => proc { |pkmn|
-    next if pkmn.formSimple>=2
-    mapPos = pbGetMetadata($game_map.map_id,MetadataMapPosition)
-    next 1 if mapPos && mapPos[0]==1   # Tiall region
-    next 0
-  }
-})
+# MultipleForms.register(:KOFFING,{
+#   "getForm" => proc { |pkmn|
+#     next if pkmn.formSimple>=2
+#     mapPos = pbGetMetadata($game_map.map_id,MetadataMapPosition)
+#     next 1 if mapPos && mapPos[0]==1   # Tiall region
+#     next 0
+#   }
+# })
 
-MultipleForms.copy(:KOFFING,:MIMEJR)
+# MultipleForms.copy(:KOFFING,:MIMEJR)
 
 MultipleForms.register(:CUTIEFLY,{
   "getFormOnCreation" => proc { |pkmn|
@@ -780,3 +780,112 @@ MultipleForms.register(:CUTIEFLY,{
    end
 }
 })
+
+MultipleForms.copy(:CUTIEFLY,:RIBOMBEE)
+
+MultipleForms.register(:MEOWTH,{
+  "getFormOnCreation" => proc { |pkmn|
+   maps=[9,14,11]   # Map IDs for second form
+   if $game_map && maps.include?($game_map.map_id)
+     next 2
+   else
+     next 0
+   end
+}
+})
+
+MultipleForms.register(:RALTS,{
+  "getFormOnCreation" => proc { |pkmn|
+   maps=[21,22]   # Map IDs for second form
+   if $game_map && maps.include?($game_map.map_id)
+     next 1
+   else
+     next 0
+   end
+}
+})
+
+MultipleForms.copy(:RALTS,:KIRLIA)
+
+MultipleForms.register(:GARDEVOIR,{
+  "getFormOnCreation" => proc { |pkmn|
+   maps=[21,22]   # Map IDs for second form
+   if $game_map && maps.include?($game_map.map_id)
+     next 2
+   else
+     next 0
+   end
+}
+})
+
+MultipleForms.copy(:GARDEVOIR,:GALLADE)
+
+MultipleForms.register(:SABLEYE,{
+  "getFormOnCreation" => proc { |pkmn|
+   maps=[27,29]   # Map IDs for second form
+   if $game_map && maps.include?($game_map.map_id)
+     next 2
+   else
+     next 0
+   end
+}
+})
+
+MultipleForms.register(:VULPIX,{
+  "getFormOnCreation" => proc { |pkmn|
+   maps=[35]   # Map IDs for second form
+   if $game_map && maps.include?($game_map.map_id)
+     next 1
+   else
+     next 0
+   end
+}
+})
+
+MultipleForms.copy(:VULPIX,:NINETALES)
+
+MultipleForms.register(:BUNEARY,{
+  "getFormOnCreation" => proc { |pkmn|
+   maps=[36,37,38,39]   # Map IDs for second form
+   if $game_map && maps.include?($game_map.map_id)
+     next 1
+   else
+     next 0
+   end
+}
+})
+
+MultipleForms.register(:LOPUNNY,{
+  "getFormOnCreation" => proc { |pkmn|
+   maps=[36,37,38,39]   # Map IDs for second form
+   if $game_map && maps.include?($game_map.map_id)
+     next 2
+   else
+     next 0
+   end
+}
+})
+
+MultipleForms.register(:MRMIME,{
+  "getFormOnCreation" => proc { |pkmn|
+   maps=[8]   # Map IDs for second form
+   if $game_map && maps.include?($game_map.map_id)
+     next 1
+   else
+     next 0
+   end
+}
+})
+
+MultipleForms.register(:PONYTA,{
+  "getFormOnCreation" => proc { |pkmn|
+   maps=[49]   # Map IDs for second form
+   if $game_map && maps.include?($game_map.map_id)
+     next 1
+   else
+     next 0
+   end
+}
+})
+
+MultipleForms.copy(:PONYTA,:RAPIDASH)
