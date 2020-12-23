@@ -2467,5 +2467,4 @@ Moves = 1,EMBER,1,MINIMIZE,1,AIRSLASH,1,STRENGTHSAP,4,FAIRYWIND,8,HYPNOSIS,12,AI
 Pokedex = evil baby
 BattlerPlayerY = 6
 BattlerEnemyY = 11
-Evolutions = GARDEVOIR,Level,30,GALLADE,ItemMale,DUSKSTONE
 #-------------------------------
