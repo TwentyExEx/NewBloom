@@ -176,3 +176,14 @@ MultipleForms.register(:GALLADE,{
     next
   }
 })
+
+MultipleForms.register(:LOPUNNY,{
+  "getSpecificMegaForm" => proc { |pkmn|
+    next 2 if (pkmn.form == 0 && pkmn.hasItem?(:LOPUNNITE))
+    next
+  },
+  "getSpecificUnmegaForm" => proc { |pkmn|
+    next 0 if pkmn.form == 2
+    next
+  }
+})
