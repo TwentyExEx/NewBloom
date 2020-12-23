@@ -69,10 +69,11 @@ Events.onWildPokemonCreateForSpawning+=proc {|sender,e|
   pokemon=e[0]
   maps=[21,22]
   if $game_map && maps.include?($game_map.map_id)
-    ar=[280,281,475]
+    ar=[280,281]
+    ar2=[282,475]
     if ar.include?(pokemon.species)
       pokemon.form = 1
-    elsif pokemon.species == 282
+    elsif ar2.include?(pokemon.species)
       pokemon.form = 2
     else
     end

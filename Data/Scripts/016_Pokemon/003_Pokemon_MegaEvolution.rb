@@ -153,3 +153,26 @@ MultipleForms.register(:SLOWBRO,{
     next
   }
 })
+
+MultipleForms.register(:GARDEVOIR,{
+  "getSpecificMegaForm" => proc { |pkmn|
+    next 2 if (pkmn.form == 0 && pkmn.hasItem?(:GARDEVOIRITE))
+    next
+  },
+  "getSpecificUnmegaForm" => proc { |pkmn|
+    next 0 if pkmn.form == 2
+    next
+  }
+})
+
+
+MultipleForms.register(:GALLADE,{
+  "getSpecificMegaForm" => proc { |pkmn|
+    next 2 if (pkmn.form == 0 && pkmn.hasItem?(:GALLADITE))
+    next
+  },
+  "getSpecificUnmegaForm" => proc { |pkmn|
+    next 0 if pkmn.form == 2
+    next
+  }
+})
