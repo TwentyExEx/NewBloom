@@ -6,8 +6,6 @@ PlayerB = POKEMONTRAINER_Leaf,trchar001,girl_bike,girl_surf,girl_run,girl_surf,g
 TrainerVictoryME = Battle victory trainer.ogg
 WildVictoryME = Battle victory wild.ogg
 TrainerBattleBGM = Battle trainer.mid
-SurfBGM = Surfing.mid
-BicycleBGM = Bicycle.mid
 Home = 6,1,12,8
 WildBattleBGM = wildpokemon.ogg
 #-------------------------------

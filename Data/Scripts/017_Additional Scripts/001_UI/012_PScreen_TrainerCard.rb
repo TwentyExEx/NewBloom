@@ -23,7 +23,14 @@ class PokemonTrainerCard_Scene
     @sprites["overlay"] = BitmapSprite.new(Graphics.width,Graphics.height,@viewport)
     pbSetSystemFont(@sprites["overlay"].bitmap)
     @sprites["trainer"] = IconSprite.new(336,112,@viewport)
-    @sprites["trainer"].setBitmap(pbPlayerSpriteFile($Trainer.trainertype))
+    tmp = ($Trainer.isFemale? ? "introGirl" : "introBoy")
+    if ($PokemonTemp.savedoutfit && (File.exists?("Graphics/Pictures/"+tmp+".png")))
+        @sprites["trainer"].setBitmap("Graphics/Pictures/"+tmp)
+    elsif File.exists?("Graphics/Pictures/"+tmp+"_curr.png")
+        @sprites["trainer"].setBitmap("Graphics/Pictures/"+tmp+"_curr")
+    else
+        @sprites["trainer"].setBitmap(pbPlayerSpriteFile($Trainer.trainertype))
+    end
     @sprites["trainer"].x -= (@sprites["trainer"].bitmap.width-128)/2
     @sprites["trainer"].y -= (@sprites["trainer"].bitmap.height-128)
     @sprites["trainer"].z = 2
