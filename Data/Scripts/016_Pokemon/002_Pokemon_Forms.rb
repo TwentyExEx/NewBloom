@@ -879,7 +879,7 @@ MultipleForms.register(:MRMIME,{
 
 MultipleForms.register(:PONYTA,{
   "getFormOnCreation" => proc { |pkmn|
-   maps=[49]   # Map IDs for second form
+   maps=[47]   # Map IDs for second form
    if $game_map && maps.include?($game_map.map_id)
      next 1
    else
@@ -889,3 +889,16 @@ MultipleForms.register(:PONYTA,{
 })
 
 MultipleForms.copy(:PONYTA,:RAPIDASH)
+
+MultipleForms.register(:DRIFLOON,{
+  "getFormOnCreation" => proc { |pkmn|
+   maps=[49]   # Map IDs for second form
+   if $game_map && maps.include?($game_map.map_id)
+     next 1
+   else
+     next 0
+   end
+}
+})
+
+MultipleForms.copy(:DRIFLOON,:DRIFBLIM)
