@@ -676,6 +676,18 @@ Pokemon = GOTHITA,5
 Pokemon = MUNNA,5
 Pokemon = AUDINO,5
 #-------------------------------
+[PARASOLLADY2,Mia,1]
+Pokemon = SURSKIT,1
+#-------------------------------
+[PARASOLLADY2,Mia,2]
+Pokemon = SURSKIT,5
+Pokemon = VANILLITE,5
+#-------------------------------
+[PARASOLLADY2,Mia,3]
+Pokemon = SURSKIT,5
+Pokemon = VANILLITE,5
+Pokemon = FRILLISH,5
+#-------------------------------
 [AROMALADY,Camille,1]
 Pokemon = BUDEW,1
 #-------------------------------
@@ -754,18 +766,6 @@ Pokemon = COMFEY,5
 Pokemon = COTTONEE,5
 Pokemon = FLABEBE,5
 #-------------------------------
-[PARASOLLADY2,Mia,1]
-Pokemon = SURSKIT,1
-#-------------------------------
-[PARASOLLADY2,Mia,2]
-Pokemon = SURSKIT,5
-Pokemon = VANILLITE,5
-#-------------------------------
-[PARASOLLADY2,Mia,3]
-Pokemon = SURSKIT,5
-Pokemon = VANILLITE,5
-Pokemon = FRILLISH,5
-#-------------------------------
 [BIRDKEEPER_M,Arthur,1]
 Pokemon = SURSKIT,1
 #-------------------------------
@@ -777,6 +777,21 @@ Pokemon = VANILLITE,5
 Pokemon = SURSKIT,5
 Pokemon = VANILLITE,5
 Pokemon = FRILLISH,5
+#-------------------------------
+[PARASOLLADY,Penelope,1]
+Pokemon = LUVDISC,1
+Pokemon = GOLDEEN,1
+#-------------------------------
+[PARASOLLADY,Penelope,2]
+Pokemon = LUVDISC,5
+Pokemon = GOLDEEN,5
+Pokemon = STARYU,5
+#-------------------------------
+[PARASOLLADY,Penelope,3]
+Pokemon = LUVDISC,5
+Pokemon = GOLDEEN,5
+Pokemon = STARYU,5
+Pokemon = WOOPER,5
 #-------------------------------
 [MAID,Alice,1]
 Pokemon = KLEFKI,1
