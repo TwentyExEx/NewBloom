@@ -810,6 +810,7 @@ end
 # * Pokemon reapear after using surf
 #===============================================================================
 def Come_back(shiny=nil, animation=nil)
+
   return if !$game_variables[Following_Activated_Switch]
   return if $Trainer.party.length==0
   $PokemonTemp.dependentEvents.pbMoveDependentEvents
@@ -824,7 +825,7 @@ def Come_back(shiny=nil, animation=nil)
   end
   if $Trainer.party[0].hp>0 && !$Trainer.party[0].isEgg?
     $game_variables[Current_Following_Variable]=$Trainer.party[0]
-    refresh_sprite(animation)
+    refresh_sprite(true)
   end
   for i in 0...events.length
     if events[i] && events[i][8]=="Dependent"
@@ -862,7 +863,8 @@ def Come_back(shiny=nil, animation=nil)
                 bitmapFileName=sprintf("%03d",id)
                 events[i][6] = FOLLOWER_FILE_DIR+bitmapFileName
                 @realEvents[i].character_name=FOLLOWER_FILE_DIR+bitmapFileName
-              end
+              end   
+            refresh_sprite(false)
             end
           end
         end
@@ -1049,7 +1051,7 @@ alias follow_pbCancelVehicles pbCancelVehicles
     if $game_switches[Toggle_Following_Switch] == true
       $PokemonTemp.dependentEvents.Come_back(true)
     end
-    $PokemonTemp.dependentEvents.refresh_sprite
+    $PokemonTemp.dependentEvents.refresh_sprite(false)
     return ret
   end
 
