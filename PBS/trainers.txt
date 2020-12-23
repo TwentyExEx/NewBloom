@@ -601,6 +601,18 @@ Pokemon = IMPIDIMP,5
 Pokemon = HATENNA,5
 Pokemon = ABRA,5
 #-------------------------------
+[PSYCHIC_M2,Miles,1]
+Pokemon = ABRA,1
+#-------------------------------
+[PSYCHIC_M2,Miles,2]
+Pokemon = ABRA,5
+Pokemon = MUNNA,5
+#-------------------------------
+[PSYCHIC_M2,Miles,3]
+Pokemon = ABRA,5
+Pokemon = MUNNA,5
+Pokemon = WOOBAT,5
+#-------------------------------
 [HARLEQUIN,Axel,1]
 Pokemon = ABRA,1
 #-------------------------------
