@@ -754,14 +754,14 @@ Pokemon = COMFEY,5
 Pokemon = COTTONEE,5
 Pokemon = FLABEBE,5
 #-------------------------------
-[PARASOLLADY,Penelope,1]
+[PARASOLLADY2,Mia,1]
 Pokemon = SURSKIT,1
 #-------------------------------
-[PARASOLLADY,Penelope,2]
+[PARASOLLADY2,Mia,2]
 Pokemon = SURSKIT,5
 Pokemon = VANILLITE,5
 #-------------------------------
-[PARASOLLADY,Penelope,3]
+[PARASOLLADY2,Mia,3]
 Pokemon = SURSKIT,5
 Pokemon = VANILLITE,5
 Pokemon = FRILLISH,5
