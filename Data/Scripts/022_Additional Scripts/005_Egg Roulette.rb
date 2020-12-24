@@ -13,12 +13,13 @@ SUPERRARE = [PBSpecies::LARVITAR, PBSpecies::PAWNIARD, PBSpecies::TRAPINCH, PBSp
 
 def pbEggShiny
   pkmn = $Trainer.lastParty.species
-  if $shinyset.include?(pkmn) == true # If Pokemon already has increased shiny rate in the wild
+  if $shinyset && $shinyset.include?(pkmn) == true # If Pokemon already has increased shiny rate in the wild
     shinyrate = 100 - 1 # Set shiny rate for event Pokemon that also have increased shiny rate in the wild
     shinychance = 1 + rand(shinyrate-1)
-  elsif $shinyset.include?(pkmn) == false # Shiny state is applied based on shiny rate
+  elsif $shinyset && $shinyset.include?(pkmn) == false # Shiny state is applied based on shiny rate
     shinyrate = 200 - 1
     shinychance = 1 + rand(shinyrate-1)
+  else
   end
   if shinychance == 1
     pkmn=$Trainer.lastParty
