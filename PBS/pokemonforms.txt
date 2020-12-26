@@ -2379,7 +2379,7 @@ BaseStats = 40,55,40,84,45,40
 Abilities = REGENERATOR,SHIELDDUST
 HiddenAbility = MOXIE
 Moves = 1,ABSORB,1,ASTONISH,6,BITE,12,BUGBITE,18,DRAININGKISS,24,ACUPRESSURE,30,FLATTER,36,LEECHLIFE,42,PLAYROUGH,48,MEMENTO,54,QUIVERDANCE
-Pokedex = evil baby
+Pokedex = It doesn't differentiate from flower nectar and the blood of other Pokémon. Its pricking bite barely hurts at all, though.
 BattlerPlayerY = 12
 BattlerEnemyY = 18
 #-------------------------------
@@ -2391,7 +2391,7 @@ BaseStats = 60,95,60,124,55,70
 Abilities = REGENERATOR,SHIELDDUST
 HiddenAbility = MOXIE
 Moves = 0,BLOODLEECH,1,BLOODLEECH,1,ABSORB,1,ASTONISH,1,KNOCKOFF,1,ALLYSWITCH,1,GLARE,6,BITE,12,BUGBITE,18,DRAININGKISS,24,ACUPRESSURE,32,FLATTER,40,LEECHLIFE,48,PLAYROUGH,56,MEMENTO,64,QUIVERDANCE
-Pokedex = evil baby
+Pokedex = Neberian Ribombee show a huge increase in confidence and showiness. They most enjoy blood willingly given to them by friends.
 BattlerPlayerY = 6
 BattlerEnemyY = 11
 #-------------------------------
@@ -2403,7 +2403,7 @@ BaseStats = 28,20,30,40,45,35
 Abilities = PIXILATE,CURSEDBODY
 HiddenAbility = TELEPATHY
 Moves = 1,GROWL,1,DISARMINGVOICE,3,DOUBLETEAM,6,SHADOWSNEAK,9,TORMENT,12,DRAININGKISS,15,TELEPORT,18,HEX,21,CURSE,24,SWITCHEROO,27,NASTYPLOT,30,SHADOWBALL,33,HEARTSWAP,36,MEMENTO,39,DESTINYBOND
-Pokedex = evil baby
+Pokedex = Ralts is very sensitive to the emtoions of others with its horns. It is said that the increased amount of love and happiness on the island changed its form, making it stronger than before and appearing more before humans.
 BattlerPlayerY = 12
 BattlerEnemyY = 18
 #-------------------------------
@@ -2415,7 +2415,7 @@ BaseStats = 38,30,40,50,65,55
 Abilities = PIXILATE,CURSEDBODY
 HiddenAbility = TELEPATHY
 Moves = 1,GROWL,1,DISARMINGVOICE,3,DOUBLETEAM,6,SHADOWSNEAK,9,TORMENT,12,DRAININGKISS,15,TELEPORT,18,HEX,23,CURSE,28,SWITCHEROO,33,NASTYPLOT,38,SHADOWBALL,43,HEARTSWAP,48,MEMENTO,53,DESTINYBOND
-Pokedex = evil baby
+Pokedex = Kirlia is highly perceptive to its trainer's emotions. At night, you can catch Kirlia dancing under the moonlight if it is close to its trainer. It is at its strongest then. Its horns flow and its form is more solid than before.
 BattlerPlayerY = 6
 BattlerEnemyY = 11
 Evolutions = GARDEVOIR,Level,30,GALLADE,ItemMale,DUSKSTONE
@@ -2428,7 +2428,7 @@ BaseStats = 68,60,75,80,125,110
 Abilities = PIXILATE,CURSEDBODY
 HiddenAbility = TELEPATHY
 Moves = 0,DAZZLINGGLEAM,1,DAZZLINGGLEAM,1,MOONBLAST,1,CALMMIND,1,DARKPULSE,1,GROWL,3,DOUBLETEAM,6,SHADOWSNEAK,9,TORMENT,12,DRAININGKISS,15,TELEPORT,18,HEX,23,CURSE,28,SWITCHEROO,35,NASTYPLOT,42,SHADOWBALL,49,HEARTSWAP,56,MEMENTO,63,DESTINYBOND
-Pokedex = evil baby
+Pokedex = Gardevoir is very protective of its loved ones, especially its trainer. It is rumored that its ghostly form is a result of unleashing its strongest power to protect its loved ones in peril no matter the cost. Its new form is a symbol of its devotion to its trainer and loved ones.
 BattlerPlayerY = 6
 BattlerEnemyY = 11
 #-------------------------------
@@ -2440,7 +2440,7 @@ BaseStats = 70,125,80,83,60,100
 Abilities = INNERFOCUS,STEADFAST
 HiddenAbility = JUSTIFIED
 Moves = 0,NIGHTSLASH,1,NIGHTSLASH,1,PSYCHOCUT,1,REVENGE,1,ASSURANCE,1,GROWL,3,DOUBLETEAM,6,SHADOWSNEAK,9,TORMENT,12,DRAININGKISS,15,TELEPORT,18,HEX,23,CURSE,28,PROTECT,35,SWORDSDANCE,42,PHANTOMFORCE,49,HEARTSWAP,56,MEMENTO,63,CLOSECOMBAT
-Pokedex = evil baby
+Pokedex = Gallade is very protective of its loved ones and will fight fiercely to protect them. Rumor is that Gallade's ghostly new gorm is from trying to protect a loved one and lingers to protect others in need. Its new form is a symbol of its devotion to its trainer and loved ones.
 BattlerPlayerY = 6
 BattlerEnemyY = 11
 #-------------------------------
@@ -2452,7 +2452,7 @@ BaseStats = 90,30,49,70,60,49
 Abilities = LEVITATE
 HiddenAbility = HELIUMFIELD
 Moves = 1,EMBER,1,MINIMIZE,4,FAIRYWIND,8,HYPNOSIS,12,AIRCUTTER,16,WILLOWISP,20,FLAMEBURST,24,STOCKPILE,24,SWALLOW,24,SPITUP,29,HEATWAVE,32,BATONPASS,36,DAZZLINGGLEAM,40,HAZE,44,OVERHEAT
-Pokedex = evil baby
+Pokedex = Neberian Drifloon are much friendlier than their Sinnohan counterparts. They create a pleasantly toasty atmosphere around themselves.
 BattlerPlayerY = 12
 BattlerEnemyY = 18
 #-------------------------------
@@ -2464,7 +2464,31 @@ BaseStats = 150,50,59,80,100,59
 Abilities = LEVITATE
 HiddenAbility = HELIUMFIELD
 Moves = 1,EMBER,1,MINIMIZE,1,AIRSLASH,1,STRENGTHSAP,4,FAIRYWIND,8,HYPNOSIS,12,AIRCUTTER,16,WILLOWISP,20,FLAMEBURST,24,STOCKPILE,24,SWALLOW,24,SPITUP,31,HEATWAVE,36,BATONPASS,42,DAZZLINGGLEAM,48,HAZE,54,OVERHEAT
-Pokedex = evil baby
+Pokedex = As a natural producer of helium, this subspecies singlehandedly ended a helium shortage. There's a festival in a corner of Nebera based on their migration.
+BattlerPlayerY = 6
+BattlerEnemyY = 11
+#-------------------------------
+[BUNEARY,1]
+FormName = Neberian
+Type1 = ICE
+Type2 = FAIRY
+BaseStats = 90,30,49,70,60,49
+Abilities = LEVITATE
+HiddenAbility = HELIUMFIELD
+Moves = 1,POWDERSNOW,1,POUND,4,DEFENSECURL,8,BABYDOLLEYES,12,COPYCAT,16,QUICKATTACK,20,DRAININGKISS,24,CHARM,28,FROSTBREATH,32,MOONBLAST,36,AGILITY,40,BUNDLEUP,44,ENCORE,48,BOUNCE,52,BLIZZARD
+Pokedex = The sheer cold of the Neberian mountains have thickened its fur coat. Wild ones will offer to huddle with trainers' Pokémon during a bad snowstorm.
+BattlerPlayerY = 12
+BattlerEnemyY = 18
+#-------------------------------
+[LOPUNNY,1]
+FormName = Neberian
+Type1 = ICE
+Type2 = FAIRY
+BaseStats = 150,50,59,80,100,59
+Abilities = LEVITATE
+HiddenAbility = HELIUMFIELD
+Moves = 1,MIRRORCOAT,1,TEETERDANCE,1,POUND,4,DEFENSECURL,8,BABYDOLLEYES,12,COPYCAT,16,QUICKATTACK,20,DRAININGKISS,24,CHARM,28,FROSTBREATH,32,MOONBLAST,36,AGILITY,40,BUNDLEUP,44,ENCORE,48,BOUNCE,52,BLIZZARD,56,BODYPRESS
+Pokedex = To tough out especially cold winters, it'll curl up into a near perfect circle, using its ears as pillows. A hug from one is intensely cozy.
 BattlerPlayerY = 6
 BattlerEnemyY = 11
 #-------------------------------
