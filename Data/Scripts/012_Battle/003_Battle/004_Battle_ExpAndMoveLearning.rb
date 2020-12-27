@@ -228,7 +228,6 @@ class PokeBattle_Battle
         }
         bgm = pbGetWildBattleBGM(nil)
         pbBGMPlay(bgm)
-      end
     end
   end
 end
