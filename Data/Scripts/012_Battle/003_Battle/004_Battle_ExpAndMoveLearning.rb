@@ -213,22 +213,22 @@ class PokeBattle_Battle
       # Learn all moves learned at this level
       moveList = pkmn.getMoveList
       moveList.each { |m| pbLearnMove(idxParty,m[1]) if m[0]==curLevel }
-      if pbCheckEvolution(pkmn) > 0
-        newspecies = pbCheckEvolution(pkmn)
-        pbFadeOutInWithMusic {
-          evo = PokemonEvolutionScene.new
-          evo.pbStartScreen(pkmn,newspecies)
-          evo.pbEvolution
-          evo.pbEndScreen
-          if battler
-            battler.pbInitPokemon(pkmn,idxParty)
-      @scene.pbChangePokemon(battler,battler.pokemon)
-            @scene.pbUpdate
-          end
-        }
-        bgm = pbGetWildBattleBGM(nil)
-        pbBGMPlay(bgm)
-    end
+    #   if pbCheckEvolution(pkmn) > 0
+    #     newspecies = pbCheckEvolution(pkmn)
+    #     pbFadeOutInWithMusic {
+    #       evo = PokemonEvolutionScene.new
+    #       evo.pbStartScreen(pkmn,newspecies)
+    #       evo.pbEvolution
+    #       evo.pbEndScreen
+    #       if battler
+    #         battler.pbInitPokemon(pkmn,idxParty)
+    #   @scene.pbChangePokemon(battler,battler.pokemon)
+    #         @scene.pbUpdate
+    #       end
+    #     }
+    #     bgm = pbGetWildBattleBGM(nil)
+    #     pbBGMPlay(bgm)
+    # end
   end
 end
 
