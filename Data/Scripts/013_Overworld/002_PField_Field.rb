@@ -371,34 +371,10 @@ def pbOnStepTaken(eventTriggered)
   $PokemonTemp.encounterTriggered = false   # This info isn't needed
 end
 
-# Start wild overworld/mixed encounters while turning on the spot
+# Start wild encounters while turning on the spot
 Events.onChangeDirection += proc {
-  repel = ($PokemonGlobal.repel>0)
-  if !$game_temp.in_menu
-    if $game_variables[OVERWORLD_ENCOUNTER_VARIABLE] == 0
-      if INSTANT_WILD_BATTLE_PROPABILITY > 0 && INSTANT_WILD_BATTLE_PROPABILITY < 100
-        $game_variables[OVERWORLD_ENCOUNTER_VARIABLE] = INSTANT_WILD_BATTLE_PROPABILITY
-      elsif INSTANT_WILD_BATTLE_PROPABILITY >= 100
-        $game_variables[OVERWORLD_ENCOUNTER_VARIABLE] = 100
-      else
-        $game_variables[OVERWORLD_ENCOUNTER_VARIABLE] = -1
-      end
-    end
-    if $game_variables[OVERWORLD_ENCOUNTER_VARIABLE]>0 && ($game_variables[OVERWORLD_ENCOUNTER_VARIABLE]>=100 || rand(100) < $game_variables[OVERWORLD_ENCOUNTER_VARIABLE])
-      #STANDARD WILDBATTLE
-      pbBattleOnStepTaken(repel)
-    else
-      #OVERWORLD ENCOUNTERS
-      #we choose the tile on which the pokemon appears
-      pos = pbChooseTileOnStepTaken
-      return if !pos
-      #we choose the random encounter
-      encounter,gender,form,isShiny = pbChooseEncounter(pos[0],pos[1],repel)
-      return if !encounter
-      #we generate an random encounter overworld event
-      pbPlaceEncounter(pos[0],pos[1],encounter,gender,form,isShiny)
-    end
-  end
+  repel = ($PokemonGlobal.repel > 0)
+  pbBattleOnStepTaken(repel) if !$game_temp.in_menu
 }
 
 def pbBattleOnStepTaken(repel = false)
