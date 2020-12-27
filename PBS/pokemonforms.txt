@@ -2480,7 +2480,7 @@ Pokedex = The sheer cold of the Neberian mountains have thickened its fur coat. 
 BattlerPlayerY = 12
 BattlerEnemyY = 18
 #-------------------------------
-[LOPUNNY,1]
+[LOPUNNY,2]
 FormName = Neberian
 Type1 = ICE
 Type2 = FAIRY
