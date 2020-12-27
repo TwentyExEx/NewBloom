@@ -38,6 +38,7 @@ class PokeBattle_Battle
           next unless b.participants.include?(i) || expShare.include?(i)
           pbGainEVsOne(i,b)
           pbGainExpOne(i,b,numPartic,expShare,expAll)
+          pbBattleEvo(i)
         end
         # Gain EVs and Exp for all other Pokémon because of Exp All
         if expAll
@@ -49,12 +50,34 @@ class PokeBattle_Battle
             showMessage = false
             pbGainEVsOne(i,b)
             pbGainExpOne(i,b,numPartic,expShare,expAll,false)
+            pbBattleEvo(i)
           end
         end
       end
       # Clear the participants array
       b.participants = []
     end
+  end
+
+  def pbBattleEvo(idxParty) # Evo During Battle
+      pkmn = pbParty(0)[idxParty]
+      battler = pbFindBattler(idxParty)
+      newspecies = pbCheckEvolution(pkmn)
+      if newspecies>0
+        pbFadeOutInWithMusic(99999){
+          evo=PokemonEvolutionScene.new
+          evo.pbStartScreen(pkmn,newspecies)
+          evo.pbEvolution
+          evo.pbEndScreen
+          scene.pbRefresh if scene.is_a?(PokemonPartyScreen)
+          $game_map.autoplayAsCue
+          if battler
+            @scene.pbChangePokemon(@battlers[battler.index],@battlers[battler.index].pokemon)
+            battler.pbInitPokemon(pkmn,battler.pokemonIndex)
+            battler.name=pkmn.name
+          end
+        }
+      end
   end
 
   def pbGainEVsOne(idxParty,defeatedBattler)
