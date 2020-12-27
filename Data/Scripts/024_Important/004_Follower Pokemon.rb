@@ -430,6 +430,7 @@ class DependentEvents
       for i in 0...events.length
         @realEvents[i].move_speed = 3
       end
+      FollowingMoveRoute([PBMoveRoute::StepAnimeOn])
     end
   end
 
