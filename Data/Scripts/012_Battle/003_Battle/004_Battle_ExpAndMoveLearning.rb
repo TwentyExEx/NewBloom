@@ -38,7 +38,6 @@ class PokeBattle_Battle
           next unless b.participants.include?(i) || expShare.include?(i)
           pbGainEVsOne(i,b)
           pbGainExpOne(i,b,numPartic,expShare,expAll)
-          pbBattleEvo(i)
         end
         # Gain EVs and Exp for all other Pokémon because of Exp All
         if expAll
@@ -50,34 +49,12 @@ class PokeBattle_Battle
             showMessage = false
             pbGainEVsOne(i,b)
             pbGainExpOne(i,b,numPartic,expShare,expAll,false)
-            pbBattleEvo(i)
           end
         end
       end
       # Clear the participants array
       b.participants = []
     end
-  end
-
-  def pbBattleEvo(idxParty) # Evo During Battle
-      pkmn = pbParty(0)[idxParty]
-      battler = pbFindBattler(idxParty)
-      newspecies = pbCheckEvolution(pkmn)
-      if newspecies>0
-        pbFadeOutInWithMusic(99999){
-          evo=PokemonEvolutionScene.new
-          evo.pbStartScreen(pkmn,newspecies)
-          evo.pbEvolution
-          evo.pbEndScreen
-          scene.pbRefresh if scene.is_a?(PokemonPartyScreen)
-          $game_map.autoplayAsCue
-          if battler
-            @scene.pbChangePokemon(@battlers[battler.index],@battlers[battler.index].pokemon)
-            battler.pbInitPokemon(pkmn,battler.pokemonIndex)
-            battler.name=pkmn.name
-          end
-        }
-      end
   end
 
   def pbGainEVsOne(idxParty,defeatedBattler)
@@ -111,7 +88,7 @@ class PokeBattle_Battle
     end
   end
 
-  def pbGainExpOne(idxParty,defeatedBattler,numPartic,expShare,expAll,showMessages=true)
+    def pbGainExpOne(idxParty,defeatedBattler,numPartic,expShare,expAll,showMessages=true)
     pkmn = pbParty(0)[idxParty]   # The Pokémon gaining EVs from defeatedBattler
     growthRate = pkmn.growthrate
     # Don't bother calculating if gainer is already at max Exp
@@ -236,8 +213,26 @@ class PokeBattle_Battle
       # Learn all moves learned at this level
       moveList = pkmn.getMoveList
       moveList.each { |m| pbLearnMove(idxParty,m[1]) if m[0]==curLevel }
+      if pbCheckEvolution(pkmn) > 0
+        newspecies = pbCheckEvolution(pkmn)
+        pbFadeOutInWithMusic {
+          evo = PokemonEvolutionScene.new
+          evo.pbStartScreen(pkmn,newspecies)
+          evo.pbEvolution
+          evo.pbEndScreen
+          if battler
+            battler.pbInitPokemon(pkmn,idxParty)
+      @scene.pbChangePokemon(battler,battler.pokemon)
+            @scene.pbUpdate
+          end
+        }
+        bgm = pbGetWildBattleBGM(nil)
+        pbBGMPlay(bgm)
+      end
     end
   end
+end
+
 
   #=============================================================================
   # Learning a move
