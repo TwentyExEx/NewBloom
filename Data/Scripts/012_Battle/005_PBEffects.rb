@@ -129,9 +129,7 @@ begin
     Octolock            = 125
     OctolockUser        = 126
     BlunderPolicy       = 127
-    BundleUp            = 128
-    AllHands            = 129
-    RottenBerry         = 130
+    SwitchedAlly        = 128
 
     #===========================================================================
     # These effects apply to a battler position
@@ -171,8 +169,8 @@ begin
     Tailwind           = 19
     ToxicSpikes        = 20
     WideGuard          = 21
-	StickyWebUser      = 22 
-	
+	StickyWebUser      = 22
+
 
     #===========================================================================
     # These effects apply to the battle (i.e. both sides)
@@ -191,7 +189,6 @@ begin
     WaterSportField = 11
     WonderRoom      = 12
     NeutralizingGas = 13
-    Noiceface       = 14
   end
 
 rescue Exception

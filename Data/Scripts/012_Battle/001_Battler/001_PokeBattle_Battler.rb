@@ -515,6 +515,11 @@ class PokeBattle_Battler
     return true
   end
 
+  def hasUtilityUmbrella?
+    return true if hasActiveItem?(:UTILITYUMBRELLA)
+    return false
+  end
+
   def takesIndirectDamage?(showMsg=false)
     return false if fainted?
     if hasActiveAbility?(:MAGICGUARD)
@@ -589,12 +594,12 @@ class PokeBattle_Battler
     return false if @effects[PBEffects::HealBlock]>0
     return true
   end
-  
+
   def canTakeHealingWish?
-	# Also works with Lunar Dance. 
+	# Also works with Lunar Dance.
 	return canHeal? || pbHasAnyStatus?
-  end 
-  
+  end
+
   def affectedByContactEffect?(showMsg=false)
     return false if fainted?
     if hasActiveItem?(:PROTECTIVEPADS)

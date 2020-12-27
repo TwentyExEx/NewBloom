@@ -104,10 +104,10 @@ end
 #===============================================================================
 class PokeBattle_Move_087 < PokeBattle_Move
   def pbBaseDamage(baseDmg,user,target)
-    if @battle.pbWeather!=PBWeather::None
+    if @battle.pbWeather!=PBWeather::None && @battle.pbWeather != PBWeather::StrongWinds
       if @battle.pbWeather == PBWeather::Sandstorm || @battle.pbWeather == PBWeather::Hail || @battle.pbWeather == PBWeather::Fog
         baseDmg *= 2
-      elsif !user.hasActiveItem?(:UTILITYUMBRELLA)
+      elsif !user.hasUtilityUmbrella?
         baseDmg *= 2
       end
     end
@@ -126,7 +126,7 @@ class PokeBattle_Move_087 < PokeBattle_Move
     when PBWeather::Hail
       ret = getConst(PBTypes,:ICE) || ret
     end
-    if user.hasActiveItem?(:UTILITYUMBRELLA) && (ret == getConst(PBTypes,:FIRE) || ret == getConst(PBTypes,:WATER))
+    if user.hasUtilityUmbrella? && (ret == getConst(PBTypes,:FIRE) || ret == getConst(PBTypes,:WATER))
       ret = getID(PBTypes,:NORMAL)
     end
     return ret
@@ -2065,7 +2065,7 @@ class PokeBattle_Move_0C4 < PokeBattle_TwoTurnMove
     ret = super
     if user.effects[PBEffects::TwoTurnAttack]==0
       w = @battle.pbWeather
-      if (w==PBWeather::Sun || w==PBWeather::HarshSun) && !user.hasActiveItem?(:UTILITYUMBRELLA)
+      if (w==PBWeather::Sun || w==PBWeather::HarshSun) && !user.hasUtilityUmbrella?
         @powerHerb = false
         @chargingTurn = true
         @damagingTurn = true
@@ -2082,7 +2082,7 @@ class PokeBattle_Move_0C4 < PokeBattle_TwoTurnMove
   def pbBaseDamageMultiplier(damageMult,user,target)
     w = @battle.pbWeather
     if w!=PBWeather::None && w!=PBWeather::Sun && w!=PBWeather::HarshSun
-      if !((w==PBWeather::Rain || w==PBWeather::HeavyRain) && user.hasActiveItem?(:UTILITYUMBRELLA))
+      if !((w==PBWeather::Rain || w==PBWeather::HeavyRain) && user.hasUtilityUmbrella?)
         damageMult = (damageMult/2.0).round
       end
     end
@@ -2576,13 +2576,13 @@ class PokeBattle_Move_0D8 < PokeBattle_HealingMove
   def pbOnStartUse(user,targets)
     case @battle.pbWeather
     when PBWeather::Sun, PBWeather::HarshSun
-      if !user.hasActiveItem?(:UTILITYUMBRELLA)
+      if !user.hasUtilityUmbrella?
         @healAmount = (user.totalhp*2/3.0).round
       else
         @healAmount = (user.totalhp/2.0).round
       end
     when PBWeather::Rain, PBWeather::HeavyRain
-      if !user.hasActiveItem?(:UTILITYUMBRELLA)
+      if !user.hasUtilityUmbrella?
         @healAmount = (user.totalhp/4.0).round
       else
         @healAmount = (user.totalhp/2.0).round
@@ -3000,16 +3000,27 @@ end
 #===============================================================================
 class PokeBattle_Move_0EA < PokeBattle_Move
   def pbMoveFailed?(user,targets)
-    if !@battle.pbCanRun?(user.index)
+    if !@battle.pbCanChooseNonActive?(user.index) || user.fainted?
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
     return false
   end
 
-  def pbEffectGeneral(user)
-    @battle.pbDisplay(_INTL("{1} fled from battle!",user.pbThis))
-    @battle.decision = 3   # Escaped
+  def pbEndOfMoveUsageEffect(user,targets,numHits,switchedBattlers)
+    return if user.fainted? || numHits==0
+    return if !@battle.pbCanChooseNonActive?(user.index)
+    @battle.pbDisplay(_INTL("{1} went back to {2}!",user.pbThis,
+       @battle.pbGetOwnerName(user.index)))
+    @battle.pbPursuit(user.index)
+    return if user.fainted?
+    newPkmn = @battle.pbGetReplacementPokemonIndex(user.index)   # Owner chooses
+    return if newPkmn<0
+    @battle.pbRecallAndReplace(user.index,newPkmn)
+    @battle.pbClearChoice(user.index)   # Replacement Pokémon does nothing this round
+    @battle.moldBreaker = false
+    switchedBattlers.push(user.index)
+    user.pbEffectsOnSwitchIn(true)
   end
 end
 
@@ -3643,7 +3654,7 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
 		return 10 if movedata[MOVE_CATEGORY] == 2 # status move
 		return 10 if movedata[MOVE_BASE_DAMAGE] < 10
 		return movedata[MOVE_BASE_DAMAGE]
-	end 
+	end
     return 10 if pbIsBerry?(user.item)
     return 80 if pbIsMegaStone?(user.item)
     @flingPowers.each do |power,items|

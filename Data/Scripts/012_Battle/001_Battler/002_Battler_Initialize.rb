@@ -307,13 +307,13 @@ class PokeBattle_Battler
     @effects[PBEffects::BallFetch]           = 0
     @effects[PBEffects::LashOut]             = false
     @effects[PBEffects::BurningJealousy]     = false
-  	@effects[PBEffects::Obstruct]            = false
-  	@effects[PBEffects::TarShot]             = false
-  	@effects[PBEffects::BlunderPolicy]       = false
+	  @effects[PBEffects::Obstruct]            = false
+	  @effects[PBEffects::TarShot]             = false
+	  @effects[PBEffects::BlunderPolicy]       = false
+    @effects[PBEffects::SwitchedAlly]        = -1
     @effects[PBEffects::BundleUp]            = 0
     @effects[PBEffects::AllHands]            = 0
     @effects[PBEffects::RottenBerry]         = 0
-
   end
 
   #=============================================================================
