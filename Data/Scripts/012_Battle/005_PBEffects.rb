@@ -130,6 +130,9 @@ begin
     OctolockUser        = 126
     BlunderPolicy       = 127
     SwitchedAlly        = 128
+    BundleUp            = 129
+    AllHands            = 130
+    RottenBerry         = 131
 
     #===========================================================================
     # These effects apply to a battler position

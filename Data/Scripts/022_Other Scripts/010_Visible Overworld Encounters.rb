@@ -180,7 +180,7 @@ OVERWORLD_ENCOUNTER_VARIABLE = 79 # default is an ID which is not used anywhere 
 # $game_variables[OVERWORLD_ENCOUNTER_VARIABLE] >= 100 
 #    - means only normal encounters and instant battles as usual, no overworld spawning
 
-INSTANT_WILD_BATTLE_PROPABILITY = -1 # default 0.
+INSTANT_WILD_BATTLE_PROPABILITY = 0 # default 0.
 # It will be used when starting the game the first time. Changing this value later on will not affect the propability anymore.
 # However, you can still change the propability stored in the $game_variable with ID above during runtime.
 # This parameter holds the DEFAULT propability of normal to overworld encountering.
