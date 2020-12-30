@@ -764,7 +764,7 @@ class PokeAmie_Essentials_Scene
         end
       end
       if @foodnum == 0
-        pbMessage(_INTL("You have no food items."))
+        pbMessage(_INTL("You have no food items.\\wtnp[12]"))
         @feedshow = 2
       end
       if @foodnum > 0
