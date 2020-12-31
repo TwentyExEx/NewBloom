@@ -38,7 +38,8 @@ end
 
 Events.onWildPokemonCreateForSpawning+=proc {|sender,e|
     pokemon=e[0]
-    difficulty= LevelBalance::calcDifficulty
+    # difficulty = LevelBalance::calcDifficulty
+    difficulty = 1
     badges = $Trainer.numbadges
     balance = pbBalancedLevel($Trainer.party)
     mlv=0
@@ -60,7 +61,7 @@ Events.onWildPokemonCreateForSpawning+=proc {|sender,e|
         l = 9*(balance + 4*mlv)/50 - 4 + rand(4+balance/10)
      end
      newlevel=l
-     newlevel=1 if newlevel<1
+     newlevel=3 if newlevel<3 && mlv != 1
      newlevel=PBExperience.maxLevel if newlevel>PBExperience.maxLevel
      pokemon.level=newlevel
      #now we evolve the pokémon, if applicable
