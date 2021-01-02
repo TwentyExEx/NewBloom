@@ -617,8 +617,8 @@ class PokemonSummary_Scene
     if !@pokemon.shadowPokemon? || @pokemon.heartStage>3
       natup = PBNatures.getStatRaised(@pokemon.calcNature)
       natdn = PBNatures.getStatLowered(@pokemon.calcNature)
-      statshadows[natup] = Color.new(136,96,72) if natup!=natdn
-      statshadows[natdn] = Color.new(64,120,152) if natup!=natdn
+      statshadows[natup] = Color.new(200,96,72) if natup!=natdn
+      statshadows[natdn] = Color.new(64,120,200) if natup!=natdn
     end
     # Write various bits of text
     textpos = [
@@ -866,13 +866,13 @@ class PokemonSummary_Scene
        [_INTL("Defense"),textColumn,154,2,base,statshadows[1]],
        [sprintf("%d",@pokemon.ev[2]),evColumn,154,2,Color.new(64,64,64),Color.new(176,176,176)],
        [sprintf("%d",@pokemon.iv[2]),ivColumn,154,2,Color.new(64,64,64),Color.new(176,176,176)],
-       [_INTL("Speed"),textColumn,186,2,base,statshadows[3]],
+       [_INTL("Sp. Atk"),textColumn,186,2,base,statshadows[3]],
        [sprintf("%d",@pokemon.ev[3]),evColumn,186,2,Color.new(64,64,64),Color.new(176,176,176)],
        [sprintf("%d",@pokemon.iv[3]),ivColumn,186,2,Color.new(64,64,64),Color.new(176,176,176)],
-       [_INTL("Sp. Atk"),textColumn,218,2,base,statshadows[4]],
+       [_INTL("Sp. Def"),textColumn,218,2,base,statshadows[4]],
        [sprintf("%d",@pokemon.ev[4]),evColumn,218,2,Color.new(64,64,64),Color.new(176,176,176)],
        [sprintf("%d",@pokemon.iv[4]),ivColumn,218,2,Color.new(64,64,64),Color.new(176,176,176)],
-       [_INTL("Sp. Def"),textColumn,250,2,base,statshadows[2]],
+       [_INTL("Speed"),textColumn,250,2,base,statshadows[2]],
        [sprintf("%d",@pokemon.ev[5]),evColumn,250,2,Color.new(64,64,64),Color.new(176,176,176)],
        [sprintf("%d",@pokemon.iv[5]),ivColumn,250,2,Color.new(64,64,64),Color.new(176,176,176)],
        [_INTL("Ability"),224,284,0,base,shadow],
@@ -1301,10 +1301,10 @@ class PokemonSummary_Scene
           pbPlayDecisionSE
           pbMoveSelection
           dorefresh = true
-        elsif @page==5
-          pbPlayDecisionSE
-          pbRibbonSelection
-          dorefresh = true
+        # elsif @page==5
+        #   pbPlayDecisionSE
+        #   pbRibbonSelection
+        #   dorefresh = true
         elsif !@inbattle
           pbPlayDecisionSE
           dorefresh = pbOptions
