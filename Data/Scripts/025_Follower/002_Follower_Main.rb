@@ -66,9 +66,9 @@ end
 # Script Command for Talking to Following Pokemon
 #-------------------------------------------------------------------------------
 def pbTalkToFollower
-  return false if !$PokemonTemp.dependentEvents.refresh_sprite(false, true)
+  return false if !$PokemonTemp.dependentEvents.refresh_sprite(false, true) || $endsurfstep == false
   firstPkmn = $Trainer.firstAblePokemon
-  pbPlayCry(firstPkmn.species)
+  pbPlayCry(firstPkmn)
   event = pbGetDependency("FollowerPkmn")
   randomVal = rand(6)
   Events.OnTalkToFollower.trigger(firstPkmn,event.x,event.y-2,randomVal)
@@ -87,7 +87,7 @@ def pbRemoveDependenciesExceptFollower
       @lastUpdate += 1
     end
     events.compact!
-    @realEvents.compact!
+    $PokemonTemp.dependentEvents.realEvents.compact!
   end
 end
 
@@ -247,14 +247,10 @@ class DependentEvents
       return
     end
     events = $PokemonGlobal.dependentEvents
-      for i in 0...events.length
-        if $game_player.moving?
-          @realEvents[i].move_speed = $game_player.move_speed
-        else
-          @realEvents[i].move_speed = 3
-        end
-      end
-      followingMoveRoute([PBMoveRoute::StepAnimeOn])
+    for i in 0...events.length
+      @realEvents[i].move_speed = $game_player.move_speed
+    end
+    followingMoveRoute([PBMoveRoute::StepAnimeOn])
   end
 
 # Stop the Stepping animation
@@ -295,11 +291,12 @@ class DependentEvents
     return if !$PokemonGlobal.followerToggled
     firstPkmn = $Trainer.firstAblePokemon
     return if !firstPkmn
-    remove_sprite(false)
+    remove_sprite(anim)
     ret = refresh_sprite(anim)
     change_sprite([firstPkmn.species, firstPkmn.female?,
           firstPkmn.shiny?, firstPkmn.form,
           firstPkmn.shadowPokemon?]) if ret
+    return ret
   end
 
 # Command to update follower/ make it reappear
@@ -336,7 +333,7 @@ def pbSurf
     surfbgm = pbGetMetadata(0,MetadataSurfBGM)
     pbCueBGM(surfbgm,0.5) if surfbgm
     pbStartSurfing
-    $PokemonTemp.dependentEvents.come_back(false)
+    $PokemonTemp.dependentEvents.come_back(true)
     return true
   end
   return false
@@ -347,13 +344,15 @@ alias follow_pbEndSurf pbEndSurf
 def pbEndSurf(xOffset,yOffset)
   ret = follow_pbEndSurf(xOffset,yOffset)
   if ret
-    if $step != false
-      $step = false
-      if $step == false
+    if $endsurfstep != false
+      $endsurfstep = false
+      if $endsurfstep == false
+        $PokemonTemp.dependentEvents.refresh_sprite(false, false)
       Events.onStepTaken+=proc {
-        if $step == false
-          $PokemonTemp.dependentEvents.come_back(true)
-          $step = true
+        if $endsurfstep == false
+          $PokemonTemp.dependentEvents.refresh_sprite(true)
+          $PokemonTemp.dependentEvents.come_back(false)
+          $endsurfstep = true
         end
       }
     end
@@ -482,6 +481,20 @@ end
 
 # Update follower after accessing Party Screen
 class PokemonPartyScreen
+  alias follow_pbEndScene pbEndScene
+  def pbEndScene
+    ret = follow_pbEndScene
+    $PokemonTemp.dependentEvents.come_back(false)
+    return ret
+  end
+
+  alias follow_pbPokemonScreen pbPokemonScreen
+  def pbPokemonScreen
+    ret = follow_pbPokemonScreen
+    $PokemonTemp.dependentEvents.come_back(false)
+    return ret
+  end
+
   alias follow_pbSwitch pbSwitch
   def pbSwitch(oldid,newid)
     follow_pbSwitch(oldid,newid)
@@ -525,7 +538,7 @@ class PokeBattle_Scene
   alias follow_pbEndBattle pbEndBattle
   def pbEndBattle(result)
     follow_pbEndBattle(result)
-    $PokemonTemp.dependentEvents.come_back(false)
+    $PokemonGlobal.callRefresh = [true,false]
   end
 end
 
@@ -692,6 +705,58 @@ class PokeballPlayerSendOutAnimation < PokeBattle_Animation
       shadow.moveOpacity(delay+5,10,255)
     end
   end
+end
+
+def pbStartOver(gameover=false)
+  if pbInBugContest?
+    pbBugContestStartOver
+    return
+  end
+  pbHealAll
+  if $PokemonGlobal.pokecenterMapId && $PokemonGlobal.pokecenterMapId>=0
+    if gameover
+      pbMessage(_INTL("\\w[]\\wm\\c[8]\\l[3]After the unfortunate defeat, you scurry back to a Pokémon Center."))
+    else
+      pbMessage(_INTL("\\w[]\\wm\\c[8]\\l[3]You scurry back to a Pokémon Center, protecting your exhausted Pokémon from any further harm..."))
+    end
+    pbCancelVehicles
+    pbRemoveDependenciesExceptFollower
+    $game_switches[STARTING_OVER_SWITCH] = true
+    $game_temp.player_new_map_id    = $PokemonGlobal.pokecenterMapId
+    $game_temp.player_new_x         = $PokemonGlobal.pokecenterX
+    $game_temp.player_new_y         = $PokemonGlobal.pokecenterY
+    $game_temp.player_new_direction = $PokemonGlobal.pokecenterDirection
+    $scene.transfer_player if $scene.is_a?(Scene_Map)
+    $game_map.refresh
+  else
+    homedata = pbGetMetadata(0,MetadataHome)
+    if homedata && !pbRxdataExists?(sprintf("Data/Map%03d",homedata[0]))
+      if $DEBUG
+        pbMessage(_ISPRINTF("Can't find the map 'Map{1:03d}' in the Data folder. The game will resume at the player's position.",homedata[0]))
+      end
+      pbHealAll
+      return
+    end
+    if gameover
+      pbMessage(_INTL("\\w[]\\wm\\c[8]\\l[3]After the unfortunate defeat, you scurry back home."))
+    else
+      pbMessage(_INTL("\\w[]\\wm\\c[8]\\l[3]You scurry back home, protecting your exhausted Pokémon from any further harm..."))
+    end
+    if homedata
+      pbCancelVehicles
+      pbRemoveDependenciesExceptFollower
+      $game_switches[STARTING_OVER_SWITCH] = true
+      $game_temp.player_new_map_id    = homedata[0]
+      $game_temp.player_new_x         = homedata[1]
+      $game_temp.player_new_y         = homedata[2]
+      $game_temp.player_new_direction = homedata[3]
+      $scene.transfer_player if $scene.is_a?(Scene_Map)
+      $game_map.refresh
+    else
+      pbHealAll
+    end
+  end
+  pbEraseEscapePoint
 end
 
 #-------------------------------------------------------------------------------
@@ -930,11 +995,7 @@ end
 
 # Update the Passage method for bridge and ice sliding
 def pbTestPass(follower,x,y,direction=nil)
-  if $PokemonGlobal.surfing
-    ret = $MapFactory.isPassable?(follower.map.map_id,x,y,follower)
-  else
-    ret = $MapFactory.isPassableStrict?(follower.map.map_id,x,y,follower)
-  end
+  ret = $MapFactory.isPassable?(follower.map.map_id,x,y,follower)
   if defined?(PBTerrain::StairLeft) && ($MapFactory.getTerrainTag(follower.map.map_id,x,y)==PBTerrain::StairLeft ||$MapFactory.getTerrainTag(follower.map.map_id,x,y)==PBTerrain::StairRight)
     return true
   end
@@ -995,11 +1056,7 @@ class DependentEvents
             tile[2] -= 1 if $MapFactory.getTerrainTag(tile[0],tile[1],tile[2]-1) == PBTerrain::StairRight && $game_map.terrain_tag($game_player.x,$game_player.y) == PBTerrain::StairRight
           end
         end
-        if $PokemonGlobal.surfing
-          passable= tile && $MapFactory.isPassable?(tile[0],tile[1],tile[2],follower)
-        else
-          passable= tile && $MapFactory.isPassableStrict?(tile[0],tile[1],tile[2],follower)
-        end
+        passable= tile && $MapFactory.isPassable?(tile[0],tile[1],tile[2],follower)
         if !passable && $PokemonGlobal.bridge>0
           passable = PBTerrain.isBridge?($MapFactory.getTerrainTag(tile[0],tile[1],tile[2]))
         elsif passable && !$PokemonGlobal.surfing && $PokemonGlobal.bridge==0
@@ -1010,11 +1067,7 @@ class DependentEvents
           # If the tile isn't passable and the tile is a ledge,
           # get tile from further behind
           tile=$MapFactory.getFacingTileFromPos(tile[0],tile[1],tile[2],facing)
-          if $PokemonGlobal.surfing
-            passable= tile && $MapFactory.isPassable?(tile[0],tile[1],tile[2],follower)
-          else
-            passable= tile && $MapFactory.isPassableStrict?(tile[0],tile[1],tile[2],follower)
-          end
+          passable= tile && $MapFactory.isPassable?(tile[0],tile[1],tile[2],follower)
           if passable && !$PokemonGlobal.surfing
             passable=!PBTerrain.isWater?($MapFactory.getTerrainTag(tile[0],tile[1],tile[2]))
           end
@@ -1168,6 +1221,7 @@ end
 #-------------------------------------------------------------------------------
 class PokemonGlobalMetadata
   attr_accessor :followerToggled
+  attr_accessor :callRefresh
   attr_accessor :timeTaken
   attr_accessor :followerHoldItem
   attr_writer :dependentEvents
@@ -1175,6 +1229,17 @@ class PokemonGlobalMetadata
   def dependentEvents
     @dependentEvents=[] if !@dependentEvents
     return @dependentEvents
+  end
+
+  def callRefresh
+    @callRefresh = [false,false] if !@callRefresh
+    return @callRefresh
+  end
+
+  def callRefresh=(value)
+    ret = value
+    ret = [value,false] if !value.is_a?(Array)
+    @callRefresh = value
   end
 
   def followerToggled
@@ -1193,13 +1258,9 @@ class PokemonGlobalMetadata
   end
 end
 
-if defined?(PluginManager)
-  PluginManager.register({
-    :name => "Following Pokemon EX",
-    :version => "1.0",
-    :credits => ["Golisopod User","Help-14","zingzags","Rayd12smitty","Venom12","mej71","PurpleZaffre","Akizakura16"],
-    :link => "https://reliccastle.com/resources/"
-  })
-else
-  raise "This script is only compatible with Essentials v18.x. You should update your Essentials ya goof."
-end
+Events.onStepTaken += proc { |_sender,_e|
+  if $PokemonGlobal.callRefresh[0]
+    $PokemonTemp.dependentEvents.come_back($PokemonGlobal.callRefresh[1])
+    $PokemonGlobal.callRefresh = [false,false]
+  end
+}

@@ -136,7 +136,7 @@ Events.FollowerRefresh += proc{|pkmn|
 # Amie Compatibility
 if defined?(pokemonAmieRefresh)
   Events.OnTalkToFollower += proc {|pkmn,x,y,randomVal|
-    cmd = pbMessage("What would you like to do?",["Play","Talk","Cancel"])
+    cmd = pbMessage("What would you like to do?",["Play","Talk","Cancel"],3)
     pokemonAmieRefresh if cmd == 0
     next true if [0,2].include?(cmd)
   }
