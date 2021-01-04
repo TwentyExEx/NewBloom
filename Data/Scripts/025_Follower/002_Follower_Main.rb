@@ -37,7 +37,8 @@ def pbToggleFollowingPokemon(forced = nil,anim = true)
     pbWait(1)
   else
     $PokemonGlobal.followerToggled = true
-    $PokemonTemp.dependentEvents.come_back(anim)
+    $PokemonTemp.dependentEvents.refresh_sprite(true)
+    $PokemonTemp.dependentEvents.come_back(false)
     pbWait(1)
   end
 end
