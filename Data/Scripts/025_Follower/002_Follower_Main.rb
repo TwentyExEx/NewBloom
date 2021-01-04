@@ -518,6 +518,14 @@ class PokemonPartyScreen
   end
 end
 
+class PokemonTrade_Scene
+  alias follow_pbEndScreen pbEndScreen
+  def pbEndScreen
+    follow_pbEndScreen
+    $PokemonTemp.dependentEvents.come_back(false)
+  end
+end
+
 # Update follower after any kind of Evolution
 class PokemonEvolutionScene
   alias follow_pbEndScreen pbEndScreen
@@ -1268,3 +1276,14 @@ Events.onStepTaken += proc { |_sender,_e|
     $PokemonGlobal.callRefresh = [false,false]
   end
 }
+
+if defined?(PluginManager)
+  PluginManager.register({
+    :name => "Following Pokemon EX",
+    :version => "1.2",
+    :credits => ["Golisopod User","Help-14","zingzags","Rayd12smitty","Venom12","mej71","PurpleZaffre","Akizakura16"],
+    :link => "https://reliccastle.com/resources/"
+  })
+else
+  raise "This script is only compatible with Essentials v18.x. You should update your Essentials ya goof."
+end
