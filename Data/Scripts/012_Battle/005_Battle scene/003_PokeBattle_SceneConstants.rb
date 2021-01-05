@@ -8,12 +8,12 @@ module PokeBattle_SceneConstants
   NUM_BALLS = 6
 
   # Centre bottom of the player's side base graphic
-  PLAYER_BASE_X = 128
-  PLAYER_BASE_Y = Graphics.height - 80
+  PLAYER_BASE_X = 140
+  PLAYER_BASE_Y = Graphics.height - 120
 
   # Centre middle of the foe's side base graphic
   FOE_BASE_X    = Graphics.width - 128
-  FOE_BASE_Y    = (Graphics.height * 3/4) - 112
+  FOE_BASE_Y    = (Graphics.height * 3/4) - 153
 
   # Returns where the centre bottom of a battler's sprite should be, given its
   # index and the number of battlers on its side, assuming the battler has
