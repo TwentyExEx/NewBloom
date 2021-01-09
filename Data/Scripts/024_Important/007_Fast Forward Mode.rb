@@ -18,7 +18,7 @@
 #==============================================================================#
 
 # When the user clicks F, it'll pick the next number in this array.
-SPEEDUP_STAGES = [1,2,3]
+SPEEDUP_STAGES = [0,3]
 
 
 def pbAllowSpeedup
@@ -45,7 +45,7 @@ module Graphics
       $GameSpeed = 0 if $GameSpeed >= SPEEDUP_STAGES.size
     end
     $frame += 1
-    return unless $frame % SPEEDUP_STAGES[$GameSpeed] == 0
+    return unless $GameSpeed == 0 || $frame % SPEEDUP_STAGES[$GameSpeed] == 0
     fast_forward_update
     $frame = 0
   end
