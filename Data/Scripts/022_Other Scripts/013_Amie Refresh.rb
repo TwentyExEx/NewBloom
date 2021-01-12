@@ -85,8 +85,8 @@ end
 # Pokemon-Amie/Pokemon Refresh Script
 ################################################################################
 
-AMIEPOKEMON = 100 # Variable number to store the main Amie/Refresh Pokemon
-AMIEINDEX = 101 # Variable number to store the main Amie/Refresh Pokemon Party Index
+AMIEPOKEMON = 85 # Variable number to store the main Amie/Refresh Pokemon
+AMIEINDEX = 86 # Variable number to store the main Amie/Refresh Pokemon Party Index
 
 #All Things Pokemon can eat (Mostly Berries)
 EATABLE_ITEMS = [
