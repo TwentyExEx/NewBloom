@@ -113,7 +113,7 @@ def pbPersonalityTest
 		@docile +=1
 	end
 # Question 9
-	cmd=pbMessage("You are at a restaurant you've been to before. What do you order?",["Play it safe and stick with my usual order.","Whatever looks good in the menu!","Go with the waiter's recommendation."])
+	cmd=pbMessage("You are at a restaurant you've been to before. What do you order?",["Play it safe and stick with my usual order.","Whatever looks good on the menu!","Go with the waiter's recommendation."])
 	if cmd == 0
 		@adamant += 2
 		@modest += 1
