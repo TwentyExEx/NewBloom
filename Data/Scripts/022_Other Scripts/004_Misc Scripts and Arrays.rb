@@ -23,6 +23,24 @@ $NURSEA = [:POTION,:POKEBALL]
 $NURSEB = [:POTION,:POKEBALL,:GREATBALL]
 $NURSEC = [:POTION,:POKEBALL,:GREATBALL,:ULTRABALL]
 
+def pbDaycareRoam
+  encounter = [pokemon.species,pokemon.level]
+  gender = pokemon.gender if USEFEMALESPRITES==true
+  form = pokemon.form if USEALTFORMS == true  
+  isShiny = pokemon.isShiny?
+  return encounter,gender,form,isShiny
+end
+
+def pbDaycareSet(x,y,encounter,gender = nil,form = nil,isShiny = nil)
+  if !$MapFactory
+    $game_map.spawnEvent(x,y,encounter,gender,form,isShiny)
+  else
+    mapId = $game_map.map_id
+    spawnMap = $MapFactory.getMap(mapId)
+    spawnMap.spawnEvent(x,y,encounter,gender,form,isShiny)
+  end
+end
+
 def pbChangeName(name=nil,outfit=0)
   pbChangePlayer(0) if $PokemonGlobal.playerID<0
   trainertype = pbGetPlayerTrainerType
