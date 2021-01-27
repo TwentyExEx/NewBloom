@@ -6,8 +6,7 @@ class Game_Map
     #------------------------------------------------------------------
     # generating a new event
     event = RPG::Event.new(x,y)
-    # naming the event "vanishingEncounter" for PART 3 
-    event.name = "vanishingEncounter"
+    event.name = "daycareRoamer"
     #setting the nessassary properties
     key_id = (@events.keys.max || -1) + 1
     event.id = key_id
