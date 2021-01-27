@@ -1,24 +1,26 @@
-#===============================================================================
-# new Method spawnEvent in Class Game_Map in Script Game_Map
-#===============================================================================
+# Settings
+
+$DAYCARE_ID_0 = 19 # Event ID of Daycare Pokemon 0
+$DAYCARE_ID_1 = 20 # Event ID of Daycare Pokemon 1
+
 class Game_Map
-  def spawnEventDaycare(x,y,encounter,gender = nil,form = nil, isShiny = nil)
+  def spawnEventDaycare(x,y,spec,gender = nil,form = nil, isShiny = nil)
     #------------------------------------------------------------------
-    # generating a new event
+    # remaking the event
     event = RPG::Event.new(x,y)
     event.name = "daycareRoamer"
     #setting the nessassary properties
-    key_id = (@events.keys.max || -1) + 1
+    key_id = $last_id
     event.id = key_id
     event.x = x
     event.y = y
     #event.pages[0].graphic.tile_id = 0
-    if encounter[0] < 10
-      character_name = "00"+encounter[0].to_s
-    elsif encounter[0] < 100
-      character_name = "0"+encounter[0].to_s
+    if spec[0] < 10
+      character_name = "00"+spec[0].to_s
+    elsif spec[0] < 100
+      character_name = "0"+spec[0].to_s
     else
-      character_name = encounter[0].to_s
+      character_name = spec[0].to_s
     end
     # use sprite of female pokemon
     character_name = character_name+"f" if USEFEMALESPRITES == true and gender==1 and pbResolveBitmap("Graphics/Characters/"+character_name+"f")
@@ -34,32 +36,23 @@ class Game_Map
       character_name = character_name+"_"+form.to_s if pbResolveBitmap("Graphics/Characters/"+character_name+"_"+form.to_s)
     end
     event.pages[0].graphic.character_name = character_name
-    # we configure the movement of the overworld encounter
-    if rand(100) < AGGRESSIVEENCOUNTERPROBABILITY
-      event.pages[0].move_type = 3
-      event.pages[0].move_speed = AGGRENCMOVESPEED
-      event.pages[0].move_frequency = AGGRENCMOVEFREQ
-      event.pages[0].move_route.list[0].code = 10
-      event.pages[0].move_route.list[1] = RPG::MoveCommand.new
+    event.pages[0].move_type = 1
+    event.pages[0].move_speed = 3
+    event.pages[0].move_frequency = 3
+    event.pages[0].step_anime = true
+    event.pages[0].trigger = 0
+    if !$MapFactory
+      parameter = "$game_map.removeThisEventfromMap(#{@event_id})"
     else
-      event.pages[0].move_type = 1
-      event.pages[0].move_speed = ENCMOVESPEED
-      event.pages[0].move_frequency = ENCMOVEFREQ
+      eventID = $game_map.map_id
+      parameter = "pbDaycareInteract"
     end
-    event.pages[0].step_anime = true if USESTOPANIMATION
-    # event.pages[0].trigger = 2
-    # if !$MapFactory
-    #   parameter = "$game_map.removeThisEventfromMap(#{key_id})"
-    # else
-    #   mapId = $game_map.map_id
-    #   parameter = "$MapFactory.getMap("+mapId.to_s+").removeThisEventfromMap(#{key_id})"
-    # end
-    # pbPushScript(event.pages[0].list,sprintf(parameter))
-    # pbPushEnd(event.pages[0].list)
+    pbPushScript(event.pages[0].list,sprintf(parameter))
+    pbPushEnd(event.pages[0].list)
     #------------------------------------------------------------------
     # creating and adding the Game_Event
     gameEvent = Game_Event.new(@map_id, event, self)
-    key_id = (@events.keys.max || -1) + 1
+    key_id = $last_id
     gameEvent.id = key_id
     gameEvent.moveto(x,y)
     @events[key_id] = gameEvent
@@ -70,13 +63,20 @@ class Game_Map
   end
 end
 
-def pbDaycareRoam(num,x,y)
-  pokemon = $PokemonGlobal.daycare[num][0]
-  spec = [pokemon.species,pokemon.level]
-  gender = pokemon.gender if USEFEMALESPRITES == true
-  form = pokemon.form if USEALTFORMS == true  
-  isShiny = pokemon.isShiny?
-  pbPlaceDaycare(x,y,spec,gender,form,isShiny)
+def pbDaycareRoam(num)
+  thisevent = $game_map.events[@event_id]
+  x = thisevent.x
+  y = thisevent.y
+  $last_id = @event_id
+  $game_map.removeThisEventfromMap(@event_id)
+  if $PokemonGlobal.daycare[num][0]
+    pokemon = $PokemonGlobal.daycare[num][0]
+    spec = [pokemon.species,pokemon.level]
+    gender = pokemon.gender if USEFEMALESPRITES == true
+    form = pokemon.form if USEALTFORMS == true
+    isShiny = pokemon.isShiny?
+    pbPlaceDaycare(x,y,spec,gender,form,isShiny)
+  end
 end
 
 def pbPlaceDaycare(x,y,spec,gender = nil,form = nil,isShiny = nil)
@@ -87,4 +87,14 @@ def pbPlaceDaycare(x,y,spec,gender = nil,form = nil,isShiny = nil)
     spawnMap = $MapFactory.getMap(mapId)
     spawnMap.spawnEventDaycare(x,y,spec,gender,form,isShiny)
   end
+end
+
+def pbDaycareInteract
+  if @event_id == $DAYCARE_ID_0
+    daycarenum = 0
+  elsif @event_id == $DAYCARE_ID_1
+    daycarenum = 1
+  end
+  pokemon = $PokemonGlobal.daycare[daycarenum][0]
+  pbPlayCry(pokemon.species)
 end
