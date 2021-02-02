@@ -92,7 +92,7 @@ module PBExperience
   # player's data) is loaded, so make sure they exist before using them, and
   # make this method return the most maximum ever level if they don't.
   
-  MAXLEVEL = MAXIMUM_LEVEL # See the settings for changing the max level
+  MAXLEVEL = Settings::MAXIMUM_LEVEL # See the settings for changing the max level
   
   def self.maxLevel
     return Settings::MAXIMUM_LEVEL
