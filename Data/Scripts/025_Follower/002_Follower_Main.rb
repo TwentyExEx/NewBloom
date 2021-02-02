@@ -1134,7 +1134,7 @@ class DependentEvents
         if instant
           follower.moveto(newX,newY)
         else
-          pbFancyMoveTo(follower,newX,newY)
+          pbFancyMoveTo(follower,newX,newY,leader)
         end
       elsif (follower.x-newX==-2 && follower.y==newY) ||
             (follower.x-newX==2 && follower.y==newY) ||
@@ -1143,14 +1143,14 @@ class DependentEvents
         if instant
           follower.moveto(newX,newY)
         else
-          pbFancyMoveTo(follower,newX,newY)
+          pbFancyMoveTo(follower,newX,newY,leader)
         end
       elsif follower.x!=posX || follower.y!=posY
         if instant
           follower.moveto(newX,newY)
         else
           pbFancyMoveTo(follower,posX,posY)
-          pbFancyMoveTo(follower,newX,newY)
+          pbFancyMoveTo(follower,newX,newY,leader)
         end
       end
     else
