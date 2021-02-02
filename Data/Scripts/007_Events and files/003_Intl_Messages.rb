@@ -34,7 +34,7 @@ def pbSetTextMessages
     end
     # Must add messages because this code is used by both game system and Editor
     MessageTypes.addMessagesAsHash(MessageTypes::ScriptTexts,texts)
-    commonevents=pbLoadRxData("Data/CommonEvents")
+    commonevents = load_data("Data/CommonEvents.rxdata")
     items=[]
     choices=[]
     for event in commonevents.compact
@@ -56,7 +56,7 @@ def pbSetTextMessages
             neednewline=false
           end
           if list.code == 101
-            lastitem+="#{list.parameters[0]}" if !$RPGVX
+            lastitem+="#{list.parameters[0]}"
             neednewline=true
           elsif list.code == 102
             for k in 0...list.parameters[0].length
@@ -96,7 +96,7 @@ def pbSetTextMessages
     choices|=[]
     items.concat(choices)
     MessageTypes.setMapMessagesAsHash(0,items)
-    mapinfos = pbLoadRxData("Data/MapInfos")
+    mapinfos = load_data("Data/MapInfos.rxdata")
     mapnames=[]
     for id in mapinfos.keys
       mapnames[id]=mapinfos[id].name
@@ -107,7 +107,7 @@ def pbSetTextMessages
         t = Time.now.to_i
         Graphics.update
       end
-      filename=sprintf("Data/Map%03d.%s",id,$RPGVX ? "rvdata" : "rxdata")
+      filename=sprintf("Data/Map%03d.rxdata",id)
       next if !pbRgssExists?(filename)
       map = load_data(filename)
       items=[]
@@ -132,7 +132,7 @@ def pbSetTextMessages
                 neednewline=false
               end
               if list.code == 101
-                lastitem+="#{list.parameters[0]}" if !$RPGVX
+                lastitem+="#{list.parameters[0]}"
                 neednewline=true
               elsif list.code == 102
                 for k in 0...list.parameters[0].length

@@ -58,7 +58,7 @@ class PokeBattle_Battler
     @battle.pbDisplay(arrStatTexts[[increment-1,2].min])
     # Trigger abilities upon stat gain
     if abilityActive?
-      BattleHandlers.triggerAbilityOnStatGain(@ability,self,stat,user)
+      BattleHandlers.triggerAbilityOnStatGain(self.ability,self,stat,user)
     end
     @effects[PBEffects::BurningJealousy] = true
     return true
@@ -89,7 +89,7 @@ class PokeBattle_Battler
     @battle.pbDisplay(arrStatTexts[[increment-1,2].min])
     # Trigger abilities upon stat gain
     if abilityActive?
-      BattleHandlers.triggerAbilityOnStatGain(@ability,self,stat,user)
+      BattleHandlers.triggerAbilityOnStatGain(self.ability,self,stat,user)
     end
     @effects[PBEffects::BurningJealousy] = true
     return true
@@ -135,9 +135,9 @@ class PokeBattle_Battler
       end
       if abilityActive?
         return false if BattleHandlers.triggerStatLossImmunityAbility(
-           @ability,self,stat,@battle,showFailMsg) if !@battle.moldBreaker
+           self.ability,self,stat,@battle,showFailMsg) if !@battle.moldBreaker
         return false if BattleHandlers.triggerStatLossImmunityAbilityNonIgnorable(
-           @ability,self,stat,@battle,showFailMsg)
+           self.ability,self,stat,@battle,showFailMsg)
       end
       if !@battle.moldBreaker
         eachAlly do |b|
@@ -212,7 +212,7 @@ class PokeBattle_Battler
     @battle.pbDisplay(arrStatTexts[[increment-1,2].min])
     # Trigger abilities upon stat loss
     if abilityActive?
-      BattleHandlers.triggerAbilityOnStatLoss(@ability,self,stat,user)
+      BattleHandlers.triggerAbilityOnStatLoss(self.ability,self,stat,user)
     end
     @effects[PBEffects::LashOut] = true
     return true
@@ -262,7 +262,7 @@ class PokeBattle_Battler
     @battle.pbDisplay(arrStatTexts[[increment-1,2].min])
     # Trigger abilities upon stat loss
     if abilityActive?
-      BattleHandlers.triggerAbilityOnStatLoss(@ability,self,stat,user)
+      BattleHandlers.triggerAbilityOnStatLoss(self.ability,self,stat,user)
     end
     @effects[PBEffects::LashOut] = true
     return true
@@ -305,8 +305,8 @@ class PokeBattle_Battler
         return false
       end
       if abilityActive?
-        if BattleHandlers.triggerStatLossImmunityAbility(@ability,self,PBStats::ATTACK,@battle,false) ||
-           BattleHandlers.triggerStatLossImmunityAbilityNonIgnorable(@ability,self,PBStats::ATTACK,@battle,false) ||
+        if BattleHandlers.triggerStatLossImmunityAbility(self.ability,self,PBStats::ATTACK,@battle,false) ||
+           BattleHandlers.triggerStatLossImmunityAbilityNonIgnorable(self.ability,self,PBStats::ATTACK,@battle,false) ||
             hasActiveAbility?(:INNERFOCUS) || hasActiveAbility?(:OWNTEMPO) || hasActiveAbility?(:OBLIVIOUS) || hasActiveAbility?(:SCRAPPY)
           @battle.pbShowAbilitySplash(self) if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
           @battle.pbDisplay(_INTL("{1}'s {2} prevented {3}'s {4} from working!",
