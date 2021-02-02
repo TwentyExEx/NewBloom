@@ -214,9 +214,7 @@ class CustomTilemap
   end
 
   def refreshLayer0(autotiles=false, onlykleintiles=false)
-    if autotiles
-      return true if !shown?
-    end
+    return true if autotiles && !shown?
     ptX=@ox-@oxLayer0
     ptY=@oy-@oyLayer0
     if !autotiles && !@firsttime && !@usedsprites &&
@@ -348,19 +346,17 @@ class CustomTilemap
         end
         Graphics.frame_reset
       else
-        if !@priorect || !@priorectautos || @priorect[0]!=xStart ||
-           @priorect[1]!=yStart ||
-           @priorect[2]!=xEnd ||
-           @priorect[3]!=yEnd
-          @priorectautos=@prioautotiles.find_all{|tile|
-             x=tile[0]
-             y=tile[1]
-             # "next" means "return" here
-             next !(x<xStart||x>xEnd||y<yStart||y>yEnd)
-          }
-          @priorect=[xStart,yStart,xEnd,yEnd]
+        if !@priorect || !@priorectautos ||
+           @priorect[0] != xStart || @priorect[1] != yStart ||
+           @priorect[2] != xEnd || @priorect[3] != yEnd
+          @priorect = [xStart, yStart, xEnd, yEnd]
+          @priorectautos = []
+          for y in yStart..yEnd
+            for x in xStart..xEnd
+              @priorectautos.push([x, y]) if @prioautotiles[[x, y]]
+            end
+          end
         end
-   #   echoln ["autos",@priorect,@priorectautos.length,@prioautotiles.length]
         for tile in @priorectautos
           x=tile[0]
           y=tile[1]
@@ -667,10 +663,9 @@ class CustomTilemap
               id = @map_data[x, y, z]
               next if id==0 || !isKleinTilePlusAuto?(id) || @priorities[id]!=0 || !@priorities[id]
               next if id<384 && @framecount[id/48-1]<2
-              haveautotile=true
+              @prioautotiles[[x, y]] = true
               break
             end
-            @prioautotiles.push([x,y]) if haveautotile
           end
         end
         @fullyrefreshedautos=true
