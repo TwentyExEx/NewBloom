@@ -130,6 +130,7 @@ class PokeBattle_Battler
     return false if @battle.pbCheckOpposingAbility(:UNNERVE,@index)
     return false if @battle.pbCheckOpposingAbility(:ASONEICE,@index)
     return false if @battle.pbCheckOpposingAbility(:ASONEGHOST,@index)
+    return false if @battle.pbCheckOpposingAbility(:UNNERVE, @index)
     return true
   end
 
