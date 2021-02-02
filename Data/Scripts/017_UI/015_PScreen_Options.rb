@@ -70,7 +70,7 @@ $SpeechFrames = [
 ]
 
 $TextFrames = [
-  "Graphics/Windowskins/"+MessageConfig::ChoiceSkinName,   # Default: choice 29
+  MessageConfig::ChoiceSkinName,   # Default: choice 29
   "Graphics/Windowskins/choice 1",
   "Graphics/Windowskins/choice 2",
   "Graphics/Windowskins/choice 3",
@@ -122,7 +122,7 @@ end
 module MessageConfig
   def self.pbDefaultSystemFrame
     begin
-      return pbResolveBitmap($TextFrames[$PokemonSystem.frame]) || ""
+      return pbResolveBitmap("Graphics/Windowskins/"+$TextFrames[$PokemonSystem.frame]) || ""
     rescue
       return pbResolveBitmap("Graphics/Windowskins/"+MessageConfig::ChoiceSkinName) || ""
     end
