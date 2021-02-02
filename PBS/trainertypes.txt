@@ -15,7 +15,7 @@
 12,SCHOOLKID_M2,School Kid,20,,,,Male,,
 13,SCHOOLKID_M3,School Kid,20,,,,Male,,
 14,SCHOOLKID_F,School Kid,20,,,,Female,,
-15,SCHOOLKID_F,School Kid,20,,,,Female,,
+15,SCHOOLKID_F2,School Kid,20,,,,Female,,
 16,BUGCATCHER,Bug Catcher,16,,,,Male,,
 17,BUGCATCHER2,Bug Catcher,16,,,,Male,,
 18,CAMPER,Camper,16,,,,Male,,

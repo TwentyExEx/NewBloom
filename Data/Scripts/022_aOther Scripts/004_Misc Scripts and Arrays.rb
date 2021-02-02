@@ -59,7 +59,7 @@ Events.onStepTakenTransferPossible+=proc {|sender,e|
       else
         pbSEPlay("se_step_grass")
       end
-    elsif !pbGetMetadata($game_map.map_id,MetadataOutdoor) || PBTerrain.isBridge?(pbGetTerrainTag) || PBTerrain.isRoad?(pbGetTerrainTag)
+    elsif !GameData::MapMetadata.get($game_map.map_id).outdoor_map || PBTerrain.isBridge?(pbGetTerrainTag) || PBTerrain.isRoad?(pbGetTerrainTag)
         pbSEPlay("se_step_default")
     elsif PBTerrain.isIce?(pbGetTerrainTag)
     else

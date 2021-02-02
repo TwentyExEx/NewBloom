@@ -463,8 +463,8 @@ Events.onStepTaken += proc {
 
 # Alcremie Evolution Method
 def pbEvolveAlcremie
-  for pkmn in $Trainer.ablePokemonParty
-    ret = pbCheckEvolutionEx(pkmn) { |pkmn, method, parameter, new_species|
+  for pkmn in $Trainer.able_party
+    ret = EvolutionCheck.check_ex(pkmn) { |pkmn, method, parameter, new_species|
       success = PBEvolution.call("alcremieCheck", method, pkmn, parameter)
       next (success) ? new_species : -1
     }

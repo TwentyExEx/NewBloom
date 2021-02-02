@@ -265,7 +265,7 @@ module EvolutionCheck
   # into) or nil (keep checking).
   # @param pkmn [Pokemon] the Pokémon trying to evolve
   def self.check_ex(pkmn)
-    return nil if !pkmn.species || pokemon.egg? || pokemon.shadowPokemon?
+    return nil if !pkmn.species || pkmn.egg? || pkmn.shadowPokemon?
     return nil if pkmn.hasItem?(:EVERSTONE)
     return nil if pkmn.hasAbility?(:BATTLEBOND)
     ret = nil

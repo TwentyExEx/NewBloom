@@ -429,15 +429,15 @@ class PokemonEncounters
   def pbEncounterTypeOnTile(x,y)
     if PBTerrain.isJustWater?($game_map.terrain_tag(x,y))
       return EncounterTypes::Water
-    elsif self.isCave?
+    elsif self.has_cave_encounters?
       return EncounterTypes::Cave
-    elsif self.isGrass?
+    elsif self.has_normal_land_encounters?
       time = pbGetTimeNow
       enctype = EncounterTypes::Land
-      enctype = EncounterTypes::LandNight if self.hasEncounter?(EncounterTypes::LandNight) && PBDayNight.isNight?(time)
-      enctype = EncounterTypes::LandDay if self.hasEncounter?(EncounterTypes::LandDay) && PBDayNight.isDay?(time)
-      enctype = EncounterTypes::LandMorning if self.hasEncounter?(EncounterTypes::LandMorning) && PBDayNight.isMorning?(time)
-      if pbInBugContest? && self.hasEncounter?(EncounterTypes::BugContest)
+      enctype = EncounterTypes::LandNight if self.has_encounter_type?(EncounterTypes::LandNight) && PBDayNight.isNight?(time)
+      enctype = EncounterTypes::LandDay if self.has_encounter_type?(EncounterTypes::LandDay) && PBDayNight.isDay?(time)
+      enctype = EncounterTypes::LandMorning if self.has_encounter_type?(EncounterTypes::LandMorning) && PBDayNight.isMorning?(time)
+      if pbInBugContest? && self.has_encounter_type?(EncounterTypes::BugContest)
         enctype = EncounterTypes::BugContest
       end
       return enctype
@@ -448,9 +448,9 @@ class PokemonEncounters
   def isEncounterPossibleHereOnTile?(x,y)
     if PBTerrain.isJustWater?($game_map.terrain_tag(x,y))
       return true
-    elsif self.isCave?
+    elsif self.has_cave_encounters?
       return true
-    elsif self.isGrass?
+    elsif self.has_normal_land_encounters?
       return PBTerrain.isGrass?($game_map.terrain_tag(x,y))
     end
     return false

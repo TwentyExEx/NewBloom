@@ -115,7 +115,8 @@ Events.FollowerRefresh += proc{|pkmn|
 }
 
 Events.FollowerRefresh += proc{|pkmn|
-  if pbGetMetadata($game_map.map_id,MetadataOutdoor) != true
+  map_id = $game_map.map_id
+  if GameData::MapMetadata.get(map_id).outdoor_map != true
 # The Pokemon disappears if it's height is greater than 2.5 meters and there are no encounters ie a building or something
     height =  pbGetSpeciesData(pkmn.species,pkmn.form)[SpeciesHeight]
     next false if (height/10.0) > 2.5 && !$PokemonEncounters.isEncounterPossibleHere?

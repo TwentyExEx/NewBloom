@@ -207,11 +207,17 @@ class DependentEvents
         end
       end
       ret = [-1,""]
-      for j in 0...2   # Try using the species' internal name and then its ID number
+      for j in 0...1   # Try using the species' internal name and then its ID number
         next if trySpecies==0 && j==0
-        trySpeciesText = (j==0) ? getConstantName(PBSpecies,trySpecies) : sprintf("%03d",trySpecies)
-        bitmapFileName = sprintf("%s%s%s%s%s",
-           trySpeciesText,
+        speciesnum = GameData::Species.get(trySpecies).id_number
+        if speciesnum < 10
+          trySpeciesText = "00"+speciesnum.to_s
+        elsif speciesnum < 100
+          trySpeciesText = "0"+speciesnum.to_s
+        else
+          trySpeciesText = speciesnum.to_s
+        end
+        bitmapFileName = sprintf(trySpeciesText,
            (tryGender) ? "f" : "",
            (tryShiny) ? "s" : "",
            (tryForm!=0) ? "_"+tryForm.to_s : "",
