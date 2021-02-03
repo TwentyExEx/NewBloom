@@ -193,14 +193,14 @@ INSTANT_WILD_BATTLE_PROPABILITY = 0 # default 0.
 # Note that, if $game_variables[OVERWORLD_ENCOUNTER_VARIABLE] = 0 then the propability stored in that $game_variable will be reset to
 # the value of INSTANT_WILD_BATTLE_PROPABILITY, unless this is also 0.
 
-RESTRICTENCOUNTERSTOPLAYERMOVEMENT = false
+RESTRICTENCOUNTERSTOPLAYERMOVEMENT = true
 #true - means that water encounters are popping up
 #       if and only if player is surfing
 #       (perhaps decreases encounter rate)
 #false - means that all encounter types can pop up
 #        close to the player (as long as there is a suitable tile)
 
-STEPSBEFOREVANISHING = 6 # default 10
+STEPSBEFOREVANISHING = 10 # default 10
 #      STEPSBEFOREVANISHING is the number of steps a wild Encounter goes
 #      before vanishing on the map.
 
@@ -237,7 +237,7 @@ ENCMOVEFREQ = 3 # default 3
 #1   - means lowest movement
 #6   - means highest movement
 
-AGGRESSIVEENCOUNTERPROBABILITY = 20 # default 20 
+AGGRESSIVEENCOUNTERPROBABILITY = 50 # default 20 
 #this is the probability in percent of spawning of an agressive encounter
 #0   - means that there are no aggressive encounters
 #100 - means that all encounter are aggressive
@@ -247,7 +247,7 @@ AGGRENCMOVESPEED = 3 # default 3
 #1   - means lowest movement
 #6   - means highest movement
 
-AGGRENCMOVEFREQ = 5 # default 5
+AGGRENCMOVEFREQ = 6 # default 5
 # this is the movement frequenzy (compare to autonomous movement of events) of an aggressive encounter
 #1   - means lowest movement
 #6   - means highest movement
@@ -315,7 +315,7 @@ end
 #===============================================================================
 def pbChooseTileOnStepTaken
   # Choose 1 random tile from 1 random ring around the player
-  i = rand(4)
+  i = rand(3)
   r = rand((i+1)*8)
   x = $game_player.x
   y = $game_player.y
@@ -501,6 +501,7 @@ class Game_Map
       event.pages[0].move_frequency = AGGRENCMOVEFREQ
       event.pages[0].move_route.list[0].code = 10
       event.pages[0].move_route.list[1] = RPG::MoveCommand.new
+      event.name = "vanishingEncounterAggressive"
     else
       event.pages[0].move_type = 1
       event.pages[0].move_speed = ENCMOVESPEED

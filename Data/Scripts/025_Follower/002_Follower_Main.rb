@@ -1149,7 +1149,7 @@ class DependentEvents
         if instant
           follower.moveto(newX,newY)
         else
-          pbFancyMoveTo(follower,posX,posY)
+          pbFancyMoveTo(follower,posX,posY,leader)
           pbFancyMoveTo(follower,newX,newY,leader)
         end
       end
