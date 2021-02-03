@@ -14,7 +14,7 @@ class PokemonSystem
   attr_writer   :textinput
 
   def initialize
-    @textspeed   = 1     # Text speed (0=slow, 1=normal, 2=fast)
+    @textspeed   = 2     # Text speed (0=slow, 1=normal, 2=fast)
     @battlescene = 0     # Battle effects (animations) (0=on, 1=off)
     @battlestyle = 0     # Battle style (0=switch, 1=set)
     @frame       = 0     # Default window frame (see also $TextFrames)
@@ -46,7 +46,8 @@ end
 # Default options are at the top of script section SpriteWindow.
 #===============================================================================
 $SpeechFrames = [
-  MessageConfig::TextSkinName,   # Default: speech hgss 1
+  MessageConfig::TextSkinName,   # Default: "speech pl 20
+  "speech hgss 1",
   "speech hgss 2",
   "speech hgss 3",
   "speech hgss 4",
@@ -70,7 +71,8 @@ $SpeechFrames = [
 ]
 
 $TextFrames = [
-  "Graphics/Windowskins/"+MessageConfig::ChoiceSkinName,   # Default: choice 1
+  "Graphics/Windowskins/"+MessageConfig::ChoiceSkinName,   # Default: choice 29
+  "Graphics/Windowskins/choice 1",
   "Graphics/Windowskins/choice 2",
   "Graphics/Windowskins/choice 3",
   "Graphics/Windowskins/choice 4",
