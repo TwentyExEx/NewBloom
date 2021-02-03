@@ -71,35 +71,35 @@ $SpeechFrames = [
 ]
 
 $TextFrames = [
-  "Graphics/Windowskins/"+MessageConfig::ChoiceSkinName,   # Default: choice 29
-  "Graphics/Windowskins/choice 1",
-  "Graphics/Windowskins/choice 2",
-  "Graphics/Windowskins/choice 3",
-  "Graphics/Windowskins/choice 4",
-  "Graphics/Windowskins/choice 5",
-  "Graphics/Windowskins/choice 6",
-  "Graphics/Windowskins/choice 7",
-  "Graphics/Windowskins/choice 8",
-  "Graphics/Windowskins/choice 9",
-  "Graphics/Windowskins/choice 10",
-  "Graphics/Windowskins/choice 11",
-  "Graphics/Windowskins/choice 12",
-  "Graphics/Windowskins/choice 13",
-  "Graphics/Windowskins/choice 14",
-  "Graphics/Windowskins/choice 15",
-  "Graphics/Windowskins/choice 16",
-  "Graphics/Windowskins/choice 17",
-  "Graphics/Windowskins/choice 18",
-  "Graphics/Windowskins/choice 19",
-  "Graphics/Windowskins/choice 20",
-  "Graphics/Windowskins/choice 21",
-  "Graphics/Windowskins/choice 22",
-  "Graphics/Windowskins/choice 23",
-  "Graphics/Windowskins/choice 24",
-  "Graphics/Windowskins/choice 25",
-  "Graphics/Windowskins/choice 26",
-  "Graphics/Windowskins/choice 27",
-  "Graphics/Windowskins/choice 28"
+  MessageConfig::ChoiceSkinName,   # Default: choice 29
+  "choice 1",
+  "choice 2",
+  "choice 3",
+  "choice 4",
+  "choice 5",
+  "choice 6",
+  "choice 7",
+  "choice 8",
+  "choice 9",
+  "choice 10",
+  "choice 11",
+  "choice 12",
+  "choice 13",
+  "choice 14",
+  "choice 15",
+  "choice 16",
+  "choice 17",
+  "choice 18",
+  "choice 19",
+  "choice 20",
+  "choice 21",
+  "choice 22",
+  "choice 23",
+  "choice 24",
+  "choice 25",
+  "choice 26",
+  "choice 27",
+  "choice 28"
 ]
 
 $VersionStyles = [
@@ -123,7 +123,7 @@ end
 module MessageConfig
   def self.pbDefaultSystemFrame
     begin
-      return pbResolveBitmap($TextFrames[$PokemonSystem.frame]) || ""
+      return pbResolveBitmap("Graphics/Windowskins/"+$TextFrames[$PokemonSystem.frame]) || ""
     rescue
       return pbResolveBitmap("Graphics/Windowskins/"+MessageConfig::ChoiceSkinName) || ""
     end
@@ -495,7 +495,7 @@ class PokemonOption_Scene
          proc { $PokemonSystem.frame },
          proc { |value|
            $PokemonSystem.frame = value
-           MessageConfig.pbSetSystemFrame($TextFrames[value])
+           MessageConfig.pbSetSystemFrame("Graphics/Windowskins/" + $TextFrames[value])
          }
        ),
        EnumOption.new(_INTL("Font Style"),[_INTL("Em"),_INTL("R/S"),_INTL("FRLG"),_INTL("DP")],
