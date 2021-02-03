@@ -260,6 +260,50 @@ end
 # Evolution checks
 #===============================================================================
 module EvolutionCheck
+  module_function
+
+  # Checks whether a Pokemon can evolve because of levelling up.
+  # @param pkmn [Pokemon] the Pokémon trying to evolve
+  def check_level_up_methods(pkmn)
+    return check_ex(pkmn) { |pkmn, method, parameter, new_species|
+      success = PBEvolution.call("levelUpCheck", method, pkmn, parameter)
+      next (success) ? new_species : nil
+    }
+  end
+
+  # Checks whether a Pokemon can evolve because of using an item on it.
+  # @param pkmn [Pokemon] the Pokémon trying to evolve
+  # @param item [Symbol, GameData::Item, nil] the item being used
+  def check_item_methods(pkmn, item)
+    return check_ex(pkmn) { |pkmn, method, parameter, new_species|
+      success = PBEvolution.call("itemCheck", method, pkmn, parameter, item)
+      return (success) ? new_species : nil
+    }
+  end
+
+  # Checks whether a Pokemon can evolve because of being traded.
+  # @param pkmn [Pokemon] the Pokémon trying to evolve
+  # @param other_pkmn [Pokemon] the other Pokémon involved in the trade
+  def check_trade_methods(pkmn, other_pkmn)
+    return check_ex(pkmn) { |pkmn, method, parameter, new_species|
+      success = PBEvolution.call("tradeCheck", method, pkmn, parameter, other_pkmn)
+      next (success) ? new_species : nil
+    }
+  end
+
+  # Called after a Pokémon evolves, to remove its held item (if the evolution
+  # required it to have a held item) or duplicate the Pokémon (Shedinja only).
+  # @param pkmn [Pokemon] the Pokémon trying to evolve
+  # @param evolved_species [Pokemon] the species that the Pokémon evolved into
+  def check_after_evolution(pkmn, evolved_species)
+    pkmn.species_data.evolutions.each do |evo|   # [new_species, method, parameter, boolean]
+      next if evo[3]   # Prevolution
+      break if PBEvolution.call("afterEvolution", evo[1], pkmn, evo[0], evo[2], evolved_species)
+    end
+  end
+
+  private
+
   # The core method that performs evolution checks. Needs a block given to it,
   # which will provide either a GameData::Species ID (the species to evolve
   # into) or nil (keep checking).
@@ -275,45 +319,6 @@ module EvolutionCheck
       break if ret
     end
     return ret
-  end
-
-  # Checks whether a Pokemon can evolve because of levelling up. If the item
-  # parameter is not nil, instead checks whether a Pokémon can evolve because of
-  # using the item on it.
-  # @param pkmn [Pokemon] the Pokémon trying to evolve
-  # @param item [Symbol, GameData::Item, nil] the item being used
-  def self.check(pkmn, item = nil)
-    if item
-      return self.check_ex(pkmn) { |pkmn, method, parameter, new_species|
-        success = PBEvolution.call("itemCheck", method, pkmn, parameter, item)
-        return (success) ? new_species : nil
-      }
-    end
-    return self.check_ex(pkmn) { |pkmn, method, parameter, new_species|
-      success = PBEvolution.call("levelUpCheck", method, pkmn, parameter)
-      next (success) ? new_species : nil
-    }
-  end
-
-  # Checks whether a Pokemon can evolve because of being traded.
-  # @param pkmn [Pokemon] the Pokémon trying to evolve
-  # @param other_pkmn [Pokemon] the other Pokémon involved in the trade
-  def self.check_trade_methods(pkmn, other_pkmn)
-    return self.check_ex(pkmn) { |pkmn, method, parameter, new_species|
-      success = PBEvolution.call("tradeCheck", method, pkmn, parameter, other_pkmn)
-      next (success) ? new_species : nil
-    }
-  end
-
-  # Called after a Pokémon evolves, to remove its held item (if the evolution
-  # required it to have a held item) or duplicate the Pokémon (Shedinja only).
-  # @param pkmn [Pokemon] the Pokémon trying to evolve
-  # @param evolved_species [Pokemon] the species that the Pokémon evolved into
-  def self.check_after_evolution(pkmn, evolved_species)
-    pkmn.species_data.evolutions.each do |evo|   # [new_species, method, parameter, boolean]
-      next if evo[3]   # Prevolution
-      break if PBEvolution.call("afterEvolution", evo[1], pkmn, evo[0], evo[2], evolved_species)
-    end
   end
 end
 
