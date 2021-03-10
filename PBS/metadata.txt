@@ -325,3 +325,10 @@ ShowArea = false
 Bicycle = false
 Outdoor = false
 ShowArea = false
+#-------------------------------
+[062]
+# Footstep Decline
+SnapEdges = true
+Bicycle = true
+Outdoor = true
+ShowArea = true
