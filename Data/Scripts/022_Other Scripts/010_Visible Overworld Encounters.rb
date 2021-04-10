@@ -237,7 +237,7 @@ ENCMOVEFREQ = 3 # default 3
 #1   - means lowest movement
 #6   - means highest movement
 
-AGGRESSIVEENCOUNTERPROBABILITY = 50 # default 20 
+AGGRESSIVEENCOUNTERPROBABILITY = 0 # default 20 
 #this is the probability in percent of spawning of an agressive encounter
 #0   - means that there are no aggressive encounters
 #100 - means that all encounter are aggressive
