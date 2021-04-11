@@ -23,7 +23,7 @@ Outdoor = false
 [006]
 # Little Pond
 SnapEdges = true
-BattleBack = forest
+BattleBack = 
 Bicycle = true
 MapPosition = 0,13,6
 Outdoor = true
