@@ -119,95 +119,17 @@ class PokeBattle_Scene
     clearMessageWindow
   end
   #-----------------------------------------------------------------------------
-  #  message processing
-  #-----------------------------------------------------------------------------
-  alias pbDisplayMessage_ebdx pbDisplayMessage unless self.method_defined?(:pbDisplayMessage_ebdx)
-  def pbDisplayMessage(msg, brief = false, &block)
-    return clearMessageWindow if msg == ""
-    pbWaitMessage
-    pbShowWindow(MESSAGE_BOX)
-    cw = @sprites["messageWindow"]
-    cw.text = msg; i = 0
-    loop do
-      self.animateScene(true, &block)
-      pbGraphicsUpdate
-      pbInputUpdate
-      cw.update
-      if i == 40
-        cw.text = ""
-        cw.visible = false
-        return
-      end
-      if Input.trigger?(Input::C) || @abortable
-        if cw.pausing?
-          pbPlayDecisionSE() if !@abortable
-          cw.resume
-        end
-      end
-      if !cw.busy?
-        if brief
-          10.times do
-            pbGraphicsUpdate
-            pbFrameUpdate(cw, &block)
-          end
-          return
-        end
-        i += 1
-      end
-    end
-  end
-  #-----------------------------------------------------------------------------
-  #  paused message processing
-  #-----------------------------------------------------------------------------
-  alias pbDisplayPausedMessage_ebdx pbDisplayPausedMessage unless self.method_defined?(:pbDisplayPausedMessage_ebdx)
-  def pbDisplayPausedMessage(msg, &block)
-    return clearMessageWindow if msg == ""
-    pbSetMessageMode(false) if msg.include?(_INTL("for winning!"))
-    pbWaitMessage
-    pbRefresh
-    pbShowWindow(MESSAGE_BOX)
-    if @messagemode
-      @switchscreen.pbDisplay(msg, &block)
-      return
-    end
-    cw = @sprites["messageWindow"]
-    cw.text = _ISPRINTF("{1:s}\1",msg)
-    loop do
-      animateScene(true, &block)
-      pbGraphicsUpdate
-      pbInputUpdate
-      if Input.trigger?(Input::C) || @abortable
-        if cw.busy?
-          pbPlayDecisionSE() if cw.pausing? && !@abortable
-          cw.resume
-        elsif !inPartyAnimation?
-          cw.text = ""
-          pbPlayDecisionSE()
-          cw.visible = false if @messagemode
-          return
-        end
-      end
-      cw.update
-    end
-  end
-  #-----------------------------------------------------------------------------
   #  choice selection processing
   #-----------------------------------------------------------------------------
   alias pbShowCommands_ebdx pbShowCommands unless self.method_defined?(:pbShowCommands_ebdx)
   def pbShowCommands(msg, commands, defaultValue, &block)
-    pbWaitMessage
-    pbRefresh
     pbShowWindow(MESSAGE_BOX)
     pbHideAllDataboxes
     dw = @sprites["messageWindow"]
     dw.text = msg
     cw = ChoiceWindowEBDX.new(@msgview, commands, self)
-    pbRefresh
     loop do
-      animateScene(true, &block)
-      pbGraphicsUpdate
-      pbInputUpdate
-      cw.update
+      pbUpdate(cw)
       dw.update
       if Input.trigger?(Input::B) && defaultValue >= 0
         if dw.busy?

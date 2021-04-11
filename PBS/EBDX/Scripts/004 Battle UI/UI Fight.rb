@@ -129,7 +129,7 @@ class FightWindowEBDX
     @megaButton = Sprite.new(@viewport)
     @megaButton.bitmap = pbBitmap(@path + @megaImg)
     @megaButton.z = 101
-    @megaButton.src_rect.set(0,0,44,44)
+    @megaButton.src_rect.width /= 2
     @megaButton.center!
     @megaButton.x = 30
     @megaButton.y = @viewport.height - @background.bitmap.height/2 + 100
@@ -287,6 +287,7 @@ class FightWindowEBDX
     8.times do
       self.hide; @scene.wait(1, true)
     end
+    @megaButton.y = @viewport.height - @background.bitmap.height/2 + 100
   end
   #-----------------------------------------------------------------------------
   #  toggle mega button visibility
@@ -298,8 +299,8 @@ class FightWindowEBDX
   #  trigger mega button
   #-----------------------------------------------------------------------------
   def megaButtonTrigger
-    @megaButton.src_rect.x += 44
-    @megaButton.src_rect.x = 0 if @megaButton.src_rect.x > 44
+    @megaButton.src_rect.x += @megaButton.src_rect.width
+    @megaButton.src_rect.x = 0 if @megaButton.src_rect.x > @megaButton.src_rect.width
     @megaButton.src_rect.y = -4
   end
   #-----------------------------------------------------------------------------

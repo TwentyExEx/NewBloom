@@ -79,8 +79,8 @@ class PokeBattle_Scene
     sendOuts.each_with_index do |b, m|
       battler = @battlers[b[0]]; i = battler.index
       next if i == EliteBattle.follower
-      shake = true if alt[m] < 1 && !dig[m]
-      heavy = true if battler.pbWeight*0.1 >= 291 && alt[m] < 1 && !dig[m]
+      shake = true if alt[m] && alt[m] < 1 && !dig[m]
+      heavy = true if battler.pbWeight*0.1 >= 291 && alt[m] && alt[m] < 1 && !dig[m]
     end
     sendOuts.each_with_index {|b, m| onlydig = true if !shake && dig[m] }
     # play SE
@@ -91,7 +91,7 @@ class PokeBattle_Scene
     for j in 0...8
       next if onlydig
       sendOuts.each_with_index do |b, m|
-        next if alt[m] < 1
+        next if !alt[m] || alt[m] < 1
         battler = @battlers[b[0]]; i = battler.index
         next if i == EliteBattle.follower
         @sprites["pokemon_#{i}"].y += ((j/4 < 1) ? 4 : -4)
@@ -113,7 +113,7 @@ class PokeBattle_Scene
       sendOuts.each_with_index do |b, m|
         battler = @battlers[b[0]]; i = battler.index
         next if i == EliteBattle.follower
-        dust["#{i}"].update if battler.pbWeight*0.1 >= 291 && alt[m] < 1
+        dust["#{i}"].update if battler.pbWeight*0.1 >= 291 && alt[m] && alt[m] < 1
         dust["#{i}"].dispose if j == 24
       end
       self.wait(1, false) if j < 24

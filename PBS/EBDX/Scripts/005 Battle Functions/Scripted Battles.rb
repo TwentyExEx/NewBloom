@@ -290,7 +290,9 @@ class PokeBattle_Scene
     backdrop = pbBitmap("Graphics/EBDX/Transitions/Common/" + backdrop)
     trainer = [trainer] if !trainer.is_a?(Array)
     pbHideAllDataboxes
-    FancyMessage.new(msg, trainer, backdrop, self)
+    @fancyMsg = FancyMessage.new(msg, trainer, backdrop, self)
+    @fancyMsg.speak
+    @fancyMsg.dispose
     pbShowAllDataboxes
   end
 end
@@ -353,10 +355,15 @@ end
 #===============================================================================
 class FancyMessage
   #-----------------------------------------------------------------------------
+  #  set up fancy message
+  #-----------------------------------------------------------------------------
   def initialize(msg, trainer, backdrop, scene)
     @msg = msg
     @scene = scene
+    @battle = @scene.battle
     @viewport = @scene.dexview
+    @trainer = trainer
+    @disposed = false
     @sprites = {}
     @sprites["bg"] = Sprite.new(@viewport)
     @sprites["bg"].bitmap = backdrop
@@ -387,10 +394,12 @@ class FancyMessage
     @sprites["fade"].x = -@sprites["fade"].ox
     @sprites["fade"].z = 99999
     self.visible = false
+  end
+  #-----------------------------------------------------------------------------
+  #  speak the text
+  #-----------------------------------------------------------------------------
+  def speak
     # fade in animation
-    for i in 0...4
-      @scene.sprites["battlebox#{i}"].visible = false if @scene.sprites["battlebox#{i}"]
-    end
     16.times do
       self.update(false)
       @scene.wait
@@ -398,10 +407,10 @@ class FancyMessage
     # display messages
     @scene.pbSetMessageMode(false, true)
     for i in 0...@msg.length
-      if i < trainer.length && i > 0
-        @sprites["tr"].bitmap = pbBitmap("Graphics/EBDX/Transitions/Common/" + trainer[i])
+      if i < @trainer.length && i > 0
+        @sprites["tr"].bitmap = pbBitmap("Graphics/EBDX/Transitions/Common/" + @trainer[i])
       end
-      @scene.pbDisplayPausedMessage(@msg[i]) {self.update}
+      @battle.pbDisplayPaused(@msg[i])
     end
     @scene.pbSetMessageMode(false)
     @scene.clearMessageWindow
@@ -417,13 +426,9 @@ class FancyMessage
       @sprites["fade"].x += @sprites["fade"].bitmap.width/8
       @scene.wait
     end
-    # dispose
-    pbDisposeSpriteHash(@sprites)
-    @viewport.dispose
-    for i in 0...4
-      @scene.sprites["battlebox#{i}"].visible = true if @scene.sprites["battlebox#{i}"]
-    end
   end
+  #-----------------------------------------------------------------------------
+  #  update the message effects
   #-----------------------------------------------------------------------------
   def update(box = true)
     # animate bars
@@ -442,11 +447,21 @@ class FancyMessage
     end
   end
   #-----------------------------------------------------------------------------
+  #  set visibility
+  #-----------------------------------------------------------------------------
   def visible=(val)
     for key in @sprites.keys
       next if key.include?("box") || key == "fade"
       @sprites[key].visible = val
     end
   end
+  #-----------------------------------------------------------------------------
+  #  dispose of content
+  #-----------------------------------------------------------------------------
+  def dispose
+    @disposed = true
+    pbDisposeSpriteHash(@sprites)
+  end
+  def disposed?; return @disposed; end
   #-----------------------------------------------------------------------------
 end
