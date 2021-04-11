@@ -743,7 +743,8 @@ class PokemonMartScreen
           end
         end
         @stock.compact!
-        pbDisplayPaused(_INTL("Here you are! Thank you!")) { pbSEPlay("Mart buy item") }
+        pbSEPlay("Mart buy item")
+        pbDisplayPaused(_INTL("Here you are! Thank you!"))
         if $PokemonBag
           if quantity>=10 && pbIsPokeBall?(item) && hasConst?(PBItems,:PREMIERBALL)
             if @adapter.addItem(getConst(PBItems,:PREMIERBALL))

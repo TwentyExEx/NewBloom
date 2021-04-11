@@ -248,7 +248,8 @@ end
       next if m.id!=0           # Not a blank move slot
       pkmn.moves[i] = PBMove.new(newMove)
       battler.moves[i] = PokeBattle_Move.pbFromPBMove(self,pkmn.moves[i]) if battler
-      pbDisplay(_INTL("{1} learned {2}!",pkmnName,moveName)) { pbSEPlay("Pkmn move learnt") }
+      pbSEPlay("Pkmn move learnt")
+      pbDisplay(_INTL("{1} learned {2}!",pkmnName,moveName)) 
       battler.pbCheckFormOnMovesetChange if battler
       return
     end
@@ -264,7 +265,8 @@ end
           battler.moves[forgetMove] = PokeBattle_Move.pbFromPBMove(self,pkmn.moves[forgetMove]) if battler
           pbDisplayPaused(_INTL("1, 2, and... ... ... Ta-da!"))
           pbDisplayPaused(_INTL("{1} forgot how to use {2}. And...",pkmnName,oldMoveName))
-          pbDisplay(_INTL("{1} learned {2}!",pkmnName,moveName)) { pbSEPlay("Pkmn move learnt") }
+          pbSEPlay("Pkmn move learnt")
+          pbDisplay(_INTL("{1} learned {2}!",pkmnName,moveName))
           battler.pbCheckFormOnMovesetChange if battler
           break
         elsif pbDisplayConfirm(_INTL("Give up on learning {1}?",moveName))
