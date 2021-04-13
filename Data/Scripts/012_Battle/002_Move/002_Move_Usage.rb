@@ -17,7 +17,7 @@ class PokeBattle_Move
   end
 
   def pbDisplayUseMessage(user)
-    @battle.pbDisplayBrief(_INTL("{1} used {2}!",user.pbThis,@name))
+    @battle.pbDisplay(_INTL("{1} used {2}!",user.pbThis,@name))
   end
 
   def pbMissMessage(user,target); return false; end
