@@ -49,6 +49,10 @@ module EliteBattle
   # initialize logger
   #-----------------------------------------------------------------------------
   def self.log; return @logger; end
+  def self.returnId(mod, const)
+    return nil if !defined?(mod)
+    return getID(mod, const)
+  end
   #-----------------------------------------------------------------------------
   # internally parses action to valid symbolic name
   #-----------------------------------------------------------------------------
@@ -80,7 +84,9 @@ module EliteBattle
     return if var.nil?
     # concats battle speech parameter into an array if necessary
     if var == :nextBattleScript # potential compatibility for double battles
-      if !@nextBattleScript.nil?
+      if val.nil?
+        @nextBattleScript = nil
+      elsif !@nextBattleScript.nil?
         @nextBattleScript = [@nextBattleScript] if !@nextBattleScript.is_a?(Array)
         @nextBattleScript.push(val)
       else
@@ -490,8 +496,8 @@ module EliteBattle
   #-----------------------------------------------------------------------------
   # check if follower Pokemon is active
   #-----------------------------------------------------------------------------
-  def self.follower
-    return (USE_FOLLOWER_EXCEPTION && $PokemonGlobal && $PokemonGlobal.respond_to?(:followerToggled) && $PokemonGlobal.followerToggled) ? 0 : nil
+  def self.follower(battle)
+    return (USE_FOLLOWER_EXCEPTION && $PokemonGlobal && $PokemonGlobal.respond_to?(:followerToggled) && $PokemonGlobal.followerToggled && battle.scene.firstsendout) ? 0 : nil
   end
   #-----------------------------------------------------------------------------
 end

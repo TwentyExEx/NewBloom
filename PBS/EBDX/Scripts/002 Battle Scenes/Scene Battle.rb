@@ -8,7 +8,7 @@ class PokeBattle_Scene
   attr_accessor :briefmessage, :sprites, :introdone
   attr_accessor :playerLineUp, :opponentLineUp
   attr_reader :viewport, :dexview, :battle, :battlers, :commandWindow, :fightWindow, :bagWindow
-  attr_reader :smTrainerSequence, :smSpeciesSequence
+  attr_reader :smTrainerSequence, :smSpeciesSequence, :firstsendout
   def pbDisposeSprites
     pbDisposeSpriteHash(@sprites)
     @bagWindow.dispose
@@ -48,6 +48,7 @@ class PokeBattle_Scene
     @briefmessage = false
     @lowHPBGM = false
     @introdone = false
+    @dataBoxesHidden = false
     @sprites = {}
     @lastCmd = Array.new(@battlers.length,0)
     @lastMove = Array.new(@battlers.length,0)
@@ -138,12 +139,12 @@ class PokeBattle_Scene
       end
     end
     # initialize Player battler 0 when follower enabled
-    if !EliteBattle.follower.nil?
-      pkmn = @battlers[EliteBattle.follower].pokemon
-      @sprites["pokemon_#{EliteBattle.follower}"].setPokemonBitmap(pkmn, true)
-      @sprites["pokemon_#{EliteBattle.follower}"].tone = Tone.new(-255, -255, -255, -255)
-      @sprites["pokemon_#{EliteBattle.follower}"].visible = true
-      @sprites["dataBox_#{EliteBattle.follower}"].render
+    if !EliteBattle.follower(@battle).nil?
+      pkmn = @battlers[EliteBattle.follower(@battle)].pokemon
+      @sprites["pokemon_#{EliteBattle.follower(@battle)}"].setPokemonBitmap(pkmn, true)
+      @sprites["pokemon_#{EliteBattle.follower(@battle)}"].tone = Tone.new(-255, -255, -255, -255)
+      @sprites["pokemon_#{EliteBattle.follower(@battle)}"].visible = true
+      @sprites["dataBox_#{EliteBattle.follower(@battle)}"].render
     end
   end
   #-----------------------------------------------------------------------------
@@ -185,9 +186,9 @@ class PokeBattle_Scene
           @sprites["trainer_#{t}"].tone.gray += 255*0.05 if @sprites["trainer_#{t}"].tone.gray < 0
         end
         # fade in player battler when follower is out
-        if !EliteBattle.follower.nil?
-          @sprites["pokemon_#{EliteBattle.follower}"].tone.all += 255*0.1 if @sprites["pokemon_#{EliteBattle.follower}"].tone.all < 0
-          @sprites["pokemon_#{EliteBattle.follower}"].tone.gray += 255*0.1 if @sprites["pokemon_#{EliteBattle.follower}"].tone.gray < 0
+        if !EliteBattle.follower(@battle).nil?
+          @sprites["pokemon_#{EliteBattle.follower(@battle)}"].tone.all += 255*0.1 if @sprites["pokemon_#{EliteBattle.follower(@battle)}"].tone.all < 0
+          @sprites["pokemon_#{EliteBattle.follower(@battle)}"].tone.gray += 255*0.1 if @sprites["pokemon_#{EliteBattle.follower(@battle)}"].tone.gray < 0
         end
       end
       # fades screen from black
@@ -201,8 +202,8 @@ class PokeBattle_Scene
       pbShowPartyLineup(1)
     end
     # show databox for follower
-    if !EliteBattle.follower.nil?
-      @sprites["dataBox_#{EliteBattle.follower}"].appear if !EliteBattle.get(:smAnim)
+    if !EliteBattle.follower(@battle).nil?
+      @sprites["dataBox_#{EliteBattle.follower(@battle)}"].appear if !EliteBattle.get(:smAnim)
     end
     # Play cry for wild Pokémon
     if @battle.wildBattle?
@@ -224,9 +225,9 @@ class PokeBattle_Scene
           @sprites["pokemon_#{m*2 + 1}"].tone.gray += 255*0.1 if @sprites["pokemon_#{m*2 + 1}"].tone.gray < 0
         end
         # fade in player battler when follower is out
-        if !EliteBattle.follower.nil?
-          @sprites["pokemon_#{EliteBattle.follower}"].tone.all += 255*0.1 if @sprites["pokemon_#{EliteBattle.follower}"].tone.all < 0
-          @sprites["pokemon_#{EliteBattle.follower}"].tone.gray += 255*0.1 if @sprites["pokemon_#{EliteBattle.follower}"].tone.gray < 0
+        if !EliteBattle.follower(@battle).nil?
+          @sprites["pokemon_#{EliteBattle.follower(@battle)}"].tone.all += 255*0.1 if @sprites["pokemon_#{EliteBattle.follower(@battle)}"].tone.all < 0
+          @sprites["pokemon_#{EliteBattle.follower(@battle)}"].tone.gray += 255*0.1 if @sprites["pokemon_#{EliteBattle.follower(@battle)}"].tone.gray < 0
         end
         self.wait(1, true)
       end
@@ -321,19 +322,25 @@ class PokeBattle_Scene
     @vector.inc = 0.2
     @vector.lock
   end
+  #-----------------------------------------------------------------------------
+  #  toggle data box visibility
+  #-----------------------------------------------------------------------------
   def pbHideAllDataboxes(side = nil)
+    return if @dataBoxesHidden
     # remove databox visibility
     @battlers.each_with_index do |b, i|
       next if !b || (!side.nil? && i%2 != side)
-      @sprites["dataBox_#{i}"].temphide(true)
+      @sprites["dataBox_#{i}"].visible = false
     end
+    @dataBoxesHidden = true
   end
   def pbShowAllDataboxes(side = nil)
     # reset databox visibility
     @battlers.each_with_index do |b, i|
       next if !b || (!side.nil? && i%2 != side)
-      @sprites["dataBox_#{i}"].temphide(false)
+      @sprites["dataBox_#{i}"].visible = true
     end
+    @dataBoxesHidden = false
   end
   #-----------------------------------------------------------------------------
   #  get victory themes
@@ -379,7 +386,6 @@ class PokeBattle_Scene
   #-----------------------------------------------------------------------------
   alias pbEndBattle_ebdx pbEndBattle unless self.method_defined?(:pbEndBattle_ebdx)
   def pbEndBattle(*args)
-    EliteBattle.reset(:nextUI, :nextBattleData)
     EliteBattle.set(:nextVectors, [])
     $disableRandomizer = false
     return pbEndBattle_ebdx(*args)

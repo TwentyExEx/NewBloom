@@ -17,6 +17,7 @@ class PokeBattle_Scene
     @opponentLineUp.update if !@opponentLineUp.disposed?
     # update block if given
     block.call if block
+    @fancyMsg.update if @fancyMsg && !@fancyMsg.disposed?
     # dex data
     @sprites["dexdata"].update if @sprites["dexdata"]
     # vector update
@@ -67,11 +68,11 @@ class PokeBattle_Scene
       next if !align
       zoom = (i%2 == 0) ? 2 : 1
       if @sprites["pokemon_#{i}"]
-        dmax = (i%2 == 0) ? 4/BACK_SPRITE_SCALE : 4
+        dmax = (i%2 == 0) ? 4/BACK_SPRITE_SCALE : 4; zoomer = (@vector.zoom1**0.75) * zoom * (@sprites["pokemon_#{i}"].dynamax ? dmax : 1)
         @sprites["pokemon_#{i}"].x = @sprites["battlebg"].battler(i).x - (i%2 == 0 ? 64 : -32) * (@sprites["pokemon_#{i}"].dynamax ? 1 : 0)
         @sprites["pokemon_#{i}"].y = @sprites["battlebg"].battler(i).y + (@sprites["pokemon_#{i}"].dynamax ? 38 : 0)
-        @sprites["pokemon_#{i}"].zoom_x = (@vector.zoom1**0.75) * zoom * (@sprites["pokemon_#{i}"].dynamax ? dmax : 1)
-        @sprites["pokemon_#{i}"].zoom_y = (@vector.zoom1**0.75) * zoom * (@sprites["pokemon_#{i}"].dynamax ? dmax : 1)
+        @sprites["pokemon_#{i}"].zoom_x = zoomer
+        @sprites["pokemon_#{i}"].zoom_y = zoomer
       end
       if @battle.opponent
         for t in 0...@battle.opponent.length

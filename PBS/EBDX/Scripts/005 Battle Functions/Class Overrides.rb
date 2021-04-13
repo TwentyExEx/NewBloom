@@ -68,8 +68,6 @@ def pbWildBattle(*args)
   EliteBattle.set(:wildLevel, args[1])
   # starts battle processing
   ret = pbWildBattle_ebdx(*args)
-  # resets variables
-  EliteBattle.reset(:wildSpecies, :wildLevel, :wildForm, :setBoss)
   # returns output
   return ret
 end

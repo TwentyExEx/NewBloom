@@ -1,6 +1,44 @@
 #===============================================================================
 #  Message overrides to clear message window
 #===============================================================================
+module EliteBattle
+  #-----------------------------------------------------------------------------
+  #  command selection
+  #-----------------------------------------------------------------------------
+  def self.commandWindow(commands, index = 0, msgwindow = nil)
+    ret = -1
+    # creates command window
+    cmdwindow = Window_CommandPokemonColor.new(commands)
+    cmdwindow.index = index
+    cmdwindow.x = Graphics.width - cmdwindow.width
+    cmdwindow.z = 99999
+    # main loop
+    loop do
+      # updates graphics, input and OW
+      Graphics.update
+      Input.update
+      pbUpdateSceneMap
+      # updates the two windows
+      cmdwindow.update
+      msgwindow.update if !msgwindow.nil?
+      # updates command output
+      if Input.trigger?(Input::B)
+        pbPlayCancelSE
+        ret = -1
+        break
+      elsif Input.trigger?(Input::C)
+        pbPlayDecisionSE
+        ret = cmdwindow.index
+        break
+      end
+    end
+    # returns command output
+    cmdwindow.dispose
+    return ret
+  end
+  #-----------------------------------------------------------------------------
+end
+#===============================================================================
 class PokeBattle_Battle
   #-----------------------------------------------------------------------------
   #  basic display command

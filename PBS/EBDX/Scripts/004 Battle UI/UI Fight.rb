@@ -171,7 +171,7 @@ class FightWindowEBDX
     @catImg = "category"
     @megaImg = "megaButton"
     @barImg = nil
-    @showTypeAdvantage = SHOW_TYPE_ADVANTAGE
+    @showTypeAdvantage = false
     # looks up next cached metrics first
     d1 = EliteBattle.get(:nextUI)
     d1 = d1[:FIGHTMENU] if !d1.nil? && d1.has_key?(:FIGHTMENU)
@@ -253,6 +253,7 @@ class FightWindowEBDX
   #  unused
   #-----------------------------------------------------------------------------
   def formatBackdrop; end
+  def shiftMode=(val); end
   #-----------------------------------------------------------------------------
   #  show fight menu animation
   #-----------------------------------------------------------------------------
@@ -314,9 +315,9 @@ class FightWindowEBDX
     end
     if @oldindex != @index
       @button["#{@index}"].src_rect.y = -4
-      if @showTypeAdvantage && !@battle.doublebattle?
+      if @showTypeAdvantage && !(@battle.doublebattle? || @battle.triplebattle?)
         move = @battler.moves[@index]
-        @modifier = move.pbTypeModifier(move.type, @player, @opponent)
+        @modifier = move.pbCalcTypeMod(move.type, @player, @opponent)
       end
       @oldindex = @index
     end
@@ -335,7 +336,7 @@ class FightWindowEBDX
     @sel.x = @button["#{@index}"].x
     @sel.y = @button["#{@index}"].y + @button["#{@index}"].src_rect.height/2 - 1
     @sel.update
-    if @showTypeAdvantage && !@battle.doublebattle?
+    if @showTypeAdvantage && !(@battle.doublebattle? || @battle.triplebattle?)
       @typeInd.visible = true
       @typeInd.y = @button["#{@index}"].y
       @typeInd.x = @button["#{@index}"].x

@@ -15,10 +15,10 @@ EliteBattle.defineCommonAnimation(:MEGAEVOLUTION2) do
   @scene.clearMessageWindow
   #-----------------------------------------------------------------------------
   fp = {}
-  pokemon = @battlers[@userIndex]
+  pokemon = @battlers[@targetIndex]
   #-----------------------------------------------------------------------------
-  back = !@battle.opposes?(@userIndex)
-  @vector.set(@scene.getRealVector(@userIndex, back))
+  back = @targetIndex%2 == 0
+  @vector.set(@scene.getRealVector(@targetIndex, back))
   @scene.wait(16, true)
   factor = @targetSprite.zoom_x
   #-----------------------------------------------------------------------------
@@ -79,7 +79,7 @@ EliteBattle.defineCommonAnimation(:MEGAEVOLUTION2) do
   #-----------------------------------------------------------------------------
   fp["circle"] = Sprite.new(@viewport)
   fp["circle"].bitmap = Bitmap.new(@targetSprite.bitmap.width*1.25,@targetSprite.bitmap.height*1.25)
-  fp["circle"].bitmap.draw_circle
+  fp["circle"].bitmap.bmp_circle
   fp["circle"].center!
   fp["circle"].x = cx
   fp["circle"].y = cy
@@ -178,7 +178,7 @@ EliteBattle.defineCommonAnimation(:MEGAEVOLUTION2) do
   fp["impact"].z = 999
   fp["impact"].opacity = 0
   @targetSprite.setPokemonBitmap(pokemon, back)
-  playBattlerCry(@battlers[@userIndex])
+  playBattlerCry(@battlers[@targetIndex])
   k = -2
   for i in 0...24
     fp["impact"].opacity += 64
@@ -202,5 +202,7 @@ EliteBattle.defineCommonAnimation(:MEGAEVOLUTION2) do
     @sprites["dataBox_#{i}"].visible = true if isVisible[i]
   end
   fp["impact"].dispose
+  @vector.reset
+  @scene.wait(16, true)
   #-----------------------------------------------------------------------------
 end

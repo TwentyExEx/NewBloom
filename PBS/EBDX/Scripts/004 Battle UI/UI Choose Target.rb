@@ -92,6 +92,7 @@ class TargetWindowEBDX
     @sel.target(@buttons["#{@index}"])
     @buttons["#{@index}"].src_rect.y = -4
   end
+  def shiftMode=(val); end
   #-----------------------------------------------------------------------------
   #  update target window
   #-----------------------------------------------------------------------------

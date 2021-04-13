@@ -212,6 +212,7 @@ class CommandWindowEBDX
     pbDisposeSpriteHash(@sprites)
   end
   def color; end; def color=(val); end
+  def shiftMode=(val); end
   #-----------------------------------------------------------------------------
   #  draw party line-up
   #-----------------------------------------------------------------------------

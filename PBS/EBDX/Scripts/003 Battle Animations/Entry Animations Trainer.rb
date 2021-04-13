@@ -57,10 +57,11 @@ class EliteBattle_BasicTrainerAnimations
     black.bitmap.fill_rect(0,0,@viewport.width,@viewport.height,Color.black)
     # split screenshot into two halves
     field1 = Sprite.new(@viewport)
-    field1.bitmap = bmp
+    field1.bitmap = Bitmap.new(@viewport.width, @viewport.height)
+    field1.bitmap.blt(0, 0, bmp, @viewport.rect)
     field1.src_rect.height = @viewport.height/2
     field2 = Sprite.new(@viewport)
-    field2.bitmap = bmp
+    field2.bitmap = field1.bitmap.clone
     field2.y = @viewport.height/2
     field2.src_rect.height = @viewport.height/2
     field2.src_rect.y = @viewport.height/2
@@ -86,10 +87,11 @@ class EliteBattle_BasicTrainerAnimations
     black.bitmap.fill_rect(0,0,@viewport.width,@viewport.height,Color.black)
     # split screenshot into two halves
     field1 = Sprite.new(@viewport)
-    field1.bitmap = bmp
+    field1.bitmap = Bitmap.new(@viewport.width, @viewport.height)
+    field1.bitmap.blt(0, 0, bmp, @viewport.rect)
     field1.src_rect.height = @viewport.height/2
     field2 = Sprite.new(@viewport)
-    field2.bitmap = bmp
+    field2.bitmap = field1.bitmap.clone
     field2.y = @viewport.height/2
     field2.src_rect.height = @viewport.height/2
     field2.src_rect.y = @viewport.height/2
@@ -180,19 +182,14 @@ class EliteBattle_BasicTrainerAnimations
     bmp = Graphics.snap_to_bitmap
     # creates non-blurred overlay
     @sprites["bg1"] = Sprite.new(@viewport)
-    @sprites["bg1"].bitmap = bmp
-    @sprites["bg1"].ox = bmp.width/2
-    @sprites["bg1"].oy = bmp.height/2
-    @sprites["bg1"].x = @viewport.width/2
-    @sprites["bg1"].y = @viewport.height/2
+    @sprites["bg1"].bitmap = Bitmap.new(@viewport.width, @viewport.height)
+    @sprites["bg1"].bitmap.blt(0, 0, bmp, @viewport.rect)
+    @sprites["bg1"].center!(true)
     # creates blurred overlay
     @sprites["bg2"] = Sprite.new(@viewport)
-    @sprites["bg2"].bitmap = bmp
+    @sprites["bg2"].bitmap = @sprites["bg1"].bitmap.clone
     @sprites["bg2"].blur_sprite(3)
-    @sprites["bg2"].ox = bmp.width/2
-    @sprites["bg2"].oy = bmp.height/2
-    @sprites["bg2"].x = @viewport.width/2
-    @sprites["bg2"].y = @viewport.height/2
+    @sprites["bg2"].center!(true)
     @sprites["bg2"].opacity = 0
     # creates rainbow rings
     for i in 1..2
@@ -802,6 +799,12 @@ class SunMoonBattleTransitions
     # initializes the backdrop
     args = "@viewport,@trainer.trainertype,@evilteam,@teamskull"
     var = @variant == "trainer" ? "default" : @variant
+    # check if can continue
+    unless var.is_a?(String) && !var.empty?
+      EliteBattle.log.error("Cannot get VS sequence variant for Sun/Moon battle transition for trainer: #{@trainer.trainertype}!")
+      var = "default"
+    end
+    # loag background effect
     @sprites["background"] = eval("SunMoon#{var.capitalize}Background.new(#{args})")
     @sprites["background"].speed = 24
     # trainer shadow
@@ -1020,6 +1023,10 @@ class SunMoonBattleTransitions
     @sprites["overlay"].z = 9999999
     @sprites["overlay"].bitmap = Bitmap.new(@msgview.rect.width, @msgview.rect.height)
     @sprites["overlay"].bitmap.fill_rect(0,0,@msgview.rect.width, @msgview.rect.height, Color.black)
+    # show databox for follower
+    if !EliteBattle.follower(@scene.battle).nil?
+      @scene.sprites["dataBox_#{EliteBattle.follower(@scene.battle)}"].appear
+    end
   end
   # called during Trainer sendout
   def sendout

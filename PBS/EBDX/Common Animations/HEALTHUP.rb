@@ -16,7 +16,7 @@ EliteBattle.defineCommonAnimation(:HEALTHUP) do
     c = [Color.new(92,202,81),Color.new(68,215,105),Color.new(192,235,180)][rand(3)]
     pt["#{i}"] = Sprite.new(@viewport)
     pt["#{i}"].bitmap = Bitmap.new(14,14)
-    pt["#{i}"].bitmap.draw_circle(c)
+    pt["#{i}"].bitmap.bmp_circle(c)
     pt["#{i}"].ox = pt["#{i}"].bitmap.width/2
     pt["#{i}"].oy = pt["#{i}"].bitmap.height/2
     width = (96/@targetSprite.bitmap.width*0.5).to_i

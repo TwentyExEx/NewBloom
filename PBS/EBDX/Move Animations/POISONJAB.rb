@@ -11,7 +11,7 @@ EliteBattle.defineMoveAnimation(:POISONJAB) do
   for j in 0...32
     fp["s#{j}"] = Sprite.new(@viewport)
     fp["s#{j}"].bitmap = Bitmap.new(8,8)
-    fp["s#{j}"].bitmap.draw_circle(Color.new(25,75,183))
+    fp["s#{j}"].bitmap.bmp_circle(Color.new(25,75,183))
     fp["s#{j}"].ox = fp["s#{j}"].bitmap.width/2
     fp["s#{j}"].oy = fp["s#{j}"].bitmap.height
     fp["s#{j}"].x = cx

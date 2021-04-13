@@ -48,7 +48,7 @@ class PokeBattle_Scene
     for j in 0...12
       sendOuts.each_with_index do |b, m|
         battler = @battlers[b[0]]; i = battler.index
-        next if i == EliteBattle.follower
+        next if i == EliteBattle.follower(@battle)
         if j == 11
           @sprites["pokemon_#{i}"].showshadow = true
         elsif j > 0
@@ -68,9 +68,10 @@ class PokeBattle_Scene
     # main shake
     sendOuts.each_with_index do |b, m|
       battler = @battlers[b[0]]; i = battler.index
-      val = getBattlerAltitude(battler, metrics); val = 1 if dig[m]
+      val = getBattlerAltitude(battler, metrics); val = 0 if val.nil?
+      val = 1 if dig[m]
       alt.push(val)
-      next if i == EliteBattle.follower
+      next if i == EliteBattle.follower(@battle)
       dust["#{i}"] = EBDustParticle.new(@viewport, @sprites["pokemon_#{i}"], (startBattle ? 1 : 2))
       @sprites["pokeball#{i}"].dispose
     end
@@ -78,9 +79,9 @@ class PokeBattle_Scene
     shake = false; heavy = false; onlydig = false
     sendOuts.each_with_index do |b, m|
       battler = @battlers[b[0]]; i = battler.index
-      next if i == EliteBattle.follower
-      shake = true if alt[m] && alt[m] < 1 && !dig[m]
-      heavy = true if battler.pbWeight*0.1 >= 291 && alt[m] && alt[m] < 1 && !dig[m]
+      next if i == EliteBattle.follower(@battle)
+      shake = true if alt[m] < 1 && !dig[m]
+      heavy = true if battler.pbWeight*0.1 >= 291 && alt[m] < 1 && !dig[m]
     end
     sendOuts.each_with_index {|b, m| onlydig = true if !shake && dig[m] }
     # play SE
@@ -91,9 +92,9 @@ class PokeBattle_Scene
     for j in 0...8
       next if onlydig
       sendOuts.each_with_index do |b, m|
-        next if !alt[m] || alt[m] < 1
+        next if alt[m] < 1
         battler = @battlers[b[0]]; i = battler.index
-        next if i == EliteBattle.follower
+        next if i == EliteBattle.follower(@battle)
         @sprites["pokemon_#{i}"].y += ((j/4 < 1) ? 4 : -4)
       end
       if shake
@@ -112,8 +113,8 @@ class PokeBattle_Scene
       next if !heavy
       sendOuts.each_with_index do |b, m|
         battler = @battlers[b[0]]; i = battler.index
-        next if i == EliteBattle.follower
-        dust["#{i}"].update if battler.pbWeight*0.1 >= 291 && alt[m] && alt[m] < 1
+        next if i == EliteBattle.follower(@battle)
+        dust["#{i}"].update if battler.pbWeight*0.1 >= 291 && alt[m] < 1
         dust["#{i}"].dispose if j == 24
       end
       self.wait(1, false) if j < 24
@@ -126,7 +127,7 @@ class PokeBattle_Scene
   def sendoutShinyPkmn(sendOuts)
     sendOuts.each do |b|
       @sprites["dataBox_#{@battlers[b[0]].index}"].inposition = true
-      next if @battlers[b[0]].index == EliteBattle.follower
+      next if @battlers[b[0]].index == EliteBattle.follower(@battle)
       next if !@battle.showAnims || !shinyBattler?(@battlers[b[0]])
       pbCommonAnimation("Shiny", @battlers[b[0]])
     end

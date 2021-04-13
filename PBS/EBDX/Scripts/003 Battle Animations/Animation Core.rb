@@ -50,7 +50,7 @@ module EliteBattle
       process = species
       species = nil
     else
-      species = getID(PBSpecies, species) unless species.is_a?(Numeric)
+      species = self.returnId(PBSpecies, species) unless species.is_a?(Numeric)
     end
     # raise error message for incorrectly defined moves
     if process.nil? && block.nil?
@@ -58,7 +58,7 @@ module EliteBattle
       EliteBattle.log.error(msg)
       raise msg
     end
-    id = getID(PBMoves, id) unless id.is_a?(Numeric) || !hasConst?(PBMoves, id)
+    id = self.returnId(PBMoves, id) unless id.is_a?(Numeric) || !hasConst?(PBMoves, id)
     # format ID for species specific move animation
     id = "#{species}=>#{id}" if !species.nil?
     # register regular move animation
@@ -78,8 +78,8 @@ module EliteBattle
   #  function used to load Move Animations
   #-----------------------------------------------------------------------------
   def self.playMoveAnimation(id, scene, userindex, targetindex, hitnum = 0, multihit = false, species = nil, *args)
-    species = getID(PBSpecies, species) if !species.nil? && !species.is_a?(Numeric)
-    id = getID(PBMoves, id) unless id.is_a?(Numeric) || !hasConst?(PBMoves, id)
+    species = self.returnId(PBSpecies, species) if !species.nil? && !species.is_a?(Numeric)
+    id = self.returnId(PBMoves, id) unless id.is_a?(Numeric) || !hasConst?(PBMoves, id)
     # attempt to play species specific move animation
     if !species.nil? && @@moveAnimations.has_key?("#{species}=>#{id}")
       self.withMoveParams(@@moveAnimations["#{species}=>#{id}"], scene, userindex, targetindex, hitnum, multihit, *args)
@@ -282,13 +282,14 @@ class PokeBattle_Scene
     # try set low HP BGM music
     setBGMLowHP(false)
     setBGMLowHP(true)
-    # reset BGM, vector or show speech
+    # try to process the speech
     for t in targets
       # displays opposing trainer message if Pokemon falls to low HP
       hpchange = t[0].hp - t[1]
-      handled = pbTrainerBattleSpeech(playerBattler?(t[0]) ? "damage" : "damageOpp") if hpchange.to_f/t[0].totalhp >= 0.6
-      handled = pbTrainerBattleSpeech(playerBattler?(t[0]) ? "resist" : "resistOpp") if hpchange.to_f/t[0].totalhp <= 0.1 if !handled
-      handled = pbTrainerBattleSpeech(playerBattler?(t[0]) ? "lowHP" : "lowHPOpp") if t[0].hp > 0 && (t[0].hp < t[0].totalhp*0.25) && !handled
+      handled = pbTrainerBattleSpeech(playerBattler?(t[0]) ? "damage" : "damageOpp") if hpchange.abs/t[0].totalhp.to_f >= 0.6 && hpchange < 0
+      handled = pbTrainerBattleSpeech(playerBattler?(t[0]) ? "resist" : "resistOpp") if hpchange.abs/t[0].totalhp.to_f <= 0.1 && hpchange < 0 && !handled
+      handled = pbTrainerBattleSpeech(playerBattler?(t[0]) ? "lowHP" : "lowHPOpp") if t[0].hp > 0 && (t[0].hp < t[0].totalhp*0.3) && !handled
+      handled = pbTrainerBattleSpeech(playerBattler?(t[0]) ? "halfHP" : "halfHPOpp") if t[0].hp > 0 && (t[0].hp < t[0].totalhp*0.5) && !handled
       break if handled
     end
   end
@@ -344,9 +345,10 @@ class PokeBattle_Scene
     setBGMLowHP(false)
     setBGMLowHP(true)
     # displays opposing trainer message if Pokemon falls to low HP
-    handled = pbTrainerBattleSpeech(playerBattler?(battler) ? "damage" : "damageOpp") if hpchange.to_f/battler.totalhp >= 0.6
-    handled = pbTrainerBattleSpeech(playerBattler?(battler) ? "resist" : "resistOpp") if hpchange.to_f/battler.totalhp <= 0.1 && !handled
-    pbTrainerBattleSpeech(playerBattler?(battler) ? "lowHP" : "lowHPOpp") if battler.hp > 0 && (battler.hp < battler.totalhp*0.25) && !handled
+    handled = pbTrainerBattleSpeech(playerBattler?(battler) ? "damage" : "damageOpp") if hpchange.abs/battler.totalhp.to_f >= 0.6 && hpchange < 0
+    handled = pbTrainerBattleSpeech(playerBattler?(battler) ? "resist" : "resistOpp") if hpchange.abs/battler.totalhp.to_f <= 0.1 && hpchange < 0 && !handled
+    handled = pbTrainerBattleSpeech(playerBattler?(battler) ? "lowHP" : "lowHPOpp") if battler.hp > 0 && (battler.hp < battler.totalhp*0.3) && !handled
+    handled = pbTrainerBattleSpeech(playerBattler?(battler) ? "halfHP" : "halfHPOpp") if battler.hp > 0 && (battler.hp < battler.totalhp*0.5) && !handled
     # reset vector if necessary
     @vector.reset if battler.hp <= 0
   end
@@ -394,9 +396,10 @@ class PokeBattle_Scene
     # trigger animation
     pbSEPlay("EBDX/Experience Gain")
     dataBox.animateEXP(startExpLevel, endExpLevel)
-    while dataBox.animatingEXP
-      dataBox.update
-      self.wait(1, true)
+    i = 0
+    while dataBox.animatingEXP || i < 4
+      dataBox.update if dataBox.animatingEXP
+      self.wait(1, true); i += 1
     end
     # end animation
     Audio.se_stop

@@ -7,7 +7,11 @@ class PokeBattle_Scene
   #-----------------------------------------------------------------------------
   def playerBattlerSendOut(sendOuts, startBattle = false) # Player sending out Pokémon
     @playerLineUp.toggle = false
-    return if sendOuts.length < 2 && !EliteBattle.follower.nil?
+    # skip for followers
+    if sendOuts.length < 2 && !EliteBattle.follower(@battle).nil?
+      @firstsendout = false
+      return
+    end
     metrics = load_data("Data/species_metrics.dat")
     # initial configuration of used variables
     balltype = []; ballframe = 0
@@ -22,7 +26,7 @@ class PokeBattle_Scene
       # additional metrics
       dig.push(EliteBattle.getData(battler.species, PBSpecies, :GROUNDED, (battler.form rescue 0)))
       balltype.push(battler.pokemon.ballused)
-      if i == EliteBattle.follower
+      if i == EliteBattle.follower(@battle)
         orgcord.push(0); next
       end
       # render databox
@@ -97,7 +101,7 @@ class PokeBattle_Scene
             @sprites["pokemon_#{i}"].x, @sprites["battlebg"].battler(i).y-y3, 28
         )
       )
-      next if i == EliteBattle.follower
+      next if i == EliteBattle.follower(@battle)
       @sprites["pokeball#{i}"].zoom_x *= addzoom
       @sprites["pokeball#{i}"].zoom_y *= addzoom
     end
@@ -107,7 +111,7 @@ class PokeBattle_Scene
       ballframe = 0 if ballframe > 7
       sendOuts.each_with_index do |b, m|
         battler = @battlers[b[0]]; i = battler.index
-        next if i == EliteBattle.follower
+        next if i == EliteBattle.follower(@battle)
         @sprites["pokeball#{i}"].src_rect.set(balltype[m]*41, ballframe*40, 41, 40)
         @sprites["pokeball#{i}"].x = curve[m][j][0] if j < 28
         @sprites["pokeball#{i}"].y = curve[m][j][1] if j < 28
@@ -118,7 +122,7 @@ class PokeBattle_Scene
     # configuring the Y position of Pokemon sprites
     sendOuts.each_with_index do |b, m|
       battler = @battlers[b[0]]; i = battler.index
-      next if i == EliteBattle.follower
+      next if i == EliteBattle.follower(@battle)
       @sprites["pokemon_#{i}"].visible = true
       @sprites["pokemon_#{i}"].y -= 120 + (orgcord[m] - @sprites["pokemon_#{i}"].oy)*z3 if !dig[m]
       @sprites["pokemon_#{i}"].zoom_x = 0
@@ -135,7 +139,7 @@ class PokeBattle_Scene
       sendOuts.each_with_index do |b, m|
         battler = @battlers[b[0]]; i = battler.index
         @sprites["player_#{m}"].opacity -= 25.5 if @sprites["player_#{m}"] && startBattle
-        next if i == EliteBattle.follower
+        next if i == EliteBattle.follower(@battle)
         burst["#{i}"].update
         next if j < 4
         @sprites["pokeball#{i}"].opacity -= 51
@@ -155,7 +159,7 @@ class PokeBattle_Scene
     for j in 0...22
       sendOuts.each_with_index do |b, m|
         battler = @battlers[b[0]]; i = battler.index
-        next if i == EliteBattle.follower
+        next if i == EliteBattle.follower(@battle)
         burst["#{i}"].update
         burst["#{i}"].dispose if j == 21
         next if j < 8
@@ -170,7 +174,7 @@ class PokeBattle_Scene
     if startBattle
       sendOuts.each_with_index do |b, m|
         battler = @battlers[b[0]]; i = battler.index
-        next if i == EliteBattle.follower
+        next if i == EliteBattle.follower(@battle)
         @sprites["pokemon_#{i}"].y += (orgcord[m] - @sprites["pokemon_#{i}"].oy)*z3 if !dig[m]
         @sprites["pokemon_#{i}"].oy = orgcord[m] if !dig[m]
       end
@@ -183,6 +187,7 @@ class PokeBattle_Scene
     # shiny animation upon entry
     sendoutShinyPkmn(sendOuts)
     # done
+    @firstsendout = false
     return true
   end
   #-----------------------------------------------------------------------------

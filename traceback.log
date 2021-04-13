@@ -1,0 +1,40 @@
+[Pokémon Essentials v18.1.dev] [EBDX v1.0] 
+
+Data/Plugins/EBDX.rxdata
+
+File: PBS/EBDX/trainers.txt
+Error compiling data in Section: [RIVAL1]
+Could not implicitly convert value for Key: BattleBGM to type (String)
+BattleBGM = Battle Elite.mid
+-------------------------------
+Error in script "Compiler":
+RuntimeError occurred.
+
+Full trace can be found below:
+[EBDX] Compiler:67:in `interpret'
+[EBDX] Compiler:53:in `each'
+[EBDX] Compiler:53:in `interpret'
+[EBDX] Compiler:36:in `each'
+[EBDX] Compiler:36:in `interpret'
+[EBDX] Compiler:31:in `each'
+[EBDX] Compiler:31:in `interpret'
+[EBDX] Compiler:133:in `compile'
+[EBDX] Compiler:118:in `each'
+[EBDX] Compiler:118:in `compile'
+[EBDX] Compiler:165
+
+End of Error.
+
+002_Luka's Scripting Utilities.rb:299:in `runScript'
+002_Luka's Scripting Utilities.rb:269:in `each'
+002_Luka's Scripting Utilities.rb:269:in `runScript'
+002_Luka's Scripting Utilities.rb:339:in `runPlugin'
+008_EBDX.rb:39:in `load_scripts_from_folder'
+Section000:28:in `eval'
+Section000:31:in `load_scripts_from_folder'
+Section000:28:in `each'
+Section000:28:in `load_scripts_from_folder'
+Section000:41:in `load_scripts_from_folder'
+Section000:40:in `each'
+Section000:40:in `load_scripts_from_folder'
+Section000:45

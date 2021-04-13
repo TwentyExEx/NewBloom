@@ -46,11 +46,6 @@ class ChoiceWindowEBDX
       pbDrawOutlineText(choice,0,-1,bmp.width,bmp.height,@commands[i],baseColor,shadowColor,1)
     end
     bmp.dispose
-    for i in 0...4
-      next if i%2 == 1
-      @visibility[i] = @scene.sprites["battlebox#{i}"].visible if @scene.sprites["battlebox#{i}"]
-      @scene.sprites["battlebox#{i}"].visible = false if @scene.sprites["battlebox#{i}"]
-    end
   end
   #-----------------------------------------------------------------------------
   #  apply styling from PBS
@@ -86,10 +81,6 @@ class ChoiceWindowEBDX
       scene.pbGraphicsUpdate
     end
     pbDisposeSpriteHash(@sprites)
-    for i in 0...4
-      next if i%2 == 1
-      @scene.sprites["battlebox#{i}"].visible = @visibility[i] if @scene.sprites["battlebox#{i}"]
-    end
   end
   #-----------------------------------------------------------------------------
   #  update choice selection
@@ -115,5 +106,6 @@ class ChoiceWindowEBDX
       @sprites["choice#{i}"].src_rect.y += 1 if @sprites["choice#{i}"].src_rect.y < 0
     end
   end
+  def shiftMode=(val); end
   #-----------------------------------------------------------------------------
 end

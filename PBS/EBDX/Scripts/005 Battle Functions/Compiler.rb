@@ -12,6 +12,8 @@ module EBCompiler
     contents = File.open(filename, 'rb') {|f| f.read.gsub("\t", "  ") }
     # begin interpretation
     data = {}; entries = []
+    # skip if empty
+    return data if !contents || contents.empty?
     indexes = contents.scan(/(?<=\[)(.*?)(?=\])/i); indexes.push(indexes[-1])
     # iterate through each index and compile data points
     for j in 0...indexes.length
@@ -40,7 +42,7 @@ module EBCompiler
         a = e.split("=")
         a[0] = a[0] ? a[0].strip : ""
         a[1] = a[1] ? a[1].strip : ""
-        next section = a[0] if a[1] == ""
+        next section = a[0] if a[1].nil? || a[1] == "" || a[1].empty?
         # split array
         a[1] = a[1].split(",")
         # raise error
@@ -53,10 +55,10 @@ module EBCompiler
         for q in 0...a[1].length
           typ = "String"
           begin
-            if a[1][q].numeric? && a[1][q].include?('.')
+            if a[1][q].is_numeric? && a[1][q].include?('.')
               typ = "Float"
               a[1][q] = a[1][q].to_f
-            elsif a[1][q].numeric?
+            elsif a[1][q].is_numeric?
               typ = "Integer"
               a[1][q] = a[1][q].to_i
             elsif a[1][q].downcase == "true" || a[1][q].downcase == "false"
@@ -126,6 +128,8 @@ module EBCompiler
         next if f == "#{filename}.txt" || !f.starts_with?(filename) || refresh
         refresh = true if File.mtime("PBS/EBDX/#{f}") > File.mtime("Data/Plugins/#{filename}.ebdx")
       end
+      # refresh if compiled data is older than compiled scripts
+      refresh = true if File.safe?("Data/Plugins/#{filename}.ebdx") && File.safe?("Data/Plugins/EBDX.rxdata") && File.mtime("Data/Plugins/EBDX.rxdata") > File.mtime("Data/Plugins/#{filename}.ebdx")
       #------------------------------------------------------------------------
       next if !refresh
       read = {}

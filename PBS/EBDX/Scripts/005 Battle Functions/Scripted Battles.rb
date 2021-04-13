@@ -49,15 +49,6 @@ class PokeBattle_Battle
     return pbMegaEvolve_ebdx(index)
   end
   #-----------------------------------------------------------------------------
-  #  shows message if opponent wins
-  #-----------------------------------------------------------------------------
-  alias pbEndOfBattle_ebdx pbEndOfBattle unless self.method_defined?(:pbEndOfBattle_ebdx)
-  def pbEndOfBattle
-    # displays trainer dialogue if applicable
-    @scene.pbTrainerBattleSpeech("loss") if @decision == 2
-    return pbEndOfBattle_ebdx
-  end
-  #-----------------------------------------------------------------------------
 end
 #===============================================================================
 #
@@ -75,9 +66,10 @@ class PokeBattle_Battler
 
   alias pbFaint_ebdx pbFaint unless self.method_defined?(:pbFaint_ebdx)
   def pbFaint(*args)
+    show = !@fainted
     ret = pbFaint_ebdx(*args)
     # displays trainer dialogue if applicable
-    @battle.scene.pbTrainerBattleSpeech(playerBattler?(self) ? "fainted" : "faintedOpp")
+    @battle.scene.pbTrainerBattleSpeech(playerBattler?(self) ? "fainted" : "faintedOpp") if show
     return ret
   end
   #-----------------------------------------------------------------------------
@@ -93,11 +85,13 @@ class PokeBattle_Scene
   def pbTrainerBattleSpeech(*filters)
     return if !@battle.midspeech || !@battle.midspeech.is_a?(Array)
     @briefmessage = false
+    ret = false
     # iterate through potential double battler indexes
     for index in 0...@battle.midspeech.length
+      handled = false
       # skip if unable to interface
       next if !@battle.midspeech[index] || !@battle.midspeech[index].is_a?(Hash)
-      for key in @battle.midspeech[index].keys
+      for key in @battle.midspeech[index].keys.sort
         next if @battle.midspeech[index][key].nil?
         # checks through filters
         skip = filters.length > 0
@@ -108,7 +102,7 @@ class PokeBattle_Scene
             break
           end
         end
-        next if skip
+        next if skip || handled
         # turn progression dialogue
         if key.include?("turnStart") || key.include?("turnEnd")
           turn = key.gsub("Start", "")
@@ -118,6 +112,7 @@ class PokeBattle_Scene
             pbTrainerSpeak(@battle.midspeech[index][key], nil, index)
             @battle.midspeech[index][key] = nil
             @battle.midspeech[index].delete(key)
+            handled = true; ret = true
             next
           end
         # random chance message
@@ -127,15 +122,17 @@ class PokeBattle_Scene
             pbTrainerSpeak(@battle.midspeech[index][key], nil, index)
             @battle.midspeech[index][key] = nil
             @battle.midspeech[index].delete(key)
+            handled = true; ret = true
             next
           end
         # last Pokemon is sent out
-        elsif key.include?("last")
+        elsif key.include?("last") || key.include?("afterLast") || key.include?("beforeLast")
           lin = key.include?("Opp") ? 1 : 0
           if @battle.pbParty(lin).length > 1 && @battle.pbAbleCount(lin) == 1
             pbTrainerSpeak(@battle.midspeech[index][key], nil, index)
             @battle.midspeech[index][key] = nil
             @battle.midspeech[index].delete(key)
+            handled = true; ret = true
             next
           end
         # any other specified dialogue popups
@@ -143,11 +140,12 @@ class PokeBattle_Scene
           pbTrainerSpeak(@battle.midspeech[index][key], nil, index)
           @battle.midspeech[index][key] = nil
           @battle.midspeech[index].delete(key)
+          handled = true; ret = true
           next
         end
       end
     end
-    return false
+    return ret
   end
   #-----------------------------------------------------------------------------
   # function to process actual speech

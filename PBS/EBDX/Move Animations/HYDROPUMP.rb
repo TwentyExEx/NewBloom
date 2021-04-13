@@ -19,7 +19,7 @@ EliteBattle.defineMoveAnimation(:HYDROPUMP) do
   for i in 0...12
     fp["p#{i}"] = Sprite.new(@viewport)
     fp["p#{i}"].bitmap = Bitmap.new(16,16)
-    fp["p#{i}"].bitmap.draw_circle
+    fp["p#{i}"].bitmap.bmp_circle
     fp["p#{i}"].ox = 8
     fp["p#{i}"].oy = 8
     fp["p#{i}"].opacity = 0

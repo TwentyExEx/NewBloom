@@ -11,18 +11,17 @@
 #===============================================================================
 #  run script as plugin
 #===============================================================================
+ver = "1.0"
 # set up plugin metadata
 if !defined?(PluginManager)
   raise "This script is only compatible with Essentials v18.x!"
-elsif !File.safe?("Data/Plugins/EBDX.rxdata") && !$DEBUG
-  raise "You need to run your game at least once from Debug, to compile all the necessary files!"
 else
   PluginManager.register({
     :name => "Elite Battle: DX",
-    :version => "0.1",
+    :version => ver,
     :link => "https://luka-sj.com/res/ebdx",
     :dependencies => [
-      ["Luka's Scripting Utilities", "3.1.1"]
+      ["Luka's Scripting Utilities", "3.1.3"]
     ],
     :credits => [
       "Luka S.J.", "Maruno", "Marin", "Pokecheck.org", 
@@ -30,6 +29,11 @@ else
       "redblueyellow", "Damien"
     ]
   })
+end
+ERROR_TEXT += "[EBDX v#{ver}] \r\n"
+# raise message if not compiled
+if !File.safe?("Data/Plugins/EBDX.rxdata") && !$DEBUG
+  raise "You need to run your game at least once from Debug, to compile all the necessary files!"
 end
 # compile and eval script contents (don't touch please)
 File.runPlugin("PBS/EBDX/Scripts", "EBDX")
@@ -59,9 +63,6 @@ COMMON_ANIMATIONS = false
 
 # set this to true to use animations from the Animation editor for missing move animations
 REPLACE_MISSING_ANIM = false
-
-# set this to true to show Gen 7 styled type advantages on move databoxes
-SHOW_TYPE_ADVANTAGE = false
 
 # disables "camera" zooming and movement throughout the entire scene
 DISABLE_SCENE_MOTION = false
@@ -94,9 +95,6 @@ EliteBattle.addVector(:CAMERA_MOTION,
   [60, 280, 12, 388, 1],
   [160, 286, 16, 340, 1]
 )
-
-# extra vectors
-EliteBattle.addVector(:DYNAMAX, 202, 308, 18, 136, 0.4)
 #-------------------------------------------------------------------------------
 #  additional battle system configuration
 #-------------------------------------------------------------------------------
@@ -144,22 +142,24 @@ module BattleScripts
   # for the specific battle of LEADER_Brock "Brock" trainer
   BROCK = {
     "turnStart0" => proc do
+      pname = @battlers[1].name
+      tname = @battle.opponent[0].name
       # begin code block for the first turn
       @scene.pbTrainerSpeak(["Time to set this battle into motion!", 
-                             "Let's see if you'll be able to handle my Graveler after I give him this this!"
+                             "Let's see if you'll be able to handle my #{pname} after I give him this this!"
                            ])
       # play common animation for Item use args(anim_name, scene, index)
-      @scene.pbDisplay("Brock tossed an item to the Graveler ...")
+      @scene.pbDisplay("#{tname} tossed an item to the #{pname} ...")
       EliteBattle.playCommonAnimation(:USEITEM, @scene, 1)
       # play aura flare
-      @scene.pbDisplay("Immense energy is swelling up in the Graveler!")
+      @scene.pbDisplay("Immense energy is swelling up in the #{pname}")
       EliteBattle.playCommonAnimation(:AURAFLARE, @scene, 1)
       @vector.reset # AURAFLARE doesn't reset the vector by default
       @scene.wait(16, true) # set true to anchor the sprites to vector
       # raise battler Attack sharply (doesn't display text)
       @battlers[1].pbRaiseStatStageBasic(getConst(PBStats, :ATTACK), 2)
       # show trainer speaking additional text
-      @scene.pbTrainerSpeak("My Graveler will not falter!")
+      @scene.pbTrainerSpeak("My #{pname} will not falter!")
       # show generic text
       @scene.pbDisplay("The battle is getting intense! You see the lights and stage around you shift.")
       # change Battle Environment (with white fade)
@@ -167,6 +167,7 @@ module BattleScripts
       @sprites["battlebg"].reconfigure(EBEnvironment::STAGE, Color.white)
     end,
     "damageOpp" => "Woah! A powerful move!",
+    "damageOpp2" => "Another powerful move ...",
     "lastOpp" => "This is it! Let's make it count!",
     "lowHPOpp" => "Hang in there!",
     "attack" => "Whatever you throw at me, my team can take it!",
@@ -185,7 +186,7 @@ module BattleScripts
       # show flavor text
       @scene.pbDisplay("The ruler of time itself; Dialga starts to radiate tremendous amounts of energy!")
       @scene.pbDisplay("Something is about to happen ...")
-      # play common animatioj
+      # play common animation
       EliteBattle.playCommonAnimation(:ROAR, @scene, 1)
       @scene.pbDisplay("Dialga's roar is pressurizing the air around you! You feel its intensity!")
       # change the battle environment (use animation to transition)
@@ -194,18 +195,6 @@ module BattleScripts
       @scene.pbDisplay("Dialga is controlling the domain.")
       # show databoxes
       @scene.pbShowAllDataboxes
-    end
-  }
-  #-----------------------------------------------------------------------------
-  # example Rival event with fancy message
-  RIVALTEST = {
-    "turnStart0" => proc do
-      # display fancy message
-      # @scene.pbTrainerSpeakFancy([messages], trainerbmp, bgbmp)
-      @scene.pbTrainerSpeakFancy([
-        "I'll show you what I'm made of!",
-        "There is no way that I'm losing to you!"
-      ], "tr001", "bg001")
     end
   }
   #-----------------------------------------------------------------------------

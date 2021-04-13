@@ -36,7 +36,7 @@ EliteBattle.defineMoveAnimation(:EARTHPOWER) do
       fp["p#{k}#{m}"].ox = 4
       fp["p#{k}#{m}"].oy = 4
       c = [Color.new(139,7,7),Color.new(239,90,1)][rand(2)]
-      fp["p#{k}#{m}"].bitmap.draw_circle(c)
+      fp["p#{k}#{m}"].bitmap.bmp_circle(c)
       fp["p#{k}#{m}"].visible = false
       z = [1,0.5,0.75,0.25][rand(4)]
       fp["p#{k}#{m}"].zoom_x = z

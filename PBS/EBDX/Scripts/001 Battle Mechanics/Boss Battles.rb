@@ -96,8 +96,6 @@ module EliteBattle
     Input.update
     # battle end proc
     Events.onWildBattleEnd.trigger(nil, genwildpoke.species, genwildpoke.level, decision)
-    # resets variables
-    EliteBattle.reset(:wildSpecies, :wildLevel, :wildForm, :setBoss)
     return decision
   end
   #-----------------------------------------------------------------------------

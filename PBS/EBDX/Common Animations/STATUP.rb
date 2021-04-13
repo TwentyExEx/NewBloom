@@ -16,7 +16,7 @@ EliteBattle.defineCommonAnimation(:STATUP) do
     c = [Color.new(238,83,17),Color.new(236,112,19),Color.new(242,134,36)][rand(3)]
     pt["#{i}"] = Sprite.new(@viewport)
     pt["#{i}"].bitmap = Bitmap.new(14,14)
-    pt["#{i}"].bitmap.draw_circle(c)
+    pt["#{i}"].bitmap.bmp_circle(c)
     pt["#{i}"].center!
     width = (96/@targetSprite.width*0.5).to_i
     pt["#{i}"].x = @targetSprite.x + rand((64 + width)*@targetSprite.zoom_x - 16)*(s==0 ? 1 : -1)

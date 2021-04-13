@@ -1365,7 +1365,7 @@ class SunMoonWavesBackground
       if @sprites["b#{i}"].y <= -32
         r = rand(12)
         @sprites["b#{i}"].bitmap = Bitmap.new(16 + r*4, 16 + r*4)
-        @sprites["b#{i}"].bitmap.draw_circle
+        @sprites["b#{i}"].bitmap.bmp_circle
         @sprites["b#{i}"].center!
         @sprites["b#{i}"].y = @viewport.height + 32
         @sprites["b#{i}"].x = 32 + rand(@viewport.width - 64)

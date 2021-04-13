@@ -16,11 +16,23 @@ class PBAnimationPlayerX
         sprite = @animsprites[i]; next if !sprite
         focus = cel[AnimFrame::FOCUS]
       end
-      return [pattern,focus].max
+      return [pattern, focus].max
     end
     return 1
   end
   #-----------------------------------------------------------------------------
+end
+#===============================================================================
+#  Fix zooming issues with legacy animations (back sprite)
+#===============================================================================
+alias pbSpriteSetAnimFrame_ebdx pbSpriteSetAnimFrame unless defined?(pbSpriteSetAnimFrame_ebdx)
+def pbSpriteSetAnimFrame(sprite, frame, user = nil, target = nil, inEditor = false)
+  return if !sprite
+  pbSpriteSetAnimFrame_ebdx(sprite, frame, user, target, inEditor)
+  if !inEditor && sprite.respond_to?(:index) && sprite.index%2 == 0
+    sprite.zoom_x *= 2*@scene.vector.zoom2
+    sprite.zoom_y *= 2*@scene.vector.zoom2
+  end
 end
 #===============================================================================
 #  Legacy animation player core
@@ -40,21 +52,6 @@ class PokeBattle_Scene
     # get the battler sprites
     userSprite   = (user) ? @sprites["pokemon_#{user.index}"] : nil
     targetSprite = (target) ? @sprites["pokemon_#{target.index}"] : nil
-    # get EBDX animation handles
-    #special = ["Quick Attack", "Tail Whip"].include?(movename)
-    # Vector movement
-    fakeplayer = PBAnimationPlayerX.new(animation, user, target, self, oppmove)
-    fakeplayer.start
-    if !(target == user) && !user.nil?
-      focus = fakeplayer.getFocus
-      if focus == 3 || special # both
-        @vector.set(EliteBattle.getVector(:DUAL))
-      elsif focus == 1
-        @vector.set(EliteBattle.getVector(:BATTLER, (target.index%2 == 0 && user.index%2 == 1)))
-      end
-    end
-    fakeplayer.dispose
-    self.wait(16, true)
     # Remember the original positions of Pokémon sprites
     oldUserX = (userSprite) ? userSprite.x : 0
     oldUserY = (userSprite) ? userSprite.y : 0
@@ -79,8 +76,12 @@ class PokeBattle_Scene
     @sprites["battlebg"].defocus
     animPlayer.start
     loop do
+      # update necessary components
       animPlayer.update
-      pbUpdate
+      pbGraphicsUpdate
+      pbInputUpdate
+      animateScene
+      # finish with the animation player
       break if animPlayer.animDone?
     end
     animPlayer.dispose
@@ -98,7 +99,6 @@ class PokeBattle_Scene
     end
     # reset databox visibility
     pbShowAllDataboxes
-    self.wait(16, true) if !(target == user) && !user.nil?
   end
   #-----------------------------------------------------------------------------
   #  get choice details for moves
@@ -120,7 +120,6 @@ class PokeBattle_Scene
   #  Main animation handling core
   #-----------------------------------------------------------------------------
   def pbAnimation(moveid, user, targets, hitnum = 0)
-    EliteBattle.reset(:cachedBattler)
     # for hitnum, 1 is the charging animation, 0 is the damage animation
     return if !moveid
     # move information
@@ -141,13 +140,7 @@ class PokeBattle_Scene
     target = user if !target
     # clears the current UI
     clearMessageWindow
-    isVisible = []
-    @battle.battlers.each_with_index do |b, i|
-      isVisible.push(false)
-      next if !b
-      isVisible[i] = @sprites["dataBox_#{i}"].visible
-      @sprites["dataBox_#{i}"].visible = false
-    end
+    pbHideAllDataboxes
     # Substitute animation
     if @sprites["pokemon_#{user.index}"] && @battle.battlescene
       subbed = @sprites["pokemon_#{user.index}"].isSub
@@ -161,16 +154,16 @@ class PokeBattle_Scene
       handled = EliteBattle.playMoveAnimation(moveid, self, user.index, target.index, hitnum, multihit, species) if !handled
       # in case people want to use the old animation player
       if REPLACE_MISSING_ANIM && !handled
-        animid = pbFindAnimation(moveid, user.index, hitnum)
+        animid = pbFindMoveAnimation(moveid, user.index, hitnum)
         return if !animid
         anim = animid[0]
         animations = EliteBattle.get(:moveAnimations)
         name = PBMoves.getName(moveid)
         pbSaveShadows {
            if animid[1] # On opposing side and using OppMove animation
-             pbAnimationCore(animations[anim], target, user, true, name)
+             pbAnimationCore(animations[anim], target, user, true)
            else         # On player's side, and/or using Move animation
-             pbAnimationCore(animations[anim], user, target, false, name)
+             pbAnimationCore(animations[anim], user, target, false)
            end
         }
         handled = true
@@ -190,12 +183,8 @@ class PokeBattle_Scene
       pbChangePokemon(user, target.pokemon)
     end
     # restores cleared UI
-    @battle.battlers.each_with_index do |b, i|
-      next if !b
-      @sprites["dataBox_#{i}"].visible = true if isVisible[i]
-    end
+    pbShowAllDataboxes
     self.afterAnim = true
-    EliteBattle.reset(:cachedBattler)
   end
   #-----------------------------------------------------------------------------
 end

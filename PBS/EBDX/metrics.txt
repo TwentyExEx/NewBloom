@@ -76,7 +76,6 @@ TRIPLE
 [COMMANDMENU]
 ButtonGraphic      = btnCmd
 SelectorGraphic    = cmdSel
-PartyLineGraphic   = partyLine
 #-------------------------------
 [FIGHTMENU]
 ButtonGraphic      = moveSelButtons

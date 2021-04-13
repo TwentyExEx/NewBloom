@@ -58,7 +58,6 @@ class PokeBattle_Scene
     if EliteBattle.get(:nextBattleBack)
       data = EliteBattle.get(:nextBattleBack) if EliteBattle.get(:nextBattleBack).is_a?(Hash)
       data = { "backdrop" => EliteBattle.get(:nextBattleBack) } if EliteBattle.get(:nextBattleBack).is_a?(String)
-      EliteBattle.reset(:nextBattleBack)
     elsif !backdrop.nil?
       data = backdrop.clone
     end
@@ -417,6 +416,7 @@ class BattleSceneRoom
     # animates twinkling stars
     for i in 0...24
       break if !(PBDayNight.isNight? && @data.try_key?("outdoor"))
+      next if !@sprites["star#{i}"]
       @sprites["star#{i}"].opacity += @sprites["star#{i}"].toggle * @sprites["star#{i}"].speed
       @sprites["star#{i}"].toggle *= -1 if @sprites["star#{i}"].opacity <= 125 || @sprites["star#{i}"].opacity >= @sprites["star#{i}"].end_x
     end

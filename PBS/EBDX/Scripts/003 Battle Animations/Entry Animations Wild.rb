@@ -70,7 +70,7 @@ class EliteBattle_BasicWildAnimations
     @viewport.color = Color.new(0,0,0,0)
     # defines necessary sprites
     fp["back"] = Sprite.new(@viewport)
-    fp["back"].bitmap = Graphics.snap_to_bitmap
+    fp["back"].snap_screen
     fp["back"].blur_sprite
     c = index < 3 ? 0 : 255
     fp["back"].color = Color.new(c,c,c,128*(index < 3 ? 1 : 2))
@@ -273,12 +273,13 @@ class EliteBattle_BasicWildAnimations
     # splits the screen into proper segments
     for i in 0...n
       sprites[i] = Sprite.new(@viewport)
-      sprites[i].bitmap = bmp
-      sprites[i].ox = bmp.width/2
+      sprites[i].bitmap = Bitmap.new(@viewport.width, @viewport.height)
+      sprites[i].bitmap.blt(0, 0, bmp, @viewport.rect)
+      sprites[i].ox = sprites[i].bitmap.width/2
       sprites[i].x = @viewport.width/2
       sprites[i].y = i*split
-      sprites[i].src_rect.set(0,i*split,bmp.width,split)
-      sprites[i].color = Color.new(0,0,0,0)
+      sprites[i].src_rect.set(0, i*split, sprites[i].bitmap.width, split)
+      sprites[i].color = Color.new(0, 0, 0, 0)
     end
     # animates wave motion
     for f in 0...64
@@ -315,24 +316,16 @@ class EliteBattle_BasicWildAnimations
     # animates screen blur pattern
     for i in 0...(max + 20)
       if !(i%2 == 0)
-        if i > max*0.75
-          zoom += 0.3
-        else
-          zoom -= 0.01
-        end
+        zoom += (i > max*0.75) ? 0.3 : -0.01
         angle = 0 if angle.nil?
         angle = (i%3 == 0) ? rand(amax*2) - amax : angle
         # creates necessary sprites
         frames[i] = Sprite.new(@viewport)
-        frames[i].bitmap = bmp
-        frames[i].src_rect.set(0,0,@viewport.width,@viewport.height)
-        frames[i].ox = @viewport.width/2
-        frames[i].oy = @viewport.height/2
-        frames[i].x = @viewport.width/2
-        frames[i].y = @viewport.height/2
+        frames[i].bitmap = Bitmap.new(@viewport.width, @viewport.height)
+        frames[i].bitmap.blt(0, 0, bmp, @viewport.rect)
+        frames[i].center!(true)
         frames[i].angle = angle
-        frames[i].zoom_x = zoom
-        frames[i].zoom_y = zoom
+        frames[i].zoom = zoom
         frames[i].tone = Tone.new(i/4,i/4,i/4)
         frames[i].opacity = 30
       end
@@ -498,10 +491,10 @@ class EliteBattle_BasicWildAnimations
     width = @viewport.width/10
     # creates a sprite of screen
     backdrop = Sprite.new(@viewport)
-    backdrop.bitmap = Graphics.snap_to_bitmap
+    backdrop.snap_screen
     # creates blank sprite
     sprite = Sprite.new(@viewport)
-    sprite.bitmap = Bitmap.new(@viewport.width,@viewport.height)
+    sprite.bitmap = Bitmap.new(@viewport.width, @viewport.height)
     # animates gradient pattern
     for j in 0...4
       y = [0,2,1,3]
@@ -559,6 +552,12 @@ class SunMoonSpeciesTransitions
     # initializes the backdrop
     args = "@viewport,@species"
     var = @variant == "trainer" ? "default" : @variant
+    # check if can continue
+    unless var.is_a?(String) && !var.empty?
+      EliteBattle.log.error("Cannot get VS sequence variant for Sun/Moon battle transition for species: #{@species}!")
+      var = "default"
+    end
+    # loag background effect
     @sprites["background"] = eval("SunMoon#{var.capitalize}Background.new(#{args})")
     @sprites["background"].speed = 24
     # graphics for bars covering the viewport
@@ -700,13 +699,12 @@ class SunMoonSpeciesTransitions
   def finish
     return if self.disposed?
     @scene.clearMessageWindow(true)
-    bmp = Graphics.snap_to_bitmap
     @sprites["ov1"] = Sprite.new(@viewport)
-    @sprites["ov1"].bitmap = bmp
+    @sprites["ov1"].snap_screen
     @sprites["ov1"].center!(true)
     @sprites["ov1"].z = 99999
     @sprites["ov2"] = Sprite.new(@viewport)
-    @sprites["ov2"].bitmap = bmp
+    @sprites["ov2"].bitmap = @sprites["ov1"].bitmap.clone
     @sprites["ov2"].blur_sprite(3)
     @sprites["ov2"].center!(true)
     @sprites["ov2"].z = 99999
@@ -731,9 +729,9 @@ class SunMoonSpeciesTransitions
     @scene.sprites["dataBox_1"].appear
     @scene.sprites["dataBox_1"].position
     # apply for Player follower
-    if !EliteBattle.follower.nil?
-      @scene.sprites["dataBox_#{EliteBattle.follower}"].appear
-      @scene.sprites["dataBox_#{EliteBattle.follower}"].position
+    if !EliteBattle.follower(@scene.battle).nil?
+      @scene.sprites["dataBox_#{EliteBattle.follower(@scene.battle)}"].appear
+      @scene.sprites["dataBox_#{EliteBattle.follower(@scene.battle)}"].position
     end
     for i in 0...16
       @viewport.color.alpha -= 16

@@ -6,6 +6,12 @@
 module EliteBattle
   @randomizer = false
   #-----------------------------------------------------------------------------
+  #  check if randomizer is on
+  #-----------------------------------------------------------------------------
+  def self.randomizer?
+    return $PokemonGlobal && $PokemonGlobal.isRandomizer
+  end
+  #-----------------------------------------------------------------------------
   #  randomizes compiled trainer data
   #-----------------------------------------------------------------------------
   def self.randomizeTrainers
@@ -125,7 +131,8 @@ module EliteBattle
   # randomizes all data and toggles on randomizer
   #-----------------------------------------------------------------------------
   def self.startRandomizer(skip = false)
-    self.randomizerSelection unless skip
+    ret = $PokemonGlobal && $PokemonGlobal.isRandomizer
+    ret = self.randomizerSelection unless skip
     @randomizer = true
     # refresh current cache
     if $PokemonTemp
@@ -134,41 +141,8 @@ module EliteBattle
     end
     # randomize data and cache it
     $PokemonGlobal.randomizedData = self.randomizeData if $PokemonGlobal.randomizedData.nil?
-    $PokemonGlobal.isRandomizer = true
+    $PokemonGlobal.isRandomizer = ret
     $PokemonEncounters.setup($game_map.map_id)
-  end
-  #-----------------------------------------------------------------------------
-  #  command selection
-  #-----------------------------------------------------------------------------
-  def self.commandWindow(commands, index = 0, msgwindow = nil)
-    ret = -1
-    # creates command window
-    cmdwindow = Window_CommandPokemonColor.new(commands)
-    cmdwindow.index = index
-    cmdwindow.x = Graphics.width - cmdwindow.width
-    # main loop
-    loop do
-      # updates graphics, input and OW
-      Graphics.update
-      Input.update
-      pbUpdateSceneMap
-      # updates the two windows
-      cmdwindow.update
-      msgwindow.update if !msgwindow.nil?
-      # updates command output
-      if Input.trigger?(Input::B)
-        pbPlayCancelSE
-        ret = -1
-        break
-      elsif Input.trigger?(Input::C)
-        pbPlayDecisionSE
-        ret = cmdwindow.index
-        break
-      end
-    end
-    # returns command output
-    cmdwindow.dispose
-    return ret
   end
   #-----------------------------------------------------------------------------
   #  creates an UI to select the randomizer options
@@ -198,8 +172,13 @@ module EliteBattle
       end
       commands.push(_INTL("Done"))
       # goes to command window
-      cmd = self.commandWindow(commands,cmd,msgwindow)
+      cmd = self.commandWindow(commands, cmd, msgwindow)
       # processes return
+      if cmd < 0
+        clear = pbConfirmMessage("Do you wish to cancel the Randomizer selection?")
+        added.clear if clear
+        next unless clear
+      end
       break if cmd < 0 || cmd >= (commands.length - 1)
       if cmd >= 0 && cmd < (commands.length - 1)
         if added.include?(modifiers[cmd])
@@ -214,8 +193,12 @@ module EliteBattle
     # adds randomizer rules
     EliteBattle.addData(:RANDOMIZER, :RULES, added)
     # shows message
-    pbMessage(_INTL("Your selected Randomizer rules have been applied."))
+    msg = _INTL("Your selected Randomizer rules have been applied.")
+    msg = _INTL("No Randomizer rules have been applied.") if added.length < 1
+    msg = _INTL("Your selection has been cancelled.") if cmd < 0
+    pbMessage(msg)
     Input.update
+    return added.length > 0
   end
   #-----------------------------------------------------------------------------
 end

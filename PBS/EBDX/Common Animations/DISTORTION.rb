@@ -7,7 +7,7 @@ EliteBattle.defineCommonAnimation(:DISTORTION) do
   bmp = Graphics.snap_to_bitmap
   max = 50; amax = 4; frames = {}; zoom = 1
   # sets viewport color
-  @viewport.color = Color.new(255,255,155,0)
+  @viewport.color = Color.new(255, 255, 155, 0)
   # animates initial viewport color
   20.times do
     @viewport.color.alpha += 2
@@ -21,16 +21,12 @@ EliteBattle.defineCommonAnimation(:DISTORTION) do
       angle = (i%3 == 0) ? rand(amax*2) - amax : angle
       # creates necessary sprites
       frames[i] = Sprite.new(@viewport)
-      frames[i].bitmap = bmp
-      frames[i].src_rect.set(0,0,@viewport.width,@viewport.height)
-      frames[i].ox = @viewport.width/2
-      frames[i].oy = @viewport.height/2
-      frames[i].x = @viewport.width/2
-      frames[i].y = @viewport.height/2
+      frames[i].bitmap = Bitmap.new(@viewport.width, @viewport.height)
+      frames[i].bitmap.blt(0, 0, bmp, @viewport.rect)
+      frames[i].center!(true)
       frames[i].z = 999999
       frames[i].angle = angle
-      frames[i].zoom_x = zoom
-      frames[i].zoom_y = zoom
+      frames[i].zoom = zoom
       frames[i].tone = Tone.new(i/4,i/4,i/4)
       frames[i].opacity = 30
     end
@@ -42,7 +38,7 @@ EliteBattle.defineCommonAnimation(:DISTORTION) do
     Graphics.update
   end
   # ensures viewport goes to black
-  frames[(max+19)].tone = Tone.new(255,255,255)
+  frames[(max+19)].tone = Tone.new(255, 255, 255)
   @viewport.color.alpha = 255
   @sprites["battlebg"].configure
   Graphics.update

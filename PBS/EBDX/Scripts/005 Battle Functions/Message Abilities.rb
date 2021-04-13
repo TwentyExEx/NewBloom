@@ -5,10 +5,10 @@ class PokeBattle_Scene
   #-----------------------------------------------------------------------------
   #  Show message splash
   #-----------------------------------------------------------------------------
-  def pbShowAbilitySplash(battler = nil)
+  def pbShowAbilitySplash(battler = nil, ability = nil)
     # gets the info parameters
     return if battler.nil? || !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-    effect = PBAbilities.getName(battler.ability)
+    effect = (ability.is_a?(String)) ? ability : PBAbilities.getName(battler.ability)
     # constructs necessary bitmap
     bitmap = pbBitmap("Graphics/EBDX/Pictures/UI/abilityMessage")
     rect = playerBattler?(battler) ? Rect.new(0, bitmap.height/2, bitmap.width, bitmap.height/2) : Rect.new(0, 0, bitmap.width, bitmap.height/2)
@@ -24,6 +24,7 @@ class PokeBattle_Scene
     @sprites["abilityMessage"].x = playerBattler?(battler) ? (-width - width%10) : (Graphics.width + width%10)
     @sprites["abilityMessage"].y = @sprites["dataBox_#{battler.index}"].y
     pbSEPlay("EBDX/Ability Message")
+    @sprites["abilityMessage"].zoom_y = 0
     10.times do
       @sprites["abilityMessage"].x += (playerBattler?(battler) ? 1 : -1)*(width/10)
       @sprites["abilityMessage"].zoom_y += 0.1
@@ -46,6 +47,7 @@ class PokeBattle_Scene
       @sprites["abilityMessage"].zoom_y -= 0.1
       self.wait(1, true)
     end
+    @sprites["abilityMessage"].zoom_y = 0
   end
   #-----------------------------------------------------------------------------
   #  Replace message splash

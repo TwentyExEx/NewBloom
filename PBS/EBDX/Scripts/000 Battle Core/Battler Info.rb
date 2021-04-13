@@ -62,6 +62,7 @@ class PokeBattle_Battler
     @thisMoveHits = args[0].respond_to?(:ebNumHits) ? args[0].ebNumHits : args[0].pbNumHits(args[1], args[2])
     ret = pbProcessMoveHit_ebdx(*args)
     @thisMoveHits = nil
+    # return final output
     return ret
   end
   #-----------------------------------------------------------------------------

@@ -5,7 +5,12 @@
 #===============================================================================
 module EliteBattle
   @nuzlocke = false
-  @qNuzlocke = false
+  #-----------------------------------------------------------------------------
+  #  check if nuzlocke is on
+  #-----------------------------------------------------------------------------
+  def self.nuzlocke?
+    return $PokemonGlobal && $PokemonGlobal.isNuzlocke
+  end
   #-----------------------------------------------------------------------------
   #  recurring function to get the very first species in the evolutionary line
   #-----------------------------------------------------------------------------
@@ -49,14 +54,15 @@ module EliteBattle
   #  starts nuzlocke mode
   #-----------------------------------------------------------------------------
   def self.startNuzlocke(skip = false)
-    self.nuzlockeSelection unless skip
-    @qNuzlocke = true
+    ret = $PokemonGlobal && $PokemonGlobal.isNuzlocke
+    ret = self.nuzlockeSelection unless skip
+    $PokemonGlobal.qNuzlocke = ret
     # sets the nuzlocke to true if already has a bag and Pokeballs
     for i in 1..PBItems.maxValue
       break if !$PokemonBag
       if pbIsPokeBall?(i) && $PokemonBag.pbHasItem?(i)
-        @nuzlocke = true
-        $PokemonGlobal.isNuzlocke = true
+        @nuzlocke = ret
+        $PokemonGlobal.isNuzlocke = ret
         break
       end
     end
@@ -91,8 +97,13 @@ module EliteBattle
       end
       commands.push(_INTL("Done"))
       # goes to command window
-      cmd = self.commandWindow(commands,cmd,msgwindow)
+      cmd = self.commandWindow(commands, cmd, msgwindow)
       # processes return
+      if cmd < 0
+        clear = pbConfirmMessage("Do you wish to cancel the Nuzlocke selection?")
+        added.clear if clear
+        next unless clear
+      end
       break if cmd < 0 || cmd >= (commands.length - 1)
       if cmd >= 0 && cmd < (commands.length - 1)
         if added.include?(modifiers[cmd])
@@ -107,8 +118,12 @@ module EliteBattle
     # adds randomizer rules
     EliteBattle.addData(:NUZLOCKE, :RULES, added)
     # shows message
-    pbMessage(_INTL("Your selected Nuzlocke rules have been applied. The Nuzlocke will begin once you obtain some Pokéballs."))
+    msg = _INTL("Your selected Nuzlocke rules have been applied.")
+    msg = _INTL("No Nuzlocke rules have been applied.") if added.length < 1
+    msg = _INTL("Your selection has been cancelled.") if cmd < 0
+    pbMessage(msg)
     Input.update
+    return added.length > 0
   end
   #-----------------------------------------------------------------------------
 end
@@ -264,6 +279,7 @@ end
 #  additional entry to Global Metadata for randomized data storage
 #===============================================================================
 class PokemonGlobalMetadata
+  attr_accessor :qNuzlocke
   attr_accessor :nuzlockeData
   attr_accessor :isNuzlocke
 end
@@ -275,7 +291,7 @@ class PokemonBag
   def pbStoreItem(*args)
     ret = pbStoreItem_ebdx_nuzlocke(*args)
     item = args[0]; item = getID(PBItems,item) if item.is_a?(String) || item.is_a?(Symbol)
-    if EliteBattle.get(:qNuzlocke) && pbIsPokeBall?(item)
+    if $PokemonGlobal && $PokemonGlobal.qNuzlocke && pbIsPokeBall?(item)
       EliteBattle.set(:nuzlocke, true)
       $PokemonGlobal.isNuzlocke = true
     end

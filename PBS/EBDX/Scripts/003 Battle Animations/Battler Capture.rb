@@ -18,7 +18,7 @@ class PokeBattle_Scene
     spritePoke = @sprites["pokemon_#{targetBattler}"]
     @sprites["ballshadow"] = Sprite.new(@viewport)
     @sprites["ballshadow"].bitmap = Bitmap.new(34, 34)
-    @sprites["ballshadow"].bitmap.draw_circle(Color.black)
+    @sprites["ballshadow"].bitmap.bmp_circle(Color.black)
     @sprites["ballshadow"].ox = @sprites["ballshadow"].bitmap.width/2
     @sprites["ballshadow"].oy = @sprites["ballshadow"].bitmap.height/2 + 2
     @sprites["ballshadow"].z = 32
@@ -100,6 +100,7 @@ class PokeBattle_Scene
       ballburst.update
       self.wait
     end
+    spritePoke.zoom = 0
     # dispose of ball burst
     ballburst.dispose
     spritePoke.y += 160

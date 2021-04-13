@@ -16,7 +16,7 @@ class PokeBattle_Battle
   def initialize(*args)
     # initialize battle messages
     @midspeech = EliteBattle.get(:nextBattleScript)
-    EliteBattle.reset(:nextBattleScript)
+    @midspeech.uniq! if @midspeech.is_a?(Array)
     # override
     @battlescene = true
     return pbInitialize_ebdx(*args)
@@ -120,7 +120,8 @@ class PokeBattle_Battle
   alias pbReplace_ebdx pbReplace unless self.method_defined?(:pbReplace_ebdx)
   def pbReplace(index, *args)
     # displays trainer dialogue if applicable
-    @scene.pbTrainerBattleSpeech(playerBattler?(@battlers[index]) ? "last" : "lastOpp")
+    opt = playerBattler?(@battlers[index]) ? ["last", "beforeLast"] : ["lastOpp", "beforeLastOpp"]
+    @scene.pbTrainerBattleSpeech(*opt)
     if !@replaced
       @battlers[index].pbResetForm
       if !@battlers[index].fainted?
@@ -129,6 +130,8 @@ class PokeBattle_Battle
     end
     pbReplace_ebdx(index, *args)
     @replaced = false
+    opt = playerBattler?(@battlers[index]) ? "afterLast" : "afterLastOpp"
+    @scene.pbTrainerBattleSpeech(opt)
   end
   #-----------------------------------------------------------------------------
   #  recalls current battler
@@ -182,6 +185,23 @@ class PokeBattle_Battle
     @scene.briefmessage = true
     ret = pbThrowPokeBall_ebdx(*args)
     @scene.briefmessage = false
+    return ret
+  end
+  #-----------------------------------------------------------------------------
+  #  process battle end
+  #-----------------------------------------------------------------------------
+  alias pbEndOfBattle_ebdx pbEndOfBattle unless self.method_defined?(:pbEndOfBattle_ebdx)
+  def pbEndOfBattle
+    # displays trainer dialogue if applicable
+    @scene.pbTrainerBattleSpeech("loss") if @decision == 2
+    ret = pbEndOfBattle_ebdx
+    # reset all the EBDX queues
+    EliteBattle.reset(:nextBattleScript, :wildSpecies, :wildLevel, :wildForm, :nextBattleBack, :nextUI, :nextBattleData,
+                     :wildSpecies, :wildLevel, :wildForm, :setBoss, :cachedBattler, :tviewport)
+    EliteBattle.set(:setBoss, false)
+    EliteBattle.set(:colorAlpha, 0)
+    EliteBattle.set(:smAnim, false)
+    # return final output
     return ret
   end
   #-----------------------------------------------------------------------------

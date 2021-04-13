@@ -67,7 +67,8 @@ class PartyLineupEBDX
     end
     # position full line up graphics
     self.x = @side%2 == 0 ? (@viewport.width + @partyBar.width + 10) : (-@partyBar.width - 10)
-    self.y = @side%2 == 0 ? @viewport.height*0.65 : @viewport.height*0.3
+    mult = (USE_FOLLOWER_EXCEPTION && EliteBattle.follower(@battle).nil?) ? 0.65 : 0.5
+    self.y = @side%2 == 0 ? @viewport.height*mult : @viewport.height*0.3
     # register as loaded
     @loaded = true
   end

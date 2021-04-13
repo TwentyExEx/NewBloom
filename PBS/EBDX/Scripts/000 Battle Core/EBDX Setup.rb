@@ -64,7 +64,7 @@ module EliteBattle
         options = {}
         # primary section
         for set in ['BarGraphic', 'SelectorGraphic', 'ButtonGraphic', 'PartyLineGraphic']
-          options[set.upcase.to_sym] = metrics[section]["__pk__"][set][0] if metrics[section]["__pk__"][set]
+          options[set.upcase.to_sym] = metrics[section]["__pk__"][set][0] if metrics[section]["__pk__"] && metrics[section]["__pk__"][set]
         end
         # register options
         EliteBattle.addData(section.upcase.to_sym, :METRICS, options)
@@ -73,7 +73,7 @@ module EliteBattle
         options = {}
         # primary section
         for set in ['BarGraphic', 'SelectorGraphic', 'ButtonGraphic', 'MegaButtonGraphic', 'TypeGraphic', 'CategoryGraphic', 'ShowTypeAdvantage']
-          options[set.upcase.to_sym] = metrics[section]["__pk__"][set][0] if metrics[section]["__pk__"][set]
+          options[set.upcase.to_sym] = metrics[section]["__pk__"][set][0] if metrics[section]["__pk__"] && metrics[section]["__pk__"][set]
         end
         # register options
         EliteBattle.addData(section.upcase.to_sym, :METRICS, options)
@@ -82,7 +82,7 @@ module EliteBattle
         options = {}
         # primary section
         for set in ['SelectorGraphic', 'ButtonGraphic']
-          options[set.upcase.to_sym] = metrics[section]["__pk__"][set][0] if metrics[section]["__pk__"][set]
+          options[set.upcase.to_sym] = metrics[section]["__pk__"][set][0] if metrics[section]["__pk__"] && metrics[section]["__pk__"][set]
         end
         # register options
         EliteBattle.addData(section.upcase.to_sym, :METRICS, options)
@@ -91,7 +91,7 @@ module EliteBattle
         options = {}
         # primary section
         for set in ['PocketButtons', 'LastItem', 'BackButton', 'ItemFrame', 'PocketName', 'SelectorGraphic', 'ItemConfirm', 'ItemCancel', 'Shade', 'PocketIcons']
-          options[set.upcase.to_sym] = metrics[section]["__pk__"][set][0] if metrics[section]["__pk__"][set]
+          options[set.upcase.to_sym] = metrics[section]["__pk__"][set][0] if metrics[section]["__pk__"] && metrics[section]["__pk__"][set]
         end
         # register options
         EliteBattle.addData(section.upcase.to_sym, :METRICS, options)
@@ -129,15 +129,21 @@ module EliteBattle
         'VictoryTheme' => :VICTORYTHEME,
         'BattleScript' => :BATTLESCRIPT
       }
+      # failsafe
+      next if !metrics[key]
       # iterate through registered metrics
       for v in vals.keys
-        next if !metrics[key]["__pk__"][v]
+        next if !metrics[key]["__pk__"] || !metrics[key]["__pk__"][v]
         args.push(vals[v]); args.push(metrics[key]["__pk__"][v].length > 1 ? metrics[key]["__pk__"][v] : metrics[key]["__pk__"][v][0])
       end
       # set up battle environment
-      if metrics[key]["__pk__"]["BattleEnv"] && hasConst?(EBEnvironment, metrics[key]["__pk__"]["BattleEnv"][0])
+      if metrics[key]["__pk__"] && metrics[key]["__pk__"]["BattleEnv"]
         ebenv = metrics[key]["__pk__"]["BattleEnv"][0]
-        args.push(:BACKDROP); args.push(getConst(EBEnvironment, ebenv))
+        if hasConst?(EBEnvironment, ebenv.to_sym)
+          args.push(:BACKDROP); args.push(getConst(EBEnvironment, ebenv.to_sym))
+        else
+          EliteBattle.log.warn("Environment #{ebenv} for Species #{key} is not defined in the ENVIRONMENTS.rb file!")
+        end
       end
       # pokedex capture screen
       if metrics[key]["POKEDEXCAPTURESCREEN"]
@@ -191,15 +197,21 @@ module EliteBattle
         'BattleScript' => :BATTLESCRIPT,
         'Ace' => :ACE
       }
+      # failsafe
+      next if !metrics[key]
       # iterate through registered metrics
       for v in vals.keys
-        next if !metrics[key]["__pk__"][v]
+        next if !metrics[key]["__pk__"] || !metrics[key]["__pk__"][v]
         args.push(vals[v]); args.push(metrics[key]["__pk__"][v].length > 1 ? metrics[key]["__pk__"][v] : metrics[key]["__pk__"][v][0])
       end
       # set up battle environment
-      if metrics[key]["__pk__"]["BattleEnv"] && hasConst?(EBEnvironment, metrics[key]["__pk__"]["BattleEnv"][0])
+      if metrics[key]["__pk__"] && metrics[key]["__pk__"]["BattleEnv"]
         ebenv = metrics[key]["__pk__"]["BattleEnv"][0]
-        args.push(:BACKDROP); args.push(getConst(EBEnvironment, ebenv))
+        if hasConst?(EBEnvironment, ebenv.to_sym)
+          args.push(:BACKDROP); args.push(getConst(EBEnvironment, ebenv.to_sym))
+        else
+          EliteBattle.log.warn("Environment #{ebenv} for Trainer #{key} is not defined in the ENVIRONMENTS.rb file!")
+        end
       end
       # push arguments
       EliteBattle.addData(*args)
@@ -218,15 +230,21 @@ module EliteBattle
       vals = {
         'BattleBGM' => :BGM,
       }
+      # failsafe
+      next if !metrics[key]
       # iterate through registered metrics
       for v in vals.keys
-        next if !metrics[key]["__pk__"][v]
+        next if !metrics[key]["__pk__"] || !metrics[key]["__pk__"][v]
         args.push(vals[v]); args.push(metrics[key]["__pk__"][v].length > 1 ? metrics[key]["__pk__"][v] : metrics[key]["__pk__"][v][0])
       end
       # set up battle environment
-      if metrics[key]["__pk__"]["BattleEnv"] && hasConst?(EBEnvironment, metrics[key]["__pk__"]["BattleEnv"][0])
+      if metrics[key]["__pk__"] && metrics[key]["__pk__"]["BattleEnv"]
         ebenv = metrics[key]["__pk__"]["BattleEnv"][0]
-        args.push(:BACKDROP); args.push(getConst(EBEnvironment, ebenv))
+        if hasConst?(EBEnvironment, ebenv.to_sym)
+          args.push(:BACKDROP); args.push(getConst(EBEnvironment, ebenv.to_sym))
+        else
+          EliteBattle.log.warn("Environment #{ebenv} for Map #{key} is not defined in the ENVIRONMENTS.rb file!")
+        end
       end
       # push arguments
       EliteBattle.addData(*args)

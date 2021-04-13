@@ -9,7 +9,7 @@ SOFTRESETFIX = true
 if defined?(PluginManager)
   PluginManager.register({
     :name => "Luka's Scripting Utilities",
-    :version => "3.1.1",
+    :version => "3.1.3",
     :credits => ["Luka S.J."],
     :link => "https://luka-sj.com/res/luts"
   })
@@ -103,13 +103,13 @@ class ::Numeric
   #-----------------------------------------------------------------------------
   #  Superior way to round stuff
   #-----------------------------------------------------------------------------
-  alias quick_mafs round
-  def round(n = 0)
-    # gets the current float to an actually roundable integer
-    t = self*(10.0**n)
-    # returns the rounded value
-    return t.quick_mafs/(10.0**n)
-  end
+	alias quick_mafs round
+	def round(n = 0)
+		# gets the current float to an actually roundable integer
+		t = self*(10.0**n)
+		# returns the rounded value
+		return t.quick_mafs/(10.0**n)
+	end
 end
 #===============================================================================
 #  Reads files of certain format from a directory
@@ -171,7 +171,7 @@ class Dir
     vrs = defined?(ESSENTIALS_VERSION) ? " v#{ESSENTIALS_VERSION}" : ""
     # executes all script files
     for file in files
-      msg = "[Pokémon Essentials#{vrs}]\n#{file}\n\n"
+      msg = "[Pokémon Essentials#{vrs}] #{ERROR_TEXT}\n#{file}\n\n"
       # begin script processing
       name = file.split("/").last
       next if name.split('.')[-1] != 'rb'
@@ -194,8 +194,9 @@ class Dir
             err = line.split(":")[-1].strip
             lms = line.split(":")[0].strip
             err.gsub!(n, "") if n
+            err = err.capitalize if err.is_a?(String) && !err.empty?
             linum = n ? "Line #{n}: " : ""
-            msg += "#{linum}#{err.capitalize}: #{lms}\n"
+            msg += "#{linum}#{err}: #{lms}\n"
           end
           msg += "\nFull trace can be found below:\n"
           for bck in $!.backtrace
@@ -263,7 +264,7 @@ class File
   def self.runScript(file)
     scripts = load_data(file)
     vrs = defined?(ESSENTIALS_VERSION) ? " v#{ESSENTIALS_VERSION}" : ""
-    msg = "[Pokémon Essentials#{vrs}]\n#{file}\n\n"
+    msg = "[Pokémon Essentials#{vrs}] #{ERROR_TEXT}\n#{file}\n\n"
     # Reads all the code from the .rxdata
     for script in scripts
       id, name, code = script
@@ -285,8 +286,9 @@ class File
           err = line.split(":")[-1].strip
           lms = line.split(":")[0].strip
           err.gsub!(n, "") if n
+          err = err.capitalize if err.is_a?(String) && !err.empty?
           linum = n ? "Line #{n}: " : ""
-          msg += "#{linum}#{err.capitalize}: #{lms}\n"
+          msg += "#{linum}#{err}: #{lms}\n"
         end
         msg += "\nFull trace can be found below:\n"
         for bck in $!.backtrace
@@ -331,7 +333,7 @@ class File
         break refresh = true if refresh || File.mtime(f) > File.mtime("Data/Plugins/#{file}.rxdata")
       end
       # recompile if refresh is required
-      Dir.compile(dir, "Data/Plugins/#{file}", file) if refresh
+      Dir.compile(dir, "Data/Plugins/#{file}", file) if refresh || Input.press?(Input::CTRL)
     end
     # run plugin
     self.runScript("Data/Plugins/#{file}.rxdata")
@@ -353,7 +355,7 @@ class ::String
   #-----------------------------------------------------------------------------
   #  checks if string contains only numeric values
   #-----------------------------------------------------------------------------
-  def numeric?
+  def is_numeric?
     for c in self.gsub('.', '').gsub('-', '').scan(/./)
       return false unless (0..9).to_a.map { |n| n.to_s }.include?(c)
     end
@@ -510,7 +512,7 @@ class Sprite
   attr_accessor :speed
   attr_accessor :toggle
   attr_accessor :end_x, :end_y
-  attr_accessor :param
+  attr_accessor :param, :skew_d
   attr_accessor :ex, :ey
   attr_accessor :zx, :zy
   #-----------------------------------------------------------------------------
@@ -595,6 +597,7 @@ class Sprite
   #-----------------------------------------------------------------------------
   def skew(angle = 90)
     return false if !self.bitmap
+    return if angle == self.skew_d
     angle = angle*(Math::PI/180)
     bitmap = self.storedBitmap ? self.storedBitmap : self.bitmap
     rect = Rect.new(0,0,bitmap.width,bitmap.height)
@@ -607,6 +610,7 @@ class Sprite
       self.bitmap.blt(x+rect.x,y+rect.y,bitmap,Rect.new(0,y,rect.width,1))
     end
     @calMidX = (angle <= 90) ? bitmap.width/2 : (self.bitmap.width - bitmap.width/2)
+    self.skew_d = angle
   end
   #-----------------------------------------------------------------------------
   #  gets the mid-point anchor of sprite
@@ -785,7 +789,7 @@ class Bitmap
   #-----------------------------------------------------------------------------
   #  draws circle on bitmap
   #-----------------------------------------------------------------------------
-  def draw_circle(color=Color.new(255,255,255),r=(self.width/2),tx=(self.width/2),ty=(self.height/2),hollow=false)
+  def bmp_circle(color=Color.new(255,255,255),r=(self.width/2),tx=(self.width/2),ty=(self.height/2),hollow=false)
     # basic circle formula
     # (x - tx)**2 + (y - ty)**2 = r**2
     for x in 0...self.width
@@ -803,6 +807,7 @@ class Bitmap
       end
     end
   end
+  def draw_circle(*args); self.bmp_circle(*args); end
   #-----------------------------------------------------------------------------
   #  sets font parameters
   #-----------------------------------------------------------------------------
@@ -1127,57 +1132,57 @@ end
 #  Extra functionality to manipulate colors
 #===============================================================================
 class Color
-  # alias for old constructor
-  alias initialize_without_conversion initialize unless self.method_defined?(:initialize_without_conversion)
+	# alias for old constructor
+	alias initialize_without_conversion initialize unless self.method_defined?(:initialize_without_conversion)
   #-----------------------------------------------------------------------------
-  # new constructor accepts RGB values as well as a hex number or string value
+	# new constructor accepts RGB values as well as a hex number or string value
   #-----------------------------------------------------------------------------
-  def initialize(*args)
-    raise "Wrong number of arguments! At least 1 is needed!" if args.length < 1
-    if args.length == 1
-      if args[0].is_a?(Fixnum)
-        hex = args[0].dup.to_s(16)
-      elsif args[0].is_a?(String)
+	def initialize(*args)
+		raise "Wrong number of arguments! At least 1 is needed!" if args.length < 1
+		if args.length == 1
+			if args[0].is_a?(Fixnum)
+				hex = args[0].dup.to_s(16)
+			elsif args[0].is_a?(String)
         hex = args[0].dup
-        hex.gsub!("#", "") if hex.include?("#")
-      end
-      raise "Wrong type of argument given!" if !hex
-      r = hex[0...2].to_i(16)
-      g = hex[2...4].to_i(16)
-      b = hex[4...6].to_i(16)
-    elsif args.length == 3
-      r, g, b = *args
-    end
-    return initialize_without_conversion(r, g, b) if r && g && b
-    return initialize_without_conversion(*args)
-  end
+				hex.gsub!("#", "") if hex.include?("#")
+			end
+			raise "Wrong type of argument given!" if !hex
+			r = hex[0...2].to_i(16)
+			g = hex[2...4].to_i(16)
+			b = hex[4...6].to_i(16)
+		elsif args.length == 3
+			r, g, b = *args
+		end
+		return initialize_without_conversion(r, g, b) if r && g && b
+		return initialize_without_conversion(*args)
+	end
   #-----------------------------------------------------------------------------
-  # returns an RGB color value as a hex value
+	# returns an RGB color value as a hex value
   #-----------------------------------------------------------------------------
-  def to_hex
-    r = sprintf("%02X", self.red)
-    g = sprintf("%02X", self.green)
-    b = sprintf("%02X", self.blue)
-    return ("#" + r + g + b).upcase
-  end
+	def to_hex
+		r = sprintf("%02X", self.red)
+		g = sprintf("%02X", self.green)
+		b = sprintf("%02X", self.blue)
+		return ("#" + r + g + b).upcase
+	end
   #-----------------------------------------------------------------------------
-  # returns Hex color value as RGB
+	# returns Hex color value as RGB
   #-----------------------------------------------------------------------------
-  def to_rgb(hex)
-    hex = hex.to_s(16) if hex.is_a?(Numeric)
-    r = hex[0...2].to_i(16)
-    g = hex[2...4].to_i(16)
-    b = hex[4...6].to_i(16)
-    return r, g, b
-  end
+	def to_rgb(hex)
+		hex = hex.to_s(16) if hex.is_a?(Numeric)
+		r = hex[0...2].to_i(16)
+		g = hex[2...4].to_i(16)
+		b = hex[4...6].to_i(16)
+		return r, g, b
+	end
   #-----------------------------------------------------------------------------
-  # returns decimal color
+	# returns decimal color
   #-----------------------------------------------------------------------------
-  def to_dec
-    return self.to_hex.to_i(16)
-  end
+	def to_dec
+		return self.to_hex.to_i(16)
+	end
   #-----------------------------------------------------------------------------
-  # parse color input to return color object
+	# parse color input to return color object
   #-----------------------------------------------------------------------------
   def self.parse(color)
     if color.is_a?(Color) # color object
@@ -1196,7 +1201,7 @@ class Color
     return nil
   end
   #-----------------------------------------------------------------------------
-  # returns color object for some commonly used colors
+	# returns color object for some commonly used colors
   #-----------------------------------------------------------------------------
   def self.red; return Color.new(255, 0, 0); end
   def self.green; return Color.new(0, 255, 0); end
@@ -1210,7 +1215,7 @@ class Color
   def self.teal; return Color.new(0, 255, 255); end
   def self.magenta; return Color.new(255, 0, 255); end
   #-----------------------------------------------------------------------------
-  # returns darkened color
+	# returns darkened color
   #-----------------------------------------------------------------------------
   def darken(amt = 0.2)
     red = self.red - self.red*amt

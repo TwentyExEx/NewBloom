@@ -94,6 +94,8 @@ class DynamicPokemonSprite
     @showshadow = true
     @altitude = 0
     @yposition = 0
+    @ox = 0
+    @oy = 0
     # creates necessary sprites
     @shadow = Sprite.new(@viewport)
     @sprite = Sprite.new(@viewport)
@@ -223,7 +225,7 @@ class DynamicPokemonSprite
   #-----------------------------------------------------------------------------
   def z=(val)
     @shadow.z = (val == 32) ? 31 : 10
-    @sprite.z = val
+    @sprite.z = val < 11 ? 11 : val
   end
   #-----------------------------------------------------------------------------
   # sets horizontal zoom for sprite
@@ -238,6 +240,13 @@ class DynamicPokemonSprite
   def zoom_y=(val)
     @sprite.zoom_y = val
     self.formatShadow
+  end
+  #-----------------------------------------------------------------------------
+  # sets absolute zoom for sprite
+  #-----------------------------------------------------------------------------
+  def zoom=(val)
+    self.zoom_x = val
+    self.zoom_y = val
   end
   #-----------------------------------------------------------------------------
   # set visibility across all sprite elements
@@ -428,6 +437,12 @@ class DynamicPokemonSprite
       # get anchor from data
       @anchor = EliteBattle.getData(species, PBSpecies, anchor, (@pokemon.form rescue 0))
     end
+    @ox = @sprite.ox
+    @oy = @sprite.oy
+  end
+  def pbSetOrigin
+    @sprite.ox = @ox
+    @sprite.oy = @oy
   end
   #-----------------------------------------------------------------------------
   # toggles from battler sprite to Substitute sprite
