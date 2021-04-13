@@ -956,7 +956,21 @@ Pokemon = EEVEE,1
 Pokemon = TOGEPI,5
 Pokemon = EEVEE,5
 #-------------------------------
-[KIMONOGIRL,Chiaki,3]
+[KIMONOGIRL,Chiaki,2]
 Pokemon = TOGEPI,5
 Pokemon = EEVEE,5
-Pokemon = MISDREAVUS,5
+#-------------------------------
+[RIVAL_Eris,Eris]
+Pokemon = SKWOVET,5
+Pokemon = RIOLU,7
+Pokemon = MEOWTH,5
+#-------------------------------
+[BIOMEBOSS_Woody,Woody]
+Pokemon = ROSERADE,65
+Pokemon = DRAPION,65
+Pokemon = VENOMOTH,65
+#-------------------------------
+[BIOMEBOSS_Willow,Willow]
+Pokemon = MIMIKYU,65
+Pokemon = CHANDELURE,65
+Pokemon = TREVENANT,65

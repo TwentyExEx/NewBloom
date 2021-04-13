@@ -27,3 +27,9 @@ BattleVS         = trainerSM
 [TEAMROCKET_F]
 BattleIntro      = evilTeam
 BattleVS         = trainerSM
+#-------------------------------
+[RIVAL_Eris]
+BattleVS         = trainerSM
+#-------------------------------
+[BIOMEBOSS_Willow]
+BattleVS         = eliteSM

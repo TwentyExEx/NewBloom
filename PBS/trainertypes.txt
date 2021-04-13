@@ -180,3 +180,6 @@
 177,YOUNGCOUPLE,Young Couple,128,,,,Mixed,,
 178,YOUNGCOUPLE2,Young Couple,128,,,,Mixed,,
 179,SCHOOLKID,SCHOOLKID,30,,,,Male,,
+180,RIVAL_Eris,Rival,200,,,,Mixed,,
+181,BIOMEBOSS_Woody,Biome Boss,200,,,,Male,,
+182,BIOMEBOSS_Willow,Biome Boss,200,,,,Female,,
