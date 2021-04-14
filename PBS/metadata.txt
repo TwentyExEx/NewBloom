@@ -332,3 +332,17 @@ SnapEdges = true
 Bicycle = true
 Outdoor = true
 ShowArea = true
+#-------------------------------
+[063]
+# Scorchstone Shore
+SnapEdges = true
+Bicycle = true
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[065]
+# Clearwater Coast
+SnapEdges = true
+Bicycle = true
+Outdoor = true
+ShowArea = true
