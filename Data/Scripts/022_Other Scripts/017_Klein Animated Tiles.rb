@@ -91,6 +91,60 @@ KleinTiles[1].push([185,[169,173,201,205]])
 KleinTiles[1].push([186,[170,174,202,206]])
 KleinTiles[1].push([187,[171,175,203,207]])
 
+# Initialize the array for tileset 29
+KleinTiles[29]=[]
+# Water animation
+KleinTiles[29].push([136,[0,3,24,27,48,51,72,75]])
+KleinTiles[29].push([137,[1,4,25,28,49,52,73,76]])
+KleinTiles[29].push([138,[2,5,26,29,50,53,74,77]])
+KleinTiles[29].push([144,[8,11,32,35,56,59,80,83]])
+KleinTiles[29].push([145,[9,12,33,36,57,60,81,84]])
+KleinTiles[29].push([146,[10,13,34,37,58,61,82,85]])
+KleinTiles[29].push([152,[16,19,40,43,64,67,88,91]])
+KleinTiles[29].push([153,[17,20,41,44,65,68,89,92]])
+KleinTiles[29].push([154,[18,21,42,45,66,69,90,93]])
+KleinTiles[29].push([139,[96,99,120,123,208,211,232,235]])
+KleinTiles[29].push([140,[97,100,121,124,209,212,233,236]])
+KleinTiles[29].push([141,[98,101,122,125,210,213,234,237]])
+KleinTiles[29].push([147,[104,107,128,131,216,219,240,243]])
+KleinTiles[29].push([149,[106,109,130,133,218,221,242,245]])
+KleinTiles[29].push([155,[112,115,136,139,224,227,248,251]])
+KleinTiles[29].push([156,[113,116,137,140,225,228,249,252]])
+KleinTiles[29].push([157,[114,117,138,141,226,229,250,253]])
+
+# Untagged water animation
+KleinTiles[29].push([135,[9,12,33,36,57,60,81,84]])
+KleinTiles[29].push([143,[9,12,33,36,57,60,81,84]])
+
+# Impassable water animation
+KleinTiles[29].push([165,[16,19,40,43,64,67,88,91]])
+KleinTiles[29].push([166,[17,20,41,44,65,68,89,92]])
+KleinTiles[29].push([167,[18,21,42,45,66,69,90,93]])
+KleinTiles[29].push([173,[0,3,24,27,48,51,72,75]])
+KleinTiles[29].push([174,[1,4,25,28,49,52,73,76]])
+KleinTiles[29].push([175,[2,5,26,29,50,53,74,77]])
+
+# Waterfall animation
+KleinTiles[29].push([160,[144,148,176,180]])
+KleinTiles[29].push([161,[145,149,177,181]])
+KleinTiles[29].push([162,[146,150,178,182]])
+KleinTiles[29].push([163,[147,151,179,183]])
+
+KleinTiles[29].push([168,[152,156,184,188]])
+KleinTiles[29].push([169,[153,157,185,189]])
+KleinTiles[29].push([170,[154,158,186,190]])
+KleinTiles[29].push([171,[155,159,187,191]])
+
+KleinTiles[29].push([176,[160,164,192,196]])
+KleinTiles[29].push([177,[161,165,193,197]])
+KleinTiles[29].push([178,[162,166,194,198]])
+KleinTiles[29].push([179,[163,167,195,199]])
+
+KleinTiles[29].push([184,[168,172,200,204]])
+KleinTiles[29].push([185,[169,173,201,205]])
+KleinTiles[29].push([186,[170,174,202,206]])
+KleinTiles[29].push([187,[171,175,203,207]])
+
 class Interpreter
   alias klein_transfer_inter command_201
   def command_201
@@ -214,9 +268,7 @@ class CustomTilemap
   end
 
   def refreshLayer0(autotiles=false, onlykleintiles=false)
-    if autotiles
-      return true if !shown?
-    end
+    return true if autotiles && !shown?
     ptX=@ox-@oxLayer0
     ptY=@oy-@oyLayer0
     if !autotiles && !@firsttime && !@usedsprites &&
@@ -348,19 +400,17 @@ class CustomTilemap
         end
         Graphics.frame_reset
       else
-        if !@priorect || !@priorectautos || @priorect[0]!=xStart ||
-           @priorect[1]!=yStart ||
-           @priorect[2]!=xEnd ||
-           @priorect[3]!=yEnd
-          @priorectautos=@prioautotiles.find_all{|tile|
-             x=tile[0]
-             y=tile[1]
-             # "next" means "return" here
-             next !(x<xStart||x>xEnd||y<yStart||y>yEnd)
-          }
-          @priorect=[xStart,yStart,xEnd,yEnd]
+        if !@priorect || !@priorectautos ||
+           @priorect[0] != xStart || @priorect[1] != yStart ||
+           @priorect[2] != xEnd || @priorect[3] != yEnd
+          @priorect = [xStart, yStart, xEnd, yEnd]
+          @priorectautos = []
+          for y in yStart..yEnd
+            for x in xStart..xEnd
+              @priorectautos.push([x, y]) if @prioautotiles[[x, y]]
+            end
+          end
         end
-   #   echoln ["autos",@priorect,@priorectautos.length,@prioautotiles.length]
         for tile in @priorectautos
           x=tile[0]
           y=tile[1]
@@ -667,10 +717,9 @@ class CustomTilemap
               id = @map_data[x, y, z]
               next if id==0 || !isKleinTilePlusAuto?(id) || @priorities[id]!=0 || !@priorities[id]
               next if id<384 && @framecount[id/48-1]<2
-              haveautotile=true
+              @prioautotiles[[x, y]] = true
               break
             end
-            @prioautotiles.push([x,y]) if haveautotile
           end
         end
         @fullyrefreshedautos=true

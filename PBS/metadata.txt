@@ -23,7 +23,7 @@ Outdoor = false
 [006]
 # Little Pond
 SnapEdges = true
-BattleBack = 
+BattleBack = forest
 Bicycle = true
 MapPosition = 0,13,6
 Outdoor = true
@@ -325,3 +325,24 @@ ShowArea = false
 Bicycle = false
 Outdoor = false
 ShowArea = false
+#-------------------------------
+[062]
+# Footstep Decline
+SnapEdges = true
+Bicycle = true
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[063]
+# Scorchstone Shore
+SnapEdges = true
+Bicycle = true
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[065]
+# Clearwater Coast
+SnapEdges = true
+Bicycle = true
+Outdoor = true
+ShowArea = true

@@ -8,8 +8,8 @@ module PokeBattle_SceneConstants
   NUM_BALLS = 6
 
   # Centre bottom of the player's side base graphic
-  PLAYER_BASE_X = 140
-  PLAYER_BASE_Y = Graphics.height - 120
+  PLAYER_BASE_X = 128
+  PLAYER_BASE_Y = Graphics.height - 95
 
   # Centre middle of the foe's side base graphic
   FOE_BASE_X    = Graphics.width - 128

@@ -258,7 +258,7 @@ class PokeBattle_Battler
       @lastRegularMoveTarget = choice[3]   # For Instruct (remembering original target is fine)
       @movesUsed.push(move.id) if !@movesUsed.include?(move.id)   # For Last Resort
     end
-    @battle.lastMoveUsed = move.id   # For Copycat
+    @battle.lastMoveUsed = move.id 
     @battle.lastMoveUser = @index   # For "self KO" battle clause to avoid draws
     @battle.successStates[@index].useState = 1   # Battle Arena - assume failure
     # Find the default user (self or Snatcher) and target(s)
@@ -364,7 +364,7 @@ class PokeBattle_Battler
       end
     end
     # Protean / Libero
-    if user.hasActiveAbility?(:PROTEAN) || user.hasActiveAbility?(:LIBERO) && !move.callsAnotherMove? && !move.snatched
+    if (user.hasActiveAbility?(:PROTEAN) || user.hasActiveAbility?(:LIBERO)) && !move.callsAnotherMove? && !move.snatched
       if user.pbHasOtherType?(move.calcType) && !PBTypes.isPseudoType?(move.calcType)
         @battle.pbShowAbilitySplash(user)
         user.pbChangeTypes(move.calcType)
