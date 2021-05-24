@@ -1,12 +1,8 @@
 # Data folder, but not Data/Scripts folder
-Data/*
-!Data/Scripts.rxdata
-!Data/Scripts/
+
 
 # Files in the main project folder
-Game.ini
-Game.rxproj
-RGSS*.dll
+
 
 # Common code editor folders & files
 .vscode/
