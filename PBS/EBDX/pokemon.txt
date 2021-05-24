@@ -800,143 +800,143 @@ BattlerPlayerY          = 68
 BattlerEnemyX           = -1
 #-------------------------------
 [KANGASKHAN]
-BattlerEnemyY           = 32
+BattlerEnemyY           = 48
 BattlerAltitude         = 0
 BattlerPlayerX          = 0
-BattlerPlayerY          = 18
+BattlerPlayerY          = 43
 BattlerEnemyX           = 0
 #-------------------------------
 [HORSEA]
-BattlerEnemyY           = 24
-BattlerAltitude         = 13
+BattlerEnemyY           = 72
+BattlerAltitude         = 23
 BattlerPlayerX          = 0
-BattlerPlayerY          = 2
+BattlerPlayerY          = 72
 BattlerEnemyX           = 0
 #-------------------------------
 [SEADRA]
-BattlerEnemyY           = 24
-BattlerAltitude         = 10
+BattlerEnemyY           = 66
+BattlerAltitude         = 20
 BattlerPlayerX          = 0
-BattlerPlayerY          = 18
+BattlerPlayerY          = 59
 BattlerEnemyX           = 0
 #-------------------------------
 [GOLDEEN]
-BattlerEnemyY           = 50
-BattlerAltitude         = 11
+BattlerEnemyY           = 72
+BattlerAltitude         = 19
 BattlerPlayerX          = 0
-BattlerPlayerY          = 36
+BattlerPlayerY          = 60
 BattlerEnemyX           = 0
 #-------------------------------
 [SEAKING]
-BattlerEnemyY           = 34
+BattlerEnemyY           = 53
 BattlerAltitude         = 10
 BattlerPlayerX          = 0
-BattlerPlayerY          = 44
+BattlerPlayerY          = 73
 BattlerEnemyX           = 0
 #-------------------------------
 [STARYU]
-BattlerEnemyY           = 29
-BattlerAltitude         = 7
+BattlerEnemyY           = 67
+BattlerAltitude         = 14
 BattlerPlayerX          = 0
-BattlerPlayerY          = 19
+BattlerPlayerY          = 63
 BattlerEnemyX           = 0
 #-------------------------------
 [STARMIE]
-BattlerEnemyY           = 32
-BattlerAltitude         = 9
+BattlerEnemyY           = 63
+BattlerAltitude         = 17
 BattlerPlayerX          = 0
-BattlerPlayerY          = 12
+BattlerPlayerY          = 52
 BattlerEnemyX           = 0
 #-------------------------------
 [MRMIME]
-BattlerEnemyY           = 16
-BattlerAltitude         = 0
-BattlerPlayerX          = 0
-BattlerPlayerY          = 12
-BattlerEnemyX           = 0
-#-------------------------------
-[SCYTHER]
-BattlerEnemyY           = 26
-BattlerAltitude         = 0
-BattlerPlayerX          = 0
-BattlerPlayerY          = 16
-BattlerEnemyX           = 0
-#-------------------------------
-[JYNX]
-BattlerEnemyY           = 26
-BattlerAltitude         = 0
-BattlerPlayerX          = 0
-BattlerPlayerY          = 20
-BattlerEnemyX           = 0
-#-------------------------------
-[ELECTABUZZ]
-BattlerEnemyY           = 22
-BattlerAltitude         = 0
-BattlerPlayerX          = 0
-BattlerPlayerY          = 18
-BattlerEnemyX           = 0
-#-------------------------------
-[MAGMAR]
-BattlerEnemyY           = 30
-BattlerAltitude         = 0
-BattlerPlayerX          = 0
-BattlerPlayerY          = 22
-BattlerEnemyX           = 0
-#-------------------------------
-[PINSIR]
-BattlerEnemyY           = 24
-BattlerAltitude         = 0
-BattlerPlayerX          = 0
-BattlerPlayerY          = 20
-BattlerEnemyX           = 0
-#-------------------------------
-[TAUROS]
-BattlerEnemyY           = 40
-BattlerAltitude         = 0
-BattlerPlayerX          = 0
-BattlerPlayerY          = 32
-BattlerEnemyX           = 0
-#-------------------------------
-[MAGIKARP]
-BattlerEnemyY           = 30
-BattlerAltitude         = 10
-BattlerPlayerX          = 0
-BattlerPlayerY          = 26
-BattlerEnemyX           = 0
-#-------------------------------
-[GYARADOS]
 BattlerEnemyY           = 56
 BattlerAltitude         = 0
 BattlerPlayerX          = 0
-BattlerPlayerY          = 32
+BattlerPlayerY          = 57
+BattlerEnemyX           = 0
+#-------------------------------
+[SCYTHER]
+BattlerEnemyY           = 58
+BattlerAltitude         = 0
+BattlerPlayerX          = 0
+BattlerPlayerY          = 46
+BattlerEnemyX           = 0
+#-------------------------------
+[JYNX]
+BattlerEnemyY           = 65
+BattlerAltitude         = 0
+BattlerPlayerX          = 0
+BattlerPlayerY          = 53
+BattlerEnemyX           = 0
+#-------------------------------
+[ELECTABUZZ]
+BattlerEnemyY           = 60
+BattlerAltitude         = 0
+BattlerPlayerX          = 0
+BattlerPlayerY          = 51
+BattlerEnemyX           = 0
+#-------------------------------
+[MAGMAR]
+BattlerEnemyY           = 35
+BattlerAltitude         = 0
+BattlerPlayerX          = 0
+BattlerPlayerY          = 50
+BattlerEnemyX           = 0
+#-------------------------------
+[PINSIR]
+BattlerEnemyY           = 49
+BattlerAltitude         = 0
+BattlerPlayerX          = 0
+BattlerPlayerY          = 52
+BattlerEnemyX           = 0
+#-------------------------------
+[TAUROS]
+BattlerEnemyY           = 61
+BattlerAltitude         = 0
+BattlerPlayerX          = 0
+BattlerPlayerY          = 54
+BattlerEnemyX           = -4
+#-------------------------------
+[MAGIKARP]
+BattlerEnemyY           = 75
+BattlerAltitude         = 23
+BattlerPlayerX          = 0
+BattlerPlayerY          = 65
+BattlerEnemyX           = 0
+#-------------------------------
+[GYARADOS]
+BattlerEnemyY           = 34
+BattlerAltitude         = 0
+BattlerPlayerX          = 0
+BattlerPlayerY          = 39
 BattlerEnemyX           = 0
 #-------------------------------
 [LAPRAS]
-BattlerEnemyY           = 24
+BattlerEnemyY           = 46
 BattlerAltitude         = 0
 BattlerPlayerX          = 0
-BattlerPlayerY          = 26
+BattlerPlayerY          = 57
 BattlerEnemyX           = 0
 #-------------------------------
 [DITTO]
-BattlerEnemyY           = 30
+BattlerEnemyY           = 86
 BattlerAltitude         = 0
 BattlerPlayerX          = 0
-BattlerPlayerY          = 26
+BattlerPlayerY          = 84
 BattlerEnemyX           = 0
 #-------------------------------
 [EEVEE]
-BattlerEnemyY           = 14
+BattlerEnemyY           = 72
 BattlerAltitude         = 0
 BattlerPlayerX          = 0
-BattlerPlayerY          = 12
+BattlerPlayerY          = 61
 BattlerEnemyX           = 0
 #-------------------------------
 [VAPOREON]
-BattlerEnemyY           = 20
+BattlerEnemyY           = 63
 BattlerAltitude         = 0
 BattlerPlayerX          = 0
-BattlerPlayerY          = 10
+BattlerPlayerY          = 55
 BattlerEnemyX           = 0
 #-------------------------------
 [JOLTEON]
@@ -5499,31 +5499,31 @@ BattlerPlayerY          = 29
 BattlerEnemyX           = 0
 #-------------------------------
 [KANGASKHAN,1]
-BattlerEnemyY           = 21
+BattlerEnemyY           = 54
 BattlerAltitude         = 0
 BattlerPlayerX          = 0
-BattlerPlayerY          = 64
+BattlerPlayerY          = 51
 BattlerEnemyX           = 0
 #-------------------------------
 [MRMIME,1]
-BattlerEnemyY           = 25
+BattlerEnemyY           = 42
 BattlerAltitude         = 0
 BattlerPlayerX          = 0
-BattlerPlayerY          = 0
+BattlerPlayerY          = 57
 BattlerEnemyX           = 0
 #-------------------------------
 [PINSIR,1]
-BattlerEnemyY           = 8
-BattlerAltitude         = 0
-BattlerPlayerX          = 0
-BattlerPlayerY          = 44
-BattlerEnemyX           = 4
+BattlerEnemyY           = 54
+BattlerAltitude         = 25
+BattlerPlayerX          = -2
+BattlerPlayerY          = 51
+BattlerEnemyX           = 0
 #-------------------------------
 [GYARADOS,1]
-BattlerEnemyY           = 8
-BattlerAltitude         = 0
+BattlerEnemyY           = 26
+BattlerAltitude         = 17
 BattlerPlayerX          = 0
-BattlerPlayerY          = 52
+BattlerPlayerY          = 34
 BattlerEnemyX           = 0
 #-------------------------------
 [AERODACTYL,1]
