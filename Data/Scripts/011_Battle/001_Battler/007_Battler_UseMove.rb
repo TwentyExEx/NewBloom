@@ -70,7 +70,6 @@ class PokeBattle_Battler
   #=============================================================================
   def pbBeginTurn(_choice)
     # Cancel some lingering effects which only apply until the user next moves
-    @effects[PBEffects::BeakBlast]           = false
     @effects[PBEffects::DestinyBondPrevious] = @effects[PBEffects::DestinyBond]
     @effects[PBEffects::DestinyBond]         = false
     @effects[PBEffects::Grudge]              = false
@@ -107,6 +106,14 @@ class PokeBattle_Battler
 
   def pbEndTurn(_choice)
     @lastRoundMoved = @battle.turnCount   # Done something this round
+    # Gorilla Tactics
+    if !@effects[PBEffects::GorillaTactics] && hasActiveAbility?(:GORILLATACTICS)
+      if @lastMoveUsed && pbHasMove?(@lastMoveUsed)
+        @effects[PBEffects::GorillaTactics] = @lastMoveUsed
+      elsif @lastRegularMoveUsed && pbHasMove?(@lastRegularMoveUsed)
+        @effects[PBEffects::GorillaTactics] = @lastRegularMoveUsed
+      end
+    end
     if !@effects[PBEffects::ChoiceBand] &&
        hasActiveItem?([:CHOICEBAND,:CHOICESPECS,:CHOICESCARF])
       if @lastMoveUsed && pbHasMove?(@lastMoveUsed)
@@ -359,8 +366,8 @@ class PokeBattle_Battler
         end
       end
     end
-    # Protean
-    if user.hasActiveAbility?(:PROTEAN) && !move.callsAnotherMove? && !move.snatched
+    # Protean / Libero
+    if (user.hasActiveAbility?(:PROTEAN) || user.hasActiveAbility?(:LIBERO)) && !move.callsAnotherMove? && !move.snatched
       if user.pbHasOtherType?(move.calcType) && !GameData::Type.get(move.calcType).pseudo_type
         @battle.pbShowAbilitySplash(user)
         user.pbChangeTypes(move.calcType)
@@ -368,14 +375,18 @@ class PokeBattle_Battler
         @battle.pbDisplay(_INTL("{1} transformed into the {2} type!",user.pbThis,typeName))
         @battle.pbHideAbilitySplash(user)
         # NOTE: The GF games say that if Curse is used by a non-Ghost-type
-        #       Pokémon which becomes Ghost-type because of Protean, it should
-        #       target and curse itself. I think this is silly, so I'm making it
-        #       choose a random opponent to curse instead.
-        if move.function=="10D" && targets.length==0   # Curse
+        #       Pokémon which becomes Ghost-type because of Protean / Libero,
+        #       it should target and curse itself. I think this is silly, so
+        #       I'm making it choose a random opponent to curse instead.
+        if move.function == "10D" && targets.length == 0   # Curse
           choice[3] = -1
           targets = pbFindTargets(choice,move,user)
         end
       end
+    end
+    # Redirect Dragon Darts first hit if necessary
+    if move.function == "17C" && @battle.pbSideSize(targets[0].index) > 1
+      targets = pbChangeTargets(move,user,targets,0)
     end
     #---------------------------------------------------------------------------
     magicCoater  = -1
@@ -438,7 +449,18 @@ class PokeBattle_Battler
         # NOTE: If a multi-hit move becomes disabled partway through doing those
         #       hits (e.g. by Cursed Body), the rest of the hits continue as
         #       normal.
-        break if !targets.any? { |t| !t.fainted? }   # All targets are fainted
+        # Don't stop using the move if Dragon Darts could still hit something
+        if move.function == "17C" && realNumHits < numHits
+          endMove = true
+          @battle.eachBattler do |b|
+            next if b == self
+            endMove = false
+          end
+          break if endMove
+        else
+          # All targets are fainted
+          break if targets.all? { |t| t.fainted? }
+        end
       end
       # Battle Arena only - attack is successful
       @battle.successStates[user.index].useState = 2
@@ -568,6 +590,13 @@ class PokeBattle_Battler
         return if @battle.decision>0
       end
     end
+    @battle.eachBattler do |b|
+      next if !b.hasActiveItem?(:ROOMSERVICE)
+      next if battle.field.effects[PBEffects::TrickRoom] == 0
+      next if !b.pbCanLowerStatStage?(:SPEED,b)
+      b.pbLowerStatStageByCause(:SPEED,1,b,b.itemName)
+      b.pbConsumeItem
+    end
   end
 
   #=============================================================================
@@ -578,9 +607,13 @@ class PokeBattle_Battler
     # For two-turn attacks being used in a single turn
     move.pbInitialEffect(user,targets,hitNum)
     numTargets = 0   # Number of targets that are affected by this hit
-    targets.each { |b| b.damageState.resetPerHit }
     # Count a hit for Parental Bond (if it applies)
     user.effects[PBEffects::ParentalBond] -= 1 if user.effects[PBEffects::ParentalBond]>0
+    # Redirect Dragon Darts other hits
+    if move.function=="17C" && @battle.pbSideSize(targets[0].index)>1 && hitNum>0
+      targets = pbChangeTargets(move,user,targets,1)
+    end
+    targets.each { |b| b.damageState.resetPerHit }
     # Accuracy check (accuracy/evasion calc)
     if hitNum==0 || move.successCheckPerHit?
       targets.each do |b|
@@ -600,6 +633,14 @@ class PokeBattle_Battler
         end
         move.pbCrashDamage(user)
         user.pbItemHPHealCheck
+        # Blunder Policy
+        if user.hasActiveItem?(:BLUNDERPOLICY) && user.effects[PBEffects::BlunderPolicy] &&
+           targets[0].effects[PBEffects::TwoTurnAttack] == 0 && move.function != "070" && hitNum == 0
+          if user.pbCanRaiseStatStage?(:SPEED,user,self)
+            pbRaiseStatStageByCause(:SPEED,2,user,itemName)
+            user.pbConsumeItem
+          end
+        end
         pbCancelMoves
         return false
       end
@@ -624,7 +665,7 @@ class PokeBattle_Battler
     # Show move animation (for this hit)
     move.pbShowAnimation(move.id,user,targets,hitNum)
     # Type-boosting Gem consume animation/message
-    if user.effects[PBEffects::GemConsumed] && hitNum==0
+    if user.effects[PBEffects::GemConsumed] && hitNum == 0
       # NOTE: The consume animation and message for Gems are shown now, but the
       #       actual removal of the item happens in def pbEffectsAfterMove.
       @battle.pbCommonAnimation("UseItem",user)
@@ -635,6 +676,14 @@ class PokeBattle_Battler
     targets.each do |b|
       next if !b.damageState.missed
       pbMissMessage(move,user,b)
+      # Blunder Policy (also activates if only one target is missed)
+      if user.hasActiveItem?(:BLUNDERPOLICY) && user.effects[PBEffects::BlunderPolicy] &&
+        b.effects[PBEffects::TwoTurnAttack] == 0 && move.function != "070" && hitNum == 0
+        if user.pbCanRaiseStatStage?(:SPEED,user,self)
+          pbRaiseStatStageByCause(:SPEED,2,user,itemName)
+          user.pbConsumeItem
+        end
+      end
     end
     # Deal the damage (to all allies first simultaneously, then all foes
     # simultaneously)

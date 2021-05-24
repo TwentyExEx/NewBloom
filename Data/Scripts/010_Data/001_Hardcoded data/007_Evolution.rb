@@ -7,6 +7,7 @@ module GameData
     attr_reader :level_up_proc
     attr_reader :use_item_proc
     attr_reader :on_trade_proc
+    attr_reader :on_battle_proc
     attr_reader :after_evolution_proc
 
     DATA = {}
@@ -25,6 +26,7 @@ module GameData
       @level_up_proc        = hash[:level_up_proc]
       @use_item_proc        = hash[:use_item_proc]
       @on_trade_proc        = hash[:on_trade_proc]
+      @on_battle_proc       = hash[:on_battle_proc]
       @after_evolution_proc = hash[:after_evolution_proc]
     end
 
@@ -38,6 +40,10 @@ module GameData
 
     def call_on_trade(*args)
       return (@on_trade_proc) ? @on_trade_proc.call(*args) : nil
+    end
+
+    def call_on_battle(*args)
+      return (@call_on_field) ? @call_on_field.call(*args) : nil
     end
 
     def call_after_evolution(*args)
@@ -268,7 +274,7 @@ GameData::Evolution.register({
   :id            => :Happiness,
   :minimum_level => 1,   # Needs any level up
   :level_up_proc => proc { |pkmn, parameter|
-    next pkmn.happiness >= 220
+    next pkmn.happiness >= 160
   }
 })
 
@@ -276,7 +282,7 @@ GameData::Evolution.register({
   :id            => :HappinessMale,
   :minimum_level => 1,   # Needs any level up
   :level_up_proc => proc { |pkmn, parameter|
-    next pkmn.happiness >= 220 && pkmn.male?
+    next pkmn.happiness >= 160 && pkmn.male?
   }
 })
 
@@ -284,7 +290,7 @@ GameData::Evolution.register({
   :id            => :HappinessFemale,
   :minimum_level => 1,   # Needs any level up
   :level_up_proc => proc { |pkmn, parameter|
-    next pkmn.happiness >= 220 && pkmn.female?
+    next pkmn.happiness >= 160 && pkmn.female?
   }
 })
 
@@ -292,7 +298,7 @@ GameData::Evolution.register({
   :id            => :HappinessDay,
   :minimum_level => 1,   # Needs any level up
   :level_up_proc => proc { |pkmn, parameter|
-    next pkmn.happiness >= 220 && PBDayNight.isDay?
+    next pkmn.happiness >= 160 && PBDayNight.isDay?
   }
 })
 
@@ -300,7 +306,7 @@ GameData::Evolution.register({
   :id            => :HappinessNight,
   :minimum_level => 1,   # Needs any level up
   :level_up_proc => proc { |pkmn, parameter|
-    next pkmn.happiness >= 220 && PBDayNight.isNight?
+    next pkmn.happiness >= 160 && PBDayNight.isNight?
   }
 })
 
@@ -309,7 +315,7 @@ GameData::Evolution.register({
   :parameter     => :Move,
   :minimum_level => 1,   # Needs any level up
   :level_up_proc => proc { |pkmn, parameter|
-    if pkmn.happiness >= 220
+    if pkmn.happiness >= 160
       next pkmn.moves.any? { |m| m && m.id == parameter }
     end
   }
@@ -320,7 +326,7 @@ GameData::Evolution.register({
   :parameter     => :Type,
   :minimum_level => 1,   # Needs any level up
   :level_up_proc => proc { |pkmn, parameter|
-    if pkmn.happiness >= 220
+    if pkmn.happiness >= 160
       next pkmn.moves.any? { |m| m && m.id > 0 && m.type == parameter }
     end
   }
@@ -331,7 +337,7 @@ GameData::Evolution.register({
   :parameter            => :Item,
   :minimum_level        => 1,   # Needs any level up
   :level_up_proc        => proc { |pkmn, parameter|
-    next pkmn.item == parameter && pkmn.happiness >= 220
+    next pkmn.item == parameter && pkmn.happiness >= 160
   },
   :after_evolution_proc => proc { |pkmn, new_species, parameter, evo_species|
     next false if evo_species != new_species || !pkmn.hasItem?(parameter)
@@ -432,7 +438,7 @@ GameData::Evolution.register({
   :parameter            => :Item,
   :minimum_level        => 1,   # Needs any level up
   :level_up_proc        => proc { |pkmn, parameter|
-    next pkmn.item == parameter && pkmn.happiness >= 220
+    next pkmn.item == parameter && pkmn.happiness >= 160
   },
   :after_evolution_proc => proc { |pkmn, new_species, parameter, evo_species|
     next false if evo_species != new_species || !pkmn.hasItem?(parameter)
@@ -535,7 +541,36 @@ GameData::Evolution.register({
   :id            => :ItemHappiness,
   :parameter     => :Item,
   :use_item_proc => proc { |pkmn, parameter, item|
-    next item == parameter && pkmn.happiness >= 220
+    next item == parameter && pkmn.happiness >= 160
+  }
+})
+
+GameData::Evolution.register({
+  :id            => :ItemAlcremie,
+  :use_item_proc => proc { |pkmn, parameter, item|
+    sweet     = 0
+    cream     = 0
+    spin_time = pkmn.personalID % 5
+    if (spin_time >= 4) && PBDayNight.isRainbow?(time)
+      cream = 8
+    elsif (spin_time >= 2)
+      if PBDayNight.isNight?(time)
+        cream = ($game_player.direction >= 5)? 5 : 4
+      else
+        cream = ($game_player.direction >= 5)? 6 : 7
+      end
+    else
+      if PBDayNight.isNight?(time)
+        cream = ($game_player.direction >= 5)? 3 : 2
+      else
+        cream = ($game_player.direction >= 5)? 1 : 0
+      end
+    end
+    sweetArray = [:STRAWBERRYSWEET, :BERRYSWEET, :LOVESWEET, :STARSWEET, :CLOVERSWEET, :FLOWERSWEET, :RIBBONSWEET]
+    sweet = sweetArray.index(pkmn.item)
+    sweet = -1 if !sweet
+    pkmn.form = (cream * 7) + sweet
+    next sweet >= 0
   }
 })
 
@@ -595,5 +630,26 @@ GameData::Evolution.register({
   :parameter     => :Species,
   :on_trade_proc => proc { |pkmn, parameter, other_pkmn|
     next pkmn.species == parameter && !other_pkmn.hasItem?(:EVERSTONE)
+  }
+})
+
+#===============================================================================
+# Evolution methods that triggers after a battle is completed
+#===============================================================================
+GameData::Evolution.register({
+  :id            => :CriticalHits,
+  :parameter     => Integer,
+  :on_battle_proc => proc { |pkmn, parameter|
+    ret = pkmn.critical_hits >= parameter
+    pkmn.critical_hits = 0
+    next ret
+  }
+})
+
+GameData::Evolution.register({
+  :id            => :DamageDone,
+  :parameter     => Integer,
+  :on_battle_proc => proc { |pkmn, parameter|
+    next pkmn.damage_done >= parameter
   }
 })

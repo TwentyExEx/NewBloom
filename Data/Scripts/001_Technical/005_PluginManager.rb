@@ -696,6 +696,8 @@ module PluginManager
         fname = "[#{name}] #{sname}"
         # try to run the code
         begin
+          # Ignore v19 Hotfixes as those mess with Gen 8 Changes
+          next if name == "v19 Hotfixes"
           eval(code, TOPLEVEL_BINDING, fname)
           echoln "Loaded plugin: #{name}" if !echoed_plugins.include?(name)
           echoed_plugins.push(name)

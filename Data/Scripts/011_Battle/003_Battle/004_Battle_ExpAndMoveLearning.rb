@@ -149,6 +149,7 @@ class PokeBattle_Battle
     if i<0
       i = BattleHandlers.triggerExpGainModifierItem(@initialItems[0][idxParty],pkmn,exp)
     end
+    exp = (exp*1.5).floor if GameData::Item.exists?(:EXPCHARM) && $PokemonBag.pbHasItem?(:EXPCHARM) # EXP Charm Code
     exp = i if i>=0
     # Make sure Exp doesn't exceed the maximum
     expFinal = growth_rate.add_exp(pkmn.exp, exp)
@@ -239,8 +240,7 @@ class PokeBattle_Battle
     end
     # Pokémon already knows the maximum number of moves; try to forget one to learn the new move
     loop do
-      pbDisplayPaused(_INTL("{1} wants to learn {2}, but it already knows {3} moves.",
-        pkmnName, moveName, pkmn.moves.length.to_word))
+      pbDisplayPaused(_INTL("{1} wants to learn {2}, but it already knows four moves.",pkmnName,moveName))
       if pbDisplayConfirm(_INTL("Forget a move to learn {1}?",moveName))
         pbDisplayPaused(_INTL("Which move should be forgotten?"))
         forgetMove = @scene.pbForgetMove(pkmn,newMove)
@@ -257,9 +257,6 @@ class PokeBattle_Battle
           pbDisplay(_INTL("{1} did not learn {2}.",pkmnName,moveName))
           break
         end
-      elsif pbDisplayConfirm(_INTL("Give up on learning {1}?",moveName))
-        pbDisplay(_INTL("{1} did not learn {2}.",pkmnName,moveName))
-        break
       end
     end
   end

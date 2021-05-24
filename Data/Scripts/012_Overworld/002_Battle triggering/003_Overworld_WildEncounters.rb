@@ -268,13 +268,21 @@ class PokemonEncounters
     # If they activate, they remove all Pokémon from the encounter table that do
     # not have the type they favor. If none have that type, nothing is changed.
     first_pkmn = $Trainer.first_pokemon
-    if first_pkmn
+    if first_pkmn && rand(100) < 50
       favored_type = nil
       case first_pkmn.ability_id
       when :STATIC
-        favored_type = :ELECTRIC if GameData::Type.exists?(:ELECTRIC) && rand(100) < 50
+        favored_type = :ELECTRIC if GameData::Type.exists?(:ELECTRIC)
       when :MAGNETPULL
-        favored_type = :STEEL if GameData::Type.exists?(:STEEL) && rand(100) < 50
+        favored_type = :STEEL if GameData::Type.exists?(:STEEL)
+      when :FLASHFIRE
+        favored_type = :FIRE if GameData::Type.exists?(:FIRE)
+      when :HARVEST
+        favored_type = :GRASS if GameData::Type.exists?(:GRASS)
+      when :LIGHTNINGROD
+        favored_type = :ELECTRIC if GameData::Type.exists?(:ELECTRIC)
+      when :STORMDRAIN
+        favored_type = :WATER if GameData::Type.exists?(:WATER)
       end
       if favored_type
         new_enc_list = []
@@ -375,6 +383,7 @@ def pbGenerateWildPokemon(species,level,isRoamer=false)
   first_pkmn = $Trainer.first_pokemon
   chances = [50,5,1]
   chances = [60,20,5] if first_pkmn && first_pkmn.hasAbility?(:COMPOUNDEYES)
+  chances = [50,50,50] if first_pkmn && first_pkmn.hasAbility?(:SUPERLUCK)
   itemrnd = rand(100)
   if (items[0]==items[1] && items[1]==items[2]) || itemrnd<chances[0]
     genwildpoke.item = items[0]
@@ -402,7 +411,7 @@ def pbGenerateWildPokemon(species,level,isRoamer=false)
         (rand(3)<2) ? genwildpoke.makeMale : genwildpoke.makeFemale
       end
     elsif first_pkmn.hasAbility?(:SYNCHRONIZE)
-      genwildpoke.nature = first_pkmn.nature if !isRoamer && rand(100)<50
+      genwildpoke.nature = first_pkmn.nature if !isRoamer && (rand(100)<50 || Settings::MECHANICS_GENERATION >= 8)
     end
   end
   # Trigger events that may alter the generated Pokémon further

@@ -406,8 +406,10 @@ class PokeBattle_Move_110 < PokeBattle_Move
     end
     if user.pbOwnSide.effects[PBEffects::StickyWeb]
       user.pbOwnSide.effects[PBEffects::StickyWeb] = false
+      user.pbOwnSide.effects[PBEffects::StickyWebUser] = -1
       @battle.pbDisplay(_INTL("{1} blew away sticky webs!",user.pbThis))
     end
+    user.pbRaiseStatStage(:SPEED,1,user)
   end
 end
 
@@ -913,14 +915,17 @@ class PokeBattle_Move_120 < PokeBattle_Move
   def pbEffectGeneral(user)
     idxA = user.index
     idxB = @idxAlly
+    user.effects[PBEffects::SwitchedAlly] = @idxAlly
     if @battle.pbSwapBattlers(idxA,idxB)
       @battle.pbDisplay(_INTL("{1} and {2} switched places!",
-         @battle.battlers[idxB].pbThis,@battle.battlers[idxA].pbThis(true)))
+      @battle.battlers[idxB].pbThis,@battle.battlers[idxA].pbThis(true)))
+      if Settings::MECHANICS_GENERATION >= 8
+		    @battle.pbActivateHealingWish(@battle.battlers[idxA])
+		    @battle.pbActivateHealingWish(@battle.battlers[idxB])
+      end
     end
   end
 end
-
-
 
 #===============================================================================
 # Target's Attack is used instead of user's Attack for this move's calculations.
@@ -1761,6 +1766,7 @@ class PokeBattle_Move_153 < PokeBattle_Move
 
   def pbEffectGeneral(user)
     user.pbOpposingSide.effects[PBEffects::StickyWeb] = true
+    user.pbOpposingSide.effects[PBEffects::StickyWebUser] = user.index
     @battle.pbDisplay(_INTL("A sticky web has been laid out beneath {1}'s feet!",
        user.pbOpposingTeam(true)))
   end
@@ -2167,7 +2173,7 @@ class PokeBattle_Move_164 < PokeBattle_Move_163
     spAtkStage = user.stages[:SPECIAL_ATTACK]+6
     realSpAtk  = (spAtk.to_f*stageMul[spAtkStage]/stageDiv[spAtkStage]).floor
     # Determine move's category
-    @calcCategory = (realAtk>realSpAtk) ? 0 : 1
+    @calcCategory = (realAtk > realSpAtk) ? 0 : 1
   end
 end
 
@@ -2589,8 +2595,286 @@ class PokeBattle_Move_175 < PokeBattle_FlinchMove
 end
 
 
+#===============================================================================
+# Increases the user's Speed by 1 stage. Fail if the user is not a Morpeko.
+# If the user is a Morpeko-Hangry, this move will be Dark type. (Aura Wheel)
+#===============================================================================
+class PokeBattle_Move_176 < PokeBattle_StatUpMove
+  def initialize(battle,move)
+    super
+    @statUp = [:SPEED,1]
+  end
 
-# NOTE: If you're inventing new move effects, use function code 176 and onwards.
+  def pbMoveFailed?(user,targets)
+    if Settings::MECHANICS_GENERATION >= 7 && @id == :AURAWHEEL
+      if !user.isSpecies?(:MORPEKO) &&
+         !user.effects[PBEffects::TransformSpecies] == :MORPEKO
+        @battle.pbDisplay(_INTL("But {1} can't use the move!",user.pbThis))
+        return true
+      end
+    end
+    return false
+  end
+
+  def pbBaseType(user)
+    ret = :NORMAL
+    case user.form
+    when 0
+      ret = :ELECTRIC if GameData::Type.exists?(:ELECTRIC)
+    when 1
+      ret = :DARK if GameData::Type.exists?(:DARK)
+    end
+    return ret
+  end
+end
+
+
+
+#===============================================================================
+# User's Defense is used instead of user's Attack for this move's calculations.
+# (Body Press)
+#===============================================================================
+class PokeBattle_Move_177 < PokeBattle_Move
+  def pbGetAttackStats(user,target)
+    return user.defense, (user.stages[:DEFENSE] + 6)
+  end
+end
+
+
+
+#===============================================================================
+# If the user attacks before the target, or if the target switches in during the
+# turn that Fishious Rend is used, its base power doubles. (Fishious Rend, Bolt Beak)
+#===============================================================================
+class PokeBattle_Move_178 < PokeBattle_Move
+  def pbBaseDamage(baseDmg,user,target)
+    if @battle.choices[target.index][0]!=:None &&
+       ((@battle.choices[target.index][0]!=:UseMove &&
+       @battle.choices[target.index][0]==:Shift) || target.movedThisRound?)
+    else
+      baseDmg *= 2
+    end
+    return baseDmg
+  end
+end
+
+
+
+#===============================================================================
+# Raises all user's stats by 1 stage in exchange for the user losing 1/3 of its
+# maximum HP, rounded down. Fails if the user would faint. (Clangorous Soul)
+#===============================================================================
+class PokeBattle_Move_179 < PokeBattle_Move
+  def pbMoveFailed?(user,targets)
+    if user.hp<=(user.totalhp/3) ||
+	  (!user.pbCanRaiseStatStage?(:ATTACK,user,self) &&
+      !user.pbCanRaiseStatStage?(:DEFENSE,user,self) &&
+      !user.pbCanRaiseStatStage?(:SPEED,user,self) &&
+      !user.pbCanRaiseStatStage?(:SPATK,user,self) &&
+      !user.pbCanRaiseStatStage?(:SPDEF,user,self))
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return false
+  end
+
+  def pbEffectGeneral(user)
+    if user.pbCanRaiseStatStage?(:ATTACK,user,self)
+      user.pbRaiseStatStage(:ATTACK,1,user)
+    end
+    if user.pbCanRaiseStatStage?(:DEFENSE,user,self)
+      user.pbRaiseStatStage(:DEFENSE,1,user)
+    end
+    if user.pbCanRaiseStatStage?(:SPEED,user,self)
+      user.pbRaiseStatStage(:SPEED,1,user)
+    end
+    if user.pbCanRaiseStatStage?(:SPATK,user,self)
+      user.pbRaiseStatStage(:SPATK,1,user)
+    end
+    if user.pbCanRaiseStatStage?(:SPDEF,user,self)
+      user.pbRaiseStatStage(:SPDEF,1,user)
+    end
+    user.pbReduceHP(user.totalhp/3,false)
+  end
+end
+
+
+
+#===============================================================================
+# Swaps barriers, veils and other effects between each side of the battlefield.
+# (Court Change)
+#===============================================================================
+class PokeBattle_Move_17A < PokeBattle_Move
+  def initialize(battle,move)
+    super
+    @swapEffects = [:Reflect, :LightScreen, :AuroraVeil, :SeaOfFire,
+      :Swamp, :Rainbow, :Mist, :Safeguard, :StealthRock, :Spikes,
+      :StickyWeb, :ToxicSpikes,:Tailwind].map!{|e| getConst(PBEffects,e) }
+  end
+
+  def pbMoveFailed(user,targets)
+    sides = [user.pbOwnSide,user.pbOpposingSide]
+    failed = true
+    for i in 0...2
+      for j in @swapEffects
+        next if !sides[i].effects[j] || sides[i].effects[j] == 0
+        failed = false
+        break
+      end
+    end
+    if failed
+      @battle.pbDisplay(_INTL("But it failed..."))
+      return true
+    end
+    return false
+  end
+
+
+  def pbEffectGeneral(user)
+    for j in @swapEffects
+      user.pbSwapOwnSideEffect(j)
+    end
+    @battle.pbDisplay(_INTL("{1} swapped the battle effects affecting each side of the field!",user.pbThis))
+  end
+end
+
+
+
+#===============================================================================
+# The user sharply raises the target's Attack and Sp. Atk stats by decorating
+# the target. (Decorate)
+#===============================================================================
+class PokeBattle_Move_17B < PokeBattle_TargetMultiStatUpMove
+  def initialize(battle,move)
+    super
+    @statUp = [:ATTACK,2,:SPATK,2]
+  end
+end
+
+
+
+#===============================================================================
+# In singles, this move hits the target twice. In doubles, this move hits each
+# target once. If one of the two opponents protects or while semi-invulnerable
+# or is a Fairy-type Pokémon, it hits the opponent that doesn't protect twice.
+# In Doubles, not affected by WideGuard.
+# (Dragon Darts)
+#===============================================================================
+class PokeBattle_Move_17C < PokeBattle_Move_0BD
+  def pbNumHits(user,targets)
+    return 1 if targets.length > 1
+    return 2
+  end
+end
+
+
+
+#===============================================================================
+# Prevents both the user and the target from escaping. (Jaw Lock)
+#===============================================================================
+class PokeBattle_Move_17D < PokeBattle_Move
+  def pbEffectAgainstTarget(user,target)
+    if target.effects[PBEffects::JawLockUser]<0 && !target.effects[PBEffects::JawLock] &&
+      user.effects[PBEffects::JawLockUser]<0 && !user.effects[PBEffects::JawLock]
+      user.effects[PBEffects::JawLock]       = true
+      target.effects[PBEffects::JawLock]     = true
+      user.effects[PBEffects::JawLockUser]   = user.index
+      target.effects[PBEffects::JawLockUser] = user.index
+      @battle.pbDisplay(_INTL("Neither Pokémon can run away!"))
+    end
+  end
+end
+
+
+
+#===============================================================================
+# The user restores 1/4 of its maximum HP, rounded half up. If there is and
+# adjacent ally, the user restores 1/4 of both its and its ally's maximum HP,
+# rounded up. (Life Dew)
+#===============================================================================
+class PokeBattle_Move_17E < PokeBattle_Move
+  def healingMove?; return true; end
+  def worksWithNoTargets?; return true; end
+
+  def pbMoveFailed?(user,targets)
+    failed = true
+    @battle.eachSameSideBattler(user) do |b|
+      next if b.hp == b.totalhp
+      failed = false
+      break
+    end
+    if failed
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return false
+  end
+
+  def pbFailsAgainstTarget?(user,target)
+    if target.hp == target.totalhp
+      @battle.pbDisplay(_INTL("{1}'s HP is full!",target.pbThis))
+      return true
+    elsif !target.canHeal?
+      @battle.pbDisplay(_INTL("{1} is unaffected!",target.pbThis))
+      return true
+    end
+    return false
+  end
+
+  def pbEffectAgainstTarget(user,target)
+    hpGain = (target.totalhp/4.0).round
+    target.pbRecoverHP(hpGain)
+    @battle.pbDisplay(_INTL("{1}'s HP was restored.",target.pbThis))
+  end
+end
+
+
+
+#===============================================================================
+# Increases each stat by 1 stage. Prevents user from fleeing. (No Retreat)
+#===============================================================================
+class PokeBattle_Move_17F < PokeBattle_MultiStatUpMove
+  def pbMoveFailed?(user,targets)
+    if user.effects[PBEffects::NoRetreat]
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    if !user.pbCanRaiseStatStage?(:ATTACK,user,self,true) &&
+       !user.pbCanRaiseStatStage?(:DEFENSE,user,self,true) &&
+       !user.pbCanRaiseStatStage?(:SPATK,user,self,true) &&
+       !user.pbCanRaiseStatStage?(:SPDEF,user,self,true) &&
+       !user.pbCanRaiseStatStage?(:SPEED,user,self,true)
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return false
+  end
+
+  def pbEffectGeneral(user)
+    if user.pbCanRaiseStatStage?(:ATTACK,user,self)
+      user.pbRaiseStatStage(:ATTACK,1,user)
+    end
+    if user.pbCanRaiseStatStage?(:DEFENSE,user,self)
+      user.pbRaiseStatStage(:DEFENSE,1,user)
+    end
+    if user.pbCanRaiseStatStage?(:SPEED,user,self)
+      user.pbRaiseStatStage(:SPEED,1,user)
+    end
+    if user.pbCanRaiseStatStage?(:SPATK,user,self)
+      user.pbRaiseStatStage(:SPATK,1,user)
+    end
+    if user.pbCanRaiseStatStage?(:SPDEF,user,self)
+      user.pbRaiseStatStage(:SPDEF,1,user)
+    end
+    if !(user.effects[PBEffects::MeanLook]>=0 || user.effects[PBEffects::Trapping]>0 ||
+       user.effects[PBEffects::JawLock] || user.effects[PBEffects::OctolockUser]>=0)
+      user.effects[PBEffects::NoRetreat] = true
+      @battle.pbDisplay(_INTL("{1} can no longer escape because it used No Retreat!",user.pbThis))
+    end
+  end
+end
+
+# NOTE: If you're inventing new move effects, use function code 209 and onwards.
 #       Actually, you might as well use high numbers like 500+ (up to FFFF),
 #       just to make sure later additions to Essentials don't clash with your
 #       new effects.

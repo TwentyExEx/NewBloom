@@ -834,7 +834,7 @@ def pbSweetScent
   end
   viewport.dispose
   enctype = $PokemonEncounters.encounter_type
-  if enctype || !$PokemonEncounters.encounter_possible_here? ||
+  if enctype < 0 || !$PokemonEncounters.encounter_possible_here? ||
      !pbEncounter(enctype)
     pbMessage(_INTL("There appears to be nothing here..."))
   end
@@ -983,5 +983,25 @@ HiddenMoveHandlers::UseMove.add(:WATERFALL,proc { |move,pokemon|
     pbMessage(_INTL("{1} used {2}!",pokemon.name,GameData::Move.get(move).name))
   end
   pbAscendWaterfall
+  next true
+})
+
+#===============================================================================
+# Defog
+#===============================================================================
+def pbDefog
+  $game_screen.weather(0,0,0)
+end
+
+HiddenMoveHandlers::CanUseMove.add(:DEFOG,proc { |move,pkmn,showmsg|
+  next false if $game_screen.weather_type != :Fog
+  next true
+})
+
+HiddenMoveHandlers::UseMove.add(:DEFOG,proc { |move,pokemon|
+  if !pbHiddenMoveAnimation(pokemon)
+    pbMessage(_INTL("{1} used {2}!",pokemon.name,GameData::Move.get(:DEFOG).name))
+  end
+  pbDefog
   next true
 })

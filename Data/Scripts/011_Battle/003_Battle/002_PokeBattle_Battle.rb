@@ -399,7 +399,7 @@ class PokeBattle_Battle
     idxPartyStart, idxPartyEnd = pbTeamIndexRangeFromBattlerIndex(idxBattler)
     ret = -1
     party.each_with_index do |pkmn,i|
-      next if i<idxPartyStart || i>=idxPartyEnd   # Check the team only
+      next if i < idxPartyStart || i >= idxPartyEnd   # Check the team only
       next if !pkmn || !pkmn.able?   # Can't copy a non-fainted Pokémon or egg
       ret = i if ret < 0 || partyOrders[i] > partyOrders[ret]
     end
@@ -667,10 +667,12 @@ class PokeBattle_Battle
     when :HeavyRain   then pbDisplay(_INTL("A heavy rain began to fall!"))
     when :StrongWinds then pbDisplay(_INTL("Mysterious strong winds are protecting Flying-type Pokémon!"))
     when :ShadowSky   then pbDisplay(_INTL("A shadow sky appeared!"))
+    when :Fog         then pbDisplay(_INTL("The fog is deep..."))
     end
     # Check for end of primordial weather, and weather-triggered form changes
     eachBattler { |b| b.pbCheckFormOnWeatherChange }
     pbEndPrimordialWeather
+    pbCalculatePriority(true) if Settings::RECALCULATE_TURN_ORDER_AFTER_SPEED_CHANGES
   end
 
   def pbEndPrimordialWeather
@@ -699,6 +701,7 @@ class PokeBattle_Battle
       # Start up the default weather
       pbStartWeather(nil,@field.defaultWeather) if @field.defaultWeather != :None
     end
+    pbCalculatePriority(true) if Settings::RECALCULATE_TURN_ORDER_AFTER_SPEED_CHANGES
   end
 
   def defaultTerrain=(value)
@@ -729,8 +732,12 @@ class PokeBattle_Battle
     when :Psychic
       pbDisplay(_INTL("The battlefield got weird!"))
     end
+    pbCalculatePriority(true) if Settings::RECALCULATE_TURN_ORDER_AFTER_SPEED_CHANGES
     # Check for terrain seeds that boost stats in a terrain
-    eachBattler { |b| b.pbItemTerrainStatBoostCheck }
+    eachBattler { |b|
+	  b.pbCheckFormOnTerrainChange
+	  b.pbItemTerrainStatBoostCheck
+	}
   end
 
   #=============================================================================
@@ -764,10 +771,10 @@ class PokeBattle_Battle
     @scene.pbCommonAnimation(name,user,targets) if @showAnims
   end
 
-  def pbShowAbilitySplash(battler,delay=false,logTrigger=true)
+  def pbShowAbilitySplash(battler,delay=false,logTrigger=true,ability=nil)
     PBDebug.log("[Ability triggered] #{battler.pbThis}'s #{battler.abilityName}") if logTrigger
     return if !PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-    @scene.pbShowAbilitySplash(battler)
+    @scene.pbShowAbilitySplash(battler,ability)
     if delay
       Graphics.frame_rate.times { @scene.pbUpdate }   # 1 second
     end

@@ -4,6 +4,7 @@
 module Console
   def self.setup_console
     return unless $DEBUG
+    echoln "OpenGL Texture Size : #{Bitmap.max_size}"
     echoln "--------------------------------"
     echoln "#{System.game_title} Output Window"
     echoln "--------------------------------"
@@ -16,6 +17,9 @@ module Console
     echoln "you want to get rid of this window, run the"
     echoln "program from the Shell, or download a Release"
     echoln "version."
+    echoln ""
+    echoln "Try not to exceed the height of #{Bitmap.max_size} px"
+    echoln "when making a tileset"
     echoln ""
     echoln "--------------------------------"
     echoln "Debug Output:"

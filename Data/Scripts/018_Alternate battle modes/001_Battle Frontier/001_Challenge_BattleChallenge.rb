@@ -19,20 +19,18 @@ class BattleChallenge
     @id = id
     @numRounds = numrounds
     @rules = rules
-    register(id, id[/double/], 3,
-       id[/^factory/] ? BattleFactoryID : BattleTowerID,
-       id[/open$/] ? 1 : 0)
     pbWriteCup(id, rules)
   end
 
-  def register(id, doublebattle, numPokemon, battletype, mode = 1)
+  def register(id, doublebattle, numrounds, numPokemon, battletype, mode = 1)
     ensureType(id)
     if battletype == BattleFactoryID
       @bc.setExtraData(BattleFactoryData.new(@bc))
       numPokemon = 3
       battletype = BattleTowerID
     end
-    @rules = modeToRules(doublebattle, numPokemon, battletype, mode) if !@rules
+    @numRounds = numrounds
+    @rules = modeToRules(doublebattle, numPokemon, battletype, mode)
   end
 
   def rules
@@ -373,7 +371,7 @@ class BattleFactoryData
   def pbPrepareRentals
     @rentals = pbBattleFactoryPokemon(pbBattleChallenge.rules, @bcdata.wins, @bcdata.swaps, [])
     @trainerid = @bcdata.nextTrainer
-    bttrainers = pbGetBTTrainers(pbBattleChallenge.currentChallenge)
+    bttrainers = pbGetBTTrainers(@bcdata.currentChallenge)
     trainerdata = bttrainers[@trainerid]
     @opponent = NPCTrainer.new(
        pbGetMessageFromHash(MessageTypes::TrainerNames, trainerdata[1]),
@@ -388,19 +386,19 @@ class BattleFactoryData
       screen = BattleSwapScreen.new(scene)
       @rentals = screen.pbStartRent(@rentals)
       @bcdata.pbAddSwap
-      @bcdata.setParty(@rentals)
+      pbBattleChallenge.setParty(@rentals)
     }
   end
 
   def pbPrepareSwaps
     @oldopponent = @opponent.party
     trainerid = @bcdata.nextTrainer
-    bttrainers = pbGetBTTrainers(pbBattleChallenge.currentChallenge)
+    bttrainers = pbGetBTTrainers(@bcdata.currentChallenge)
     trainerdata = bttrainers[trainerid]
     @opponent = NPCTrainer.new(
        pbGetMessageFromHash(MessageTypes::TrainerNames, trainerdata[1]),
        trainerdata[0])
-    opponentPkmn = pbBattleFactoryPokemon(pbBattleChallenge.rules, @bcdata.wins, @bcdata.swaps,
+    opponentPkmn = pbBattleFactoryPokemon(challenge.rules, @bcdata.wins, @bcdata.swaps,
        [].concat(@rentals).concat(@oldopponent))
     @opponent.party = opponentPkmn.shuffle[0, 3]
   end
@@ -418,7 +416,7 @@ class BattleFactoryData
   end
 
   def pbBattle(challenge)
-    bttrainers = pbGetBTTrainers(pbBattleChallenge.currentChallenge)
+    bttrainers = pbGetBTTrainers(@bcdata.currentChallenge)
     trainerdata = bttrainers[@trainerid]
     return pbOrganizedBattleEx(@opponent, challenge.rules,
        pbGetMessageFromHash(MessageTypes::EndSpeechLose, trainerdata[4]),

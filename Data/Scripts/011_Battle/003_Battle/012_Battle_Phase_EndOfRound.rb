@@ -45,6 +45,7 @@ class PokeBattle_Battle
       when :Sandstorm then pbDisplay(_INTL("The sandstorm subsided."))
       when :Hail      then pbDisplay(_INTL("The hail stopped."))
       when :ShadowSky then pbDisplay(_INTL("The shadow sky faded."))
+      when :Fog       then pbDisplay(_INTL("The fog disappeared."))
       end
       @field.weather = :None
       # Check for form changes caused by the weather changing
@@ -121,6 +122,7 @@ class PokeBattle_Battle
         pbDisplay(_INTL("The weirdness disappeared from the battlefield!"))
       end
       @field.terrain = :None
+      eachBattler { |b| b.pbCheckFormOnTerrainChange }
       # Start up the default terrain
       pbStartTerrain(nil, @field.defaultTerrain, false) if @field.defaultTerrain != :None
       return if @field.terrain == :None
@@ -396,6 +398,17 @@ class PokeBattle_Battle
       b.pbAbilitiesOnDamageTaken(oldHP)
       b.pbFaint if b.fainted?
     end
+    # Octolock
+    priority.each do |b|
+      next if !b.effects[PBEffects::Octolock]
+	    octouser = @battlers[b.effects[PBEffects::OctolockUser]]
+      if b.pbCanLowerStatStage?(:DEFENSE,octouser,self)
+        b.pbLowerStatStage(:DEFENSE,1,octouser,true,false,true)
+      end
+      if b.pbCanLowerStatStage?(:SPDEF,octouser,self)
+        b.pbLowerStatStage(:SPDEF,1,octouser,true,false,true)
+      end
+    end
     # Trapping attacks (Bind/Clamp/Fire Spin/Magma Storm/Sand Tomb/Whirlpool/Wrap)
     priority.each do |b|
       next if b.fainted? || b.effects[PBEffects::Trapping]==0
@@ -412,6 +425,8 @@ class PokeBattle_Battle
         when :SANDTOMB    then pbCommonAnimation("SandTomb", b)
         when :WRAP        then pbCommonAnimation("Wrap", b)
         when :INFESTATION then pbCommonAnimation("Infestation", b)
+        when :SNAPTRAP    then pbCommonAnimation("SnapTrap",b)
+        when :THUNDERCAGE then pbCommonAnimation("ThunderCage",b)
         else                   pbCommonAnimation("Wrap", b)
         end
         if b.takesIndirectDamage?
@@ -636,6 +651,10 @@ class PokeBattle_Battle
       b.effects[PBEffects::SpikyShield]      = false
       b.effects[PBEffects::Spotlight]        = 0
       b.effects[PBEffects::ThroatChop]       -= 1 if b.effects[PBEffects::ThroatChop]>0
+      b.effects[PBEffects::BurningJealousy]  = false
+      b.effects[PBEffects::LashOut]          = false
+      b.effects[PBEffects::Obstruct]         = false
+      b.effects[PBEffects::SwitchedAlly]     = -1
       b.lastHPLost                           = 0
       b.lastHPLostFromFoe                    = 0
       b.tookDamage                           = false
@@ -661,6 +680,32 @@ class PokeBattle_Battle
     @field.effects[PBEffects::FairyLock]   -= 1 if @field.effects[PBEffects::FairyLock]>0
     @field.effects[PBEffects::FusionBolt]  = false
     @field.effects[PBEffects::FusionFlare] = false
+    # Neutralizing Gas
+    pbCheckNeutralizingGas
     @endOfRound = false
+  end
+
+
+  def pbCheckNeutralizingGas(battler=nil)
+    return if !@field.effects[PBEffects::NeutralizingGas]
+    return if battler && (battler.ability == :NEUTRALIZINGGAS ||
+		battler.effects[PBEffects::GastroAcid])
+    hasabil=false
+    eachBattler {|b|
+      next if !b || b.fainted?
+	  next if battler && b.index == battler.index
+	  # if specified, the battler will switch out, so don't consider it.
+      # neutralizing gas can be blocked with gastro acid, ending the effect.
+      if b.ability == :NEUTRALIZINGGAS && !b.effects[PBEffects::GastroAcid]
+        hasabil=true; break
+      end
+    }
+    if !hasabil
+      @field.effects[PBEffects::NeutralizingGas] = false
+      pbPriority(true).each { |b|
+	    next if battler && b.index == battler.index
+	    b.pbEffectsOnSwitchIn
+	  }
+    end
   end
 end

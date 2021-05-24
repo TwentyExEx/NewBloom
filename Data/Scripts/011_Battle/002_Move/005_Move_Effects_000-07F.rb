@@ -130,6 +130,7 @@ class PokeBattle_Move_008 < PokeBattle_ParalysisMove
   def hitsFlyingTargets?; return true; end
 
   def pbBaseAccuracy(user,target)
+    return super if target.hasUtilityUmbrella?
     case @battle.pbWeather
     when :Sun, :HarshSun
       return 50
@@ -307,6 +308,7 @@ class PokeBattle_Move_015 < PokeBattle_ConfuseMove
   def hitsFlyingTargets?; return true; end
 
   def pbBaseAccuracy(user,target)
+    return super if target.hasUtilityUmbrella?
     case @battle.pbWeather
     when :Sun, :HarshSun
       return 50
@@ -731,7 +733,7 @@ class PokeBattle_Move_028 < PokeBattle_MultiStatUpMove
 
   def pbOnStartUse(user,targets)
     increment = 1
-    increment = 2 if [:Sun, :HarshSun].include?(@battle.pbWeather)
+    increment = 2 if [:Sun, :HarshSun].include?(@battle.pbWeather) && !user.hasUtilityUmbrella?
     @statUp[1] = @statUp[3] = increment
   end
 end
@@ -1335,7 +1337,9 @@ class PokeBattle_Move_049 < PokeBattle_TargetStatDownMove
        (Settings::MECHANICS_GENERATION >= 6 &&
        target.pbOpposingSide.effects[PBEffects::StickyWeb])
       target.pbOwnSide.effects[PBEffects::StickyWeb]      = false
+      target.pbOwnSide.effects[PBEffects::StickyWebUser]  = -1
       target.pbOpposingSide.effects[PBEffects::StickyWeb] = false if Settings::MECHANICS_GENERATION >= 6
+      target.pbOpposingSide.effects[PBEffects::StickyWebUser] = -1 if Settings::MECHANICS_GENERATION >= 6
       @battle.pbDisplay(_INTL("{1} blew away sticky webs!",user.pbThis))
     end
     if Settings::MECHANICS_GENERATION >= 8 && @battle.field.terrain != :None
@@ -1350,6 +1354,10 @@ class PokeBattle_Move_049 < PokeBattle_TargetStatDownMove
         @battle.pbDisplay(_INTL("The weirdness disappeared from the battlefield."))
       end
       @battle.field.terrain = :None
+    end
+    if @battle.field.weather == :Fog
+      @battle.pbDisplay(_INTL("{1} blew away the deep fog!",user.pbThis))
+      @battle.field.weather = :None
     end
   end
 end
@@ -2518,6 +2526,17 @@ class PokeBattle_Move_075 < PokeBattle_Move
   def pbModifyDamage(damageMult,user,target)
     damageMult *= 2 if target.inTwoTurnAttack?("0CB")   # Dive
     return damageMult
+  end
+
+  def pbEffectAfterAllHits(user,target)
+    return if target.damageState.unaffected ||
+              target.damageState.protected ||
+              target.damageState.missed
+    return if !user.isSpecies?(:CRAMORANT) ||
+              user.ability != :GULPMISSILE ||
+              user.form != 0
+    newForm = (user.hp > (user.totalhp/2)) ? 1 : 2
+    pbChangeForm(newForm,"")
   end
 end
 

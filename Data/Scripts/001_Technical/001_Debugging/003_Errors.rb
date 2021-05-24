@@ -27,6 +27,7 @@ def pbPrintException(e)
   end
   # begin message formatting
   message = "[Pokémon Essentials version #{Essentials::VERSION}]\r\n"
+  message += "[Generation 8 Project v1.0.1]\r\n"
   message += "#{Essentials::ERROR_TEXT}\r\n"   # For third party scripts to add to
   message += "Exception: #{e.class}\r\n"
   message += "Message: #{emessage}\r\n"

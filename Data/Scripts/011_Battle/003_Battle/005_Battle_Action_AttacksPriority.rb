@@ -154,6 +154,7 @@ class PokeBattle_Battle
             if b.abilityActive?
               pri = BattleHandlers.triggerPriorityChangeAbility(b.ability,b,move,pri)
             end
+            pri += move.pbChangePriority(b)
             bArray[3] = pri
             @choices[b.index][4] = pri
           end

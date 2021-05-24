@@ -18,6 +18,9 @@ module Settings
   MORE_TYPE_EFFECTS                           = (MECHANICS_GENERATION >= 6)
   # Whether weather caused by an ability lasts 5 rounds (true) or forever (false).
   FIXED_DURATION_WEATHER_FROM_ABILITY         = (MECHANICS_GENERATION >= 6)
+  # Whether the fog weather behave like its Gen 8 counterpart (true)
+  # or Gen 4 counterpart (false)
+  SWSH_FOG_IN_BATTLES                         = (MECHANICS_GENERATION >= 8)
 
   #=============================================================================
 

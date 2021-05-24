@@ -122,6 +122,20 @@ class PokeBattle_Battler
     @battle.scene.pbRefreshOne(@index)
   end
 
+  attr_reader :critical_hits
+
+  def critical_hits=(value)
+    @critical_hits = value
+    @pokemon.critical_hits = value if @pokemon
+  end
+
+  attr_reader :damage_done
+
+  def damage_done=(value)
+    @damage_done = value
+    @pokemon.damage_done = value if @pokemon
+  end
+
   #=============================================================================
   # Properties from Pokémon
   #=============================================================================
@@ -335,8 +349,9 @@ class PokeBattle_Battler
   #       active, and the code for the two combined would cause an infinite loop
   #       (regardless of whether any Pokémon actualy has either the ability or
   #       the item - the code existing is enough to cause the loop).
-  def abilityActive?(ignore_fainted = false)
-    return false if fainted? && !ignore_fainted
+  def abilityActive?(ignoreFainted=false)
+    return false if fainted? && !ignoreFainted
+    return false if @battle.field.effects[PBEffects::NeutralizingGas]
     return false if @effects[PBEffects::GastroAcid]
     return true
   end
@@ -366,9 +381,13 @@ class PokeBattle_Battler
       :SHIELDSDOWN,
       :STANCECHANGE,
       :ZENMODE,
+      :ICEFACE,
       # Abilities intended to be inherent properties of a certain species
       :COMATOSE,
-      :RKSSYSTEM
+      :RKSSYSTEM,
+      :GULPMISSILE,
+      :ASONEICE,
+      :ASONEGHOST
     ]
     return ability_blacklist.include?(abil.id)
   end
@@ -395,7 +414,11 @@ class PokeBattle_Battler
       :IMPOSTER,
       # Abilities intended to be inherent properties of a certain species
       :COMATOSE,
-      :RKSSYSTEM
+      :RKSSYSTEM,
+      :ASONEICE,
+      :ASONEGHOST,
+	  :NEUTRALIZINGGAS,
+	  :HUNGERSWITCH
     ]
     return ability_blacklist.include?(abil.id)
   end
@@ -489,6 +512,11 @@ class PokeBattle_Battler
     return true
   end
 
+  def hasUtilityUmbrella?
+    return true if hasActiveItem?(:UTILITYUMBRELLA)
+    return false
+  end
+
   def takesIndirectDamage?(showMsg=false)
     return false if fainted?
     if hasActiveAbility?(:MAGICGUARD)
@@ -530,6 +558,11 @@ class PokeBattle_Battler
     return true
   end
 
+  def affectedByEntryHazards?
+    return false if hasActiveItem?(:HEAVYDUTYBOOTS)
+    return
+  end
+
   def affectedByPowder?(showMsg=false)
     return false if fainted?
     if pbHasType?(:GRASS) && Settings::MORE_TYPE_EFFECTS
@@ -563,6 +596,11 @@ class PokeBattle_Battler
     return false if fainted? || @hp>=@totalhp
     return false if @effects[PBEffects::HealBlock]>0
     return true
+  end
+
+  def canTakeHealingWish?
+	# Also works with Lunar Dance.
+	return canHeal? || pbHasAnyStatus?
   end
 
   def affectedByContactEffect?(showMsg=false)
@@ -702,5 +740,14 @@ class PokeBattle_Battler
       return @battle.battlers[i] if @battle.battlers[i]
     end
     return @battle.battlers[(@index^1)]
+  end
+
+  def pbSwapOwnSideEffect(effect)
+    effect  = getConst(PBEffects,effect) if effect.is_a?(Symbol)
+    ownside = pbOwnSide
+    oppside = pbOpposingSide
+    toSwap  = ownside.effects[effect]
+    ownside.effects[effect] = oppside.effects[effect]
+    oppside.effects[effect] = toSwap
   end
 end

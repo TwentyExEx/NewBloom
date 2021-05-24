@@ -11,17 +11,17 @@ LoseText = "Very good."
 Pokemon = GEODUDE,12
     Gender = male
     Moves = DEFENSECURL,HEADSMASH,ROCKPOLISH,ROCKTHROW
-    AbilityIndex = 0
-    IV = 20,20,20,20,20,20
+    Ability = 0
+    IV = 20
 Pokemon = ONIX,14
     Name = Rocky
     Gender = male
     Shiny = yes
     Moves = HEADSMASH,ROCKTHROW,RAGE,ROCKTOMB
-    AbilityIndex = 0
+    Ability = 0
     Item = SITRUSBERRY
-    IV = 20,20,20,20,20,20
-    Ball = HEAVYBALL
+    IV = 20
+    Ball = 19
 #-------------------------------
 [TEAMROCKET_M,Grunt,1]
 LoseText = "You're too good for me!"
@@ -82,7 +82,6 @@ Pokemon = TURTWIG,19
 Pokemon = CHIMCHAR,19
 #-------------------------------
 [POKEMONTRAINER_Brendan,Brendan]
-LoseText = "..."
 Pokemon = MARSHTOMP,19
 #-------------------------------
 [SWIMMER2_F,Ariel]
