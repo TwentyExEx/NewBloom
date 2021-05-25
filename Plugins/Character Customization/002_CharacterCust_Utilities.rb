@@ -48,7 +48,7 @@ end
 def cnvrtStrArr(array)
   ret=[]
   for i in 0...array.length
-    ret.push(array[i][0][$PokemonGlobal.playerID])
+    ret.push(array[i][0][$Trainer.character_ID])
   end
   return ret
 end
@@ -114,10 +114,10 @@ end
 def individualArrayFiles(files,array,folder)
   for i in 0...array.length
     if ((array[i][1] == true) || (array[i][1] == false))
-      files.push(folder+"/#{i}"+($PokemonGlobal.playerID+65).chr)
+      files.push(folder+"/#{i}"+($Trainer.character_ID+65).chr)
     else
       for j in 0...array[i][1].length
-        files.push(folder+"/#{i}/#{j}"+($PokemonGlobal.playerID+65).chr)
+        files.push(folder+"/#{i}/#{j}"+($Trainer.character_ID+65).chr)
       end
     end
   end
@@ -196,42 +196,42 @@ def drawCharacterCustomizedBitmap(folder,bmp,trainerClass=$Trainer)
   # Adding Bottom Bitmap
   if trainerClass.bottom[1] == -1
     addAdditionalBitmap(oldfilepath+"bottoms/"+(trainerClass.bottom[0]).to_s+
-      ($PokemonGlobal.playerID+65).chr+".png",bmp)
+      ($Trainer.character_ID+65).chr+".png",bmp)
   else
     addAdditionalBitmap(oldfilepath+"bottoms/"+(trainerClass.bottom[0]).to_s+
-      "/"+(trainerClass.bottom[1]).to_s+($PokemonGlobal.playerID+65).chr+".png",bmp)
+      "/"+(trainerClass.bottom[1]).to_s+($Trainer.character_ID+65).chr+".png",bmp)
   end
   # Adding Top Bitmap
   if trainerClass.top[1] == -1
     addAdditionalBitmap(oldfilepath+"tops/"+(trainerClass.top[0]).to_s+
-      ($PokemonGlobal.playerID+65).chr+".png",bmp)
+      ($Trainer.character_ID+65).chr+".png",bmp)
   else
     addAdditionalBitmap(oldfilepath+"tops/"+(trainerClass.top[0]).to_s+
-      "/"+(trainerClass.top[1]).to_s+($PokemonGlobal.playerID+65).chr+".png",bmp)
+      "/"+(trainerClass.top[1]).to_s+($Trainer.character_ID+65).chr+".png",bmp)
   end
   # Adding Accessory Bitmap
   if trainerClass.accessory[1] == -1
     addAdditionalBitmap(oldfilepath+"accessories/"+(trainerClass.accessory[0]).to_s+
-      ($PokemonGlobal.playerID+65).chr+".png",bmp)
+      ($Trainer.character_ID+65).chr+".png",bmp)
   else
     addAdditionalBitmap(oldfilepath+"accessories/"+(trainerClass.accessory[0]).to_s+
-      "/"+(trainerClass.accessory[1]).to_s+($PokemonGlobal.playerID+65).chr+".png",bmp)
+      "/"+(trainerClass.accessory[1]).to_s+($Trainer.character_ID+65).chr+".png",bmp)
   end
   # Adding Hair Bitmap
   if trainerClass.hair[1] == -1
     addAdditionalBitmap(oldfilepath+"hair/"+(trainerClass.hair[0]).to_s+
-      ($PokemonGlobal.playerID+65).chr+".png",bmp)
+      ($Trainer.character_ID+65).chr+".png",bmp)
   else
     addAdditionalBitmap(oldfilepath+"hair/"+(trainerClass.hair[0]).to_s+
-      "/"+(trainerClass.hair[1]).to_s+($PokemonGlobal.playerID+65).chr+".png",bmp)
+      "/"+(trainerClass.hair[1]).to_s+($Trainer.character_ID+65).chr+".png",bmp)
   end
   # Adding Headgear Bitmap
   if trainerClass.headgear[1] == -1
     addAdditionalBitmap(oldfilepath+"headgear/"+(trainerClass.headgear[0]).to_s+
-      ($PokemonGlobal.playerID+65).chr+".png",bmp)
+      ($Trainer.character_ID+65).chr+".png",bmp)
   else
     addAdditionalBitmap(oldfilepath+"headgear/"+(trainerClass.headgear[0]).to_s+
-      "/"+(trainerClass.headgear[1]).to_s+($PokemonGlobal.playerID+65).chr+".png",bmp)
+      "/"+(trainerClass.headgear[1]).to_s+($Trainer.character_ID+65).chr+".png",bmp)
   end
 end
 
@@ -262,7 +262,7 @@ def saveAllCustomizedBitmapsToFolder
   return if !$Trainer
   # Trainer charsets
   metadata=pbLoadMetadata
-  filenames=metadata[0][MetadataPlayerA+$PokemonGlobal.playerID]
+  filenames=metadata[0][MetadataPlayerA+$Trainer.character_ID]
   for i in 0...filenames.length
     if filenames[i].is_a?(String) && !(filenames[i]=="xxx")
       filepath="Graphics/Characters/#{filenames[i]}"
@@ -271,7 +271,7 @@ def saveAllCustomizedBitmapsToFolder
     end
   end
   # Trainer backsprite
-  helpr="trback00#{$PokemonGlobal.playerID}"
+  helpr="trback00#{$Trainer.character_ID}"
   filepath="Graphics/Trainers/"
   folder=SPRITE_CONVERT_HASH[helpr]
   saveCustomizedBitmapToFolder(filepath+helpr,folder)
@@ -281,7 +281,7 @@ def saveAllCustomizedBitmapsToFolder
   folder=SPRITE_CONVERT_HASH[helpr]
   saveCustomizedBitmapToFolder(filepath+helpr,folder)
   # Map Player
-  helpr="mapPlayer00#{$PokemonGlobal.playerID}"
+  helpr="mapPlayer00#{$Trainer.character_ID}"
   folder=SPRITE_CONVERT_HASH[helpr]
   saveCustomizedBitmapToFolder(filepath+helpr,folder)
 end
@@ -317,20 +317,20 @@ def saveAllOutfits
   end
   metadata=pbLoadMetadata
   filepath="Graphics/Characters/"
-  filenames=metadata[0][MetadataPlayerA+$PokemonGlobal.playerID]
+  filenames=metadata[0][MetadataPlayerA+$Trainer.character_ID]
   for i in 0...filenames.length
     if filenames[i].is_a?(String) && !(filenames[i]=="xxx")
       saveOutfit(filepath+filenames[i])
     end
   end
   # Trainer backsprite
-  saveOutfit("Graphics/Trainers/trback00#{$PokemonGlobal.playerID}")
+  saveOutfit("Graphics/Trainers/trback00#{$Trainer.character_ID}")
   # Intro Image/Trainercard Image
   filepath="Graphics/Pictures/"
   filepath+= $Trainer.isFemale? ? "introGirl" : "introBoy"
   saveOutfit(filepath)
   # Map Player
-  saveOutfit("Graphics/Pictures/mapPlayer00#{$PokemonGlobal.playerID}")
+  saveOutfit("Graphics/Pictures/mapPlayer00#{$Trainer.character_ID}")
   return
 end
   
@@ -338,7 +338,7 @@ end
 def reqFilesExist
   # Trainer charsets
   metadata=pbLoadMetadata
-  filenames=metadata[0][MetadataPlayerA+$PokemonGlobal.playerID]
+  filenames=metadata[0][MetadataPlayerA+$Trainer.character_ID]
   for i in 0...filenames.length
     if filenames[i].is_a?(String) && !(filenames[i]=="xxx")
       if !File.exists?("Graphics/Characters/#{filenames[i]}.png")
@@ -350,7 +350,7 @@ def reqFilesExist
     end
   end
   # Trainer backsprite
-  filepath="Graphics/Trainers/trback00#{$PokemonGlobal.playerID}"
+  filepath="Graphics/Trainers/trback00#{$Trainer.character_ID}"
   if (!File.exists?(filepath+".png") || !File.exists?(filepath+"_curr.png"))
     return false
   end
@@ -361,7 +361,7 @@ def reqFilesExist
     return false
   end
   # Map Player
-  filepath="Graphics/Pictures/mapPlayer00#{$PokemonGlobal.playerID}"
+  filepath="Graphics/Pictures/mapPlayer00#{$Trainer.character_ID}"
   if (!File.exists?(filepath+".png") || !File.exists?(filepath+"_curr.png"))
     return false
   end
@@ -426,7 +426,6 @@ end
 #===============================================================================
 
 def pbSave(safesave=false)
-  $Trainer.metaID=$PokemonGlobal.playerID
   if $PokemonTemp.savedoutfit == false     #ADDED CODE
     saveAllOutfits                         #ADDED CODE
   end
@@ -475,8 +474,8 @@ class Game_Player
       return @defaultCharacterName.gsub(/\0/,"v")#(/\.png/,"")
     end
     if !moving? && !@move_route_forcing && $PokemonGlobal
-      meta=pbGetMetadata(0,MetadataPlayerA+$PokemonGlobal.playerID)
-      if $PokemonGlobal.playerID>=0 && meta && 
+      meta=pbGetMetadata(0,MetadataPlayerA+$Trainer.character_ID)
+      if $Trainer.character_ID>=0 && meta && 
          !$PokemonGlobal.bicycle && !$PokemonGlobal.diving && !$PokemonGlobal.surfing
         if meta[4] && meta[4]!="" && Input.dir4!=0 && passable?(@x,@y,Input.dir4) && pbCanRun?
           # Display running character sprite

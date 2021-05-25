@@ -1,0 +1,4 @@
+Name         = Advanced Character Customization 
+Version      = 2.0.0
+Website      = https://reliccastle.com/resources/452/
+Credits      = WolfHeretic, shiney570

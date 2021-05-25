@@ -310,7 +310,7 @@ def pbUnlockEntireItem(item)
   return false if !(arr[0])
   bodypart=arr[1]-1
   for i in 0...arr[0].length
-    index=i if arr[0][i][0][$PokemonGlobal.playerID]==item
+    index=i if arr[0][i][0][$Trainer.character_ID]==item
   end
   (if $DEBUG; p "There was an issue unlocking the item."; end; return) if !index
   return false if checkAccessory(arr[0],index)
@@ -336,7 +336,7 @@ def pbLockEntireItem(item)
   bodypart=arr[1]
   (if $DEBUG; p "There was an issue locking the item."; end; return) if !(arr[0])
   for i in 0...arr[0].length
-    index=i if arr[0][i][0][$PokemonGlobal.playerID]==item
+    index=i if arr[0][i][0][$Trainer.character_ID]==item
   end
   if checkAccessory(arr[0],index)
     (if $DEBUG; p "There was an issue locking the item."; end; return)
@@ -352,8 +352,8 @@ end
 
 # This method updates the trainer outfit
 def updateTrainerOutfit
-  next_id=($PokemonGlobal.playerID==1 ? 0 : 1)
-  id=$PokemonGlobal.playerID
+  next_id=($Trainer.character_ID==1 ? 0 : 1)
+  id=$Trainer.character_ID
   pbChangePlayer(next_id)
   pbWait(1)
   pbChangePlayer(id)
@@ -369,7 +369,7 @@ def dressAccessory(accessory,variant=nil)
   (if $DEBUG; p "Could not find entered accessory."; end; return false) if !arr[0]
   bodypart=arr[0]; var=arr[1]
   for i in 0...bodypart.length
-    if bodypart[i][0][$PokemonGlobal.playerID]==accessory
+    if bodypart[i][0][$Trainer.character_ID]==accessory
       if variant.nil?
         if checkAccessory(bodypart,i)
           $Trainer.hair=[i,-1] if var==1
@@ -432,10 +432,10 @@ def wearingAccessory?(accessory,variant=nil)
   return false if !clothes || !current
   if accessory.is_a?(String)
     for i in 0...clothes.length
-      if clothes[i][0][$PokemonGlobal.playerID]==accessory
+      if clothes[i][0][$Trainer.character_ID]==accessory
         if variant.nil?
-          return (accessory==clothes[current[0]][0][$PokemonGlobal.playerID])
-        elsif variant.is_a?(String) && accessory==clothes[current[0]][0][$PokemonGlobal.playerID]
+          return (accessory==clothes[current[0]][0][$Trainer.character_ID])
+        elsif variant.is_a?(String) && accessory==clothes[current[0]][0][$Trainer.character_ID]
           return false if checkAccessory(clothes,i)
           for j in 0...clothes[i][1].length
             if clothes[i][1][j][0]==variant
@@ -458,7 +458,7 @@ def unlockAccessory(accessory,variant=nil)
   return false if !(arr[0])
   bodypart=arr[1]-1
   for i in 0...arr[0].length
-    index=i if arr[0][i][0][$PokemonGlobal.playerID]==accessory
+    index=i if arr[0][i][0][$Trainer.character_ID]==accessory
   end
   (if $DEBUG; p "There was an issue unlocking the accessory."; end; return) if !index
   if !variant.nil?
@@ -489,7 +489,7 @@ def lockAccessory(accessory,variant=nil)
   # Checking if player wears the accessory to lock
   (if $DEBUG; p "There was an issue locking the accessory"; end; return) if !(arr[0])
   for i in 0...arr[0].length
-    if arr[0][i][0][$PokemonGlobal.playerID]==accessory
+    if arr[0][i][0][$Trainer.character_ID]==accessory
       index=i
       if variant.nil?
         if checkAccessory(arr[0],index,false)
@@ -502,7 +502,7 @@ def lockAccessory(accessory,variant=nil)
           else
             sv=0
           end
-          Kernel.pbMessage("#{$Trainer.name} misses the #{accessory} #{name} and puts on the #{arr[0][0][0][$PokemonGlobal.playerID]} one instead.")
+          Kernel.pbMessage("#{$Trainer.name} misses the #{accessory} #{name} and puts on the #{arr[0][0][0][$Trainer.character_ID]} one instead.")
           $Trainer.hair=[0,sv] if bodypart==1
           $Trainer.top=[0,sv] if bodypart==2
           $Trainer.bottom=[0,sv] if bodypart==3
@@ -523,7 +523,7 @@ def lockAccessory(accessory,variant=nil)
             else
               sv=0
             end
-            Kernel.pbMessage("#{$Trainer.name} misses the #{accessory} #{name} and puts on the #{arr[0][0][0][$PokemonGlobal.playerID]} one instead.")
+            Kernel.pbMessage("#{$Trainer.name} misses the #{accessory} #{name} and puts on the #{arr[0][0][0][$Trainer.character_ID]} one instead.")
             $Trainer.hair=[0,sv] if bodypart==1
             $Trainer.top=[0,sv] if bodypart==2
             $Trainer.bottom=[0,sv] if bodypart==3
@@ -739,6 +739,7 @@ class PokeBattle_Trainer
   
   def clothesUnlocking
     if !@clothesUnlocking
+      p hi
       @clothesUnlocking=[]
       @clothesUnlocking.push cnvrtBoolArr(HAIR_ITEMS)
       @clothesUnlocking.push cnvrtBoolArr(TOP_ITEMS)
@@ -851,20 +852,20 @@ class CharacterCustomizationScene
     individualArrayFiles(files,ACCESSORY_ITEMS,"accessories")
     if USE_BASE_GRAPHIC
       metadata=pbLoadMetadata
-      filenames=metadata[0][MetadataPlayerA+$PokemonGlobal.playerID]
+      filenames=metadata[0][MetadataPlayerA+$Trainer.character_ID]
       for i in 0...filenames.length
         if filenames[i].is_a?(String) && !(filenames[i]=="xxx")
           basefiles.push("Graphics/Characters/"+filenames[i]+"_base")
         end
       end
       # Trainer backsprite
-      basefiles.push("Graphics/Trainers/trback00#{$PokemonGlobal.playerID}_base")
+      basefiles.push("Graphics/Trainers/trback00#{$Trainer.character_ID}_base")
       # Intro Image/Trainercard Image
       filepath="Graphics/Pictures/"
       filepath+= $Trainer.isFemale? ? "introGirl" : "introBoy"
       basefiles.push(filepath+"_base")
       # Map Player
-      basefiles.push("Graphics/Pictures/mapPlayer00#{$PokemonGlobal.playerID}_base")
+      basefiles.push("Graphics/Pictures/mapPlayer00#{$Trainer.character_ID}_base")
     end
     # Creating a blank bitmap
     files_to_add=[]
@@ -918,7 +919,7 @@ class CharacterCustomizationScene
   # updates the Accessory bitmap
   def updateAccessoryBitmap 
     @sprites["playerAccessory"].bitmap.clear
-    endname=(getAccessoryIndex(@cmdwindow2.index)).to_s+($PokemonGlobal.playerID+65).chr
+    endname=(getAccessoryIndex(@cmdwindow2.index)).to_s+($Trainer.character_ID+65).chr
     name="overworld walk/"+@accessoryNames[@index]+"/"+endname
     if File.exists?("Graphics/Characters/"+name+".png")
       @sprites["playerAccessory"].charset=name
@@ -943,7 +944,7 @@ class CharacterCustomizationScene
   def updateAccessoryBitmap2
     @sprites["playerAccessory"].bitmap.clear
     frontname="overworld walk/"+@accessoryNames[@index]+"/"+(getAccessoryIndex(@indexR)).to_s
-    name=frontname+"/"+(getAccessoryIndex2).to_s+($PokemonGlobal.playerID+65).chr
+    name=frontname+"/"+(getAccessoryIndex2).to_s+($Trainer.character_ID+65).chr
     if File.exists?("Graphics/Characters/"+name+".png")
       @sprites["playerAccessory"].charset=name
     end
@@ -980,7 +981,7 @@ class CharacterCustomizationScene
     bodypart=arr[0]
     #Access original array to check whether or not item has variants.
     for i in 0...bodypart.length
-      if bodypart[i][0][$PokemonGlobal.playerID]==name
+      if bodypart[i][0][$Trainer.character_ID]==name
         ret=((bodypart[i][1] == true) || (bodypart[i][1] == false))
       end
     end
@@ -1221,7 +1222,7 @@ class ChooseBase
     #Version 17.2 Difference Below
     @commands=CommandMenuList.new
     for i in 0...BASE_GRAPHICS.length
-      temp=BASE_GRAPHICS[i][$PokemonGlobal.playerID]
+      temp=BASE_GRAPHICS[i][$Trainer.character_ID]
       @commands.add("main",temp.downcase,_INTL(temp))
     end
     #Version 17.2 Difference Above
@@ -1234,13 +1235,13 @@ class ChooseBase
     @sprites["window2"]=SpriteWindow_Base.new(8,208,128,128)
     @sprites["window"].z=1000
     @sprites["window2"].z=1000
-    temp="/examples/0"+($PokemonGlobal.playerID+65).chr
+    temp="/examples/0"+($Trainer.character_ID+65).chr
     @sprites["baseRep"]= IconSprite.new(0,0,@viewport)
     @sprites["baseRep"].setBitmap("Graphics/Characters/base graphics"+temp)
     @sprites["baseRep"].x=@sprites["window"].width/2-@sprites["baseRep"].bitmap.width/2 +8
     @sprites["baseRep"].y=@sprites["window"].height/2-@sprites["baseRep"].bitmap.height/2 +8
     @sprites["baseRep"].z=9999999
-    temp="/"+WALK_FOLDER+"/0"+($PokemonGlobal.playerID+65).chr
+    temp="/"+WALK_FOLDER+"/0"+($Trainer.character_ID+65).chr
     @sprites["walkSprite"]=TrainerWalkingCharSprite.new("base graphics"+temp,@viewport)
     @sprites["walkSprite"].x=@sprites["window2"].width/2-@sprites["walkSprite"].bitmap.width/2 +8
     @sprites["walkSprite"].y=@sprites["window2"].height/2-@sprites["walkSprite"].bitmap.height/2 +208
@@ -1267,12 +1268,12 @@ class ChooseBase
   def addBaseFiles
     files=[]
     metadata=pbLoadMetadata
-    filenames=metadata[0][MetadataPlayerA+$PokemonGlobal.playerID]
+    filenames=metadata[0][MetadataPlayerA+$Trainer.character_ID]
     root="Graphics/Characters/base graphics/"
     # Trainer backsprite
     for j in 0...@commands.list.length
       name=SPRITE_CONVERT_HASH["#{$game_player.character_name}"]
-      files.push(root+name+"/#{j}"+($PokemonGlobal.playerID+65).chr)
+      files.push(root+name+"/#{j}"+($Trainer.character_ID+65).chr)
     end
     # Creating a blank bitmap
     size_check=Bitmap.new("Graphics/Characters/#{$game_player.character_name}")
@@ -1303,8 +1304,8 @@ class ChooseBase
     return if !$Trainer
     return if !filepath.is_a?(String) || !folder.is_a?(String)
     name="Graphics/Characters/base graphics/"+folder+"/"+(@sprites["cmdwindow"].index).to_s
-    if File.exists?(name+($PokemonGlobal.playerID+65).chr+".png")
-      bmp=Bitmap.new(name+($PokemonGlobal.playerID+65).chr)
+    if File.exists?(name+($Trainer.character_ID+65).chr+".png")
+      bmp=Bitmap.new(name+($Trainer.character_ID+65).chr)
     else
       # Creating a blank bitmap
       size_check=Bitmap.new("Graphics/Characters/#{$game_player.character_name}")
@@ -1323,7 +1324,7 @@ class ChooseBase
     return if !$Trainer
     # Trainer charsets
     metadata=pbLoadMetadata
-    filenames=metadata[0][MetadataPlayerA+$PokemonGlobal.playerID]
+    filenames=metadata[0][MetadataPlayerA+$Trainer.character_ID]
     for i in 0...filenames.length
       if filenames[i].is_a?(String) && !(filenames[i]=="xxx")
         filepath="Graphics/Characters/#{filenames[i]}"
@@ -1332,7 +1333,7 @@ class ChooseBase
       end
     end
     # Trainer backsprite
-    helpr="trback00#{$PokemonGlobal.playerID}"
+    helpr="trback00#{$Trainer.character_ID}"
     filepath="Graphics/Trainers/"
     folder=SPRITE_CONVERT_HASH[helpr]
     saveBase(filepath+helpr,folder)
@@ -1342,7 +1343,7 @@ class ChooseBase
     folder=SPRITE_CONVERT_HASH[helpr]
     saveBase(filepath+helpr,folder)
     # Map Player
-    helpr="mapPlayer00#{$PokemonGlobal.playerID}"
+    helpr="mapPlayer00#{$Trainer.character_ID}"
     folder=SPRITE_CONVERT_HASH[helpr]
     saveBase(filepath+helpr,folder)
   end
@@ -1360,11 +1361,11 @@ class ChooseBase
       @sprites["cmdwindow"].update
       if @sprites["cmdwindow"].index != @index
         @index=@sprites["cmdwindow"].index
-        newname="examples/"+(@sprites["cmdwindow"].index).to_s+($PokemonGlobal.playerID+65).chr
+        newname="examples/"+(@sprites["cmdwindow"].index).to_s+($Trainer.character_ID+65).chr
         if File.exists?("Graphics/Characters/base graphics/"+newname+".png")
           @sprites["baseRep"].name=("Graphics/Characters/base graphics/"+newname)
         end
-        newname=WALK_FOLDER+"/"+(@sprites["cmdwindow"].index).to_s+($PokemonGlobal.playerID+65).chr
+        newname=WALK_FOLDER+"/"+(@sprites["cmdwindow"].index).to_s+($Trainer.character_ID+65).chr
         if File.exists?("Graphics/Characters/base graphics/"+newname+".png")
           @sprites["walkSprite"].charset=("base graphics/"+newname)
         end
