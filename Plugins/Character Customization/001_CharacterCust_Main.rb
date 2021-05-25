@@ -548,10 +548,10 @@ def lockAccessory(accessory,variant=nil)
 end
 
 #==================================================================================
-# * Initializing class PokeBattle_Trainer objects.
+# * Initializing class Player objects.
 #==================================================================================
 
-class PokeBattle_Trainer
+class Player < Trainer
   attr_accessor :character_customization
   attr_accessor :hair
   attr_accessor :top
@@ -757,7 +757,6 @@ end
 #==================================================================================
 
 class CharacterCustomizationScene
-  
   def initialize
     @savegetup = true
     if !defined?($Trainer.clothesUnlocking)    # Checks if the Script is functional.
@@ -851,8 +850,7 @@ class CharacterCustomizationScene
     individualArrayFiles(files,HEADGEAR_ITEMS,"headgear")
     individualArrayFiles(files,ACCESSORY_ITEMS,"accessories")
     if USE_BASE_GRAPHIC
-      metadata=pbLoadMetadata
-      filenames=metadata[0][MetadataPlayerA+$Trainer.character_ID]
+      filenames=GameData::Metadata.get_player($Trainer.character_ID)
       for i in 0...filenames.length
         if filenames[i].is_a?(String) && !(filenames[i]=="xxx")
           basefiles.push("Graphics/Characters/"+filenames[i]+"_base")
@@ -1267,8 +1265,7 @@ class ChooseBase
   
   def addBaseFiles
     files=[]
-    metadata=pbLoadMetadata
-    filenames=metadata[0][MetadataPlayerA+$Trainer.character_ID]
+    filenames=GameData::Metadata.get_player($Trainer.character_ID)
     root="Graphics/Characters/base graphics/"
     # Trainer backsprite
     for j in 0...@commands.list.length
@@ -1323,8 +1320,7 @@ class ChooseBase
   def saveAllBases
     return if !$Trainer
     # Trainer charsets
-    metadata=pbLoadMetadata
-    filenames=metadata[0][MetadataPlayerA+$Trainer.character_ID]
+    filenames=GameData::Metadata.get_player($Trainer.character_ID)
     for i in 0...filenames.length
       if filenames[i].is_a?(String) && !(filenames[i]=="xxx")
         filepath="Graphics/Characters/#{filenames[i]}"
