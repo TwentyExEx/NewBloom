@@ -132,9 +132,9 @@ def pbExplorationChoose(text,indexvariable,namevariable)
     choices=[]
     for i in 0...count
       pokemon=pbExplorationState.party[i]
-      if pokemon.isMale?
+      if pkmn.male?
         choices.push(_ISPRINTF("{1:s} (♂, Lv{2:d})",pokemon.name,pokemon.level))
-      elsif pokemon.isFemale?
+      elsif pkmn.female?
         choices.push(_ISPRINTF("{1:s} (♀, Lv{2:d})",pokemon.name,pokemon.level))
       else
         choices.push(_ISPRINTF("{1:s} (Lv{2:d})",pokemon.name,pokemon.level))
