@@ -351,7 +351,7 @@ end
 # defining new method pbChooseEncounter to choose the pokemon on the tile (x,y)
 #===============================================================================
 def pbChooseEncounter(x,y,repel=false)
-  return if $Trainer.ablePokemonCount==0   #check if trainer has pokemon
+  return if $Trainer.able_pokemon_count==0   #check if trainer has pokemon
   encounterType = $PokemonEncounters.pbEncounterTypeOnTile(x,y)
   return if encounterType<0 #check if there are encounters
   return if !$PokemonEncounters.isEncounterPossibleHereOnTile?(x,y)
@@ -401,7 +401,7 @@ def pbPlaceEncounter(x,y,encounter,gender = nil,form = nil,isShiny = nil)
   # Show grass rustling animations when on grass
     $scene.spriteset.addUserAnimation(RUSTLE_NORMAL_ANIMATION_ID,x,y,true,1)
   end
-  ifGameData::TerrainTag.try_get(map.terrain_tags[tile_id]).id == :CaveTile
+  if GameData::TerrainTag.try_get(map.terrain_tags[tile_id]).id == :CaveTile
   # Show cave dust animations when in cave
     $scene.spriteset.addUserAnimation(DUST_ANIMATION_ID,x,y,true,1)
   end 
@@ -427,22 +427,28 @@ end
 #===============================================================================
 class PokemonEncounters
   def pbEncounterTypeOnTile(x,y)
-    if GameData::TerrainTag.try_get(map.terrain_tags[tile_id]).id == :Water
-      return EncounterTypes::Water
-    elsif self.has_cave_encounters?
-      return EncounterTypes::Cave
-    elsif self.has_normal_land_encounters?
-      time = pbGetTimeNow
-      enctype = EncounterTypes::Land
-      enctype = EncounterTypes::LandNight if self.has_encounter_type?(EncounterTypes::LandNight) && PBDayNight.isNight?(time)
-      enctype = EncounterTypes::LandDay if self.has_encounter_type?(EncounterTypes::LandDay) && PBDayNight.isDay?(time)
-      enctype = EncounterTypes::LandMorning if self.has_encounter_type?(EncounterTypes::LandMorning) && PBDayNight.isMorning?(time)
-      if pbInBugContest? && self.has_encounter_type?(EncounterTypes::BugContest)
-        enctype = EncounterTypes::BugContest
-      end
-      return enctype
-    end
-    return -1
+	event = $game_player
+	thistile = $MapFactory.getRealTilePos(event.map.map_id,event.x,event.y)
+  	map = $MapFactory.getMap(thistile[0])
+  	for i in [2, 1, 0]
+  		tile_id = map.data[thistile[1],thistile[2],i]
+	    if GameData::TerrainTag.try_get(map.terrain_tags[tile_id]).id == :Water
+	      return GameData::EncounterType.get($PokemonTemp.encounterType).id == :Water
+	    elsif self.has_cave_encounters?
+	      return GameData::EncounterType.get($PokemonTemp.encounterType).id == :Cave
+	    elsif self.has_normal_land_encounters?
+	      time = pbGetTimeNow
+	      enctype = GameData::EncounterType::Land
+	      enctype = EncounterTypes::LandNight if self.has_encounter_type?(EncounterTypes::LandNight) && PBDayNight.isNight?(time)
+	      enctype = EncounterTypes::LandDay if self.has_encounter_type?(EncounterTypes::LandDay) && PBDayNight.isDay?(time)
+	      enctype = EncounterTypes::LandMorning if self.has_encounter_type?(EncounterTypes::LandMorning) && PBDayNight.isMorning?(time)
+	      if pbInBugContest? && self.has_encounter_type?(GameData::EncounterType.get($PokemonTemp.encounterType).id == :BugContest)
+	        enctype = GameData::EncounterType.get($PokemonTemp.encounterType).id == :BugContest
+	      end
+	      return enctype
+	    end
+	return -1
+	end
   end
   
   def isEncounterPossibleHereOnTile?(x,y)
@@ -571,7 +577,7 @@ def pbSingleOrDoubleWildBattle(species,level,map_id,x,y,gender = nil,form = nil,
     terrainTag = $game_map.terrain_tag(x,y)
   end
   if !$PokemonTemp.forceSingleBattle && !pbInSafari? && ($PokemonGlobal.partner ||
-       ($Trainer.ablePokemonCount>1 && GameData::TerrainTag.try_get(map.terrain_tags[tile_id]).double_wild_encounters == true && rand(100)<30))
+       ($Trainer.able_pokemon_count>1 && GameData::TerrainTag.try_get(map.terrain_tags[tile_id]).double_wild_encounters == true && rand(100)<30))
       encounter2 = $PokemonEncounters.pbEncounteredPokemon($PokemonTemp.encounterType)
       encounter2 = EncounterModifier.trigger(encounter2)
       pbDoubleWildBattle(species,level,encounter2[0],encounter2[1],nil,true,false,gender,form,shinysprite,nil,nil,nil)
@@ -591,7 +597,7 @@ def pbWildBattleCore(*args)
   outcomeVar = $PokemonTemp.battleRules["outcomeVar"] || 1
   canLose    = $PokemonTemp.battleRules["canLose"] || false
   # Skip battle if the player has no able Pokémon, or if holding Ctrl in Debug mode
-  if $Trainer.ablePokemonCount==0 || ($DEBUG && Input.press?(Input::CTRL))
+  if $Trainer.able_pokemon_count==0 || ($DEBUG && Input.press?(Input::CTRL))
     pbMessage(_INTL("SKIPPING BATTLE...")) if $Trainer.pokemonCount>0
     pbSet(outcomeVar,1)   # Treat it as a win
     $PokemonTemp.clearBattleRules
