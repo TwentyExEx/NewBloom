@@ -1,0 +1,4 @@
+Name         = Misc Scripts
+Version      = 1.0.0
+Website      = hi
+Credits      = people
