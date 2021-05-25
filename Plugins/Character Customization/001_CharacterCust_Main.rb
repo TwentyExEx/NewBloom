@@ -860,7 +860,7 @@ class CharacterCustomizationScene
       basefiles.push("Graphics/Trainers/trback00#{$Trainer.character_ID}_base")
       # Intro Image/Trainercard Image
       filepath="Graphics/Pictures/"
-      filepath+= $Trainer.isFemale? ? "introGirl" : "introBoy"
+      filepath+= $Trainer.female? ? "introGirl" : "introBoy"
       basefiles.push(filepath+"_base")
       # Map Player
       basefiles.push("Graphics/Pictures/mapPlayer00#{$Trainer.character_ID}_base")
@@ -1335,7 +1335,7 @@ class ChooseBase
     saveBase(filepath+helpr,folder)
     # Intro Image/Trainercard Image
     filepath="Graphics/Pictures/"
-    helpr=$Trainer.isFemale? ? "introGirl" : "introBoy"  #Modify this line if you want more than two characters.
+    helpr=$Trainer.female? ? "introGirl" : "introBoy"  #Modify this line if you want more than two characters.
     folder=SPRITE_CONVERT_HASH[helpr]
     saveBase(filepath+helpr,folder)
     # Map Player

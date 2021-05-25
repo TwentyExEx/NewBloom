@@ -277,7 +277,7 @@ def saveAllCustomizedBitmapsToFolder
   saveCustomizedBitmapToFolder(filepath+helpr,folder)
   # Intro Image/Trainercard Image
   filepath="Graphics/Pictures/"
-  helpr=$Trainer.isFemale? ? "introGirl" : "introBoy"  #Modify this line if you want more than two characters.
+  helpr=$Trainer.female? ? "introGirl" : "introBoy"  #Modify this line if you want more than two characters.
   folder=SPRITE_CONVERT_HASH[helpr]
   saveCustomizedBitmapToFolder(filepath+helpr,folder)
   # Map Player
@@ -327,7 +327,7 @@ def saveAllOutfits
   saveOutfit("Graphics/Trainers/trback00#{$Trainer.character_ID}")
   # Intro Image/Trainercard Image
   filepath="Graphics/Pictures/"
-  filepath+= $Trainer.isFemale? ? "introGirl" : "introBoy"
+  filepath+= $Trainer.female? ? "introGirl" : "introBoy"
   saveOutfit(filepath)
   # Map Player
   saveOutfit("Graphics/Pictures/mapPlayer00#{$Trainer.character_ID}")
@@ -356,7 +356,7 @@ def reqFilesExist
   end
   # Intro Image/Trainercard Image
   filepath="Graphics/Pictures/"
-  filepath+= $Trainer.isFemale? ? "introGirl" : "introBoy"
+  filepath+= $Trainer.female? ? "introGirl" : "introBoy"
   if (!File.exists?(filepath+".png") || !File.exists?(filepath+"_curr.png"))
     return false
   end
