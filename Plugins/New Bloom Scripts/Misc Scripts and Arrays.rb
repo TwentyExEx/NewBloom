@@ -54,23 +54,24 @@ Events.onStepTakenTransferPossible+=proc {|sender,e|
   thistile = $MapFactory.getRealTilePos(event.map.map_id,event.x,event.y)
   map = $MapFactory.getMap(thistile[0])
   if event==$game_player
-    return if $PokemonGlobal.bicycle || $PokemonGlobal.surfing
-    for i in [2, 1, 0]
-      tile_id = map.data[thistile[1],thistile[2],i]
-      if GameData::TerrainTag.try_get(map.terrain_tags[tile_id]).id == :Grass
-        if ($PokemonSystem.runstyle == 1 && !Input.press?(Input::ACTION)) || ($PokemonSystem.runstyle == 0 && Input.press?(Input::ACTION))
-          pbSEPlay("se_step_run_grass")
+    if !$PokemonGlobal.bicycle || !$PokemonGlobal.surfing
+      for i in [2, 1, 0]
+        tile_id = map.data[thistile[1],thistile[2],i]
+        if GameData::TerrainTag.try_get(map.terrain_tags[tile_id]).id == :Grass
+          if ($PokemonSystem.runstyle == 1 && !Input.press?(Input::ACTION)) || ($PokemonSystem.runstyle == 0 && Input.press?(Input::ACTION))
+            pbSEPlay("se_step_run_grass")
+          else
+            pbSEPlay("se_step_grass")
+          end
+        elsif !GameData::MapMetadata.get($game_map.map_id).outdoor_map || GameData::TerrainTag.try_get(map.terrain_tags[tile_id]).id == :Bridge || GameData::TerrainTag.try_get(map.terrain_tags[tile_id]).id == :Road
+            pbSEPlay("se_step_default")
+        elsif GameData::TerrainTag.try_get(map.terrain_tags[tile_id]).id == :Ice
         else
-          pbSEPlay("se_step_grass")
-        end
-      elsif !GameData::MapMetadata.get($game_map.map_id).outdoor_map || GameData::TerrainTag.try_get(map.terrain_tags[tile_id]).id == :Bridge || GameData::TerrainTag.try_get(map.terrain_tags[tile_id]).id == :Road
-          pbSEPlay("se_step_default")
-      elsif GameData::TerrainTag.try_get(map.terrain_tags[tile_id]).id == :Ice
-      else
-        if ($PokemonSystem.runstyle == 1 && !Input.press?(Input::ACTION)) || ($PokemonSystem.runstyle == 0 && Input.press?(Input::ACTION))
-          pbSEPlay("se_step_run_dirt")
-        else
-          pbSEPlay("se_step_dirt")
+          if ($PokemonSystem.runstyle == 1 && !Input.press?(Input::ACTION)) || ($PokemonSystem.runstyle == 0 && Input.press?(Input::ACTION))
+            pbSEPlay("se_step_run_dirt")
+          else
+            pbSEPlay("se_step_dirt")
+          end
         end
       end
     end
