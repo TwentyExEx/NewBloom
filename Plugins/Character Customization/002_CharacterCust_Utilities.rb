@@ -247,14 +247,14 @@ def saveCustomizedBitmapToFolder(filepath,folder)
   # Safety Copy
   if !File.exists?(filepath+"_safetyCopy"+".png") && $DEBUG
     safetyCopy=Bitmap.new(filepath)
-    safetyCopy.saveToPng(filepath+"_safetyCopy"+".png")
+    safetyCopy.to_file(filepath+"_safetyCopy"+".png")
   end
   # Deleting old file
   if !USE_BASE_GRAPHIC
     bmp.clear
   end
   drawCharacterCustomizedBitmap(folder,bmp)
-  bmp.saveToPng(filepath+"_curr.png")
+  bmp.to_file(filepath+"_curr.png")
 end
 
 # saves the costumized bitmaps to the actual game folders.
@@ -295,7 +295,7 @@ def saveOutfit(filepath)
   if (File.exists?(filepath+".png") && File.exists?(filepath+"_curr.png"))
     File.delete(filepath+".png")
     bmp=Bitmap.new(filepath+"_curr.png")
-    bmp.saveToPng(filepath+".png")
+    bmp.to_file(filepath+".png")
   else
     if $DEBUG
       p "ERROR: Unable to save file at #{filepath}"

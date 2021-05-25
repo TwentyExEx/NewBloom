@@ -884,7 +884,7 @@ class CharacterCustomizationScene
       Kernel.pbMessage("The game is missing one or more graphic files for the Character Customization.")
       ret=Kernel.pbConfirmMessage("Would you like to add these files as blank placeholder sprites in order to let this Script work properly?")
       if ret
-        files_to_add.length.times {|i| blank_bitmap.saveToPng(files_to_add[i])} 
+        files_to_add.length.times {|i| blank_bitmap.to_file(files_to_add[i])} 
         Kernel.pbMessage("The missing files were added to the Graphics/Characters/ folder. The script will continue working as supposed now.")
       else
         Kernel.pbMessage("The script stopped running until these neccessary files were added:")
@@ -1286,7 +1286,7 @@ class ChooseBase
       Kernel.pbMessage("The game is missing one or more graphic files for the Character Customization.")
       ret=Kernel.pbConfirmMessage("Would you like to add these files as blank placeholder sprites in order to let this Script work properly?")
       if ret
-        files_to_add.length.times {|i| blank_bitmap.saveToPng(files_to_add[i])} 
+        files_to_add.length.times {|i| blank_bitmap.to_file(files_to_add[i])} 
         Kernel.pbMessage("The missing files were added to the Graphics/Characters/base graphics/ folder. The script will continue working as supposed now.")
       else
         Kernel.pbMessage("The script stopped running until these neccessary files were added:")
@@ -1311,10 +1311,10 @@ class ChooseBase
     # Safety Copy
     if !File.exists?(filepath+"_safetyCopy"+".png") && $DEBUG
       safetyCopy=Bitmap.new(filepath)
-      safetyCopy.saveToPng(filepath+"_safetyCopy"+".png")
+      safetyCopy.to_file(filepath+"_safetyCopy"+".png")
     end
-    bmp.saveToPng(filepath+".png")
-    bmp.saveToPng(filepath+"_base.png")
+    bmp.to_file(filepath+".png")
+    bmp.to_file(filepath+"_base.png")
   end
   
   def saveAllBases
