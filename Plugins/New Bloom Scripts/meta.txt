@@ -1,0 +1,4 @@
+Name         = New Bloom Shit
+Version      = 1.0.0
+Website      = hi
+Credits      = kallisto
