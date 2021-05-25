@@ -273,6 +273,7 @@ class PokemonTemp
   attr_accessor :surfJump
   attr_accessor :endSurf
   attr_accessor :forceSingleBattle
+  attr_accessor :savedoutfit
 
   def initialize
     @menuLastChoice         = 0
@@ -281,5 +282,6 @@ class PokemonTemp
     @begunNewGame           = false
     @miniupdate             = false
     @forceSingleBattle      = false
+    @savedoutfit            = true
   end
 end
