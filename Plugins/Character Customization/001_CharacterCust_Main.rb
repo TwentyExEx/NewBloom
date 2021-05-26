@@ -739,7 +739,6 @@ class Player < Trainer
   
   def clothesUnlocking
     if !@clothesUnlocking
-      p hi
       @clothesUnlocking=[]
       @clothesUnlocking.push cnvrtBoolArr(HAIR_ITEMS)
       @clothesUnlocking.push cnvrtBoolArr(TOP_ITEMS)
@@ -820,11 +819,26 @@ class CharacterCustomizationScene
     @sprites["heading2"].x=Graphics.width-@sprites["heading2"].width
     #Version 17.2 Difference Below
     @commands=CommandMenuList.new
-    @commands.add("main",{name: 'hair', description: '_INTL("Hair")'})
-    @commands.add("main","tops",_INTL("Tops"))
-    @commands.add("main","bottoms",_INTL("Bottoms"))
-    @commands.add("main","headgear",_INTL("Headgear"))
-    @commands.add("main","accessories",_INTL("Accessories"))
+    @commands.add("hair",{
+      "parent"      => "main",
+      "name"        => _INTL("Hair")
+    })
+    @commands.add("tops",{
+      "parent"      => "main",
+      "name"        => _INTL("Tops")
+    })
+    @commands.add("bottoms",{
+      "parent"      => "main",
+      "name"        => _INTL("Bottoms")
+    })
+    @commands.add("headgear",{
+      "parent"      => "main",
+      "name"        => _INTL("Headgear")
+    })
+    @commands.add("accessories",{
+      "parent"      => "main",
+      "name"        => _INTL("Accessories")
+    })
     #Version 17.2 Difference Above
     @sprites["cmdwindow"]=Window_CommandPokemonEx.new(@commands.list)
     @sprites["cmdwindow"].viewport=@viewport
@@ -1221,7 +1235,10 @@ class ChooseBase
     @commands=CommandMenuList.new
     for i in 0...BASE_GRAPHICS.length
       temp=BASE_GRAPHICS[i][$Trainer.character_ID]
-      @commands.add("main",{name: 'temp.downcase', description: '_INTL(temp)'})
+      @commands.add(temp.downcase,{
+        "parent"      => "main",
+        "name"        => _INTL(temp)
+      })
     end
     #Version 17.2 Difference Above
     return false if !addBaseFiles
@@ -1269,7 +1286,8 @@ class ChooseBase
     root="Graphics/Characters/base graphics/"
     # Trainer backsprite
     for j in 0...@commands.list.length
-      name=SPRITE_CONVERT_HASH["#{$game_player.character_name}"]
+      pcharacter = "trback00#{$Trainer.character_ID}"
+      name=SPRITE_CONVERT_HASH["#{pcharacter}"]
       files.push(root+name+"/#{j}"+($Trainer.character_ID+65).chr)
     end
     # Creating a blank bitmap
@@ -1329,7 +1347,7 @@ class ChooseBase
       end
     end
     # Trainer backsprite
-    helpr="trback00#{$Trainer.character_ID}"
+    helpr="$game_player.character_name"
     filepath="Graphics/Trainers/"
     folder=SPRITE_CONVERT_HASH[helpr]
     saveBase(filepath+helpr,folder)

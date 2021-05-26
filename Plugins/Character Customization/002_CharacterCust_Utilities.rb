@@ -261,7 +261,7 @@ end
 def saveAllCustomizedBitmapsToFolder
   return if !$Trainer
   # Trainer charsets
-  metadata=pbLoadMetadata
+  metadata=GameData::Metadata.get
   filenames=metadata[0][MetadataPlayerA+$Trainer.character_ID]
   for i in 0...filenames.length
     if filenames[i].is_a?(String) && !(filenames[i]=="xxx")
