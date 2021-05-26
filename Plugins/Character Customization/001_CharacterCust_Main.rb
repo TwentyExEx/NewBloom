@@ -820,7 +820,7 @@ class CharacterCustomizationScene
     @sprites["heading2"].x=Graphics.width-@sprites["heading2"].width
     #Version 17.2 Difference Below
     @commands=CommandMenuList.new
-    @commands.add("main","hair",_INTL("Hair"))
+    @commands.add("main",{name: 'hair', description: '_INTL("Hair")'})
     @commands.add("main","tops",_INTL("Tops"))
     @commands.add("main","bottoms",_INTL("Bottoms"))
     @commands.add("main","headgear",_INTL("Headgear"))
@@ -1221,7 +1221,7 @@ class ChooseBase
     @commands=CommandMenuList.new
     for i in 0...BASE_GRAPHICS.length
       temp=BASE_GRAPHICS[i][$Trainer.character_ID]
-      @commands.add("main",temp.downcase,_INTL(temp))
+      @commands.add("main",{name: 'temp.downcase', description: '_INTL(temp)'})
     end
     #Version 17.2 Difference Above
     return false if !addBaseFiles
