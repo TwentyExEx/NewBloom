@@ -1,118 +1,976 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
-[CAMPER,Liam]
-LoseText = "A very good battle, indeed!"
-Pokemon = DIGLETT,10
-Pokemon = BONSLY,11
+[YOUNGSTER2,Oliver,1]
+Pokemon = RATTATA,1
+Pokemon = SENTRET,1
 #-------------------------------
-[LEADER_Brock,Brock]
-Items = FULLRESTORE,FULLRESTORE
-LoseText = "Very good."
-Pokemon = GEODUDE,12
-    Gender = male
-    Moves = DEFENSECURL,HEADSMASH,ROCKPOLISH,ROCKTHROW
-    AbilityIndex = 0
-    IV = 20,20,20,20,20,20
-Pokemon = ONIX,14
-    Name = Rocky
-    Gender = male
+[YOUNGSTER2,Oliver,2]
+Pokemon = RATTATA,5
+Pokemon = SENTRET,5
+Pokemon = HOOTHOOT,5
+#-------------------------------
+[YOUNGSTER2,Oliver,3]
+Pokemon = RATTATA,5
+Pokemon = SENTRET,5
+Pokemon = HOOTHOOT,5
+Pokemon = TEDDIURSA,5
+#-------------------------------
+[STRIKER,Tester]
+Pokemon = RIOLU,5
+#-------------------------------
+[BUGCATCHER,Kevin,1]
+Pokemon = WEEDLE,1
+Pokemon = SPINARAK,1
+#-------------------------------
+[BUGCATCHER,Kevin,2]
+Pokemon = WEEDLE,5
+Pokemon = SPINARAK,5
+Pokemon = BLIPBUG,5
+#-------------------------------
+[BUGCATCHER,Kevin,3]
+Pokemon = WEEDLE,5
+Pokemon = SPINARAK,5
+Pokemon = BLIPBUG,5
+Pokemon = CUTIEFLY,5
+#-------------------------------
+[CAMPER,Gabe,1]
+Pokemon = ODDISH,1
+#-------------------------------
+[CAMPER,Gabe,2]
+Pokemon = ODDISH,5
+Pokemon = PONYTA,5
+#-------------------------------
+[CAMPER,Gabe,3]
+Pokemon = ODDISH,5
+Pokemon = PONYTA,5
+Pokemon = APPLIN,5
+#-------------------------------
+[PICNICKER,Ester,1]
+Pokemon = BUDEW,1
+Pokemon = SEEDOT,1
+#-------------------------------
+[PICNICKER,Ester,2]
+Pokemon = BUDEW,5
+Pokemon = SEEDOT,5
+Pokemon = APPLIN,5
+#-------------------------------
+[PICNICKER,Ester,2]
+Pokemon = BUDEW,5
+Pokemon = SEEDOT,5
+Pokemon = APPLIN,5
+Pokemon = VULPIX,5
+#-------------------------------
+[POKEMONBREEDER_F,Sara,1]
+Pokemon = PICHU,1
+#-------------------------------
+[POKEMONBREEDER_F,Sara,2]
+Pokemon = PICHU,5
+Pokemon = TOGEPI,5
+#-------------------------------
+[POKEMONBREEDER_F,Sara,3]
+Pokemon = PICHU,5
+Pokemon = TOGEPI,5
+Pokemon = MIMEJR,5
+#-------------------------------
+[FISHERMAN,Bill,1]
+Pokemon = MAGIKARP,1
+#-------------------------------
+[FISHERMAN,Bill,2]
+Pokemon = MAGIKARP,5
+Pokemon = GOLDEEN,5
+#-------------------------------
+[FISHERMAN,Bill,3]
+Pokemon = MAGIKARP,5
+Pokemon = GOLDEEN,5
+Pokemon = WINGULL,5
+#-------------------------------
+[ARTIST,Pablo,1]
+Pokemon = SMEARGLE,1
+#-------------------------------
+[ARTIST,Pablo,2]
+Pokemon = SMEARGLE,5
+Pokemon = MINCCINO,5
+#-------------------------------
+[ARTIST,Pablo,3]
+Pokemon = SMEARGLE,5
+Pokemon = MINCCINO,5
+Pokemon = SIGILYPH,5
+#-------------------------------
+[CYCLIST_M,Nick,1]
+Pokemon = STARLY,1
+Pokemon = BUNEARY,1
+#-------------------------------
+[CYCLIST_M,Nick,2]
+Pokemon = STARLY,5
+Pokemon = BUNEARY,5
+Pokemon = ZIGZAGOON_1,5
+#-------------------------------
+[CYCLIST_M,Nick,3]
+Pokemon = STARLY,5
+Pokemon = BUNEARY,5
+Pokemon = ZIGZAGOON_1,5
+Pokemon = MEOWTH,5
+#-------------------------------
+[BUGCATCHER,Rob,1]
+Pokemon = VENIPEDE,1
+#-------------------------------
+[BUGCATCHER,Rob,2]
+Pokemon = VENIPEDE,5
+Pokemon = DEWPIDER,5
+#-------------------------------
+[BUGCATCHER,Rob,3]
+Pokemon = VENIPEDE,5
+Pokemon = DEWPIDER,5
+Pokemon = SCYTHER,5
+#-------------------------------
+[TUBER_M,Billy,1]
+Pokemon = BUIZEL,1
+#-------------------------------
+[TUBER_M,Billy,2]
+Pokemon = BUIZEL,5
+Pokemon = AZURILL,5
+#-------------------------------
+[TUBER_M,Billy,3]
+Pokemon = BUIZEL,5
+Pokemon = AZURILL,5
+Pokemon = LOTAD,5
+#-------------------------------
+[CAMPER,Martin,1]
+Pokemon = FLETCHLING,1
+#-------------------------------
+[CAMPER,Martin,2]
+Pokemon = FLETCHLING,5
+Pokemon = GOSSIFLEUR,5
+#-------------------------------
+[CAMPER,Martin,3]
+Pokemon = FLETCHLING,5
+Pokemon = GOSSIFLEUR,5
+Pokemon = FOONGUS,5
+#-------------------------------
+[BAKER,Martha,1]
+Pokemon = SKWOVET,1
+Pokemon = MILCERY,1
+#-------------------------------
+[BAKER,Martha,1]
+Pokemon = SKWOVET,5
+Pokemon = MILCERY,5
+#-------------------------------
+[BAKER,Martha,1]
+Pokemon = SKWOVET,5
+Pokemon = MILCERY,5
+Pokemon = VANILLITE,5
+#-------------------------------
+[POKEMONRANGER_F,Patricia,1]
+Pokemon = ROGGENROLA,1
+#-------------------------------
+[POKEMONRANGER_F,Patricia,2]
+Pokemon = ROGGENROLA,5
+Pokemon = SCRAGGY,5
+#-------------------------------
+[POKEMONRANGER_F,Patricia,3]
+Pokemon = ROGGENROLA,5
+Pokemon = SCRAGGY,5
+Pokemon = CUBONE,5
+#-------------------------------
+[POKEFAN_M,Harry,1]
+Pokemon = EMOLGA,1
+Pokemon = STUFFUL,1
+#-------------------------------
+[POKEFAN_M,Harry,2]
+Pokemon = EMOLGA,5
+Pokemon = STUFFUL,5
+#-------------------------------
+[POKEFAN_M,Harry,3]
+Pokemon = EMOLGA,5
+Pokemon = STUFFUL,5
+Pokemon = PLUSLE,5
+#-------------------------------
+[POKEMONBREEDER_M,Wyatt,1]
+Pokemon = ODDISH,1
+Pokemon = ODDISH,1
+#-------------------------------
+[POKEMONBREEDER_M,Wyatt,2]
+Pokemon = ODDISH,5
+Pokemon = ODDISH,5
+Pokemon = ODDISH,5
+#-------------------------------
+[POKEMONBREEDER_M,Wyatt,3]
+Pokemon = ODDISH,5
+Pokemon = ODDISH,5
+Pokemon = ODDISH,5
+Pokemon = ODDISH,5
     Shiny = yes
-    Moves = HEADSMASH,ROCKTHROW,RAGE,ROCKTOMB
-    AbilityIndex = 0
-    Item = SITRUSBERRY
-    IV = 20,20,20,20,20,20
-    Ball = HEAVYBALL
 #-------------------------------
-[TEAMROCKET_M,Grunt,1]
-LoseText = "You're too good for me!"
-Pokemon = WEEPINBELL,21
-    Shadow = yes
+[CYCLIST_F,Leah,1]
+Pokemon = WINGULL,1
 #-------------------------------
-[TEAMROCKET_F,Grunt,1]
-LoseText = "You're too good for me!"
-Pokemon = BURMY,19
-Pokemon = WINGULL,19
-Pokemon = ELECTABUZZ,20
-    Shadow = yes
+[CYCLIST_F,Leah,2]
+Pokemon = WINGULL,5
+Pokemon = PONYTA,5
 #-------------------------------
-[YOUNGSTER,Ben]
-LoseText = "Aww, I lost."
-Pokemon = RATTATA,11
-Pokemon = EKANS,11
+[CYCLIST_F,Leah,3]
+Pokemon = WINGULL,5
+Pokemon = PONYTA,5
+Pokemon = ABRA,5
 #-------------------------------
-[CAMPER,Jeff]
-LoseText = "A very good battle, indeed!"
-Pokemon = SPEAROW,16
-Pokemon = SENTRET,16
+[PSYCHIC_F,Elena,1]
+Pokemon = HATENNA,1
+Pokemon = MUNNA,1
 #-------------------------------
-[CAMPER,Jeff,1]
-LoseText = "You beat me again!"
-Pokemon = FEAROW,29
-Pokemon = FURRET,29
+[PSYCHIC_F,Elena,2]
+Pokemon = HATENNA,5
+Pokemon = MUNNA,5
 #-------------------------------
-[PICNICKER,Susie]
-LoseText = "Defeated! Oh my!"
-Pokemon = MEOWTH,18
+[PSYCHIC_F,Elena,3]
+Pokemon = HATENNA,5
+Pokemon = MUNNA,5
+Pokemon = BALTOY,5
 #-------------------------------
-[PICNICKER,Susie,1]
-LoseText = "Defeated! Oh my!"
-Pokemon = PERSIAN,32
+[NINJABOY,Enzo,1]
+Pokemon = PANCHAM,1
 #-------------------------------
-[HIKER,Ford]
-LoseText = "You're too good for me!"
-Pokemon = MACHOP,19
+[NINJABOY,Enzo,2]
+Pokemon = PANCHAM,5
+Pokemon = CLOBBOPUS,5
 #-------------------------------
-[FISHERMAN,Andrew]
-LoseText = "Washed out!"
-Pokemon = MAGIKARP,14
-Pokemon = MAGIKARP,18
+[NINJABOY,Enzo,3]
+Pokemon = PANCHAM,5
+Pokemon = CLOBBOPUS,5
+Pokemon = PAWNIARD,5
 #-------------------------------
-[BEAUTY,Bridget]
-LoseText = "My Skitty!"
-Pokemon = SKITTY,18
+[BACKPACKER_M,Brady,1]
+Pokemon = BINACLE,1
 #-------------------------------
-[LASS,Crissy]
-LoseText = "You didn't have to win so convincingly!"
-Pokemon = PLUSLE,17
-Pokemon = MINUN,17
+[BACKPACKER_M,Brady,2]
+Pokemon = BINACLE,5
+Pokemon = DWEBBLE,5
 #-------------------------------
-[COOLCOUPLE,Alice & Bob]
-LoseText = "Our teamwork failed!"
-Pokemon = TURTWIG,19
-Pokemon = CHIMCHAR,19
+[BACKPACKER_M,Brady,3]
+Pokemon = BINACLE,5
+Pokemon = DWEBBLE,5
+Pokemon = ONIX,5
 #-------------------------------
-[POKEMONTRAINER_Brendan,Brendan]
-LoseText = "..."
-Pokemon = MARSHTOMP,19
+[FISHERMAN2,Sean,1]
+Pokemon = WIMPOD,1
+Pokemon = GRUBBIN,1
 #-------------------------------
-[SWIMMER2_F,Ariel]
-LoseText = "Washed out!"
-Pokemon = STARYU,15
-Pokemon = GOLDEEN,11
+[FISHERMAN2,Sean,2]
+Pokemon = WIMPOD,5
+Pokemon = GRUBBIN,5
+Pokemon = MAGIKARP,5
 #-------------------------------
-[RIVAL1,Blue]
-LoseText = "Not too shabby."
-Pokemon = PIDGEOTTO,17
-Pokemon = RATTATA,15
-Pokemon = BULBASAUR,18
+[FISHERMAN2,Sean,3]
+Pokemon = WIMPOD,5
+Pokemon = GRUBBIN,5
+Pokemon = MAGIKARP,5
+Pokemon = FEEBAS,5
 #-------------------------------
-[RIVAL1,Blue,1]
-LoseText = "Not too shabby."
-Pokemon = PIDGEOTTO,17
-Pokemon = RATTATA,15
-Pokemon = CHARMANDER,18
+[PICNICKER,Katie,1]
+Pokemon = DRIFLOON,1
 #-------------------------------
-[RIVAL1,Blue,2]
-LoseText = "Not too shabby."
-Pokemon = PIDGEOTTO,17
-Pokemon = RATTATA,15
-Pokemon = SQUIRTLE,18
+[PICNICKER,Katie,2]
+Pokemon = DRIFLOON,5
+Pokemon = DELIBIRD,5
 #-------------------------------
-[CHAMPION,Blue]
-LoseText = "A good battle indeed!"
-Pokemon = VENUSAUR,63
-    Item = SITRUSBERRY
-Pokemon = CHARIZARD,63
-    Item = SITRUSBERRY
-Pokemon = BLASTOISE,63
-    Item = SITRUSBERRY
+[PICNICKER,Katie,3]
+Pokemon = DRIFLOON,5
+Pokemon = DELIBIRD,5
+Pokemon = CHERUBI,5
+#-------------------------------
+[JOGGER,Nico,1]
+Pokemon = YANMA,1
+#-------------------------------
+[JOGGER,Nico,2]
+Pokemon = YANMA,5
+Pokemon = GROWLITHE,5
+#-------------------------------
+[JOGGER,Nico,3]
+Pokemon = YANMA,5
+Pokemon = GROWLITHE,5
+Pokemon = SNEASEL,5
+#-------------------------------
+[BLACKBELT,Hugo,1]
+Pokemon = MIENFOO,1
+#-------------------------------
+[BLACKBELT,Hugo,2]
+Pokemon = MIENFOO,5
+Pokemon = MACHOP,5
+#-------------------------------
+[BLACKBELT,Hugo,3]
+Pokemon = MIENFOO,5
+Pokemon = MACHOP,5
+Pokemon = MAKUHITA,5
+#-------------------------------
+[SWIMMER_M2,Bryce,1]
+Pokemon = SKRELP,1
+#-------------------------------
+[SWIMMER_M2,Bryce,2]
+Pokemon = SKRELP,5
+Pokemon = CHINCHOU,5
+#-------------------------------
+[SWIMMER_M2,Bryce,3]
+Pokemon = SKRELP,5
+Pokemon = CHINCHOU,5
+Pokemon = REMORAID,5
+#-------------------------------
+[BATTLEGIRL,Piper,1]
+Pokemon = TYROGUE,1
+#-------------------------------
+[BATTLEGIRL,Piper,2]
+Pokemon = TYROGUE,5
+Pokemon = FALINKS,5
+#-------------------------------
+[BATTLEGIRL,Piper,3]
+Pokemon = TYROGUE,5
+Pokemon = FALINKS,5
+Pokemon = RIOLU,5
+#-------------------------------
+[HIKER,Emmett,1]
+Pokemon = ROGGENROLA,1
+Pokemon = GEODUDE,1
+#-------------------------------
+[HIKER,Emmett,2]
+Pokemon = ROGGENROLA,5
+Pokemon = GEODUDE,5
+Pokemon = GEODUDE,5
+#-------------------------------
+[HIKER,Emmett,3]
+Pokemon = ROGGENROLA,5
+Pokemon = GEODUDE,5
+Pokemon = GEODUDE,5
+#-------------------------------
+[BACKPACKER_F,Paige,1]
+Pokemon = FLETCHLING,1
+#-------------------------------
+[BACKPACKER_F,Paige,2]
+Pokemon = FLETCHLING,5
+Pokemon = NUMEL,5
+#-------------------------------
+[BACKPACKER_F,Paige,3]
+Pokemon = FLETCHLING,5
+Pokemon = NUMEL,5
+Pokemon = DRILBUR,5
+#-------------------------------
+[PSYCHIC_F2,Maxine,1]
+Pokemon = EXEGGCUTE,1
+#-------------------------------
+[PSYCHIC_F2,Maxine,2]
+Pokemon = EXEGGCUTE,5
+Pokemon = GOTHITA,5
+#-------------------------------
+[PSYCHIC_F2,Maxine,3]
+Pokemon = EXEGGCUTE,5
+Pokemon = GOTHITA,5
+Pokemon = RALTS,5
+#-------------------------------
+[GENTLEMAN_2,Wesley,1]
+Pokemon = HOOTHOOT,1
+#-------------------------------
+[GENTLEMAN_2,Wesley,2]
+Pokemon = HOOTHOOT,5
+Pokemon = HOUNDOUR,5
+#-------------------------------
+[GENTLEMAN_2,Wesley,3]
+Pokemon = HOOTHOOT,5
+Pokemon = HOUNDOUR,5
+Pokemon = MAWILE,5
+#-------------------------------
+[LADY,Claire,1]
+Pokemon = PHANTUMP,1
+#-------------------------------
+[LADY,Claire,2]
+Pokemon = PHANTUMP,5
+Pokemon = ODDISH,5
+#-------------------------------
+[LADY,Claire,3]
+Pokemon = PHANTUMP,5
+Pokemon = ODDISH,5
+Pokemon = SINISTEA,5
+#-------------------------------
+[PSYCHIC_M,Vance,1]
+Pokemon = GASTLY,1
+#-------------------------------
+[PSYCHIC_M,Vance,2]
+Pokemon = GASTLY,5
+Pokemon = STARYU,5
+#-------------------------------
+[PSYCHIC_M,Vance,3]
+Pokemon = GASTLY,5
+Pokemon = STARYU,5
+Pokemon = INKAY,5
+#-------------------------------
+[SCIENTIST_M2,Stefan,1]
+Pokemon = MAGNEMITE,1
+#-------------------------------
+[SCIENTIST_M2,Stefan,2]
+Pokemon = MAGNEMITE,5
+Pokemon = SOLOSIS,5
+#-------------------------------
+[SCIENTIST_M2,Stefan,3]
+Pokemon = MAGNEMITE,5
+Pokemon = SOLOSIS,5
+Pokemon = KOFFING,5
+#-------------------------------
+[ELDER,Harvey,1]
+Pokemon = SINISTEA,1
+Pokemon = DUSKULL,1
+#-------------------------------
+[ELDER,Harvey,2]
+Pokemon = SINISTEA,5
+Pokemon = DUSKULL,5
+#-------------------------------
+[ELDER,Harvey,3]
+Pokemon = EXEGGCUTE,5
+Pokemon = WYNAUT,5
+Pokemon = YAMASK,5
+#-------------------------------
+[BLACKBELT3,Dylan,1]
+Pokemon = SCRAGGY,1
+#-------------------------------
+[BLACKBELT3,Dylan,2]
+Pokemon = SCRAGGY,5
+Pokemon = CROAGUNK,5
+#-------------------------------
+[BLACKBELT3,Dylan,3]
+Pokemon = SCRAGGY,5
+Pokemon = CROAGUNK,5
+Pokemon = PAWNIARD,5
+#-------------------------------
+[CLOWN,Percy,1]
+Pokemon = ABRA,1
+#-------------------------------
+[CLOWN,Percy,2]
+Pokemon = ABRA,5
+Pokemon = HATENNA,5
+#-------------------------------
+[CLOWN,Percy,3]
+Pokemon = ABRA,5
+Pokemon = HATENNA,5
+Pokemon = IMPIDIMP,5
+#-------------------------------
+[ARTIST2,Walter,1]
+Pokemon = BUDEW,1
+#-------------------------------
+[ARTIST2,Walter,2]
+Pokemon = BUDEW,5
+Pokemon = BUNEARY,5
+#-------------------------------
+[ARTIST2,Walter,3]
+Pokemon = BUDEW,5
+Pokemon = BUNEARY,5
+Pokemon = COTTONEE,5
+#-------------------------------
+[BURGLAR,Lewis,1]
+Pokemon = PONYTA,1
+#-------------------------------
+[BURGLAR,Lewis,2]
+Pokemon = PONYTA,5
+Pokemon = KOFFING,5
+#-------------------------------
+[BURGLAR,Lewis,3]
+Pokemon = PONYTA,5
+Pokemon = KOFFING,5
+Pokemon = MEOWTH,5
+#-------------------------------
+[SCIENTIST_F,Amelia,1]
+Pokemon = SKORUPI,1
+#-------------------------------
+[SCIENTIST_F,Amelia,2]
+Pokemon = SKORUPI,5
+Pokemon = MISDREAVUS,5
+#-------------------------------
+[SCIENTIST_F,Amelia,3]
+Pokemon = SKORUPI,5
+Pokemon = MISDREAVUS,5
+Pokemon = KLINK,5
+#-------------------------------
+[LADY2,Valerie,1]
+Pokemon = BOUNSWEET,1
+#-------------------------------
+[LADY2,Valerie,2]
+Pokemon = BOUNSWEET,5
+Pokemon = CLAMPERL,5
+#-------------------------------
+[LADY2,Valerie,3]
+Pokemon = BOUNSWEET,5
+Pokemon = CLAMPERL,5
+Pokemon = CLEFFA,5
+#-------------------------------
+[COOLTRAINER_F4,Maisie,1]
+Pokemon = MAGNEMITE,1
+#-------------------------------
+[COOLTRAINER_F4,Maisie,2]
+Pokemon = MAGNEMITE,5
+Pokemon = SANDILE,5
+#-------------------------------
+[COOLTRAINER_F4,Maisie,3]
+Pokemon = MAGNEMITE,5
+Pokemon = SANDILE,5
+Pokemon = BALTOY,5
+#-------------------------------
+[POLICEMAN,Kevin,1]
+Pokemon = CHINCHOU,1
+#-------------------------------
+[POLICEMAN,Kevin,2]
+Pokemon = CHINCHOU,5
+Pokemon = MORELULL,5
+#-------------------------------
+[POLICEMAN,Kevin,3]
+Pokemon = CHINCHOU,5
+Pokemon = MORELULL,5
+Pokemon = LITWICK,5
+#-------------------------------
+[BURGLAR,Josh,1]
+Pokemon = KOFFING,1
+#-------------------------------
+[BURGLAR,Josh,2]
+Pokemon = KOFFING,5
+Pokemon = VULPIX,5
+#-------------------------------
+[BURGLAR,Josh,3]
+Pokemon = KOFFING,5
+Pokemon = VULPIX,5
+Pokemon = GROWLITHE,5
+#-------------------------------
+[DEPOTAGENT,Rhett,1]
+Pokemon = DIGLETT,1
+#-------------------------------
+[DEPOTAGENT,Rhett,2]
+Pokemon = DIGLETT,5
+Pokemon = DRILBUR,5
+#-------------------------------
+[DEPOTAGENT,Rhett,3]
+Pokemon = DIGLETT,5
+Pokemon = DRILBUR,5
+Pokemon = ONIX,5
+#-------------------------------
+[VETERAN_F,London,1]
+Pokemon = ELGYEM,1
+Pokemon = VULLABY,1
+#-------------------------------
+[VETERAN_F,London,2]
+Pokemon = ELGYEM,5
+Pokemon = VULLABY,5
+Pokemon = PINECO,5
+#-------------------------------
+[VETERAN_F,London,3]
+Pokemon = ELGYEM,5
+Pokemon = VULLABY,5
+Pokemon = PINECO,5
+Pokemon = GOLETT,5
+#-------------------------------
+[VETERANM_2,Dean,1]
+Pokemon = STARLY,1
+Pokemon = SNEASEL,1
+#-------------------------------
+[VETERANM_2,Dean,2]
+Pokemon = STARLY,5
+Pokemon = SNEASEL,5
+Pokemon = MACHOP,5
+#-------------------------------
+[VETERANM_2,Dean,3]
+Pokemon = STARLY,5
+Pokemon = SNEASEL,5
+Pokemon = MACHOP,5
+Pokemon = SNUBBULL,5
+#-------------------------------
+[MEDIUM,Elizabeth,1]
+Pokemon = LITWICK,1
+Pokemon = DUSKULL,1
+#-------------------------------
+[MEDIUM,Elizabeth,2]
+Pokemon = LITWICK,5
+Pokemon = DUSKULL,5
+Pokemon = GASTLY,5
+#-------------------------------
+[MEDIUM,Elizabeth,3]
+Pokemon = LITWICK,5
+Pokemon = DUSKULL,5
+Pokemon = GASTLY,5
+Pokemon = MISDREAVUS,5
+#-------------------------------
+[HARLEQUIN,Axel,1]
+Pokemon = IMPIDIMP,1
+#-------------------------------
+[HARLEQUIN,Axel,2]
+Pokemon = IMPIDIMP,5
+Pokemon = HATENNA,5
+#-------------------------------
+[HARLEQUIN,Axel,3]
+Pokemon = IMPIDIMP,5
+Pokemon = HATENNA,5
+Pokemon = ABRA,5
+#-------------------------------
+[PSYCHIC_M2,Miles,1]
+Pokemon = ABRA,1
+#-------------------------------
+[PSYCHIC_M2,Miles,2]
+Pokemon = ABRA,5
+Pokemon = MUNNA,5
+#-------------------------------
+[PSYCHIC_M2,Miles,3]
+Pokemon = ABRA,5
+Pokemon = MUNNA,5
+Pokemon = WOOBAT,5
+#-------------------------------
+[HARLEQUIN,Axel,1]
+Pokemon = ABRA,1
+#-------------------------------
+[HARLEQUIN,Axel,2]
+Pokemon = ABRA,5
+Pokemon = MUNNA,5
+#-------------------------------
+[HARLEQUIN,Axel,3]
+Pokemon = ABRA,5
+Pokemon = MUNNA,5
+Pokemon = WOOBAT,5
+#-------------------------------
+[BATTLEGIRL2,Harper,1]
+Pokemon = TYROGUE,1
+#-------------------------------
+[BATTLEGIRL2,Harper,2]
+Pokemon = TYROGUE,5
+Pokemon = MACHOP,5
+#-------------------------------
+[BATTLEGIRL2,Harper,3]
+Pokemon = TYROGUE,5
+Pokemon = MACHOP,5
+Pokemon = MIENFOO,5
+#-------------------------------
+[WORKER,Elijah,1]
+Pokemon = ROLYCOLY,1
+#-------------------------------
+[WORKER,Elijah,2]
+Pokemon = ROLYCOLY,5
+Pokemon = GURDURR,5
+#-------------------------------
+[WORKER,Elijah,3]
+Pokemon = GEODUDE,5
+Pokemon = GURDURR,5
+Pokemon = DRILBUR,5
+#-------------------------------
+[WORKER2,Jack,1]
+Pokemon = DIGLETT,1
+#-------------------------------
+[WORKER2,Jack,2]
+Pokemon = DIGLETT,5
+Pokemon = GEODUDE,5
+#-------------------------------
+[WORKER2,Jack,3]
+Pokemon = DIGLETT,5
+Pokemon = GEODUDE,5
+Pokemon = ONIX,5
+#-------------------------------
+[IDOL,Hannah,1]
+Pokemon = CLEFFA,1
+Pokemon = CLEFFA,1
+#-------------------------------
+[IDOL,Hannah,2]
+Pokemon = CLEFFA,5
+Pokemon = CLEFFA,5
+Pokemon = CLEFFA,5
+#-------------------------------
+[IDOL,Hannah,3]
+Pokemon = CLEFFA,5
+Pokemon = CLEFFA,5
+Pokemon = CLEFFA,5
+Pokemon = CLEFFA,5
+#-------------------------------
+[NURSE,Charlotte,1]
+Pokemon = GOTHITA,1
+#-------------------------------
+[NURSE,Charlotte,2]
+Pokemon = GOTHITA,5
+Pokemon = MUNNA,5
+#-------------------------------
+[NURSE,Charlotte,3]
+Pokemon = GOTHITA,5
+Pokemon = MUNNA,5
+Pokemon = AUDINO,5
+#-------------------------------
+[PARASOLLADY2,Mia,1]
+Pokemon = SURSKIT,1
+#-------------------------------
+[PARASOLLADY2,Mia,2]
+Pokemon = SURSKIT,5
+Pokemon = VANILLITE,5
+#-------------------------------
+[PARASOLLADY2,Mia,3]
+Pokemon = SURSKIT,5
+Pokemon = VANILLITE,5
+Pokemon = FRILLISH,5
+#-------------------------------
+[AROMALADY,Camille,1]
+Pokemon = BUDEW,1
+#-------------------------------
+[AROMALADY,Camille,2]
+Pokemon = BUDEW,5
+Pokemon = CHERUBI,5
+#-------------------------------
+[AROMALADY,Camille,3]
+Pokemon = BUDEW,5
+Pokemon = CHERUBI,5
+Pokemon = SHROOMISH,5
+#-------------------------------
+[RICHBOY,Dick,1]
+Pokemon = SHINX,1
+Pokemon = AZURILL,1
+#-------------------------------
+[RICHBOY,Dick,2]
+Pokemon = SHINX,5
+Pokemon = AZURILL,5
+Pokemon = YAMPER,5
+#-------------------------------
+[RICHBOY,Dick,3]
+Pokemon = SHINX,5
+Pokemon = AZURILL,5
+Pokemon = YAMPER,5
+Pokemon = VULPIX_1,5
+#-------------------------------
+[SOCIALITE2,Beatrice,1]
+Pokemon = GLAMEOW,1
+Pokemon = PURRLOIN,1
+#-------------------------------
+[SOCIALITE2,Beatrice,2]
+Pokemon = GLAMEOW,5
+Pokemon = PURRLOIN,5
+Pokemon = CARBINK,5
+#-------------------------------
+[SOCIALITE2,Beatrice,3]
+Pokemon = GLAMEOW,5
+Pokemon = PURRLOIN,5
+Pokemon = CARBINK,5
+Pokemon = BUDEW,5
+#-------------------------------
+[NURSERYAIDE,Ingrid,1]
+Pokemon = BUNEARY,1
+#-------------------------------
+[NURSERYAIDE,Ingrid,2]
+Pokemon = BUNEARY,5
+Pokemon = MILTANK,5
+#-------------------------------
+[NURSERYAIDE,Ingrid,3]
+Pokemon = BUNEARY,5
+Pokemon = MILTANK,5
+Pokemon = EXEGGCUTE,5
+#-------------------------------
+[LADY,Molly,1]
+Pokemon = CORSOLA,1
+#-------------------------------
+[LADY,Molly,2]
+Pokemon = CORSOLA,5
+Pokemon = LUVDISC,5
+#-------------------------------
+[LADY,Molly,3]
+Pokemon = CORSOLA,5
+Pokemon = LUVDISC,5
+Pokemon = MAREEP,5
+#-------------------------------
+[AROMALADY,Ivy,1]
+Pokemon = COMFEY,1
+#-------------------------------
+[AROMALADY,Ivy,2]
+Pokemon = COMFEY,5
+Pokemon = COTTONEE,5
+#-------------------------------
+[AROMALADY,Ivy,3]
+Pokemon = COMFEY,5
+Pokemon = COTTONEE,5
+Pokemon = FLABEBE,5
+#-------------------------------
+[BIRDKEEPER_M,Arthur,1]
+Pokemon = SURSKIT,1
+#-------------------------------
+[BIRDKEEPER_M,Arthur,2]
+Pokemon = SURSKIT,5
+Pokemon = VANILLITE,5
+#-------------------------------
+[BIRDKEEPER_M,Arthur,3]
+Pokemon = SURSKIT,5
+Pokemon = VANILLITE,5
+Pokemon = FRILLISH,5
+#-------------------------------
+[PARASOLLADY,Penelope,1]
+Pokemon = LUVDISC,1
+Pokemon = GOLDEEN,1
+#-------------------------------
+[PARASOLLADY,Penelope,2]
+Pokemon = LUVDISC,5
+Pokemon = GOLDEEN,5
+Pokemon = STARYU,5
+#-------------------------------
+[PARASOLLADY,Penelope,3]
+Pokemon = LUVDISC,5
+Pokemon = GOLDEEN,5
+Pokemon = STARYU,5
+Pokemon = WOOPER,5
+#-------------------------------
+[MAID,Alice,1]
+Pokemon = KLEFKI,1
+#-------------------------------
+[MAID,Alice,2]
+Pokemon = KLEFKI,5
+Pokemon = GOOMY,5
+#-------------------------------
+[MAID,Alice,3]
+Pokemon = KLEFKI,5
+Pokemon = GOOMY,5
+Pokemon = RALTS,5
+#-------------------------------
+[WORKER2,Connor,1]
+Pokemon = SWINUB,1
+#-------------------------------
+[WORKER2,Connor,2]
+Pokemon = SWINUB,5
+Pokemon = DWEBBLE,5
+#-------------------------------
+[WORKER2,Connor,3]
+Pokemon = SWINUB,5
+Pokemon = DWEBBLE,5
+Pokemon = SNORUNT,5
+#-------------------------------
+[COOLTRAINER_M2,Grayson,1]
+Pokemon = VANILLITE,1
+Pokemon = EISCUE,1
+#-------------------------------
+[COOLTRAINER_M2,Grayson,2]
+Pokemon = VANILLITE,5
+Pokemon = EISCUE,5
+Pokemon = ROOKIDEE,5
+#-------------------------------
+[COOLTRAINER_M2,Grayson,3]
+Pokemon = VANILLITE,5
+Pokemon = EISCUE,5
+Pokemon = ROOKIDEE,5
+Pokemon = SPHEAL,5
+#-------------------------------
+[BOARDER,Eric,1]
+Pokemon = SNOM,1
+#-------------------------------
+[BOARDER,Eric,2]
+Pokemon = SNOM,5
+Pokemon = CUBCHOO,5
+#-------------------------------
+[BOARDER,Eric,3]
+Pokemon = SNOM,5
+Pokemon = CUBCHOO,5
+Pokemon = SANDSLASH_1,5
+#-------------------------------
+[BACKPACKER_F,Lauren,1]
+Pokemon = TEDDIURSA,1
+Pokemon = WOOLOO,1
+#-------------------------------
+[BACKPACKER_F,Lauren,2]
+Pokemon = TEDDIURSA,5
+Pokemon = WOOLOO,5
+Pokemon = OMANYTE,5
+#-------------------------------
+[BACKPACKER_F,Lauren,3]
+Pokemon = TEDDIURSA,5
+Pokemon = WOOLOO,5
+Pokemon = OMANYTE,5
+#-------------------------------
+[SKIER_F,Ruth,1]
+Pokemon = SNEASEL,1
+#-------------------------------
+[SKIER_F,Ruth,2]
+Pokemon = SNEASEL,5
+Pokemon = BERGMITE,5
+#-------------------------------
+[SKIER_F,Ruth,3]
+Pokemon = SNEASEL,5
+Pokemon = BERGMITE,5
+Pokemon = DELIBIRD,5
+#-------------------------------
+[POKEMONBREEDER_M2,Simon,1]
+Pokemon = TAILLOW,1
+Pokemon = SKITTY,1
+#-------------------------------
+[POKEMONBREEDER_M2,Simon,2]
+Pokemon = TAILLOW,5
+Pokemon = SKITTY,5
+Pokemon = EMOLGA,5
+#-------------------------------
+[POKEMONBREEDER_M2,Simon,3]
+Pokemon = TAILLOW,5
+Pokemon = SKITTY,5
+Pokemon = EMOLGA,5
+Pokemon = SNOVER,5
+#-------------------------------
+[BACKPACKER_M,Landon,1]
+Pokemon = TOGEDEMARU,1
+#-------------------------------
+[BACKPACKER_M,Landon,2]
+Pokemon = TOGEDEMARU,5
+Pokemon = PIDGEY,5
+#-------------------------------
+[BACKPACKER_M,Landon,3]
+Pokemon = TOGEDEMARU,5
+Pokemon = PIDGEY,5
+Pokemon = AMAURA,5
+#-------------------------------
+[COOLTRAINER_F2,Nadia,1]
+Pokemon = SNORUNT,1
+#-------------------------------
+[COOLTRAINER_F2,Nadia,2]
+Pokemon = SNORUNT,5
+Pokemon = YAMASK_1,5
+#-------------------------------
+[COOLTRAINER_F2,Nadia,3]
+Pokemon = SNORUNT,5
+Pokemon = YAMASK_1,5
+Pokemon = DRILBUR,5
+#-------------------------------
+[FISHERMAN,Garrett,1]
+Pokemon = SEEL,1
+Pokemon = MAGIKARP,1
+#-------------------------------
+[FISHERMAN,Garrett,2]
+Pokemon = SEEL,5
+Pokemon = MAGIKARP,5
+Pokemon = SHELLDER,5
+#-------------------------------
+[FISHERMAN,Garrett,3]
+Pokemon = SEEL,5
+Pokemon = MAGIKARP,5
+Pokemon = SHELLDER,5
+Pokemon = CLAMPERL,5
+#-------------------------------
+[HIKER2,Lionel,1]
+Pokemon = ROLYCOLY,1
+#-------------------------------
+[HIKER2,Lionel,2]
+Pokemon = ROLYCOLY,5
+Pokemon = KABUTO,5
+#-------------------------------
+[HIKER2,Lionel,3]
+Pokemon = ROLYCOLY,5
+Pokemon = KABUTO,5
+Pokemon = CHEWTLE,5
+#-------------------------------
+[KIMONOGIRL,Chiaki,1]
+Pokemon = TOGEPI,1
+Pokemon = EEVEE,1
+#-------------------------------
+[KIMONOGIRL,Chiaki,2]
+Pokemon = TOGEPI,5
+Pokemon = EEVEE,5
+#-------------------------------
+[KIMONOGIRL,Chiaki,2]
+Pokemon = TOGEPI,5
+Pokemon = EEVEE,5
+#-------------------------------
+[RIVAL_Eris,Eris]
+Pokemon = SKWOVET,5
+Pokemon = RIOLU,7
+Pokemon = MEOWTH,5
+#-------------------------------
+[BIOMEBOSS_Woody,Woody]
+Pokemon = ROSERADE,65
+Pokemon = DRAPION,65
+Pokemon = VENOMOTH,65
+#-------------------------------
+[BIOMEBOSS_Willow,Willow]
+Pokemon = MIMIKYU,65
+Pokemon = CHANDELURE,65
+Pokemon = TREVENANT,65
