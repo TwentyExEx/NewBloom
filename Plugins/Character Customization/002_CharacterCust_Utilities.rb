@@ -261,8 +261,9 @@ end
 def saveAllCustomizedBitmapsToFolder
   return if !$Trainer
   # Trainer charsets
-  metadata=GameData::Metadata.get
-  filenames=metadata[0][MetadataPlayerA+$Trainer.character_ID]
+  # metadata=GameData::Metadata
+  # filenames=[MetadataPlayerA+$Trainer.character_ID]
+  filenames = GameData::Metadata.get_player($Trainer.character_ID)
   for i in 0...filenames.length
     if filenames[i].is_a?(String) && !(filenames[i]=="xxx")
       filepath="Graphics/Characters/#{filenames[i]}"
@@ -271,7 +272,7 @@ def saveAllCustomizedBitmapsToFolder
     end
   end
   # Trainer backsprite
-  helpr="trback00#{$Trainer.character_ID}"
+  helpr="$game_player.character_name"
   filepath="Graphics/Trainers/"
   folder=SPRITE_CONVERT_HASH[helpr]
   saveCustomizedBitmapToFolder(filepath+helpr,folder)
