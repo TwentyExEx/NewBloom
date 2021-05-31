@@ -313,71 +313,6 @@ def pbRaiseHappinessAndLowerEV(pkmn,scene,stat,messages)
 end
 
 #===============================================================================
-# Change Nature
-#===============================================================================
-def pbChangeNature(pkmn,nature)
-  return false if !GameData::Nature.exists?(nature)
-  pkmn.nature_for_stats = nature
-  pkmn.calc_stats
-  return true
-end
-
-def pbNatureChangeItem(pkmn,nature,item,scene)
-  if [pkmn.nature_for_stats, pkmn.nature].include?(nature)
-    scene.pbDisplay(_INTL("It won't have any effect."))
-    return false
-  else
-    if scene.pbConfirm(_INTL("It might affect {1}'s stats.\nAre you sure you want to use it?",pkmn.name))
-      ret = pbChangeNature(pkmn,nature)
-      scene.pbDisplay(_INTL("{1}'s stats changed due to the effects of the {2}!",pkmn.name,
-                                                                    GameData::Item.get(item).name)) if ret
-    else
-      scene.pbDisplay(_INTL("It won't have any effect."))
-    end
-    return ret
-  end
-end
-
-#===============================================================================
-# Add EXP
-#===============================================================================
-def pbAddEXP(pkmn,exp)
-  new_exp = pkmn.growth_rate.add_exp(pkmn.exp,exp)
-  new_level = pkmn.growth_rate.level_from_exp(new_exp)
-  pkmn.setExp(new_exp)
-  pkmn.calc_stats
-  return new_level
-end
-
-def pbEXPAdditionItem(pkmn,exp,item,scene)
-  current_lv = pkmn.level
-  current_exp = pkmn.exp
-  if pkmn.level >= GameData::GrowthRate.max_level || pkmn.shadowPokemon?
-    scene.pbDisplay(_INTL("It won't have any effect."))
-    return false
-  else
-    new_level = pbAddEXP(pkmn,exp)
-    display_exp = exp
-    if pkmn.growth_rate.maximum_exp < (current_exp + exp)
-      display_exp = pkmn.growth_rate.maximum_exp - current_exp
-    end
-    scene.pbDisplay(_INTL("Your Pokémon gained {1} Exp. Points!",display_exp))
-    if new_level == current_lv
-      scene.pbRefresh
-    else
-      level_diff = new_level - current_lv
-      leftover_exp = pkmn.exp - pkmn.growth_rate.minimum_exp_for_level(new_level)
-      leftover_exp.clamp(0,(pkmn.growth_rate.minimum_exp_for_level(new_level + 1) - 1))
-      level_diff.times do
-        pbChangeLevel(pkmn,pkmn.level+1,scene)
-        scene.pbHardRefresh
-      end
-      pkmn.setExp(pkmn.growth_rate.minimum_exp_for_level(new_level) + leftover_exp)
-    end
-    return true
-  end
-end
-#===============================================================================
 # Battle items
 #===============================================================================
 def pbBattleItemCanCureStatus?(status,pkmn,scene,showMessages)
@@ -610,10 +545,7 @@ def pbUseItemOnPokemon(item,pkmn,scene)
       pbMessage(_INTL("\\se[PC access]You booted up {1}.\1",itm.name)) { scene.pbUpdate }
       if pbConfirmMessage(_INTL("Do you want to teach {1} to {2}?",movename,pkmn.name)) { scene.pbUpdate }
         if pbLearnMove(pkmn,machine,false,true) { scene.pbUpdate }
-          if itm.is_TR?
-            $PokemonBag.pbDeleteItem(item)
-            pkmn.add_first_move(machine)
-          end
+          $PokemonBag.pbDeleteItem(item) if itm.is_TR?
           return true
         end
       end

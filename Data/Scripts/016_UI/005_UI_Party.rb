@@ -1087,31 +1087,6 @@ class PokemonPartyScreen
     return ret
   end
 
-  def pbChooseAblePokemonHelp(helptext,ableProc,allowIneligible=false)
-    annot = []
-    eligibility = []
-    for pkmn in @party
-      elig = ableProc.call(pkmn)
-      eligibility.push(elig)
-      annot.push((elig) ? _INTL("ABLE") : _INTL("NOT ABLE"))
-    end
-    ret = -1
-    @scene.pbSetHelpText(helptext)
-    @scene.pbAnnotate(annot)
-    loop do
-      pkmnid = @scene.pbChoosePokemon
-      break if pkmnid < 0
-      if !eligibility[pkmnid] && !allowIneligible
-        pbDisplay(_INTL("This Pokémon can't be chosen."))
-      else
-        ret = pkmnid
-        break
-      end
-    end
-    pbClearAnnotations
-    return ret
-  end
-
   def pbChooseTradablePokemon(ableProc,allowIneligible=false)
     annot = []
     eligibility = []
@@ -1377,7 +1352,7 @@ def pbChoosePokemon(variableNumber,nameVarNumber,ableProc=nil,allowIneligible=fa
     scene = PokemonParty_Scene.new
     screen = PokemonPartyScreen.new(scene,$Trainer.party)
     if ableProc
-      chosen = screen.pbChooseAblePokemon(ableProc,allowIneligible)
+      chosen=screen.pbChooseAblePokemon(ableProc,allowIneligible)
     else
       screen.pbStartScene(_INTL("Choose a Pokémon."),false)
       chosen = screen.pbChoosePokemon
