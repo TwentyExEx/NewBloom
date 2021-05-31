@@ -353,7 +353,7 @@ end
 def pbChooseEncounter(x,y,repel=false)
   return if $Trainer.able_pokemon_count==0   #check if trainer has pokemon
   encounterType = $PokemonEncounters.pbEncounterTypeOnTile(x,y)
-  return if encounterType<0 #check if there are encounters
+  return if encounterType==nil #check if there are encounters
   return if !$PokemonEncounters.isEncounterPossibleHereOnTile?(x,y)
   $PokemonTemp.encounterType = encounterType
   for event in $game_map.events.values
@@ -429,37 +429,43 @@ class PokemonEncounters
   def pbEncounterTypeOnTile(x,y)
 	event = $game_player
 	thistile = $MapFactory.getRealTilePos(event.map.map_id,event.x,event.y)
-  	map = $MapFactory.getMap(thistile[0])
-  	for i in [2, 1, 0]
-  		tile_id = map.data[thistile[1],thistile[2],i]
-	    if GameData::TerrainTag.try_get(map.terrain_tags[tile_id]).id == :Water
-	      return GameData::EncounterType.get($PokemonTemp.encounterType).id == :Water
-	    elsif self.has_cave_encounters?
-	      return GameData::EncounterType.get($PokemonTemp.encounterType).id == :Cave
+  map = $MapFactory.getMap(thistile[0])
+  for i in [2, 1, 0]
+  	tile_id = map.data[thistile[1],thistile[2],i]
+	   if GameData::TerrainTag.try_get(map.terrain_tags[tile_id]).id == :Water
+	    return GameData::EncounterType.get($PokemonTemp.encounterType).id == :Water
+	   elsif self.has_cave_encounters?
+	    return GameData::EncounterType.get($PokemonTemp.encounterType).id == :Cave
 	    elsif self.has_normal_land_encounters?
 	      time = pbGetTimeNow
-	      enctype = GameData::EncounterType::Land
-	      enctype = EncounterTypes::LandNight if self.has_encounter_type?(EncounterTypes::LandNight) && PBDayNight.isNight?(time)
-	      enctype = EncounterTypes::LandDay if self.has_encounter_type?(EncounterTypes::LandDay) && PBDayNight.isDay?(time)
-	      enctype = EncounterTypes::LandMorning if self.has_encounter_type?(EncounterTypes::LandMorning) && PBDayNight.isMorning?(time)
-	      if pbInBugContest? && self.has_encounter_type?(GameData::EncounterType.get($PokemonTemp.encounterType).id == :BugContest)
-	        enctype = GameData::EncounterType.get($PokemonTemp.encounterType).id == :BugContest
+	      enctype = :Land
+	      enctype = :LandNight if self.has_encounter_type?(:LandNight) && PBDayNight.isNight?(time)
+	      enctype = :LandDay if self.has_encounter_type?(:LandDay) && PBDayNight.isDay?(time)
+	      enctype = :LandMorning if self.has_encounter_type?(:LandMorning) && PBDayNight.isMorning?(time)
+	      if pbInBugContest? && self.has_encounter_type?(:EncounterType.get($PokemonTemp.encounterType).id == :BugContest)
+	        enctype = :BugContest
 	      end
-	      return enctype
-	    end
+	    return enctype
+	  end
 	return -1
 	end
   end
   
   def isEncounterPossibleHereOnTile?(x,y)
-    if GameData::TerrainTag.try_get(map.terrain_tags[tile_id]).id == :Water
-      return true
-    elsif self.has_cave_encounters?
-      return true
-    elsif self.has_normal_land_encounters?
-      return GameData::TerrainTag.try_get(map.terrain_tags[tile_id]).id == :Grass
+  event = $game_player
+  thistile = $MapFactory.getRealTilePos(event.map.map_id,event.x,event.y)
+  map = $MapFactory.getMap(thistile[0])
+    for i in [2, 1, 0]
+      tile_id = map.data[thistile[1],thistile[2],i]
+      if GameData::TerrainTag.try_get(map.terrain_tags[tile_id]).id == :Water
+        return true
+      elsif self.has_cave_encounters?
+        return true
+      elsif self.has_normal_land_encounters?
+        return GameData::TerrainTag.try_get(map.terrain_tags[tile_id]).id == :Grass
+      end
+      return false
     end
-    return false
   end
 end
 
@@ -617,7 +623,7 @@ def pbWildBattleCore(*args)
     if arg.is_a?(PokeBattle_Pokemon)
       foeParty.push(arg)
     elsif arg.is_a?(Array)
-      species = getID(PBSpecies,arg[0])
+      species = arg[0]
       pkmn = pbGenerateWildPokemon(species,arg[1])
       #-----------------------------------------------------------------------------
       #added by derFischae to set the gender, form and shinyflag
@@ -634,7 +640,7 @@ def pbWildBattleCore(*args)
       #-----------------------------------------------------------------------------
       foeParty.push(pkmn)
     elsif sp
-      species = getID(PBSpecies,sp)
+      species = sp
       pkmn = pbGenerateWildPokemon(species,arg)
       foeParty.push(pkmn)
       sp = nil
@@ -704,7 +710,6 @@ end
 #===============================================================================
 # Used when walking in tall grass, hence the additional code.
 def pbWildBattle(species, level, outcomeVar=1, canRun=true, canLose=false,gender = nil,form = nil,shinysprite = nil)
-  species = getID(PBSpecies,species)
   # Potentially call a different pbWildBattle-type method instead (for roaming
   # Pokémon, Safari battles, Bug Contest battles)
   handled = [nil]
