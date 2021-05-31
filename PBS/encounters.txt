@@ -21,8 +21,8 @@ Land
 Land
     BUDEW,5
     BUDEW,5
-    CUTIEFLY_1,5
-    CUTIEFLY_1,5
+    CUTIEFLY,5
+    CUTIEFLY,5
     SPINARAK,5
     SPINARAK,5
     DEWPIDER,5
@@ -73,8 +73,8 @@ Land
     GRUBBIN,5
     GRUBBIN,5
     GRUBBIN,5
-    CUTIEFLY_1,5
-    CUTIEFLY_1,5
+    CUTIEFLY,5
+    CUTIEFLY,5
 Water
     SURSKIT,5
     LOTAD,5

@@ -1,5 +1,5 @@
 #-------------------------------
-[005]
+[006]
 BattleEnv       = MOUNTAIN
 WINTER
   BattleEnv     = SNOW
