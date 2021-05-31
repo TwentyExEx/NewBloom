@@ -148,8 +148,7 @@ class Sprite_Character < RPG::Sprite
       self.oy -= @character.bob_height
     end
     if self.visible
-      if $PokemonSystem.tilemap == 0 ||
-         (@character.is_a?(Game_Event) && @character.name[/regulartone/i])
+      if @character.is_a?(Game_Event) && @character.name[/regulartone/i]
         self.tone.set(0, 0, 0, 0)
       else
         pbDayNightTint(self)
@@ -158,11 +157,8 @@ class Sprite_Character < RPG::Sprite
     self.x          = @character.screen_x
     self.y          = @character.screen_y
     self.z          = @character.screen_z(@ch)
-#    self.zoom_x     = Game_Map::TILE_WIDTH / 32.0
-#    self.zoom_y     = Game_Map::TILE_HEIGHT / 32.0
     self.opacity    = @character.opacity
     self.blend_type = @character.blend_type
-#    self.bush_depth = @character.bush_depth
     if @character.animation_id != 0
       animation = $data_animations[@character.animation_id]
       animation(animation, true)

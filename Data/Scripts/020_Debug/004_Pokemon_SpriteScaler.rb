@@ -397,7 +397,7 @@ end
 
 PluginManager.register({
   :name => "Generation 8 Project for Essentials v19",
-  :version => "1.0.0",
+  :version => "1.0.2",
   :credits => ["Golisopod User","Vendily","TheToxic",
                "HM100","Aioross","WolfPP","MFilice",
                "lolface","KyureJL","DarrylBD99",
