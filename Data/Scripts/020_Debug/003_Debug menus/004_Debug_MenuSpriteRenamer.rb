@@ -43,10 +43,10 @@ module SpriteRenamer
 
   def convert_pokemon_filename(full_name, default_prefix = "")
     name = full_name
-    extension = nil
+    extension = ".png"
     if full_name[/^(.+)\.([^\.]+)$/]   # Of the format something.abc
       name = $~[1]
-      extension = $~[2]
+      extension = "." + $~[2]
     end
     prefix = default_prefix
     form = female = shadow = crack = gmax = ""
@@ -61,12 +61,12 @@ module SpriteRenamer
     end
     if name[/000/]
       species = "000"
-    else
-      species_number = name[0, 3].to_i
+    elsif name[/^(\d+)$/] || name[/^(\d+)\D/]
+      species_number = $~[1].to_i
       species_data = GameData::Species.try_get(species_number)
       raise _INTL("Species {1} is not defined (trying to rename Pokémon graphic {2}).", species_number, full_name) if !species_data
       species = species_data.id.to_s
-      form = "_" + $~[1].to_s if name[/_(\d+)/]
+      form = "_" + $~[1].to_s if name[/_(\d+)$/] || name[/_(\d+)\D/]
       female = "_female" if name[/f/]
       shadow = "_shadow" if name[/_shadow/]
       gmax = "_gmax" if name[/_gmax/]
@@ -76,7 +76,7 @@ module SpriteRenamer
         crack = "_cracks" if name[/eggCracks/]
       end
     end
-    return prefix + species + form + female + shadow + gmax + crack + ((extension) ? "." + extension : ".png")
+    return prefix + species + form + female + shadow + gmax + crack + extension
   end
 
   def convert_pokemon_sprites(src_dir, dest_dir)
@@ -95,7 +95,7 @@ module SpriteRenamer
       when "eggCracks.png"
         File.move(src_dir + file, dest_dir + "Eggs/000_cracks.png")
       else
-        next if !file[/^\d{3}[^\.]*\.[^\.]*$/]
+        next if !file[/^\d+[^\.]*\.[^\.]*$/]
         new_filename = convert_pokemon_filename(file)
         # moves the files into their appropriate folders
         File.move(src_dir + file, dest_dir + new_filename)
@@ -116,7 +116,7 @@ module SpriteRenamer
       when "iconEgg.png"
         File.move(src_dir + file, dest_dir + "Eggs/000_egg.png")
       else
-        next if !file[/^icon\d{3}[^\.]*\.[^\.]*$/]
+        next if !file[/^icon\d+[^\.]*\.[^\.]*$/]
         new_filename = convert_pokemon_filename(file.sub(/^icon/, ''), "Icons/")
         # moves the files into their appropriate folders
         File.move(src_dir + file, dest_dir + new_filename)
@@ -132,7 +132,7 @@ module SpriteRenamer
     files.each_with_index do |file, i|
       Graphics.update if i % 100 == 0
       pbSetWindowText(_INTL("Converting footprints {1}/{2}...", i, files.length)) if i % 50 == 0
-      next if !file[/^footprint\d{3}[^\.]*\.[^\.]*$/]
+      next if !file[/^footprint\d+[^\.]*\.[^\.]*$/]
       new_filename = convert_pokemon_filename(file.sub(/^footprint/, ''), "Footprints/")
       # moves the files into their appropriate folders
       File.move(src_dir + file, dest_dir + new_filename)
@@ -183,7 +183,7 @@ module SpriteRenamer
     files.each_with_index do |file, i|
       Graphics.update if i % 100 == 0
       pbSetWindowText(_INTL("Converting Pokémon cries {1}/{2}...", i, files.length)) if i % 50 == 0
-      if file[/^(\d{3})Cry[^\.]*\.([^\.]*)$/]
+      if file[/^(\d+)Cry[^\.]*\.([^\.]*)$/]
         species_number = $~[1].to_i
         extension = $~[2]
         form = (file[/Cry_(\d+)\./]) ? sprintf("_%s", $~[1]) : ""
@@ -208,7 +208,7 @@ module SpriteRenamer
       Graphics.update if i % 100 == 0
       pbSetWindowText(_INTL("Converting trainer sprites {1}/{2}...", i, files.length)) if i % 50 == 0
       if src_dir == "Graphics/Characters/"
-        if file[/^trchar(\d{3})\.([^\.]*)$/]
+        if file[/^trchar(\d+)\.([^\.]*)$/]
           tr_type_number = $~[1].to_i
           extension = $~[2]
           tr_type_data = GameData::TrainerType.try_get(tr_type_number)
@@ -217,14 +217,14 @@ module SpriteRenamer
           File.move(src_dir + file, src_dir + "trainer_" + tr_type + "." + extension)
         end
       else
-        if file[/^trainer(\d{3})\.([^\.]*)$/]
+        if file[/^trainer(\d+)\.([^\.]*)$/]
           tr_type_number = $~[1].to_i
           extension = $~[2]
           tr_type_data = GameData::TrainerType.try_get(tr_type_number)
           raise _INTL("Trainer type {1} is not defined (trying to rename trainer sprite {2}).", tr_type_number, file) if !tr_type_data
           tr_type = tr_type_data.id.to_s
           File.move(src_dir + file, src_dir + tr_type + "." + extension)
-        elsif file[/^trback(\d{3})\.([^\.]*)$/]
+        elsif file[/^trback(\d+)\.([^\.]*)$/]
           tr_type_number = $~[1].to_i
           extension = $~[2]
           tr_type_data = GameData::TrainerType.try_get(tr_type_number)
@@ -236,10 +236,30 @@ module SpriteRenamer
     end
   end
 
+  def convert_player_metadata_charsets
+    changed = false
+    for i in 0...8
+      metadata = GameData::Metadata.get_player(i)
+      next if !metadata
+      if metadata[1][/^trchar(\d{3})$/]
+        tr_type_number = $~[1].to_i
+        tr_type_data = GameData::TrainerType.try_get(tr_type_number)
+        raise _INTL("Trainer type {1} is not defined (trying to rename player metadata filename {2}).", tr_type_number, metadata[1]) if !tr_type_data
+        metadata[1] = "trainer_" + tr_type_data.id.to_s
+        changed = true
+      end
+    end
+    return if !changed
+    # Save changes to metadata and rewrite PBS file
+    GameData::Metadata.save
+    Compiler.write_metadata
+  end
+
   def convert_files
     return if !pbConfirmMessage("Check for Pokémon/item/trainer files in their old folders that need renaming and moving?")
     any_changed = false
     any_player_changed = false
+    newPlayerMeta = []
     # Rename and move Pokémon sprites/icons
     dest_dir = "Graphics/Pokemon/"
     Dir.mkdir(dest_dir) if !FileTest.directory?(dest_dir)
@@ -262,16 +282,8 @@ module SpriteRenamer
     if pbConfirmMessage("Rename all trainer charsets? This will also edit map data to change events' charsets accordingly.")
       # Rename Trainer Charsets
       convert_trainer_sprites("Graphics/Characters/")
-      for i in 0...8
-        metadata = GameData::Metadata.get_player(i)
-        next if !metadata
-        id = GameData::TrainerType.get(metadata[0]).id_number
-        next if metadata[1] != sprintf("trchar%03d",id)
-        newMeta = metadata.clone
-        newMeta[1] = "trainer_#{metadata[0]}"
-        newPlayerMeta.push(newMeta)
-        any_player_changed = true
-      end
+      convert_player_metadata_charsets
+      pbSetWindowText(nil)
       # Edit all maps to replace used charsets
       mapData = Compiler::MapData.new
       t = Time.now.to_i
@@ -301,34 +313,6 @@ module SpriteRenamer
       end
     end
     pbMessage(_INTL("All found sprites and icons were renamed and moved."))
-    if any_player_changed
-      metadata = GameData::Metadata.get
-      metadata_hash = {
-        :id                 => 0,
-        :home               => metadata.home,
-        :wild_battle_BGM    => metadata.wild_battle_BGM,
-        :trainer_battle_BGM => metadata.trainer_battle_BGM,
-        :wild_victory_ME    => metadata.wild_victory_ME,
-        :trainer_victory_ME => metadata.trainer_victory_ME,
-        :wild_capture_ME    => metadata.wild_capture_ME,
-        :surf_BGM           => metadata.surf_BGM,
-        :bicycle_BGM        => metadata.bicycle_BGM,
-        :player_A           => newPlayerMeta[0],
-        :player_B           => newPlayerMeta[1],
-        :player_C           => newPlayerMeta[2],
-        :player_D           => newPlayerMeta[3],
-        :player_E           => newPlayerMeta[4],
-        :player_F           => newPlayerMeta[5],
-        :player_G           => newPlayerMeta[6],
-        :player_H           => newPlayerMeta[7]
-      }
-      # Add metadata's data to records
-      GameData::Metadata.register(metadata_hash)
-      GameData::Metadata.save
-      Compiler.write_metadata
-      pbMessage(_INTL("Since all Trainer charsets have been renamed, it is possible that the charset name in the metadata.txt. for the PlayerA, PlayerB etc, no longer matches the file name in Graphics/ Characters."))
-      pbMessage(_INTL("If that is the case, please make sure to rectify this, else you will get an error upon closing and reopening RPG Maker XP."))
-    end
     pbMessage(_INTL("Some map data was edited. Close and reopen RPG Maker XP to see the changes.")) if any_changed
     pbUpdateVehicle if $game_player
   end

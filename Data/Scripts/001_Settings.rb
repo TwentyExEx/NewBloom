@@ -24,8 +24,6 @@ module Settings
   SCREEN_HEIGHT = 384
   # The default screen scale factor. Possible values are 0.5, 1.0, 1.5 and 2.0.
   SCREEN_SCALE  = 1.0
-  # Map view mode (0=original, 1=custom, 2=perspective).
-  MAP_VIEW_MODE = 1
 
   #=============================================================================
 
@@ -397,14 +395,6 @@ module Settings
     "choice 26",
     "choice 27",
     "choice 28"
-  ]
-
-  # Available fonts, as selectable in the Options Screen.
-  FONT_OPTIONS = [
-    "Power Green",
-    "Power Red and Blue",
-    "Power Red and Green",
-    "Power Clear"
   ]
 end
 

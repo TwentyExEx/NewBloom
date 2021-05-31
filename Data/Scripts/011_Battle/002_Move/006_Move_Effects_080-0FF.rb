@@ -2168,7 +2168,7 @@ class PokeBattle_Move_0CB < PokeBattle_TwoTurnMove
               !user.ability != :GULPMISSILE ||
               user.form != 0
     newForm = (user.hp > (user.totalhp/2)) ? 1 : 2
-    pbChangeForm(newForm,"")
+    user.pbChangeForm(newForm,"")
   end
 end
 

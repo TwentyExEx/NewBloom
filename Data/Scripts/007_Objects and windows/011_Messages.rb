@@ -495,7 +495,7 @@ def pbCreateMessageWindow(viewport=nil,skin=nil)
   end
   msgwindow.visible=true
   msgwindow.letterbyletter=true
-  msgwindow.back_opacity=MessageConfig::WindowOpacity
+  msgwindow.back_opacity=MessageConfig::WINDOW_OPACITY
   pbBottomLeftLines(msgwindow,2)
   $game_temp.message_window_showing=true if $game_temp
   skin=MessageConfig.pbGetSpeechFrame() if !skin
@@ -753,6 +753,16 @@ def pbMessageDisplay(msgwindow,message,letterbyletter=true,commandProc=nil)
     if autoresume && msgwindow.waitcount==0
       msgwindow.resume if msgwindow.busy?
       break if !msgwindow.busy?
+    end
+    if Input.press?(Input::BACK)
+      msgwindow.textspeed=-999
+      msgwindow.update
+      if msgwindow.busy?
+        pbPlayDecisionSE() if msgwindow.pausing?
+        msgwindow.resume
+      else
+        break if signWaitCount==0
+      end
     end
     if Input.trigger?(Input::USE) || Input.trigger?(Input::BACK)
       if msgwindow.busy?

@@ -2209,14 +2209,11 @@ BattleHandlers::EOREffectAbility.add(:SPEEDBOOST,
 
 BattleHandlers::EOREffectAbility.add(:HUNGERSWITCH,
   proc { |ability,battler,battle|
-    if battler.isSpecies?(:MORPEKO)
-      battle.pbShowAbilitySplash(battler)
-      battler.form = (battler.form == 0) ? 1 : 0
-      battler.pbUpdate(true)
-      battle.scene.pbChangePokemon(battler,battler.pokemon)
-      battle.pbDisplay(_INTL("{1} transformed!",battler.pbThis))
-      battle.pbHideAbilitySplash(battler)
-    end
+    next if !battler.isSpecies?(:MORPEKO)
+    battle.pbShowAbilitySplash(battler)
+    newForm = (battler.form == 0) ? 1 : 0
+    battler.pbChangeForm(newForm,_INTL("{1} transformed!",battler.pbThis))
+    battle.pbHideAbilitySplash(battler)
   }
 )
 

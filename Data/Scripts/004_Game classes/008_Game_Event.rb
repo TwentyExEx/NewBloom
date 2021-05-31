@@ -232,6 +232,7 @@ class Game_Event < Game_Character
     @direction_fix        = @page.direction_fix
     @through              = @page.through
     @always_on_top        = @page.always_on_top
+    calculate_bush_depth
     @trigger              = @page.trigger
     @list                 = @page.list
     @interpreter          = nil
@@ -243,7 +244,6 @@ class Game_Event < Game_Character
 
   def should_update?(recalc=false)
     return @to_update if !recalc
-    return true if $PokemonSystem.tilemap==2
     return true if @trigger && (@trigger == 3 || @trigger == 4)
     return true if @move_route_forcing
     return true if @event.name[/update/i]
@@ -268,7 +268,7 @@ class Game_Event < Game_Character
       refresh
     end
     check_event_trigger_auto
-    if @interpreter != nil
+    if !@interpreter.nil?
       unless @interpreter.running?
         @interpreter.setup(@list, @event.id, @map_id)
       end
