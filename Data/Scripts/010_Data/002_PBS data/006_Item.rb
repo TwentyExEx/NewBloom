@@ -160,7 +160,6 @@ module GameData
          :GROUDON  => [:REDORB],
          :ZACIAN   => [:RUSTEDSWORD],
          :ZAMAZENTA=> [:RUSTEDSHIELD]
-         :GROUDON  => [:REDORB]
       }
       return combos[species] && combos[species].include?(@id)
     end
