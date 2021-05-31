@@ -1347,7 +1347,7 @@ class ChooseBase
       end
     end
     # Trainer backsprite
-    helpr="$game_player.character_name"
+    helpr="trback00#{$Trainer.character_ID}"
     filepath="Graphics/Trainers/"
     folder=SPRITE_CONVERT_HASH[helpr]
     saveBase(filepath+helpr,folder)
